@@ -2,6 +2,14 @@
   padding-bottom: 30%;
 }
 
+.bg-primary {
+  background-color: #010101;
+}
+
+.bg-secondary {
+  background-color: #030406;
+}
+
 @media (min-width: 380px) {
   .layout {
     padding-bottom: 25%;

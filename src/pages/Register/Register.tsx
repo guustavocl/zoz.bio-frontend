@@ -1,7 +1,7 @@
 import { UserPlusIcon } from "@heroicons/react/20/solid";
 import ReCAPTCHA from "react-google-recaptcha";
 import registerImg from "../../assets/register.png";
-import FloatInput from "../../components/Inputs/FloatInput";
+import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -14,12 +14,25 @@ export default function Register() {
       cpassword: "",
     },
     validationSchema: yup.object({
-      cpassword: yup.string().when("password", {
-        is: (password: string) => password,
-        then: yup
-          .string()
-          .oneOf([yup.ref("password"), null], "Passwords must match!"),
-      }),
+      name: yup.string().required("Name is required"),
+      email: yup
+        .string()
+        .required("Email is required")
+        .email("Must be a valid email"),
+      password: yup
+        .string()
+        .required("Password is required")
+        .min(6, "Must be at least 6 digits"),
+      cpassword: yup
+        .string()
+        .required("Must confirm your password")
+        .when("password", {
+          is: (password: string) => password,
+          then: yup
+            .string()
+            .min(6, "Must be at least 6 digits")
+            .oneOf([yup.ref("password"), null], "Passwords must match!"),
+        }),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -54,20 +67,25 @@ export default function Register() {
         </div>
         <form className="mt-4 space-y-2" onSubmit={formik.handleSubmit}>
           <div className="-space-y-px rounded-md shadow-sm">
-            <div className="py-1.5">
-              <FloatInput
+            <div className="py-1">
+              <LabelInput
                 id="name"
                 name="name"
                 type="text"
-                required
                 label="Name"
+                size={50}
                 value={formik.values.name}
                 onChange={formik.handleChange}
-                errors={formik.errors.name}
+                onBlur={formik.handleBlur}
+                errors={
+                  formik.touched.name && formik.errors.name
+                    ? formik.errors.name
+                    : undefined
+                }
               />
             </div>
             {/* <div className="py-1.5">
-              <FloatInput
+              <LabelInput
                 id="username"
                 name="username"
                 type="text"
@@ -84,40 +102,57 @@ export default function Register() {
                 errors={formik.errors.username}
               />
             </div> */}
-            <div className="py-1.5">
-              <FloatInput
+            <div className="py-1">
+              <LabelInput
                 id="email"
                 name="email"
                 type="email"
-                required
                 label="Email"
+                size={50}
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                errors={formik.errors.email}
+                onBlur={formik.handleBlur}
+                errors={
+                  formik.touched.email && formik.errors.email
+                    ? formik.errors.email
+                    : undefined
+                }
               />
             </div>
-            <div className="py-1.5">
-              <FloatInput
+            <div className="py-1">
+              <LabelInput
                 id="password"
                 name="password"
                 type="password"
-                required
                 label="Password"
+                size={40}
+                minSize={6}
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                errors={formik.errors.password}
+                onBlur={formik.handleBlur}
+                errors={
+                  formik.touched.password && formik.errors.password
+                    ? formik.errors.password
+                    : undefined
+                }
               />
             </div>
-            <div className="py-1.5">
-              <FloatInput
+            <div className="py-1">
+              <LabelInput
                 id="cpassword"
                 name="cpassword"
                 type="password"
-                required
                 label="Confirm Password"
+                size={40}
+                minSize={6}
                 value={formik.values.cpassword}
                 onChange={formik.handleChange}
-                errors={formik.errors.cpassword}
+                onBlur={formik.handleBlur}
+                errors={
+                  formik.touched.cpassword && formik.errors.cpassword
+                    ? formik.errors.cpassword
+                    : undefined
+                }
               />
             </div>
           </div>
@@ -132,11 +167,11 @@ export default function Register() {
           <div>
             <button
               type="submit"
-              className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
             >
               <span className="absolute left-0 flex items-center pl-3">
                 <UserPlusIcon
-                  className="h-5 w-5 text-indigo-800 group-hover:text-indigo-400"
+                  className="h-5 w-5 text-violet-700 group-hover:text-violet-500"
                   aria-hidden="true"
                 />
               </span>
@@ -146,14 +181,14 @@ export default function Register() {
               {"By signing up, you agree to the "}
               <a
                 href="/terms"
-                className="font-medium text-indigo-500 hover:text-indigo-600"
+                className="font-medium text-violet-600 hover:text-violet-700"
               >
                 Terms of Service
               </a>
               {" and "}
               <a
                 href="/privacy"
-                className="font-medium text-indigo-500 hover:text-indigo-600"
+                className="font-medium text-violet-600 hover:text-violet-700"
               >
                 Privacy Policy
               </a>
@@ -163,7 +198,7 @@ export default function Register() {
             {"Already have an account? "}
             <a
               href="/login"
-              className="font-medium text-indigo-500 hover:text-indigo-600"
+              className="font-medium text-violet-600 hover:text-violet-700"
             >
               Log in.
             </a>

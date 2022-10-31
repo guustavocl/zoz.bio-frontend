@@ -19,7 +19,7 @@ export default function Login() {
               or{" "}
               <a
                 href="/register"
-                className="font-medium text-indigo-500 hover:text-indigo-600"
+                className="font-medium text-violet-500 hover:text-violet-600"
               >
                 click here to create your account
               </a>
@@ -77,7 +77,7 @@ export default function Login() {
               <div className="text-2x1">
                 <a
                   href="#"
-                  className="font-medium text-gray-400 hover:text-indigo-500"
+                  className="font-medium text-gray-400 hover:text-violet-500"
                 >
                   Forgot your password?
                 </a>
@@ -91,7 +91,7 @@ export default function Login() {
               >
                 <span className="absolute left-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-indigo-800 group-hover:text-indigo-400"
+                    className="h-5 w-5 text-violet-800 group-hover:text-violet-400"
                     aria-hidden="true"
                   />
                 </span>

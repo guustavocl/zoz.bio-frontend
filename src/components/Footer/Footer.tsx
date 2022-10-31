@@ -1,36 +1,43 @@
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 z-20 p-4 w-full shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-900 dark:border-gray-600">
-      <span className="text-sm text-gray-400 sm:text-center dark:text-gray-400">
+    <footer className="md:fixed bottom-0 left-0 p-4 w-full shadow md:flex md:items-center md:justify-between md:p-5 bg-secondary">
+      <span className="text-md text-gray-500 sm:text-center">
         © 2022
-        <a href="https://flowbite.com/" className="px-2 hover:underline">
-          ZOZ.GG
-        </a>
+        <span className="px-2 hover:text-gray-100">ZOZ.GG</span>
         <span>
           Developed by
-          <a href="guustavocl" className="px-1 hover:underline">
+          <a
+            href="guustavocl"
+            className="px-1 hover:underline hover:text-gray-100"
+          >
             @guustavocl
           </a>
         </span>
       </span>
-      <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+      <ul className="flex flex-wrap items-center mt-3 text-md text-gray-500 sm:mt-0">
         <li>
-          <a href="#" className="mr-4 hover:underline md:mr-6 ">
+          <a href="/about" className="mr-4 hover:underline hover:text-gray-100">
             About
           </a>
         </li>
         <li>
-          <a href="/terms" className="mr-4 hover:underline md:mr-6">
+          <a href="/terms" className="mr-4 hover:underline hover:text-gray-100">
             Terms of service
           </a>
         </li>
         <li>
-          <a href="/privacy" className="mr-4 hover:underline md:mr-6">
+          <a
+            href="/privacy"
+            className="mr-4 hover:underline hover:text-gray-100"
+          >
             Privacy Policy
           </a>
         </li>
         <li>
-          <a href="#" className="hover:underline">
+          <a
+            href="/contact"
+            className="mr-4 hover:underline hover:text-gray-100"
+          >
             Contact
           </a>
         </li>

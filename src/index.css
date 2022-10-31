@@ -6,6 +6,7 @@ html {
   overflow: scroll;
   overflow-x: hidden;
 }
+
 ::-webkit-scrollbar {
   width: 0;
   background: transparent;
@@ -19,7 +20,7 @@ html {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #070b13;
+  background-color: #010101;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
