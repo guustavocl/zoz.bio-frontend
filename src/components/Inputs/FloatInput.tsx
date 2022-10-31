@@ -5,7 +5,9 @@ type FloatInputProps = {
   type?: string;
   autoComplete?: string;
   required?: boolean;
-  errorMessage?: string;
+  errors?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<any>) => void;
 };
 
 export default function FloatInput({
@@ -15,7 +17,9 @@ export default function FloatInput({
   type = "text",
   required = false,
   autoComplete = "off",
-  errorMessage,
+  errors,
+  value,
+  onChange,
 }: FloatInputProps) {
   return (
     <div className="relative">
@@ -25,8 +29,10 @@ export default function FloatInput({
         type={type}
         required={required}
         autoComplete={autoComplete}
+        value={value}
+        onChange={onChange}
         className={`block rounded px-2.5 pb-1.5 pt-4 w-full text-sm text-gray-900 bg-gray-200 focus:border-indigo-700 peer focus:ring-indigo-700 ${
-          errorMessage ? "border-red-600" : "border-gray-600"
+          errors ? "border-red-600" : "border-gray-600"
         }`}
         placeholder=" "
       />
@@ -36,12 +42,12 @@ export default function FloatInput({
       >
         {label}
       </label>
-      {errorMessage && (
+      {errors && (
         <label
           htmlFor={id}
           className="absolute text-3x1 text-red-600 duration-300 top-3 right-2.5 scale-90"
         >
-          {errorMessage}
+          {errors}
         </label>
       )}
     </div>
