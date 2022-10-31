@@ -1,32 +1,56 @@
-import { AuthProvider } from './context/AuthProvider'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ProtectedLayout } from './layouts/ProtectedLayout'
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PublicLayout, ProfileLayout, ProtectedLayout } from "./layouts";
+import "./App.css";
+
+const Home = React.lazy(() => import("./pages/Home"));
+const Login = React.lazy(() => import("./pages/Login"));
+const Register = React.lazy(() => import("./pages/Register"));
+
+const publicRoutes = [
+  {
+    path: "/",
+    component: Home,
+  },
+  {
+    path: "/login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    component: Register,
+  },
+];
 
 function App() {
-
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/profile' 
-            element={
-              <ProtectedLayout>
-                <h2>aqui é o profile</h2>
-              </ProtectedLayout>
-            }
-          />
-          <Route path='/login' 
-            element={
-              <div>
-                teste
-              </div>
-            }
-          />
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/edit"
+          element={
+            <ProtectedLayout>
+              <h2>aqui é o profile</h2>
+            </ProtectedLayout>
+          }
+        />
 
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
-  )
+        {publicRoutes.map(({ path, component: Component }, id) => (
+          <Route
+            key={id}
+            path={path}
+            element={
+              <PublicLayout>
+                <Component />
+              </PublicLayout>
+            }
+          />
+        ))}
+
+        <Route path="/*" element={<ProfileLayout />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
