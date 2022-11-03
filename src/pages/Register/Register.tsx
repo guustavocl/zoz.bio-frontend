@@ -22,7 +22,7 @@ export default function Register() {
       password: yup
         .string()
         .required("Password is required")
-        .min(6, "Must be at least 6 digits"),
+        .min(6, "Must be at least 6 characters length"),
       cpassword: yup
         .string()
         .required("Must confirm your password")
