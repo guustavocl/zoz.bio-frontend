@@ -4,17 +4,19 @@ import registerImg from "../../assets/register.png";
 import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import userService from "../../services/user.service";
 
 export default function Register() {
+
   const formik = useFormik({
     initialValues: {
-      name: "",
+      uname: "",
       email: "",
       password: "",
       cpassword: "",
     },
     validationSchema: yup.object({
-      name: yup.string().required("Name is required"),
+      uname: yup.string().required("Name is required"),
       email: yup
         .string()
         .required("Email is required")
@@ -36,19 +38,13 @@ export default function Register() {
     }),
     onSubmit: (values) => {
       console.log(values);
-      // formik.setErrors({ username: "aaa" });
 
-      // jwtService
-      //   .signInWithUsernameAndPassword(values.username, values.password)
-      //   .then((user) => {
-      //     localStorage.setItem("authUser", JSON.stringify(user));
-      //     setUser(user);
-      //     props.history.push("/");
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     messageService.errorMessage("Email e/ou senha inválido(s)");
-      //   });
+      userService.register(values).then((response) => {
+        console.log('deu bom')
+      }).catch(error => {
+        console.log('deu ruim', error);
+        //     messageService.errorMessage("Email e/ou senha inválido(s)");
+      })
     },
   });
 
@@ -69,17 +65,17 @@ export default function Register() {
           <div className="-space-y-px rounded-md shadow-sm">
             <div className="py-1">
               <LabelInput
-                id="name"
-                name="name"
+                id="uname"
+                name="uname"
                 type="text"
                 label="Name"
                 size={50}
-                value={formik.values.name}
+                value={formik.values.uname}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 errors={
-                  formik.touched.name && formik.errors.name
-                    ? formik.errors.name
+                  formik.touched.uname && formik.errors.uname
+                    ? formik.errors.uname
                     : undefined
                 }
               />

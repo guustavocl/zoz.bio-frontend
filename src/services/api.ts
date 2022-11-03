@@ -1,8 +1,9 @@
 import axios from "axios";
-import { IUser } from "../context/AuthProvider/types";
-import { getUserLocalStorage } from "./auth";
+import { IUser } from "../types/IUser";
+import authService from "./auth.service";
 
 export const Api = axios.create({
+  // baseURL: "127.0.0.1:3100"
   baseURL:
     import.meta.env.REACT_APP_MODE === "prod"
       ? import.meta.env.REACT_APP_PROD_API_URL
@@ -10,7 +11,6 @@ export const Api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  // baseURL: "127.0.0.1:3100"
 });
 
 export function setInterceptors(user: IUser | null) {
@@ -39,6 +39,3 @@ export function setInterceptors(user: IUser | null) {
     }
   );
 }
-
-const authUser = await getUserLocalStorage();
-setInterceptors(authUser);

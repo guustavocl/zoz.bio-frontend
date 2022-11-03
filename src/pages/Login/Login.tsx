@@ -1,7 +1,9 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import loginImg from "../../assets/login.png";
+import { useAuth } from "../../context/AuthProvider/useAuth";
 
 export default function Login() {
+  const authenticate = useAuth();
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
