@@ -1,0 +1,10 @@
+.customtoastify {
+  --toastify-toast-background: #030406;
+  --toastify-color-light: #14171f;
+  border-radius: 15px;
+  color: #d1d1d1;
+}
+
+.Toastify__close-button--light {
+  color: #e7e7e7;
+}

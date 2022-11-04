@@ -5,8 +5,12 @@ import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import userService from "../../services/user.service";
+import { useToast } from "../../context/ToastProvider/useToast";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const { errorToast, successToast } = useToast();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -37,14 +41,17 @@ export default function Register() {
         }),
     }),
     onSubmit: (values) => {
-      console.log(values);
-
-      userService.register(values).then((response) => {
-        console.log('deu bom')
-      }).catch(error => {
-        console.log('deu ruim', error);
-        //     messageService.errorMessage("Email e/ou senha inválido(s)");
-      })
+      userService
+        .register(values)
+        .then((response) => {
+          formik.resetForm();
+          successToast(response.message);
+          navigate("/login");
+        })
+        .catch((error) => {
+          errorToast(error.message);
+          if (error.errors) formik.setErrors(error.errors);
+        });
     },
   });
 

@@ -1,13 +1,12 @@
 import axios from "axios";
 import { IUser } from "../types/IUser";
-import authService from "./auth.service";
 
 export const Api = axios.create({
-  // baseURL: "127.0.0.1:3100"
-  baseURL:
-    import.meta.env.REACT_APP_MODE === "prod"
-      ? import.meta.env.REACT_APP_PROD_API_URL
-      : import.meta.env.REACT_APP_DEV_API_URL,
+  baseURL: "http://127.0.0.1:3100",
+  // baseURL:
+  //   import.meta.env.REACT_APP_MODE === "prod"
+  //     ? import.meta.env.REACT_APP_PROD_API_URL
+  //     : import.meta.env.REACT_APP_DEV_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
