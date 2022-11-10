@@ -12,6 +12,30 @@ class AuthService {
       throw error && error.response ? error.response.data : error;
     }
   };
+
+  sendConfirmEmail = async (email: string, recapthca?: string) => {
+    try {
+      const request = await Api.post(`${this.endpoint}/send_confirm_email`, {
+        email,
+        recapthca,
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
+
+  confirmEmail = async (email: string, token: string) => {
+    try {
+      const request = await Api.post(`${this.endpoint}/confirm_email`, {
+        email,
+        token,
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
 }
 
 export default new AuthService();

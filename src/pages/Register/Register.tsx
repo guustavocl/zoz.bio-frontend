@@ -18,6 +18,7 @@ export default function Register() {
       email: "",
       password: "",
       cpassword: "",
+      recaptcha: "",
     },
     validationSchema: yup.object({
       uname: yup.string().required("Name is required"),
