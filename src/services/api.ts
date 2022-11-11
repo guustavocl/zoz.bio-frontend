@@ -1,12 +1,27 @@
 import axios from "axios";
 import { IUser } from "../types/IUser";
 
+const endpoints = [
+  {
+      origin: 'localhost',
+      endpoint: 'http://127.0.0.1:3100/'
+  },
+  {
+      origin: '127.0.0.1',
+      endpoint: 'http://127.0.0.1:3100/'
+  },
+  {
+      origin: 'teste.zoz.gg',
+      endpoint: 'http://api-teste.zoz.gg/'
+  },
+  {
+      origin: 'zoz.gg',
+      endpoint: 'http://api.zoz.gg/'
+  }
+]
+
 export const Api = axios.create({
-  baseURL: "http://127.0.0.1:3000",
-  // baseURL:
-  //   import.meta.env.REACT_APP_MODE === "prod"
-  //     ? import.meta.env.REACT_APP_PROD_API_URL
-  //     : import.meta.env.REACT_APP_DEV_API_URL,
+  baseURL: endpoints.find(e => (window.location.href).includes(e.origin))?.endpoint || "http://127.0.0.1:3000",
   headers: {
     "Content-Type": "application/json",
   },
