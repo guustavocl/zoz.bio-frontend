@@ -11,20 +11,25 @@ export interface IAuthProvider {
 export const AuthContext = createContext<IAuth>({} as IAuth);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
-  const [user, setUser] = useState<IUser | null>();
+  const userStorage = authService.getUserLocalStorage();
+  const [user, setUser] = useState<IUser | null>(userStorage);
 
   useEffect(() => {
-    const user = authService.getUserLocalStorage();
-    if (user) setUser(user);
-    setInterceptors(user);
+    // if (userStorage) setUser(userStorage);
+    setInterceptors(userStorage);
   }, []);
 
   async function authenticate(email: string, password: string) {
-    const response = await authService.login(email, password);
-    const payload = { token: response.token, email };
-    setUser(payload);
-    setInterceptors(payload);
-    authService.setUserLocalStorage(payload);
+    try {
+      let response = await authService.login(email, password);
+      const payload = { email, token: response.token };
+      setUser(payload);
+      setInterceptors(payload);
+      authService.setUserLocalStorage(payload);
+      return response;
+    } catch (error) {
+      throw error;
+    }
   }
 
   function logout() {

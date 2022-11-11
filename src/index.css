@@ -5,10 +5,12 @@
 html {
   overflow: scroll;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
   width: 0;
+  height: 0;
   background: transparent;
 }
 
@@ -18,9 +20,10 @@ html {
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #010101;
+  /* background-color: #010101; */
+  background-color: #030303;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

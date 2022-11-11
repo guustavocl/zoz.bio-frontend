@@ -1,26 +1,27 @@
-import { IUser } from '../types/IUser';
-import { Api } from './api';
+import { IUser } from "../types/IUser";
+import { Api } from "./api";
 
 class AuthService {
   endpoint = "auth";
 
-  login = async(username: string, password: string) => {
+  login = async (email: string, password: string) => {
     try {
-      const request = await Api.post('login', {username, password});
+      const request = await Api.post("/auth/login", { email, password });
       return request.data;
-    } catch(error) { return null; }
-  }
+    } catch (error) {
+      throw error;
+    }
+  };
 
-  setUserLocalStorage = (user: IUser | null ) => {
-    localStorage.setItem('u', JSON.stringify(user));
-  }
-  
+  setUserLocalStorage = (user: IUser | null) => {
+    localStorage.setItem("u", JSON.stringify(user));
+  };
+
   getUserLocalStorage = () => {
-    const json = localStorage.getItem('u');
-    if(!json) return null;
+    const json = localStorage.getItem("u");
+    if (!json) return null;
     return JSON.parse(json);
-  }
-
+  };
 }
 
 export default new AuthService();

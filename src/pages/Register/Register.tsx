@@ -171,6 +171,7 @@ export default function Register() {
           <div>
             <button
               type="submit"
+              disabled={formik.isSubmitting}
               className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
             >
               <span className="absolute left-0 flex items-center pl-3">

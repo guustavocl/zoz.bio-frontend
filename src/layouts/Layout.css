@@ -1,31 +1,33 @@
-/* .layout {
-  padding-bottom: 30%;
-}
-
-.bg-test {
-  background-color: #101110;
+.layout {
+  height: 80vh;
 }
 
 @media (min-width: 380px) {
   .layout {
-    padding-bottom: 25%;
+    height: 80vh;
   }
 }
 
 @media (min-width: 640px) {
   .layout {
-    padding-bottom: 10%;
+    height: 82vh;
   }
 }
 
 @media (min-width: 900px) {
   .layout {
-    padding-bottom: 10%;
+    height: 70vh;
   }
 }
 
 @media (min-width: 1368px) {
   .layout {
-    padding-bottom: 4%;
+    height: 73vh;
   }
-} */
+}
+
+@media (min-width: 1400px) {
+  .layout {
+    height: 78vh;
+  }
+}

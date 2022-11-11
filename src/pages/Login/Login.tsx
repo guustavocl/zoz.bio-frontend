@@ -1,9 +1,80 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import loginImg from "../../assets/login.png";
+import { LabelInput } from "../../components/Inputs";
 import { useAuth } from "../../context/AuthProvider/useAuth";
+import { useEffect } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useToast } from "../../context/ToastProvider/useToast";
+import { useNavigate } from "react-router-dom";
+import { ILogin } from "../../types/ILogin";
 
 export default function Login() {
-  const authenticate = useAuth();
+  const { authenticate } = useAuth();
+  const navigate = useNavigate();
+  const { errorToast, successToast } = useToast();
+
+  useEffect(() => {
+    const json = localStorage.getItem("rl");
+    if (json) {
+      let rememberInfos: ILogin = JSON.parse(json);
+      formik.setValues({
+        email: rememberInfos?.email || "",
+        password: rememberInfos?.password || "",
+        remember: rememberInfos?.remember || false,
+      });
+    }
+  }, []);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      remember: false,
+    },
+    validationSchema: yup.object({
+      email: yup.string().required().email(),
+      password: yup.string().required(),
+    }),
+    onSubmit: (values) => {
+      authenticate(values.email, values.password)
+        .then(async (response: any) => {
+          if (values.remember)
+            localStorage.setItem("rl", JSON.stringify(values));
+          else localStorage.removeItem("rl");
+
+          successToast(response.message);
+          navigate("/settings");
+        })
+        .catch((error) => {
+          errorToast(
+            error.response && error.response.data
+              ? error.response.data.message
+              : error.message
+          );
+          if (error.response && error.response.data) {
+            if (error.response.data.confirmation) {
+              navigate(`/confirm?email=${values.email}`);
+            }
+          }
+          formik.setSubmitting(false);
+        });
+    },
+  });
+
+  useEffect(() => {
+    const listener = (event: { code: string; preventDefault: () => void }) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        formik.submitForm();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
@@ -27,35 +98,28 @@ export default function Login() {
               </a>
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
+          <form className="mt-4 space-y-2" onSubmit={formik.handleSubmit}>
             <div className="-space-y-px rounded-md shadow-sm">
               <div className="py-1">
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
+                <LabelInput
+                  id="email"
                   name="email"
-                  type="text"
-                  autoComplete="off"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border bg-gray-200 border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-3x1"
-                  placeholder="Username or email address"
+                  type="email"
+                  label="Email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
               </div>
               <div className="py-1">
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
+                <LabelInput
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border bg-gray-200 border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-3x1"
-                  placeholder="Password"
+                  label="Password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
               </div>
             </div>
@@ -63,9 +127,11 @@ export default function Login() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
-                  id="remember-me"
-                  name="remember-me"
+                  id="remember"
+                  name="remember"
                   type="checkbox"
+                  checked={formik.values.remember}
+                  onChange={formik.handleChange}
                   className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-offset-0 focus:ring-gray-600"
                 />
                 <label
@@ -89,6 +155,7 @@ export default function Login() {
             <div>
               <button
                 type="submit"
+                disabled={formik.isSubmitting}
                 className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute left-0 flex items-center pl-3">
