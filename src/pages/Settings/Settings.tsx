@@ -7,7 +7,7 @@ import defaultAvatar from "../../assets/default-avatar.png";
 
 const Settings = () => {
   return (
-    <div className="grid gap-4 grid-cols-12 h-full pt-2">
+    <div className="grid gap-4 grid-cols-12 h-full pt-2 md:p-3">
       <div className="px-4 md:px-0 h-auto md:h-full center md:items-center col-span-12 md:col-span-3 lg:col-start-3 lg:col-span-1 rounded-xl overflow-y-scroll overflow-x-scroll flex gap-2 flex-row md:flex-col">
         <div className="w-full p-4 mt-2 rounded-xl items-center bg-tertiary overflow-y-scroll overflow-x-scroll flex gap-2 flex-row md:flex-col">
           {[...Array(20)].map((x, i) => (
