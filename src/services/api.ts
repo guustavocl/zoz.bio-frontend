@@ -12,16 +12,16 @@ const endpoints = [
   },
   {
       origin: 'teste.zoz.gg',
-      endpoint: 'http://api-teste.zoz.gg/'
+      endpoint: 'http://api-teste.zoz.gg'
   },
   {
       origin: 'zoz.gg',
-      endpoint: 'http://api.zoz.gg/'
+      endpoint: 'http://api.zoz.gg'
   }
 ]
 
 export const Api = axios.create({
-  baseURL: endpoints.find(e => (window.location.href).includes(e.origin))?.endpoint || "http://127.0.0.1:3000",
+  baseURL: endpoints.find(e => (window.location.href).includes(e.origin))?.endpoint || "http://api.zoz.gg",
   headers: {
     "Content-Type": "application/json",
   },
