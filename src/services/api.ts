@@ -2,7 +2,7 @@ import axios from "axios";
 import { IUser } from "../types/IUser";
 
 export const Api = axios.create({
-  baseURL: "http://127.0.0.1:3100",
+  baseURL: "http://127.0.0.1:3000",
   // baseURL:
   //   import.meta.env.REACT_APP_MODE === "prod"
   //     ? import.meta.env.REACT_APP_PROD_API_URL
