@@ -5,10 +5,12 @@ type LabelInputProps = {
   type?: string;
   autoComplete?: string;
   required?: boolean;
+  disabled?: boolean;
   errors?: string;
   size?: number;
   minSize?: number;
   value: string;
+  bgColor?: string;
   onChange: (e: React.ChangeEvent<any>) => void;
   onBlur?: (e: React.ChangeEvent<any>) => void;
 };
@@ -19,11 +21,13 @@ export default function LabelInput({
   label,
   type = "text",
   required = false,
+  disabled = false,
   autoComplete = "off",
   errors,
   value,
   size,
   minSize,
+  bgColor = "bg-tertiary",
   onChange,
   onBlur,
 }: LabelInputProps) {
@@ -34,7 +38,7 @@ export default function LabelInput({
         className={`block text-sm font-medium ${
           errors
             ? "text-red-700 group-focus-within:text-red-700"
-            : "text-gray-500 group-focus-within:text-violet-500"
+            : "text-gray-300 group-focus-within:text-violet-500"
         }`}
       >
         {errors ? errors : label}
@@ -45,7 +49,7 @@ export default function LabelInput({
           className={`block text-sm font-medium ${
             errors
               ? "text-red-800 group-focus:text-red-800"
-              : "text-gray-600 group-focus:text-violet-600"
+              : "text-gray-400 group-focus:text-violet-600"
           } absolute right-2.5 top-0`}
         >
           {`${
@@ -55,6 +59,12 @@ export default function LabelInput({
       )}
       <div className="relative mt-1 rounded-md">
         <input
+          className={
+            "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
+            `${bgColor} border-zblack ring-zblack ` +
+            "focus:border-violet-600 focus:ring-violet-500 " +
+            `${disabled ? "text-gray-600" : "text-gray-200"}`
+          }
           id={id}
           name={name}
           type={type}
@@ -67,9 +77,8 @@ export default function LabelInput({
             onChange(e);
           }}
           onBlur={onBlur}
-          style={{ backgroundColor: "#0c0f16" }}
-          className="block w-full rounded-md text-gray-400 text-lg pl-2 pr-2 py-1 font-medium focus:border-violet-600 focus:ring-violet-500 border-gray-800"
           placeholder=""
+          disabled={disabled}
         />
       </div>
     </div>

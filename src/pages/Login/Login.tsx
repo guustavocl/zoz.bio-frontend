@@ -44,7 +44,7 @@ export default function Login() {
           else localStorage.removeItem("rl");
 
           successToast(response.message);
-          navigate("/settings");
+          navigate("/account");
         })
         .catch((error) => {
           errorToast(
@@ -81,7 +81,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div>
             <img
-              className="mx-auto h-48 sm:h-72"
+              className="mx-auto h-48 sm:h-64"
               src={loginImg}
               alt="Login svg"
             />
@@ -136,7 +136,7 @@ export default function Login() {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-2x1 text-gray-400"
+                  className="ml-2 block text-2x1 text-gray-300"
                 >
                   Remember me
                 </label>
@@ -145,7 +145,7 @@ export default function Login() {
               <div className="text-2x1">
                 <a
                   href="#"
-                  className="font-medium text-gray-400 hover:text-violet-500"
+                  className="font-medium text-gray-300 hover:text-violet-500"
                 >
                   Forgot your password?
                 </a>
@@ -156,11 +156,11 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-primary hover:font-semibold hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute left-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-violet-800 group-hover:text-violet-400"
+                    className="h-5 w-5 text-violet-700 group-hover:text-violet-600"
                     aria-hidden="true"
                   />
                 </span>

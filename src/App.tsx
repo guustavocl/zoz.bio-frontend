@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PublicLayout, ProfileLayout, ProtectedLayout } from "./layouts";
 import "./App.css";
-import Settings from "./pages/Settings";
+import Account from "./pages/Account";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -59,10 +59,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/settings"
+          path="/account"
           element={
             <ProtectedLayout>
-              <Settings />
+              <Account />
             </ProtectedLayout>
           }
         />

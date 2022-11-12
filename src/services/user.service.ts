@@ -4,6 +4,17 @@ import { Api } from "./api";
 class AuthService {
   endpoint = "user";
 
+  getUser = async (email: string) => {
+    try {
+      const request = await Api.get(`${this.endpoint}`, {
+        params: { email },
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
+
   register = async (values: IUser) => {
     try {
       const request = await Api.post(`${this.endpoint}/create`, values);

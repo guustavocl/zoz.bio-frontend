@@ -3,21 +3,20 @@ import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/zoz.png";
 import { IAuth } from "../../types/IAuth";
-import { useNavigate } from "react-router-dom";
 
 export default function Header({ auth }: { auth?: IAuth }) {
   const isHomePage = window.location.pathname === "/";
 
   return (
     <Popover className="relative">
-      <div className="grid grid-cols-12 w-full py-4 items-center">
+      <div className="grid grid-cols-12 w-full py-2 items-center">
         <div className="col-span-12 md:col-start-3 justify-between md:col-span-2 flex flex-row">
           <a href="/">
             <span className="sr-only">ZOZ.gg</span>
             <img className="w-32 sm:h-16" src={logo} alt="logo" />
           </a>
           <div className="md:hidden flex items-center">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600">
               <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-8 w-8" aria-hidden="true" />
             </Popover.Button>
@@ -32,19 +31,19 @@ export default function Header({ auth }: { auth?: IAuth }) {
             >
               <a
                 href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-100"
+                className="text-base font-semibold text-gray-300 hover:text-violet-600"
               >
                 Nothing
               </a>
               <a
                 href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-100"
+                className="text-base font-semibold text-gray-300 hover:text-violet-600"
               >
                 Yet
               </a>
               <a
                 href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-100"
+                className="text-base font-semibold text-gray-300 hover:text-violet-600"
               >
                 Here
               </a>
@@ -57,28 +56,28 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <a
                 onClick={auth.logout}
-                className="cursor-pointer whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-100"
+                className="cursor-pointer whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
               >
                 Logout
               </a>
               <a
-                href="/settings"
+                href="/account"
                 className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
               >
-                Settings
+                Account
               </a>
             </div>
           ) : (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <a
                 href="/login"
-                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-100"
+                className="whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
               >
                 Login
               </a>
               <a
                 href="/register"
-                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
+                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
               >
                 Register
               </a>
@@ -112,7 +111,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                 </a>
 
                 <div className="md:hidden flex items-center">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-8 w-8" aria-hidden="true" />
                   </Popover.Button>
@@ -124,20 +123,20 @@ export default function Header({ auth }: { auth?: IAuth }) {
                 <div className="text-center grid grid-cols-1 gap-y-4 gap-x-8">
                   <a
                     href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-100"
+                    className="text-base font-semibold text-gray-300 hover:text-violet-600"
                   >
                     Nothing
                   </a>
 
                   <a
                     href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-100"
+                    className="text-base font-semibold text-gray-300 hover:text-violet-600"
                   >
                     Here
                   </a>
                   <a
                     href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-100"
+                    className="text-base font-semibold text-gray-300 hover:text-violet-600"
                   >
                     Yet
                   </a>
@@ -147,17 +146,17 @@ export default function Header({ auth }: { auth?: IAuth }) {
               {auth && auth.token ? (
                 <div>
                   <a
-                    href="/settings"
+                    href="/account"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
                   >
-                    Settings
+                    Account
                   </a>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
+                  <p className="mt-6 text-center text-base font-medium text-gray-300">
                     <a
                       onClick={() => {
                         auth.logout();
                       }}
-                      className="cursor-pointer text-indigo-600 hover:text-indigo-500"
+                      className="cursor-pointer text-violet-600 hover:text-violet-700"
                     >
                       Logout
                     </a>
@@ -167,15 +166,15 @@ export default function Header({ auth }: { auth?: IAuth }) {
                 <div>
                   <a
                     href="/register"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
                   >
                     Register
                   </a>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
+                  <p className="mt-6 text-center text-base font-medium text-gray-300">
                     Already have an account?{" "}
                     <a
                       href="/login"
-                      className="text-indigo-600 hover:text-indigo-500"
+                      className="text-violet-600 hover:text-violet-700"
                     >
                       Login
                     </a>

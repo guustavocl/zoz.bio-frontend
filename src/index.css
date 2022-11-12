@@ -15,15 +15,16 @@ html {
 }
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: Inter, Avenir, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
   line-height: 24px;
-  font-weight: 400;
 
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #010101; */
-  background-color: #030303;
+  background-color: #080808;
+
+  /* "#16161b" "#202029"  */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

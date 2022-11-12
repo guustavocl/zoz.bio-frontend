@@ -57,7 +57,7 @@ export default function Register() {
   });
 
   return (
-    <div className="flex min-h-full items-center justify-center py-1 px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-full items-center justify-center py-1 px-4 sm:px-6 lg:px-8 pb-20">
       <div className="w-full max-w-md">
         <div>
           <img
@@ -172,11 +172,11 @@ export default function Register() {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="group relative flex w-full justify-center rounded border border-transparent bg-gray-900 py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
+              className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-primary hover:font-semibold hover:text-violet-600 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
             >
               <span className="absolute left-0 flex items-center pl-3">
                 <UserPlusIcon
-                  className="h-5 w-5 text-violet-700 group-hover:text-violet-500"
+                  className="h-5 w-5 text-violet-700 group-hover:text-violet-600"
                   aria-hidden="true"
                 />
               </span>
