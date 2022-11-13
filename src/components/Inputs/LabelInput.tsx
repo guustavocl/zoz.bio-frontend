@@ -2,6 +2,7 @@ type LabelInputProps = {
   id: string;
   name: string;
   label: string;
+  placeholder?: string;
   type?: string;
   autoComplete?: string;
   required?: boolean;
@@ -19,6 +20,7 @@ export default function LabelInput({
   id,
   name,
   label,
+  placeholder = "",
   type = "text",
   required = false,
   disabled = false,
@@ -61,7 +63,7 @@ export default function LabelInput({
         <input
           className={
             "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
-            `${bgColor} border-zblack ring-zblack ` +
+            `${bgColor} border-gray-900 ` +
             "focus:border-violet-600 focus:ring-violet-500 " +
             `${disabled ? "text-gray-600" : "text-gray-200"}`
           }
@@ -77,7 +79,7 @@ export default function LabelInput({
             onChange(e);
           }}
           onBlur={onBlur}
-          placeholder=""
+          placeholder={placeholder}
           disabled={disabled}
         />
       </div>

@@ -1,3 +1,2 @@
-import CustomTab from "./CustomTab";
-
-export { CustomTab };
+import Tabs from "./Tabs";
+export { Tabs };

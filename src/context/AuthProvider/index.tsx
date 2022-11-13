@@ -14,11 +14,6 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   const userStorage = authService.getUserLocalStorage();
   const [user, setUser] = useState<IUser | null>(userStorage);
 
-  useEffect(() => {
-    // if (userStorage) setUser(userStorage);
-    setInterceptors(userStorage);
-  }, []);
-
   async function authenticate(email: string, password: string) {
     try {
       let response = await authService.login(email, password);

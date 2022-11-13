@@ -6,7 +6,7 @@ const TabSettings = ({ account }: { account?: IUser }) => {
   return (
     <React.Fragment>
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col gap-2 w-1/2">
+        <div className="flex flex-col gap-2 md:w-1/2">
           <LabelInput
             id="uname"
             name="uname"

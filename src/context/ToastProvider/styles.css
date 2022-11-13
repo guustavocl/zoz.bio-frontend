@@ -3,6 +3,7 @@
   --toastify-color-light: #14171f;
   border-radius: 15px;
   color: #d1d1d1;
+  margin: 10px;
 }
 
 .Toastify__close-button--light {

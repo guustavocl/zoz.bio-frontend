@@ -7,12 +7,12 @@ import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import userService from "../../services/user.service";
-import { useToast } from "../../context/ToastProvider/useToast";
+import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 
 const Confirm = () => {
   const navigate = useNavigate();
-  const { errorToast, successToast } = useToast();
+  const { errorToast, successToast } = useToasts();
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [searchParams] = useSearchParams();
   const email = searchParams.get("email");

@@ -2,7 +2,6 @@ import { useAuth } from "../context/AuthProvider/useAuth";
 import { Navigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "./Layout.css";
 
 export const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
   const auth = useAuth();
@@ -14,7 +13,11 @@ export const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
   return (
     <>
       <Header auth={auth} />
-      <div className="layout">{children}</div>
+      <div className="h-full mb-4 w-full flex flex-row items-center justify-center">
+        <div className="h-full w-full lg:max-w-7xl justify-between items-center md:mb-16">
+          {children}
+        </div>
+      </div>
       <Footer />
     </>
   );

@@ -107,8 +107,8 @@ const Terms = () => {
           You may be required to register with the Site. You agree to keep your
           password confidential and will be responsible for all use of your
           account and password. We reserve the right to remove, reclaim, or
-          change a username you select if we determine, in our sole discretion,
-          that such username is inappropriate, obscene, or otherwise
+          change a pagename you select if we determine, in our sole discretion,
+          that such pagename is inappropriate, obscene, or otherwise
           objectionable.
         </p>
         <br />
@@ -145,7 +145,7 @@ const Terms = () => {
           messages, or using any data mining, robots, or similar data gathering
           and extraction tools. Delete the copyright or other proprietary rights
           notice from any Content. Attempt to impersonate another user or person
-          or use the username of another user. Upload or transmit (or attempt to
+          or use the pagename of another user. Upload or transmit (or attempt to
           upload or to transmit) any material that acts as a passive or active
           information collection or transmission mechanism, including without
           limitation, clear graphics interchange formats (“gifs”), 1×1 pixels,
@@ -166,7 +166,7 @@ const Terms = () => {
           cheat utility, scraper, or offline reader that accesses the Site, or
           using or launching any unauthorized script or other software. Use a
           buying agent or purchasing agent to make purchases on the Site. Make
-          any unauthorized use of the Site, including collecting usernames
+          any unauthorized use of the Site, including collecting pagenames
           and/or email addresses of users by electronic or other means for the
           purpose of sending unsolicited email, or creating user accounts by
           automated means or under false pretenses. Use the Site as part of any
@@ -316,7 +316,7 @@ const Terms = () => {
           Third-Party Account by contacting us using the contact information
           below or through your account settings (if applicable). We will
           attempt to delete any information stored on our servers that was
-          obtained through such Third-Party Account, except the username and
+          obtained through such Third-Party Account, except the pagename and
           profile picture that become associated with your account.
         </p>
         <br />

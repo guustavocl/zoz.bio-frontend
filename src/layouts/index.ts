@@ -1,3 +1,3 @@
-export { ProfileLayout } from "./ProfileLayout";
+export { PageLayout } from "./PageLayout";
 export { PublicLayout } from "./PublicLayout";
 export { ProtectedLayout } from "./ProtectedLayout";

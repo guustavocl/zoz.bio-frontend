@@ -5,14 +5,14 @@ import { useAuth } from "../../context/AuthProvider/useAuth";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useToast } from "../../context/ToastProvider/useToast";
+import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 import { ILogin } from "../../types/ILogin";
 
 export default function Login() {
   const { authenticate } = useAuth();
   const navigate = useNavigate();
-  const { errorToast, successToast } = useToast();
+  const { errorToast, successToast } = useToasts();
 
   useEffect(() => {
     const json = localStorage.getItem("rl");
@@ -86,7 +86,7 @@ export default function Login() {
               alt="Login svg"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300">
-              Sign in to edit your profile
+              Sign in to edit yours pages
             </h2>
             <p className="mt-2 text-center text-2x1 text-gray-300">
               or{" "}
@@ -156,11 +156,11 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-primary hover:font-semibold hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-900 hover:font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute left-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-violet-700 group-hover:text-violet-600"
+                    className="h-5 w-5 text-gray-300 group-hover:text-violet-600"
                     aria-hidden="true"
                   />
                 </span>

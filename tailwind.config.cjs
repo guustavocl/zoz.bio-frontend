@@ -3,6 +3,9 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      height: {
+        screen80: "80vh",
+      },
       colors: {
         zblack: "#080808",
         primary: "#16161b",

@@ -5,11 +5,11 @@ import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import userService from "../../services/user.service";
-import { useToast } from "../../context/ToastProvider/useToast";
+import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const { errorToast, successToast } = useToast();
+  const { errorToast, successToast } = useToasts();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -88,24 +88,6 @@ export default function Register() {
                 }
               />
             </div>
-            {/* <div className="py-1.5">
-              <LabelInput
-                id="username"
-                name="username"
-                type="text"
-                required
-                label="Username"
-                value={formik.values.username}
-                onChange={(e) => {
-                  let username = e.target.value.replace(
-                    /[^a-z0-9_-]+|\s+/gim,
-                    ""
-                  );
-                  formik.setFieldValue("username", username);
-                }}
-                errors={formik.errors.username}
-              />
-            </div> */}
             <div className="py-1">
               <LabelInput
                 id="email"
@@ -172,11 +154,11 @@ export default function Register() {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-primary hover:font-semibold hover:text-violet-600 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
+              className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-900 hover:font-semiboldfocus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0"
             >
               <span className="absolute left-0 flex items-center pl-3">
                 <UserPlusIcon
-                  className="h-5 w-5 text-violet-700 group-hover:text-violet-600"
+                  className="h-5 w-5 text-gray-300 group-hover:text-violet-600"
                   aria-hidden="true"
                 />
               </span>

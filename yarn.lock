@@ -340,6 +340,19 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
+"@tanstack/query-core@4.15.0":
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.15.0.tgz#751a83db6251421391cb39d9df6551eb7ba4a4f1"
+  integrity sha512-zEZ7AuQRb8Ts+WXw9TtGtqydxmcOSRsWkFYxxH8dykPcumsV49BcNDLhHtYqVGPQpMjqMS4RoVYQP+budT6WbA==
+
+"@tanstack/react-query@^4.15.0":
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.15.0.tgz#36c746d6ee7f062c00d01c55d6786513bc3f6a7e"
+  integrity sha512-WQZCSxZgYGkQUx2TRiGVcfxh0dsrP1qU7IYK/kbY1QbcWF2cQJsj80owgjpXBCRSk/nxpZ6j65Xi8TB5OTT5Vw==
+  dependencies:
+    "@tanstack/query-core" "4.15.0"
+    use-sync-external-store "^1.2.0"
+
 "@types/lodash@^4.14.175":
   version "4.14.186"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.186.tgz#862e5514dd7bd66ada6c70ee5fce844b06c8ee97"
@@ -1324,6 +1337,11 @@ update-browserslist-db@^1.0.9:
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 util-deprecate@^1.0.2:
   version "1.0.2"

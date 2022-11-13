@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PublicLayout, ProfileLayout, ProtectedLayout } from "./layouts";
+import { PublicLayout, PageLayout, ProtectedLayout } from "./layouts";
 import "./App.css";
 import Account from "./pages/Account";
 
@@ -79,7 +79,7 @@ function App() {
           />
         ))}
 
-        <Route path="/*" element={<ProfileLayout />} />
+        <Route path="/*" element={<PageLayout />} />
       </Routes>
     </BrowserRouter>
   );
