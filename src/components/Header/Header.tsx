@@ -8,7 +8,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
   const isHomePage = window.location.pathname === "/";
 
   return (
-    <Popover className="relative w-full flex flex-row items-center justify-center">
+    <Popover className="relative w-full flex flex-row items-center justify-center z-20">
       <div className="w-full lg:max-w-7xl flex flex-row justify-between items-center px-4 py-1">
         <div className="flex flex-row justify-between content-between">
           <a href="/">
@@ -16,38 +16,6 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <img className="w-32 sm:h-16" src={logo} alt="logo" />
           </a>
         </div>
-        <div className="-my-2 -mr-2 md:hidden">
-          <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-            <span className="sr-only">Open menu</span>
-            <Bars3Icon className="h-8 w-8" aria-hidden="true" />
-          </Popover.Button>
-        </div>
-
-        {isHomePage ? (
-          <div className="hidden items-center justify-center space-x-16 md:flex">
-            <a
-              href="#"
-              rel="noopener noreferrer"
-              className="text-base font-semibold text-gray-300 hover:text-violet-600"
-            >
-              Nothing
-            </a>
-            <a
-              href="#"
-              rel="noopener noreferrer"
-              className="text-base font-semibold text-gray-300 hover:text-violet-600"
-            >
-              Yet
-            </a>
-            <a
-              href="#"
-              rel="noopener noreferrer"
-              className="text-base font-semibold text-gray-300 hover:text-violet-600"
-            >
-              Here
-            </a>
-          </div>
-        ) : null}
 
         {auth && auth.token ? (
           <div className="hidden items-center justify-end md:flex">
@@ -85,12 +53,12 @@ export default function Header({ auth }: { auth?: IAuth }) {
           </div>
         )}
 
-        {/* <div className="md:hidden flex items-center">
-          <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600">
+        <div className="md:hidden flex items-center">
+          <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 focus:outline-none">
             <span className="sr-only">Open menu</span>
             <Bars3Icon className="h-8 w-8" aria-hidden="true" />
           </Popover.Button>
-        </div> */}
+        </div>
 
         <Transition
           as={Fragment}
@@ -99,64 +67,31 @@ export default function Header({ auth }: { auth?: IAuth }) {
           enterTo="opacity-100 scale-100"
           leave="duration-100 ease-in"
           leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
+          leaveTo="opacity-0"
         >
           <Popover.Panel
             focus
-            className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden bg-secondary"
+            className="absolute inset-x-0 top-0 origin-top-right transform p-0 transition md:hidden bg-secondary z-50"
           >
-            <div className="rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
-              <div className="px-5 pt-5 pb-6">
-                <div className="flex items-center justify-between">
-                  <a
-                    href="/"
-                    rel="noopener noreferrer"
-                    className="ring-0 focus:ring-0"
-                  >
-                    <span className="sr-only">ZOZ.gg</span>
-                    <img
-                      className="h-24 w-auto sm:h-16 ring-0"
-                      src={logo}
-                      alt=""
-                    />
-                  </a>
+            <div className="rounded-lg shadow-lg ring-0 ring-black ring-opacity-5 px-4 py-1">
+              <div className="flex items-center justify-between">
+                <a
+                  href="/"
+                  rel="noopener noreferrer"
+                  className="ring-0 focus:ring-0"
+                >
+                  <span className="sr-only">ZOZ.gg</span>
+                  <img className="w-32 sm:h-16" src={logo} alt="" />
+                </a>
 
-                  <div className="md:hidden flex items-center">
-                    <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                      <span className="sr-only">Close menu</span>
-                      <XMarkIcon className="h-8 w-8" aria-hidden="true" />
-                    </Popover.Button>
-                  </div>
+                <div className="md:hidden flex items-center">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 ">
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                  </Popover.Button>
                 </div>
               </div>
               <div className="space-y-6 py-6 px-5">
-                {isHomePage ? (
-                  <div className="text-center grid grid-cols-1 gap-y-4 gap-x-8">
-                    <a
-                      href="#"
-                      rel="noopener noreferrer"
-                      className="text-base font-semibold text-gray-300 hover:text-violet-600"
-                    >
-                      Nothing
-                    </a>
-
-                    <a
-                      href="#"
-                      rel="noopener noreferrer"
-                      className="text-base font-semibold text-gray-300 hover:text-violet-600"
-                    >
-                      Here
-                    </a>
-                    <a
-                      href="#"
-                      rel="noopener noreferrer"
-                      className="text-base font-semibold text-gray-300 hover:text-violet-600"
-                    >
-                      Yet
-                    </a>
-                  </div>
-                ) : null}
-
                 {auth && auth.token ? (
                   <div>
                     <a

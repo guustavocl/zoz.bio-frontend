@@ -353,6 +353,18 @@ const adornmentIconsList: Record<string, mediaIconProps> = {
 };
 
 const badgeList: Record<string, mediaIconProps> = {
+  welcome: {
+    label: "🥳 Welcome",
+  },
+  new: {
+    label: "🔰 New",
+  },
+  zoz: {
+    label: "💠 ZOZ.gg",
+  },
+  member: {
+    label: "👨‍👩‍👦‍👦 Member",
+  },
   egirl: {
     label: "🦹‍♀️ E-Girl",
   },

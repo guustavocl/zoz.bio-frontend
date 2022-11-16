@@ -11,16 +11,10 @@ export const SectionCard = ({
   page,
   className,
 }: SectionCardProps) => {
-  // TURN THESES VARIABLES IN PAGE SETTINGS MAYBE
-
-  const primaryColor = page?.primaryColor || "#4106a0";
-  const cardsOpacity = page?.cardsOpacity || "50";
-
+  const primaryColor = page?.primaryColor || "#4106a050";
   const cardBlur = page?.cardBlur || "backdrop-blur";
-  const cardHueRotate = page?.cardHueRotate || ""; //backdrop-hue-rotate-90
-
+  const cardHueRotate = page?.cardHueRotate || "";
   // const cardSepia = "backdrop-sepia";
-  //hover:animate-pulse
 
   return (
     <div
@@ -32,11 +26,7 @@ export const SectionCard = ({
         `${className}`
       }
       style={{
-        backgroundColor: `${
-          primaryColor && cardsOpacity
-            ? primaryColor + cardsOpacity
-            : "#00000050"
-        }`,
+        backgroundColor: `${primaryColor}`,
       }}
     >
       <div className="flex flex-col md:flex-row p-0 py-3 rounded-md">

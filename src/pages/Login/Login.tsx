@@ -77,7 +77,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-full items-center justify-center mb-8 mt-4 md:mt-0 md:mb-0 py-2 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div>
             <img

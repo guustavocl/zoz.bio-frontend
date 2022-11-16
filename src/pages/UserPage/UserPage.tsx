@@ -18,9 +18,8 @@ const UserPage = ({ page }: UserPageProps) => {
   // TODO
   // blur effect on loading maybe? blur-sm
 
-  //VARIABLES FROM DB
-  const primaryColor = page?.primaryColor || "#4106a0";
-  const secondaryColor = page?.secondaryColor || "#9466cf";
+  const primaryColor = page?.primaryColor || "#4106a050";
+  const secondaryColor = page?.secondaryColor || "#9747ff50";
   const fontColor = page?.fontColor || "#f1f1f1";
   document.body.style.setProperty("--page-primary-color", primaryColor);
   document.body.style.setProperty("--page-secondary-color", secondaryColor);
@@ -28,31 +27,16 @@ const UserPage = ({ page }: UserPageProps) => {
 
   const pfpUrl =
     page?.pfpUrl ||
-    "https://cdn.ayo.so/b8e5c2fa49635c2a491966c74799259def4ee4a24f417615.webp";
-  const backgroundUrl = page?.backgroundUrl || "";
-  // "https://serving.photos.photobox.com/45795567072228eca2d9d55686345294c3aaaa80f1cfa3eae3383bd95c543626c36cbea9.jpg";
+    `https://avatars.dicebear.com/api/open-peeps/${page.pagename}.svg?width=100&height=100`;
+  const backgroundUrl = page?.backgroundUrl || "./bg.png";
   const backgroundSize = page?.backgroundSize || "cover"; // auto cover contain
   const backGroundOpacity = page?.backGroundOpacity || 0.5;
 
   const pageSocialMedias = page?.socialMedias || [
-    { username: "f6bb1aca-457f-4c80-9619-cd5684d49082", key: "pix" },
-    { username: "Gustavo~#1500", key: "discord" },
-    { username: "guustavocl", key: "twitter" },
-    { username: "guustavocl", key: "facebook" },
-    { username: "guustavocl", key: "instagram" },
-    { username: "guustavocl", key: "github" },
-    { username: "guustavocl", key: "steam" },
-    { username: "guustavocl", key: "telegram" },
+    { username: "https://zoz.gg/", key: "website" },
   ];
 
-  const pageBadges = page?.badges || [
-    "egirl",
-    "developer",
-    "coder",
-    "singer",
-    "sleeper",
-    "musician",
-  ];
+  const pageBadges = page?.badges || ["welcome", "new", "zoz", "member"];
 
   const pageStatus = {
     icon: "sleepo",
@@ -62,13 +46,15 @@ const UserPage = ({ page }: UserPageProps) => {
   return (
     <React.Fragment>
       {/* Link to Account settings Start */}
-      <a
-        href="/account"
-        rel="noopener noreferrer"
-        className="hsecondary hidden absolute left-0 md:flex text-sm bg-opacity-5 opacity-50 p-1 px-2 m-2 rounded-lg font-semibold hover:opacity-90"
-      >
-        <Cog6ToothIcon className="h-5" aria-hidden="true" />
-      </a>
+      {auth && auth.email ? (
+        <a
+          href="/account"
+          rel="noopener noreferrer"
+          className="hsecondary hidden absolute left-0 md:flex text-sm bg-opacity-5 opacity-50 p-1 px-2 m-2 rounded-lg font-semibold hover:opacity-90"
+        >
+          <Cog6ToothIcon className="h-5" aria-hidden="true" />
+        </a>
+      ) : null}
       {/* Link to Account settings End */}
       {/* Page Background Start*/}
       <div
@@ -89,7 +75,7 @@ const UserPage = ({ page }: UserPageProps) => {
           <React.Fragment>
             {/* Page Status Start */}
             {pageStatus && getStatusIcon(pageStatus.icon) ? (
-              <div className="absolute flex flex-row opacity-50 hover:opacity-100">
+              <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
                 <img
                   className="w-7"
                   src={getStatusIcon(pageStatus.icon).icon}
@@ -102,14 +88,14 @@ const UserPage = ({ page }: UserPageProps) => {
             <div className="flex flex-col justify-center items-center min-w-fit">
               <div className="flex-shrink-0 p-2">
                 <img
-                  className="ring-avatar hover:animate-pulse h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2 bg-black"
+                  className="ring-avatar hover:animate-pulse h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
                   src={pfpUrl}
-                  alt="pfp"
+                  alt="avatar"
                 />
               </div>
             </div>
             {/* Page Avatar End*/}
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               {/* Page Infos Start */}
               <div className="flex flex-col items-center">
                 <h2
