@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { UserIcon } from "@heroicons/react/20/solid";
 import ReCAPTCHA from "react-google-recaptcha";
-// import registerImg from "../../assets/register.png";
 import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
 import * as yup from "yup";

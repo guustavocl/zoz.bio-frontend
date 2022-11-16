@@ -144,7 +144,7 @@ const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
                     label="pagename"
                     placeholder={examplePagename}
                     minSize={5}
-                    size={40}
+                    size={30}
                     value={pagename}
                     onChange={(e) => {
                       let pagename = e.target.value.replace(

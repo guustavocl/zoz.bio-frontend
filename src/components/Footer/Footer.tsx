@@ -11,6 +11,7 @@ export default function Footer() {
               Developed by
               <a
                 href="gustavo"
+                rel="noopener noreferrer"
                 className="px-1 hover:underline hover:text-violet-600"
               >
                 @gustavo
@@ -21,6 +22,7 @@ export default function Footer() {
             <li>
               <a
                 href="/about"
+                rel="noopener noreferrer"
                 className="mr-4 hover:underline hover:text-violet-600"
               >
                 About
@@ -29,6 +31,7 @@ export default function Footer() {
             <li>
               <a
                 href="/terms"
+                rel="noopener noreferrer"
                 className="mr-4 hover:underline hover:text-violet-600"
               >
                 Terms of service
@@ -37,6 +40,7 @@ export default function Footer() {
             <li>
               <a
                 href="/privacy"
+                rel="noopener noreferrer"
                 className="mr-4 hover:underline hover:text-violet-600"
               >
                 Privacy Policy
@@ -45,6 +49,7 @@ export default function Footer() {
             <li>
               <a
                 href="/contact"
+                rel="noopener noreferrer"
                 className="mr-4 hover:underline hover:text-violet-600"
               >
                 Contact

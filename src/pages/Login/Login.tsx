@@ -92,6 +92,7 @@ export default function Login() {
               or{" "}
               <a
                 href="/register"
+                rel="noopener noreferrer"
                 className="font-medium text-violet-500 hover:text-violet-600"
               >
                 click here to create your account
@@ -145,6 +146,7 @@ export default function Login() {
               <div className="text-2x1">
                 <a
                   href="#"
+                  rel="noopener noreferrer"
                   className="font-medium text-gray-300 hover:text-violet-500"
                 >
                   Forgot your password?

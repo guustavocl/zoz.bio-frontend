@@ -168,6 +168,7 @@ export default function Register() {
               {"By signing up, you agree to the "}
               <a
                 href="/terms"
+                rel="noopener noreferrer"
                 className="font-medium text-violet-600 hover:text-violet-700"
               >
                 Terms of Service
@@ -175,6 +176,7 @@ export default function Register() {
               {" and "}
               <a
                 href="/privacy"
+                rel="noopener noreferrer"
                 className="font-medium text-violet-600 hover:text-violet-700"
               >
                 Privacy Policy
@@ -185,6 +187,7 @@ export default function Register() {
             {"Already have an account? "}
             <a
               href="/login"
+              rel="noopener noreferrer"
               className="font-medium text-violet-600 hover:text-violet-700"
             >
               Log in.

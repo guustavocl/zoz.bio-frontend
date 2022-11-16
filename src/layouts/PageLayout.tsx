@@ -30,7 +30,7 @@ export const PageLayout = () => {
   return (
     <>
       {queryPage.data?.page ? (
-        <div className="min-h-screen w-full flex flex-col items-center">
+        <div className="min-h-screen w-full flex flex-col items-center overflow-hidden">
           <UserPage page={queryPage.data.page} />
         </div>
       ) : (

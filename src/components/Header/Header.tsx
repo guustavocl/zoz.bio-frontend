@@ -21,18 +21,21 @@ export default function Header({ auth }: { auth?: IAuth }) {
           <div className="hidden items-center justify-center space-x-16 md:flex">
             <a
               href="#"
+              rel="noopener noreferrer"
               className="text-base font-semibold text-gray-300 hover:text-violet-600"
             >
               Nothing
             </a>
             <a
               href="#"
+              rel="noopener noreferrer"
               className="text-base font-semibold text-gray-300 hover:text-violet-600"
             >
               Yet
             </a>
             <a
               href="#"
+              rel="noopener noreferrer"
               className="text-base font-semibold text-gray-300 hover:text-violet-600"
             >
               Here
@@ -44,12 +47,14 @@ export default function Header({ auth }: { auth?: IAuth }) {
           <div className="hidden items-center justify-end md:flex">
             <a
               onClick={auth.logout}
+              rel="noopener noreferrer"
               className="cursor-pointer whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
             >
               Logout
             </a>
             <a
               href="/account"
+              rel="noopener noreferrer"
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
             >
               Account
@@ -59,12 +64,14 @@ export default function Header({ auth }: { auth?: IAuth }) {
           <div className="hidden items-center justify-end md:flex">
             <a
               href="/login"
+              rel="noopener noreferrer"
               className="whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
             >
               Login
             </a>
             <a
               href="/register"
+              rel="noopener noreferrer"
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
             >
               Register
@@ -95,7 +102,11 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <div className="rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
               <div className="px-5 pt-5 pb-6">
                 <div className="flex items-center justify-between">
-                  <a href="/" className="ring-0 focus:ring-0">
+                  <a
+                    href="/"
+                    rel="noopener noreferrer"
+                    className="ring-0 focus:ring-0"
+                  >
                     <span className="sr-only">ZOZ.gg</span>
                     <img
                       className="h-24 w-auto sm:h-16 ring-0"
@@ -117,6 +128,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                   <div className="text-center grid grid-cols-1 gap-y-4 gap-x-8">
                     <a
                       href="#"
+                      rel="noopener noreferrer"
                       className="text-base font-semibold text-gray-300 hover:text-violet-600"
                     >
                       Nothing
@@ -124,12 +136,14 @@ export default function Header({ auth }: { auth?: IAuth }) {
 
                     <a
                       href="#"
+                      rel="noopener noreferrer"
                       className="text-base font-semibold text-gray-300 hover:text-violet-600"
                     >
                       Here
                     </a>
                     <a
                       href="#"
+                      rel="noopener noreferrer"
                       className="text-base font-semibold text-gray-300 hover:text-violet-600"
                     >
                       Yet
@@ -141,6 +155,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                   <div>
                     <a
                       href="/account"
+                      rel="noopener noreferrer"
                       className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
                     >
                       Account
@@ -150,6 +165,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                         onClick={() => {
                           auth.logout();
                         }}
+                        rel="noopener noreferrer"
                         className="cursor-pointer text-violet-600 hover:text-violet-700"
                       >
                         Logout
@@ -160,6 +176,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                   <div>
                     <a
                       href="/register"
+                      rel="noopener noreferrer"
                       className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
                     >
                       Register
@@ -168,6 +185,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                       Already have an account?{" "}
                       <a
                         href="/login"
+                        rel="noopener noreferrer"
                         className="text-violet-600 hover:text-violet-700"
                       >
                         Login
