@@ -1,29 +1,62 @@
 import React, { useState } from "react";
-import defaultAvatar from "../../assets/default-avatar.png";
-import TabGroupAccount from "./TabsAccount/TabGroupAccount";
+import { useQuery } from "@tanstack/react-query";
+import PageEdit from "./PageEdit";
+import { IPage } from "../../types/IPage";
+import { useAuth } from "../../context/AuthProvider/useAuth";
 import userService from "../../services/user.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { useAuth } from "../../context/AuthProvider/useAuth";
-import { useQuery } from "@tanstack/react-query";
-import AccountPages from "./AccountPages";
 import DialogNewPage from "./DialogNewPage";
-import TabGroupPage from "./TabsPage/TabGroupPage";
+import { SectionCard } from "../UserPage/SectionCard";
+import { Tabs } from "../../components/Tabs";
+import { IUser } from "../../types/IUser";
+import AccountTabSettings from "./AccountTabSettings";
+import { Cog6ToothIcon } from "@heroicons/react/20/solid";
+import { BigHead } from "@bigheads/core";
 
-const pages = [
-  {
-    id: 1,
-    avatar: defaultAvatar,
-  },
-  {
-    id: 2,
-    avatar: defaultAvatar,
-  },
-];
+const accountSettings = (account: IUser) => {
+  return (
+    <SectionCard
+      className="w-full select-none h-screen70 overflow-y-scroll "
+      center={false}
+    >
+      <div className="w-full flex flex-col gap-2 overflow-hidden p-2">
+        {/* {[...Array(20)].map((x, i) => (
+          <div
+            className="flex-shrink-0"
+            key={i}
+            style={{
+              width: "200px",
+              height: "200px",
+              borderRadius: 10,
+              backgroundColor: "#000",
+              opacity: 1,
+              padding: 10,
+              // margin: 50,
+            }}
+          ></div>
+        ))} */}
+        <AccountTabSettings account={account} />
+      </div>
+    </SectionCard>
+  );
+};
+
+const accountSubscription = (account: IUser) => {
+  return (
+    <SectionCard
+      className="w-full select-none h-screen70 overflow-y-scroll "
+      center={false}
+    >
+      <div className="w-full flex flex-col gap-2 overflow-hidden p-2">SOON</div>
+    </SectionCard>
+  );
+};
 
 const Account = () => {
   const auth = useAuth();
   const [pannelSelected, setPannelSelected] = useState("account");
-  const [isOpen, setIsOpen] = useState(false);
+  const [page, setPage] = useState<IPage>();
+  const [dialogNewPageOpen, setDialogNewPageOpen] = useState(false);
   const { errorToast, successToast } = useToasts();
 
   const queryAccount = useQuery({
@@ -37,25 +70,112 @@ const Account = () => {
   }
 
   return (
-    <React.Fragment>
-      <div className="grid gap-1 grid-cols-12 md:h-screen80 content-start md:place-content-stretch pt-1 md:p-6 overflow-clip md:overflow-hidden">
-        <AccountPages
-          pages={pages}
-          setPannelSelected={setPannelSelected}
-          openDialog={() => setIsOpen(true)}
-        />
+    <div className="min-h-screen w-full flex flex-col items-center overflow-hidden">
+      {page ? (
+        <PageEdit page={page} setPage={setPage} />
+      ) : (
+        <React.Fragment>
+          <div className="w-full hidden absolute left-0 md:flex p-3 pl-4">
+            <div className="w-full flex flex-row justify-between">
+              <button
+                className="text-sm bg-opacity-5 opacity-50 rounded-lg font-semibold hover:opacity-90"
+                onClick={() => {
+                  setPage(undefined);
+                }}
+              >
+                <Cog6ToothIcon className="h-5" aria-hidden="true" />
+              </button>
+              <button
+                className="text-md bg-opacity-5 opacity-50 rounded-lg font-semibold hover:opacity-90"
+                onClick={auth.logout}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
 
-        <div className="w-full md:h-full px-2 pb-4 md:pb-0 col-span-full md:col-span-8 lg:col-span-7 rounded-xl md:overflow-y-scroll md:overflow-x-scroll flex gap-1 flex-col md:flex-col flex-1">
-          {pannelSelected === "account" ? (
-            <TabGroupAccount account={queryAccount.data?.user} />
-          ) : (
-            <TabGroupPage />
-          )}
-        </div>
-      </div>
+          <div
+            className="absolute w-full h-screen bg-gradient-to-br -z-50"
+            style={{
+              backgroundSize: "cover",
+              backgroundRepeat: "repeat",
+              backgroundPosition: "center",
+              backgroundImage: `url("./bg.png")`,
+              opacity: 0.5,
+            }}
+          ></div>
+          <div className="select-none flex flex-col items-center max-w-2x1 px-0 mx-3 md:mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
+            <div className="mt-8 mb-2 text-gray-400 font-semibold animate-pulse text-center">
+              ↓ Create a new page or click on the page you want to edit ↓
+            </div>
+            <div className="flex-shrink-0 mb-4 w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl flex flex-row gap-2 overflow-x-scroll overflow-y-hidden">
+              <div
+                onClick={() => setDialogNewPageOpen(true)}
+                className="flex-shrink-0 group w-24 h-24 rounded-full bg-violet-600 bg-opacity-30 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-50"
+              >
+                <span className="group-hover:hidden opacity-50 font-semibold text-3xl ">
+                  +
+                </span>
+                <span className="hidden group-hover:flex  opacity-50 font-semibold text-md ">
+                  New Page
+                </span>
+              </div>
 
-      <DialogNewPage isOpen={isOpen} setIsOpen={setIsOpen} />
-    </React.Fragment>
+              {queryAccount.data?.pages
+                ? queryAccount.data.pages.map((page: IPage, idx: number) => (
+                    <div
+                      key={idx}
+                      className="flex-shrink-0 group flex flex-col items-center justify-center"
+                    >
+                      <span
+                        className="z-30 select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-lg px-3 py-1 -translate-y-10"
+                        style={{ backgroundColor: "#000000" }}
+                      >
+                        {page.pagename}
+                      </span>
+                      {page.pfpUrl ? (
+                        <img
+                          src={page.pfpUrl}
+                          className="h-24 w-24 object-cover rounded-full opacity-60 hover:opacity-90 cursor-pointer"
+                          onClick={() => setPage(page)}
+                        />
+                      ) : (
+                        <div
+                          className="h-24 w-24 object-cover rounded-full opacity-60 hover:opacity-90 cursor-pointer"
+                          style={{ backgroundColor: "#85c5e5" }}
+                          onClick={() => setPage(page)}
+                        >
+                          <BigHead />
+                        </div>
+                      )}
+                    </div>
+                  ))
+                : null}
+            </div>
+
+            <div className="w-full h-full flex flex-col items-center">
+              <Tabs
+                list={[
+                  {
+                    label: "Settings",
+                    component: accountSettings(queryAccount.data?.user),
+                  },
+                  {
+                    label: "Subscription",
+                    component: accountSubscription(queryAccount.data?.user),
+                  },
+                ]}
+              />
+            </div>
+          </div>
+
+          <DialogNewPage
+            isOpen={dialogNewPageOpen}
+            setIsOpen={setDialogNewPageOpen}
+          />
+        </React.Fragment>
+      )}
+    </div>
   );
 };
 

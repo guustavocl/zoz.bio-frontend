@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       height: {
         screen80: "80vh",
+        screen70: "70vh",
       },
       colors: {
         zblack: "#080808",

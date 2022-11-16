@@ -46,9 +46,7 @@ const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const pagenameQuery = setTimeout(() => {
-      console.log("query pagename");
-    }, 300);
+    const pagenameQuery = setTimeout(() => {}, 300);
     return () => {
       clearTimeout(pagenameQuery);
     };
@@ -102,7 +100,7 @@ const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-primary p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-primary md:bg-opacity-90 p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium text-center leading-6 text-gray-200"
@@ -141,7 +139,7 @@ const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
                     id="pagename"
                     name="pagename"
                     type="text"
-                    label="pagename"
+                    label="Page Name"
                     placeholder={examplePagename}
                     minSize={5}
                     size={30}

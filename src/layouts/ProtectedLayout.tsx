@@ -12,13 +12,13 @@ export const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
 
   return (
     <>
-      <Header auth={auth} />
+      {/* <Header auth={auth} />
       <div className="h-full mb-4 w-full flex flex-row items-center justify-center">
-        <div className="h-full w-full lg:max-w-7xl justify-between items-center md:mb-16">
-          {children}
-        </div>
+        <div className="h-full w-full lg:max-w-7xl justify-between items-center md:mb-16"> */}
+      {children}
+      {/* </div>
       </div>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

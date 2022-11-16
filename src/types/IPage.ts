@@ -1,7 +1,21 @@
+export interface IPageLinks {
+  url: string;
+}
+
+export interface IPageStatus {
+  icon: string;
+  message: string;
+}
+
+export interface IPageSocialMedia {
+  username: string;
+  key: string;
+}
+
 export interface IPage {
   pagename: string;
   uname: string;
-  status: string;
+  status: { icon: string; message: string };
   bio: string;
   pfpUrl: string;
   bannerUrl: string;
@@ -17,12 +31,12 @@ export interface IPage {
   isMod: boolean;
   isAdmin: boolean;
 
-  cardsOpacity: number;
   fontColor: string;
   backgroundSize: string;
   backGroundOpacity: number;
   cardBlur: string;
   cardHueRotate: string;
   badges: string[];
-  socialMedias: [{ username: string; key: string }];
+  socialMedias: IPageSocialMedia[];
+  pageLinks: IPageLinks[];
 }

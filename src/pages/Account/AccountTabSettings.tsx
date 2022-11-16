@@ -1,8 +1,8 @@
 import React from "react";
-import { LabelInput } from "../../../components/Inputs";
-import { IUser } from "../../../types/IUser";
+import { LabelInput } from "../../components/Inputs";
+import { IUser } from "../../types/IUser";
 
-const TabSettings = ({ account }: { account?: IUser }) => {
+const AccountTabSettings = ({ account }: { account?: IUser }) => {
   return (
     <React.Fragment>
       <div className="flex flex-col md:flex-row">
@@ -15,7 +15,7 @@ const TabSettings = ({ account }: { account?: IUser }) => {
             size={40}
             value={account?.uname || ""}
             onChange={() => console.log(1)}
-            bgColor="bg-primary"
+            bgColor="bg-violet-900 bg-opacity-25"
             // onChange={formik.handleChange}
             // onBlur={formik.handleBlur}
             // errors={
@@ -32,7 +32,7 @@ const TabSettings = ({ account }: { account?: IUser }) => {
             size={40}
             value={account?.email || ""}
             onChange={() => console.log(1)}
-            bgColor="bg-primary"
+            bgColor="bg-violet-900 bg-opacity-25"
             disabled
             // onChange={formik.handleChange}
             // onBlur={formik.handleBlur}
@@ -49,4 +49,4 @@ const TabSettings = ({ account }: { account?: IUser }) => {
   );
 };
 
-export default TabSettings;
+export default AccountTabSettings;

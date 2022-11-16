@@ -48,7 +48,7 @@ export function setInterceptors(user: IUser | null) {
       return response;
     },
     async (error) => {
-      if (error.response.status === 403) {
+      if (error.response && error.response.status === 403) {
         localStorage.removeItem("u");
         window.location.reload();
       }

@@ -1,14 +1,14 @@
-import React from "react";
-import { UserIcon } from "./UserIcon";
-import { SectionCard } from "./SectionCard";
+import React, { useState } from "react";
 import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
-import { getBadge, getStatusIcon } from "./IconsList";
-import "./UserPage.css";
+import "../UserPage/UserPage.css";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
-import { defaultPage, setCssVariables } from "./UserVariables";
-import { UserInfos } from "./UserInfos";
+import { SectionCard } from "../UserPage/SectionCard";
+import { UserIcon } from "../UserPage/UserIcon";
+import { getBadge, getStatusIcon } from "../UserPage/IconsList";
+import { defaultPage, setCssVariables } from "../UserPage/UserVariables";
+import { UserInfos } from "../UserPage/UserInfos";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -86,9 +86,13 @@ const getAvatar = (pfpUrl: string | undefined) => {
   );
 };
 
-// TODO
-// blur effect on loading maybe? blur-sm
-const UserPage = ({ page }: { page: IPage }) => {
+const PageEdit = ({
+  page,
+  setPage,
+}: {
+  page: IPage;
+  setPage: (value: IPage | undefined) => void;
+}) => {
   const auth = useAuth();
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
@@ -106,13 +110,15 @@ const UserPage = ({ page }: { page: IPage }) => {
     <React.Fragment>
       {/* Link to Account settings */}
       {auth && auth.email ? (
-        <a
-          href="/account"
-          rel="noopener noreferrer"
-          className="hidden absolute left-0 md:flex text-sm bg-opacity-5 opacity-50 p-1 px-2 m-2 rounded-lg font-semibold hover:opacity-90"
-        >
-          <Cog6ToothIcon className="h-5" aria-hidden="true" />
-        </a>
+        <div className="select-none absolute left-0 p-1 px-2 m-2 ">
+          <button
+            onClick={() => setPage(undefined)}
+            className="text-md bg-opacity-5 opacity-50 rounded-lg font-semibold hover:opacity-90 flex flex-row gap-2"
+          >
+            <Cog6ToothIcon className="h-5 mt-0.5" aria-hidden="true" />
+            <span className="animate-pulse">← Click here to go back</span>
+          </button>
+        </div>
       ) : null}
       {/* Page Background */}
       <div
@@ -146,4 +152,4 @@ const UserPage = ({ page }: { page: IPage }) => {
   );
 };
 
-export default UserPage;
+export default PageEdit;
