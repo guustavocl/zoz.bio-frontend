@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PublicLayout, PageLayout, ProtectedLayout } from "./layouts";
-import "./App.css";
 import Account from "./pages/Account";
 
 const Home = React.lazy(() => import("./pages/Home"));

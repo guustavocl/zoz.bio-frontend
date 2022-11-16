@@ -29,9 +29,8 @@ const UserPage = ({ page }: UserPageProps) => {
   const pfpUrl =
     page?.pfpUrl ||
     "https://cdn.ayo.so/b8e5c2fa49635c2a491966c74799259def4ee4a24f417615.webp";
-  const backgroundUrl =
-    page?.backgroundUrl ||
-    "https://serving.photos.photobox.com/45795567072228eca2d9d55686345294c3aaaa80f1cfa3eae3383bd95c543626c36cbea9.jpg";
+  const backgroundUrl = page?.backgroundUrl || "";
+  // "https://serving.photos.photobox.com/45795567072228eca2d9d55686345294c3aaaa80f1cfa3eae3383bd95c543626c36cbea9.jpg";
   const backgroundSize = page?.backgroundSize || "cover"; // auto cover contain
   const backGroundOpacity = page?.backGroundOpacity || 0.5;
 

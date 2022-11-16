@@ -16,6 +16,12 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <img className="w-32 sm:h-16" src={logo} alt="logo" />
           </a>
         </div>
+        <div className="-my-2 -mr-2 md:hidden">
+          <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <span className="sr-only">Open menu</span>
+            <Bars3Icon className="h-8 w-8" aria-hidden="true" />
+          </Popover.Button>
+        </div>
 
         {isHomePage ? (
           <div className="hidden items-center justify-center space-x-16 md:flex">
@@ -79,12 +85,12 @@ export default function Header({ auth }: { auth?: IAuth }) {
           </div>
         )}
 
-        <div className="md:hidden flex items-center">
+        {/* <div className="md:hidden flex items-center">
           <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600">
             <span className="sr-only">Open menu</span>
             <Bars3Icon className="h-8 w-8" aria-hidden="true" />
           </Popover.Button>
-        </div>
+        </div> */}
 
         <Transition
           as={Fragment}
