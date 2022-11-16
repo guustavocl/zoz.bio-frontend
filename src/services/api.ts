@@ -17,14 +17,14 @@ const endpoints = [
   },
   {
     origin: "zoz.gg",
-    endpoint: "http://api.zoz.gg",
+    endpoint: "https://api.zoz.gg",
   },
 ];
 
 export const Api = axios.create({
   baseURL:
     endpoints.find((e) => window.location.href.includes(e.origin))?.endpoint ||
-    "http://api.zoz.gg",
+    "https://api.zoz.gg",
   headers: {
     "Content-Type": "application/json",
   },
