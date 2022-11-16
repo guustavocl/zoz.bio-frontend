@@ -25,11 +25,11 @@ export default function Tabs({ id, list }: TabsProps) {
             key={tab.label}
             className={({ selected }) =>
               classNames(
-                "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-gray-100",
-                "ring-opacity-60 ring-offset-2 focus:outline-none",
+                "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
+                "ring-opacity-60 ring-offset-2 focus:outline-none font-semibold tracking-wide",
                 selected
-                  ? "bg-violet-900 bg-opacity-40 shadow"
-                  : "text-gray-200 hover:bg-violet-600 hover:bg-opacity-20 hover:text-white"
+                  ? "text-gray-200 bg-violet-900 bg-opacity-40 shadow"
+                  : "text-gray-400 hover:bg-violet-600 hover:bg-opacity-20 hover:text-white"
               )
             }
           >
