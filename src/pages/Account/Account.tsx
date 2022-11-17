@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import PageEdit from "./PageEdit";
 import { IPage } from "../../types/IPage";
@@ -69,6 +69,16 @@ const Account = () => {
     errorToast(error.message);
   }
 
+  useEffect(() => {
+    const scrollContainer = document.getElementById("pages");
+    if (scrollContainer) {
+      scrollContainer.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center overflow-hidden">
       {page ? (
@@ -108,7 +118,10 @@ const Account = () => {
             <div className="mt-8 mb-2 text-gray-400 font-semibold animate-pulse text-center">
               ↓ Create a new page or click on the page you want to edit ↓
             </div>
-            <div className="flex-shrink-0 mb-4 w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl flex flex-row gap-2 overflow-x-scroll overflow-y-hidden">
+            <div
+              id="pages"
+              className="flex-shrink-0 mb-4 w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl flex flex-row gap-2 overflow-x-scroll overflow-y-hidden"
+            >
               <div
                 onClick={() => setDialogNewPageOpen(true)}
                 className="flex-shrink-0 group w-24 h-24 rounded-full bg-violet-600 bg-opacity-30 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-50"
