@@ -3,10 +3,12 @@ import { Fragment, useEffect, useState } from "react";
 import { LabelInput } from "../../components/Inputs";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import pageService from "../../services/page.service";
+import { IPage } from "../../types/IPage";
 
 type DialogNewPageProps = {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  addNewPage: (page: IPage) => void;
 };
 
 const pagenamesList = [
@@ -29,7 +31,11 @@ const pagenamesList = [
   "YE",
 ];
 
-const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
+const DialogNewPage = ({
+  isOpen,
+  setIsOpen,
+  addNewPage,
+}: DialogNewPageProps) => {
   const [pagename, setPagename] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [examplePagename, setexamplePagename] = useState("");
@@ -58,12 +64,11 @@ const DialogNewPage = ({ isOpen, setIsOpen }: DialogNewPageProps) => {
       pageService
         .createPage(pagename)
         .then((response) => {
-          console.log(response);
+          addNewPage(response.page);
           successToast("Page successfully created.");
           setIsOpen(false);
         })
         .catch((error) => {
-          console.log(error);
           setIsSubmitting(false);
           errorToast(error.message);
         });

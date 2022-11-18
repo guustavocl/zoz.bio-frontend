@@ -20,5 +20,5 @@ export const defaultPage = {
   cardSepia: "",
   pageSocialMedias: [{ username: "https://zoz.gg/", key: "website" }],
   pageBadges: ["welcome", "new", "zoz", "member"],
-  pageStatus: { icon: "sleepo", message: "sleeping~" },
+  pageStatus: { key: "sleepo", message: "sleeping~" },
 };

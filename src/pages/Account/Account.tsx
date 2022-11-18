@@ -54,10 +54,11 @@ const accountSubscription = (account: IUser) => {
 
 const Account = () => {
   const auth = useAuth();
-  const [pannelSelected, setPannelSelected] = useState("account");
+  console.log("rerender");
   const [page, setPage] = useState<IPage>();
+  const [pages, setPages] = useState<IPage[]>();
   const [dialogNewPageOpen, setDialogNewPageOpen] = useState(false);
-  const { errorToast, successToast } = useToasts();
+  const { errorToast } = useToasts();
 
   const queryAccount = useQuery({
     queryKey: ["account"],
@@ -69,6 +70,10 @@ const Account = () => {
     errorToast(error.message);
   }
 
+  if (queryAccount.data?.pages && !pages) {
+    setPages(queryAccount.data.pages);
+  }
+
   useEffect(() => {
     const scrollContainer = document.getElementById("pages");
     if (scrollContainer) {
@@ -78,6 +83,12 @@ const Account = () => {
       });
     }
   });
+
+  const addNewPage = (page: IPage) => {
+    if (pages) setPages([...pages, page]);
+  };
+
+  console.log(page);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center overflow-hidden">
@@ -134,8 +145,8 @@ const Account = () => {
                 </span>
               </div>
 
-              {queryAccount.data?.pages
-                ? queryAccount.data.pages.map((page: IPage, idx: number) => (
+              {pages
+                ? pages.map((page: IPage, idx: number) => (
                     <div
                       key={idx}
                       className="flex-shrink-0 group flex flex-col items-center justify-center"
@@ -173,10 +184,10 @@ const Account = () => {
                     label: "Settings",
                     component: accountSettings(queryAccount.data?.user),
                   },
-                  {
-                    label: "Subscription",
-                    component: accountSubscription(queryAccount.data?.user),
-                  },
+                  // {
+                  //   label: "Subscription",
+                  //   component: accountSubscription(queryAccount.data?.user),
+                  // },
                 ]}
               />
             </div>
@@ -184,6 +195,7 @@ const Account = () => {
 
           <DialogNewPage
             isOpen={dialogNewPageOpen}
+            addNewPage={addNewPage}
             setIsOpen={setDialogNewPageOpen}
           />
         </React.Fragment>

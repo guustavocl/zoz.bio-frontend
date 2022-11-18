@@ -8,14 +8,12 @@ type MediaProps = {
 
 type UserIconProps = {
   media: MediaProps;
-  idx: number;
 };
 
-export const UserIcon = ({ media, idx }: UserIconProps) => {
+export const UserIcon = ({ media }: UserIconProps) => {
   const social = getIcon(media.key);
   const { successToast } = useToasts();
   if (!social) return null;
-
   return (
     <div className="cursor-pointer group">
       <span

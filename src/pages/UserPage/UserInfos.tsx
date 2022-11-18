@@ -1,6 +1,7 @@
 import React from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { IPage } from "../../types/IPage";
+import { getAdornmentIcon } from "./IconsList";
 
 type UserInfosProps = {
   page: IPage;
@@ -10,15 +11,21 @@ export const UserInfos = ({ page }: UserInfosProps) => {
   const { successToast } = useToasts();
   return (
     <React.Fragment>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full">
         <h2
-          className="page-font-color flex flex-row items-center text-center text-2xl font-bold tracking-wide leading-5"
+          className="page-font-color flex flex-row items-center text-center text-2xl font-bold tracking-wide leading-6"
           style={{
             textShadow: "2px 2px #00000090",
           }}
         >
           {page?.uname || "No name~"}
-          <img className="w-7" src="./icons/extra/startag.png" alt="" />
+          {page?.adornment ? (
+            <img
+              className="w-7"
+              src={getAdornmentIcon(page.adornment).icon}
+              alt={getAdornmentIcon(page.adornment).label}
+            />
+          ) : null}
         </h2>
         <span
           className="text-sm font-semibold cursor-pointer -mt-1 hsecondary tracking-wide"

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
-import "../UserPage/UserPage.css";
 import { useAuth } from "../../context/AuthProvider/useAuth";
-import { Cog6ToothIcon } from "@heroicons/react/20/solid";
+import {
+  Cog6ToothIcon,
+  PencilSquareIcon,
+  PencilIcon,
+} from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import { SectionCard } from "../UserPage/SectionCard";
 import { UserIcon } from "../UserPage/UserIcon";
 import { getBadge, getStatusIcon } from "../UserPage/IconsList";
 import { defaultPage, setCssVariables } from "../UserPage/UserVariables";
 import { UserInfos } from "../UserPage/UserInfos";
+import "../UserPage/UserPage.css";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -28,9 +32,9 @@ const mapLinks = (page: IPage) => {
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
-    <div className="flex flex-row gap-1 items-center justify-center mt-3">
+    <div className="flex flex-row gap-1 items-center justify-center mt-3 w-full">
       {pageSocialMedias.map((media, idx) => (
-        <UserIcon key={idx} media={media} idx={idx} />
+        <UserIcon key={idx} media={media} />
       ))}
     </div>
   );
@@ -38,7 +42,7 @@ const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
 
 const mapBadges = (pageBadges: string[]) => {
   return (
-    <div className="flex flex-row flex-wrap gap-2 mt-3 justify-center">
+    <div className="flex flex-row flex-wrap gap-2 mt-3 justify-center w-full">
       {pageBadges.map((badge, idx) =>
         getBadge(badge) ? (
           <span
@@ -54,12 +58,12 @@ const mapBadges = (pageBadges: string[]) => {
 };
 
 const getPageStatus = (status: IPageStatus) => {
-  return status && getStatusIcon(status.icon) ? (
+  return status && getStatusIcon(status.key) ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
       <img
         className="w-7"
-        src={getStatusIcon(status.icon).icon}
-        alt={getStatusIcon(status.icon).label}
+        src={getStatusIcon(status.key).icon}
+        alt={getStatusIcon(status.key).label}
       />
     </div>
   ) : null;
@@ -101,8 +105,13 @@ const PageEdit = ({
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backgroundSize = page?.backgroundSize || defaultPage.bgSize;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias = page?.socialMedias || defaultPage.pageSocialMedias;
-  const pageBadges = page?.badges || defaultPage.pageBadges;
+  const pageSocialMedias =
+    page?.socialMedias?.length > 0
+      ? page.socialMedias
+      : defaultPage.pageSocialMedias;
+
+  const pageBadges =
+    page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
   setCssVariables(primaryColor, secondaryColor, fontColor);
 
@@ -139,9 +148,18 @@ const PageEdit = ({
             {getPageStatus(pageStatus)}
             {getAvatar(pfpUrl)}
             <div className="flex flex-col w-full">
-              <UserInfos page={page} />
-              {mapBadges(pageBadges)}
-              {mapSocials(pageSocialMedias)}
+              <div className="flex flex-row w-full items-start">
+                <UserInfos page={page} />
+                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+              </div>
+              <div className="flex flex-row w-full items-start">
+                {mapBadges(pageBadges)}
+                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+              </div>
+              <div className="flex flex-row w-full items-end">
+                {mapSocials(pageSocialMedias)}
+                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+              </div>
             </div>
           </React.Fragment>
         </SectionCard>

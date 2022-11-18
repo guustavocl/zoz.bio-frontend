@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import pageService from "../services/page.service";
 import UserPage from "../pages/UserPage";
 import { useToasts } from "../context/ToastProvider/useToasts";
+import LoadingPage from "../components/Loading";
 
 export const PageLayout = () => {
   const { errorToast } = useToasts();
@@ -24,7 +25,7 @@ export const PageLayout = () => {
   }
 
   if (queryPage.isLoading) {
-    return <div>Loading..</div>;
+    return <LoadingPage />;
   }
 
   return (

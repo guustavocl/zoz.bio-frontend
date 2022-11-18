@@ -30,7 +30,7 @@ const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
     <div className="flex flex-row gap-1 items-center justify-center mt-3">
       {pageSocialMedias.map((media, idx) => (
-        <UserIcon key={idx} media={media} idx={idx} />
+        <UserIcon key={idx} media={media} />
       ))}
     </div>
   );
@@ -54,12 +54,12 @@ const mapBadges = (pageBadges: string[]) => {
 };
 
 const getPageStatus = (status: IPageStatus) => {
-  return status && getStatusIcon(status.icon) ? (
+  return status && getStatusIcon(status.key) ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
       <img
         className="w-7"
-        src={getStatusIcon(status.icon).icon}
-        alt={getStatusIcon(status.icon).label}
+        src={getStatusIcon(status.key).icon}
+        alt={getStatusIcon(status.key).label}
       />
     </div>
   ) : null;
@@ -97,8 +97,13 @@ const UserPage = ({ page }: { page: IPage }) => {
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backgroundSize = page?.backgroundSize || defaultPage.bgSize;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias = page?.socialMedias || defaultPage.pageSocialMedias;
-  const pageBadges = page?.badges || defaultPage.pageBadges;
+  const pageSocialMedias =
+    page?.socialMedias?.length > 0
+      ? page.socialMedias
+      : defaultPage.pageSocialMedias;
+
+  const pageBadges =
+    page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
   setCssVariables(primaryColor, secondaryColor, fontColor);
 
