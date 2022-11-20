@@ -64,6 +64,7 @@ const getPageStatus = (status: IPageStatus) => {
         className="w-7"
         src={getStatusIcon(status.key).icon}
         alt={getStatusIcon(status.key).label}
+        loading="lazy"
       />
     </div>
   ) : null;
@@ -76,7 +77,8 @@ const getAvatar = (pfpUrl: string | undefined) => {
         <img
           className="ring-avatar hover:animate-pulse h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
           src={pfpUrl}
-          alt="avatar"
+          alt="page picture avatar"
+          loading="lazy"
         />
       ) : (
         <div

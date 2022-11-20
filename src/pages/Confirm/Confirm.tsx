@@ -71,6 +71,7 @@ const Confirm = () => {
                   className="mx-auto h-32 sm:h-48 md:h-56"
                   src={registerImg}
                   alt="Register svg"
+                  loading="lazy"
                 /> */}
                 <h2 className="pt-1 text-center text-2xl font-bold tracking-tight text-gray-300">
                   {email && token

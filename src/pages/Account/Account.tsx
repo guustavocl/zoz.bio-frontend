@@ -82,7 +82,7 @@ const Account = () => {
         scrollContainer.scrollLeft += evt.deltaY;
       });
     }
-  });
+  }); //fix this use effect later add dependency
 
   const addNewPage = (page: IPage) => {
     if (pages) setPages([...pages, page]);
@@ -162,6 +162,8 @@ const Account = () => {
                           src={page.pfpUrl}
                           className="h-24 w-24 object-cover rounded-full opacity-60 hover:opacity-90 cursor-pointer"
                           onClick={() => setPage(page)}
+                          alt="page avatar picture"
+                          loading="lazy"
                         />
                       ) : (
                         <div

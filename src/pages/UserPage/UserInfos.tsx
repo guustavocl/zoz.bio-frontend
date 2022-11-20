@@ -24,6 +24,7 @@ export const UserInfos = ({ page }: UserInfosProps) => {
               className="w-7"
               src={getAdornmentIcon(page.adornment).icon}
               alt={getAdornmentIcon(page.adornment).label}
+              loading="lazy"
             />
           ) : null}
         </h2>

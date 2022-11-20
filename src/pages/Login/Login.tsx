@@ -83,7 +83,8 @@ export default function Login() {
             <img
               className="mx-auto h-48 sm:h-64"
               src={loginImg}
-              alt="Login svg"
+              alt="login image"
+              loading="lazy"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300">
               Sign in to edit yours pages

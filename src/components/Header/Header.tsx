@@ -13,7 +13,12 @@ export default function Header({ auth }: { auth?: IAuth }) {
         <div className="flex flex-row justify-between content-between">
           <a href="/">
             <span className="sr-only">ZOZ.gg</span>
-            <img className="w-32 sm:h-16" src={logo} alt="logo" />
+            <img
+              className="w-32 sm:h-16"
+              src={logo}
+              alt="ZOZ.gg logo"
+              loading="lazy"
+            />
           </a>
         </div>
 
@@ -81,7 +86,12 @@ export default function Header({ auth }: { auth?: IAuth }) {
                   className="ring-0 focus:ring-0"
                 >
                   <span className="sr-only">ZOZ.gg</span>
-                  <img className="w-32 sm:h-16" src={logo} alt="" />
+                  <img
+                    className="w-32 sm:h-16"
+                    src={logo}
+                    alt="ZOZ.gg logo"
+                    loading="lazy"
+                  />
                 </a>
 
                 <div className="md:hidden flex items-center">

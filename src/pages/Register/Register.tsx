@@ -63,7 +63,8 @@ export default function Register() {
           <img
             className="mx-auto h-32 sm:h-48 md:h-56"
             src={registerImg}
-            alt="Register svg"
+            alt="register image"
+            loading="lazy"
           />
           <h2 className="pt-1 text-center text-2xl font-bold tracking-tight text-gray-300">
             Sign up to link all your socials in one place! :)

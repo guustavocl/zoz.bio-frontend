@@ -33,6 +33,7 @@ export const UserIcon = ({ media }: UserIconProps) => {
             className="h-7 icon-shadow"
             src={social.icon}
             alt={`${media.key} icon`}
+            loading="lazy"
           />
         </a>
       ) : (
@@ -46,6 +47,7 @@ export const UserIcon = ({ media }: UserIconProps) => {
               navigator.clipboard.writeText(media.username);
             }
           }}
+          loading="lazy"
         />
       )}
     </div>
