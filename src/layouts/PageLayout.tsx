@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Component404 from "../components/404";
-import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import pageService from "../services/page.service";
 import UserPage from "../pages/UserPage";
@@ -26,6 +25,10 @@ export const PageLayout = () => {
 
   if (queryPage.isLoading) {
     return <LoadingPage />;
+  }
+
+  if (queryPage.data?.page?.uname) {
+    document.title = `zoz.gg - ${queryPage.data.page.uname}`;
   }
 
   return (

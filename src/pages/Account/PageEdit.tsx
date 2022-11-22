@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthProvider/useAuth";
 import {
   Cog6ToothIcon,
   PencilSquareIcon,
-  PencilIcon,
+  ArrowUpTrayIcon,
 } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import { SectionCard } from "../UserPage/SectionCard";
@@ -13,6 +13,9 @@ import { getBadge, getStatusIcon } from "../UserPage/IconsList";
 import { defaultPage, setCssVariables } from "../UserPage/UserVariables";
 import { UserInfos } from "../UserPage/UserInfos";
 import "../UserPage/UserPage.css";
+import DialogEditInfos from "./DialogEditInfos";
+import pageService from "../../services/page.service";
+import { useToasts } from "../../context/ToastProvider/useToasts";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -70,24 +73,47 @@ const getPageStatus = (status: IPageStatus) => {
   ) : null;
 };
 
-const getAvatar = (pfpUrl: string | undefined) => {
+const getAvatar = (
+  pfpUrl: string | undefined,
+  uploadAvatar: (value: File) => void
+) => {
   return (
-    <div className="flex flex-col justify-center items-center min-w-fit flex-shrink-0 p-2">
-      {pfpUrl ? (
-        <img
-          className="ring-avatar hover:animate-pulse h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
-          src={pfpUrl}
-          alt="page picture avatar"
-          loading="lazy"
+    <div className="flex flex-col justify-center items-center min-w-fit flex-shrink-0 p-2 select-none">
+      <label
+        htmlFor="avatar-input"
+        className="group cursor-pointer rounded-full flex flex-col justify-center items-center"
+      >
+        <input
+          id="avatar-input"
+          className="hidden"
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            if (e.target?.files) {
+              uploadAvatar(e.target.files[0]);
+              e.target.value = "";
+            }
+          }}
         />
-      ) : (
-        <div
-          className="ring-avatar hover:animate-pulse h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
-          style={{ backgroundColor: "#85c5e5" }}
-        >
-          <BigHead />
+        <div className="absolute flex md:hidden group-hover:flex opacity-70 z-10">
+          <ArrowUpTrayIcon className="w-20" />
         </div>
-      )}
+        {pfpUrl ? (
+          <img
+            className="ring-avatar opacity-60 md:opacity-100 group-hover:opacity-30 h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
+            src={pfpUrl}
+            alt="pfp"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="ring-avatar opacity-60 md:opacity-100 group-hover:opacity-30 h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
+            style={{ backgroundColor: "#85c5e5" }}
+          >
+            <BigHead />
+          </div>
+        )}
+      </label>
     </div>
   );
 };
@@ -100,6 +126,8 @@ const PageEdit = ({
   setPage: (value: IPage | undefined) => void;
 }) => {
   const auth = useAuth();
+  const { errorToast, successToast } = useToasts();
+
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;
@@ -115,7 +143,37 @@ const PageEdit = ({
   const pageBadges =
     page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
+
+  const cardBlur = page?.cardBlur || defaultPage.cardBlur;
+  const cardHueRotate = page?.cardHueRotate || defaultPage.cardHueRotate;
+
   setCssVariables(primaryColor, secondaryColor, fontColor);
+
+  const [dialogEditPage, setDialogEditPage] = useState(false);
+
+  const uploadAvatar = (file: File) => {
+    pageService
+      .uploadAvatar(file, page.pagename)
+      .then((response) => {
+        successToast(response.message);
+        setPage(response.page);
+      })
+      .catch((error) => {
+        errorToast(error.message);
+      });
+  };
+
+  const uploadBackground = (file: File) => {
+    pageService
+      .uploadBackground(file, page.pagename)
+      .then((response) => {
+        successToast(response.message);
+        setPage(response.page);
+      })
+      .catch((error) => {
+        errorToast(error.message);
+      });
+  };
 
   return (
     <React.Fragment>
@@ -144,17 +202,52 @@ const PageEdit = ({
       ></div>
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
+        <div className="mt-24 mb-2 flex flex-row">
+          <label
+            htmlFor="background-input"
+            className={
+              "group cursor-pointer flex flex-col justify-center items-center " +
+              "hover:bg-opacity-40 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-lg " +
+              `${cardBlur} ${cardHueRotate} `
+            }
+            style={{
+              backgroundColor: `${primaryColor}`,
+            }}
+          >
+            <input
+              id="background-input"
+              className="hidden"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                if (e.target?.files) {
+                  uploadBackground(e.target.files[0]);
+                  e.target.value = "";
+                }
+              }}
+            />
+            <div className="flex group-hover:hidden opacity-70 z-10">
+              <ArrowUpTrayIcon className="w-8" />
+            </div>
+            <span className="flex hidden group-hover:flex opacity-70 z-10 h-8 justify-center items-center">
+              Upload background
+            </span>
+          </label>
+        </div>
         {/* Page Primary Card */}
-        <SectionCard className="mt-28 select-none" page={page}>
+        <SectionCard className="select-none" page={page}>
           <React.Fragment>
             {getPageStatus(pageStatus)}
-            {getAvatar(pfpUrl)}
+            {getAvatar(pfpUrl, uploadAvatar)}
             <div className="flex flex-col w-full">
               <div className="flex flex-row w-full items-start">
                 <UserInfos page={page} />
-                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+                <PencilSquareIcon
+                  className="w-6 hover:text-violet-700 cursor-pointer"
+                  onClick={() => setDialogEditPage(true)}
+                />
               </div>
-              <div className="flex flex-row w-full items-start">
+              <div className="flex flex-row w-full items-end">
                 {mapBadges(pageBadges)}
                 <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
               </div>
@@ -168,6 +261,14 @@ const PageEdit = ({
         {/* Page Other Cards */}
         {mapLinks(page)}
       </div>
+
+      {/* Dialogs to edit page */}
+      <DialogEditInfos
+        isOpen={dialogEditPage}
+        setIsOpen={setDialogEditPage}
+        page={page}
+        setPage={setPage}
+      />
     </React.Fragment>
   );
 };

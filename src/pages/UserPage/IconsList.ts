@@ -360,7 +360,7 @@ const badgeList: Record<string, mediaIconProps> = {
     label: "🔰 New",
   },
   zoz: {
-    label: "💠 ZOZ.gg",
+    label: "💠 zoz.gg",
   },
   member: {
     label: "👨‍👩‍👦‍👦 Member",

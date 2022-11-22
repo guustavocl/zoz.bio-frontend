@@ -20,21 +20,6 @@ const accountSettings = (account: IUser) => {
       center={false}
     >
       <div className="w-full flex flex-col gap-2 overflow-hidden p-2">
-        {/* {[...Array(20)].map((x, i) => (
-          <div
-            className="flex-shrink-0"
-            key={i}
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: 10,
-              backgroundColor: "#000",
-              opacity: 1,
-              padding: 10,
-              // margin: 50,
-            }}
-          ></div>
-        ))} */}
         <AccountTabSettings account={account} />
       </div>
     </SectionCard>
@@ -88,12 +73,20 @@ const Account = () => {
     if (pages) setPages([...pages, page]);
   };
 
-  console.log(page);
-
   return (
     <div className="min-h-screen w-full flex flex-col items-center overflow-hidden">
       {page ? (
-        <PageEdit page={page} setPage={setPage} />
+        <PageEdit
+          page={page}
+          setPage={(page: IPage | undefined) => {
+            setPage(page);
+            setPages(
+              pages?.map((item) => {
+                return item.pagename === page?.pagename ? page : item;
+              })
+            );
+          }}
+        />
       ) : (
         <React.Fragment>
           <div className="w-full hidden absolute left-0 md:flex p-3 pl-4">
@@ -162,7 +155,7 @@ const Account = () => {
                           src={page.pfpUrl}
                           className="h-24 w-24 object-cover rounded-full opacity-60 hover:opacity-90 cursor-pointer"
                           onClick={() => setPage(page)}
-                          alt="page avatar picture"
+                          alt="pfp"
                           loading="lazy"
                         />
                       ) : (

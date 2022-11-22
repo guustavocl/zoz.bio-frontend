@@ -12,11 +12,11 @@ export default function Header({ auth }: { auth?: IAuth }) {
       <div className="w-full lg:max-w-7xl flex flex-row justify-between items-center px-4 py-1">
         <div className="flex flex-row justify-between content-between">
           <a href="/">
-            <span className="sr-only">ZOZ.gg</span>
+            <span className="sr-only">zoz.gg</span>
             <img
               className="w-32 sm:h-16"
               src={logo}
-              alt="ZOZ.gg logo"
+              alt="zoz.gg logo"
               loading="lazy"
             />
           </a>
@@ -85,7 +85,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                   rel="noopener noreferrer"
                   className="ring-0 focus:ring-0"
                 >
-                  <span className="sr-only">ZOZ.gg</span>
+                  <span className="sr-only">zoz.gg</span>
                   <img
                     className="w-32 sm:h-16"
                     src={logo}

@@ -12,6 +12,7 @@ type LabelInputProps = {
   minSize?: number;
   value: string;
   bgColor?: string;
+  iconAdornment?: JSX.Element;
   onChange: (e: React.ChangeEvent<any>) => void;
   onBlur?: (e: React.ChangeEvent<any>) => void;
 };
@@ -30,6 +31,7 @@ export default function LabelInput({
   size,
   minSize,
   bgColor = "bg-tertiary",
+  iconAdornment,
   onChange,
   onBlur,
 }: LabelInputProps) {
@@ -60,28 +62,58 @@ export default function LabelInput({
         </label>
       )}
       <div className="relative mt-1 rounded-md">
-        <input
-          className={
-            "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
-            `${bgColor} border-gray-900 ` +
-            "focus:border-violet-600 focus:ring-violet-500 " +
-            `${disabled ? "text-gray-600" : "text-gray-200"}`
-          }
-          id={id}
-          name={name}
-          type={type}
-          required={required}
-          autoComplete={autoComplete}
-          value={value}
-          maxLength={size ? size : undefined}
-          onChange={(e) => {
-            if (onBlur) onBlur(e);
-            onChange(e);
-          }}
-          onBlur={onBlur}
-          placeholder={placeholder}
-          disabled={disabled}
-        />
+        {iconAdornment ? (
+          <div className="absolute right-2 flex flex-col items-center justify-center h-full">
+            {iconAdornment}
+          </div>
+        ) : null}
+        {type === "textarea" ? (
+          <textarea
+            className={
+              "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
+              `${bgColor} border-gray-900 ` +
+              "focus:border-violet-600 focus:ring-violet-500 " +
+              `${disabled ? "text-gray-600" : "text-gray-200"}`
+            }
+            id={id}
+            name={name}
+            required={required}
+            autoComplete={autoComplete}
+            value={value}
+            maxLength={size ? size : undefined}
+            onChange={(e) => {
+              if (onBlur) onBlur(e);
+              onChange(e);
+            }}
+            rows={6}
+            onBlur={onBlur}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        ) : (
+          <input
+            className={
+              "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
+              `${bgColor} border-gray-900 ` +
+              "focus:border-violet-600 focus:ring-violet-500 " +
+              `${disabled ? "text-gray-600" : "text-gray-200"}`
+            }
+            id={id}
+            name={name}
+            type={type}
+            required={required}
+            autoComplete={autoComplete}
+            value={value}
+            maxLength={size ? size : undefined}
+            onChange={(e) => {
+              if (onBlur) onBlur(e);
+              onChange(e);
+            }}
+            onBlur={onBlur}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        )}
       </div>
     </div>
   );

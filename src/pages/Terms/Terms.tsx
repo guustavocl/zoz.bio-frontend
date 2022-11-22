@@ -480,7 +480,7 @@ const Terms = () => {
         </h4>
         <p>
           These Terms shall be governed by and defined following the laws of
-          Brazil. ZOZ.gg and yourself irrevocably consent that the courts of
+          Brazil. zoz.gg and yourself irrevocably consent that the courts of
           Brazil shall have exclusive jurisdiction to resolve any dispute which
           may arise in connection with these terms.
         </p>
@@ -491,7 +491,7 @@ const Terms = () => {
         <p>
           You agree to irrevocably submit all disputes related to Terms or the
           relationship established by this Agreement to the jurisdiction of the
-          Brazil courts. ZOZ.gg shall also maintain the right to bring
+          Brazil courts. zoz.gg shall also maintain the right to bring
           proceedings as to the substance of the matter in the courts of the
           country where you reside or, if these Terms are entered into in the
           course of your trade or profession, the state of your principal place
