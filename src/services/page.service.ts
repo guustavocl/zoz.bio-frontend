@@ -1,3 +1,4 @@
+import { RgbaColor } from "react-colorful";
 import { IUser } from "../types/IUser";
 import { Api } from "./api";
 
@@ -72,6 +73,25 @@ class PageService {
         },
         { headers: { "Content-Type": "multipart/form-data" } }
       );
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
+
+  updateColors = async (
+    primaryColor: RgbaColor,
+    secondaryColor: RgbaColor,
+    fontColor: string,
+    pagename: string
+  ) => {
+    try {
+      const request = await Api.post(`${this.endpoint}/update_colors`, {
+        primaryColor,
+        secondaryColor,
+        fontColor,
+        pagename,
+      });
       return request.data;
     } catch (error: any) {
       throw error && error.response ? error.response.data : error;

@@ -16,6 +16,7 @@ import "../UserPage/UserPage.css";
 import DialogEditInfos from "./DialogEditInfos";
 import pageService from "../../services/page.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
+import PageEditColors from "./PageEditColors";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -202,7 +203,7 @@ const PageEdit = ({
       ></div>
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
-        <div className="mt-24 mb-2 flex flex-row">
+        <div className="mt-24 mb-2 flex flex-row gap-2">
           <label
             htmlFor="background-input"
             className={
@@ -211,7 +212,7 @@ const PageEdit = ({
               `${cardBlur} ${cardHueRotate} `
             }
             style={{
-              backgroundColor: `${primaryColor}`,
+              backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
             }}
           >
             <input
@@ -233,6 +234,7 @@ const PageEdit = ({
               Upload background
             </span>
           </label>
+          <PageEditColors page={page} setPage={setPage} />
         </div>
         {/* Page Primary Card */}
         <SectionCard className="select-none" page={page}>

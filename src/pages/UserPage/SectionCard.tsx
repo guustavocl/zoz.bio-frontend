@@ -1,3 +1,4 @@
+import { RgbaColor } from "react-colorful";
 import { IPage } from "../../types/IPage";
 import { defaultPage } from "./UserVariables";
 
@@ -29,7 +30,7 @@ export const SectionCard = ({
         `${className}`
       }
       style={{
-        backgroundColor: `${primaryColor}`,
+        backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
       }}
     >
       <div className="flex flex-col md:flex-row p-0 py-3 rounded-md">

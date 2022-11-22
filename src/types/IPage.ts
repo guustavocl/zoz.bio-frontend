@@ -1,3 +1,5 @@
+import { RgbaColor } from "react-colorful";
+
 export interface IPageLinks {
   _id: string;
   url: string;
@@ -22,8 +24,8 @@ export interface IPage {
   bannerUrl: string;
   backgroundUrl: string;
   backgroundOpacity: string;
-  primaryColor: string;
-  secondaryColor: string;
+  primaryColor: RgbaColor;
+  secondaryColor: RgbaColor;
   subscription: string;
   isUnderConstruction: boolean;
   isPrivate: boolean;
