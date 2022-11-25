@@ -1,13 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import { useToasts } from "../context/ToastProvider/useToasts";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Component404 from "../components/404";
-import { useQuery } from "@tanstack/react-query";
+import Zoz404 from "../components/404";
 import pageService from "../services/page.service";
-import UserPage from "../pages/UserPage";
-import { useToasts } from "../context/ToastProvider/useToasts";
 import LoadingPage from "../components/Loading";
+import UserPage from "../pages/UserPage";
 
-export const PageLayout = () => {
+const PageLayout = () => {
   const { errorToast } = useToasts();
   const pathname = window.location.pathname.split("/");
   let pagename = "";
@@ -40,10 +40,12 @@ export const PageLayout = () => {
       ) : (
         <>
           <Header />
-          <Component404 />
+          <Zoz404 />
           <Footer />
         </>
       )}
     </>
   );
 };
+
+export default PageLayout;

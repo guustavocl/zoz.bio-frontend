@@ -7,16 +7,17 @@ import {
   ArrowUpTrayIcon,
 } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
-import { SectionCard } from "../UserPage/SectionCard";
-import { UserIcon } from "../UserPage/UserIcon";
 import { getBadge, getStatusIcon } from "../UserPage/IconsList";
 import { defaultPage, setCssVariables } from "../UserPage/UserVariables";
-import { UserInfos } from "../UserPage/UserInfos";
-import "../UserPage/UserPage.css";
-import DialogEditInfos from "./DialogEditInfos";
-import pageService from "../../services/page.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
+import DialogEditInfos from "./DialogEditInfos";
+import SectionCard from "../UserPage/SectionCard";
+import PageIcon from "../UserPage/PageIcon";
+import UserInfos from "../UserPage/UserInfos";
+import pageService from "../../services/page.service";
 import PageEditColors from "./PageEditColors";
+import DialogEditSocials from "./DialogEditSocials";
+import "../UserPage/UserPage.css";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -36,9 +37,9 @@ const mapLinks = (page: IPage) => {
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
-    <div className="flex flex-row gap-1 items-center justify-center mt-3 w-full">
+    <div className="flex flex-row flex-wrap gap-1 items-center justify-center mt-3 w-full">
       {pageSocialMedias.map((media, idx) => (
-        <UserIcon key={idx} media={media} />
+        <PageIcon key={idx} media={media} />
       ))}
     </div>
   );
@@ -62,12 +63,13 @@ const mapBadges = (pageBadges: string[]) => {
 };
 
 const getPageStatus = (status: IPageStatus) => {
-  return status && getStatusIcon(status.key) ? (
+  const statusIcon = getStatusIcon(status.key);
+  return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
       <img
         className="w-7"
-        src={getStatusIcon(status.key).icon}
-        alt={getStatusIcon(status.key).label}
+        src={statusIcon.icon}
+        alt={statusIcon.label}
         loading="lazy"
       />
     </div>
@@ -151,6 +153,7 @@ const PageEdit = ({
   setCssVariables(primaryColor, secondaryColor, fontColor);
 
   const [dialogEditPage, setDialogEditPage] = useState(false);
+  const [dialogEditSocial, setDialogEditSocial] = useState(false);
 
   const uploadAvatar = (file: File) => {
     pageService
@@ -208,7 +211,7 @@ const PageEdit = ({
             htmlFor="background-input"
             className={
               "group cursor-pointer flex flex-col justify-center items-center " +
-              "hover:bg-opacity-40 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-lg " +
+              "hover:bg-opacity-40 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
               `${cardBlur} ${cardHueRotate} `
             }
             style={{
@@ -245,17 +248,20 @@ const PageEdit = ({
               <div className="flex flex-row w-full items-start">
                 <UserInfos page={page} />
                 <PencilSquareIcon
-                  className="w-6 hover:text-violet-700 cursor-pointer"
+                  className="w-6 hover:text-gray-900 cursor-pointer"
                   onClick={() => setDialogEditPage(true)}
                 />
               </div>
-              <div className="flex flex-row w-full items-end">
+              <div className="flex flex-row w-full items-center">
                 {mapBadges(pageBadges)}
-                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+                <PencilSquareIcon className="w-6 hover:text-gray-900 cursor-pointer" />
               </div>
-              <div className="flex flex-row w-full items-end">
+              <div className="flex flex-row w-full items-center">
                 {mapSocials(pageSocialMedias)}
-                <PencilSquareIcon className="w-6 hover:text-violet-700 cursor-pointer" />
+                <PencilSquareIcon
+                  className="w-6 hover:text-gray-900 cursor-pointer"
+                  onClick={() => setDialogEditSocial(true)}
+                />
               </div>
             </div>
           </React.Fragment>
@@ -271,8 +277,15 @@ const PageEdit = ({
         page={page}
         setPage={setPage}
       />
+      {/* Dialogs to social media */}
+      <DialogEditSocials
+        isOpen={dialogEditSocial}
+        setIsOpen={setDialogEditSocial}
+        page={page}
+        setPage={setPage}
+      />
     </React.Fragment>
   );
 };
 
-export default PageEdit;
+export default React.memo(PageEdit);

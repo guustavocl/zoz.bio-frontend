@@ -1,4 +1,6 @@
-export default function Footer() {
+import React from "react";
+
+const Footer = () => {
   return (
     <footer className="w-full bg-secondary relative md:fixed md:bottom-0 h-auto md:h-14 items-center justify-center content-center text-base p-2">
       {/* <footer className="w-full flex flex-row items-center justify-center bottom-0 text-base relative md:fixed left-0 p-2 shadow md:flex md:items-center md:justify-between md:p-4 bg-secondary"> */}
@@ -60,4 +62,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default React.memo(Footer);

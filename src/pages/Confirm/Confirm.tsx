@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { UserIcon } from "@heroicons/react/20/solid";
-import ReCAPTCHA from "react-google-recaptcha";
-import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import userService from "../../services/user.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import ZozInput from "../../components/Inputs";
+import userService from "../../services/user.service";
+import * as yup from "yup";
 
 const Confirm = () => {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ const Confirm = () => {
               <form className="mt-4 space-y-2" onSubmit={formik.handleSubmit}>
                 <div className="-space-y-px rounded-md shadow-sm">
                   <div className="py-1">
-                    <LabelInput
+                    <ZozInput
                       id="email"
                       name="email"
                       type="email"

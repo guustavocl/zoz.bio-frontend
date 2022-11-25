@@ -1,12 +1,28 @@
 import { IPage } from "../../types/IPage";
-import { HexColorPicker, RgbaColorPicker } from "react-colorful";
-import { useState } from "react";
+import { HexColorPicker, RgbaColor, RgbaColorPicker } from "react-colorful";
+import { useEffect, useRef, useState } from "react";
 import { defaultPage } from "../UserPage/UserVariables";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import pageService from "../../services/page.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
+import React from "react";
 
-const loadingSvg = (isSubmitting = false) => {
+type ColorCircleProps = {
+  rgbaColor?: RgbaColor;
+  hexColor?: string;
+  isSubmitting: boolean;
+  showPickers: boolean;
+  onClick: () => void;
+  setColor: (value: any) => void;
+};
+
+type SubmitProps = {
+  primary?: boolean;
+  secondary?: boolean;
+  font?: boolean;
+};
+
+const LoadingSvg = ({ isSubmitting = false }) => {
   return isSubmitting ? (
     <svg
       aria-hidden="true"
@@ -25,7 +41,47 @@ const loadingSvg = (isSubmitting = false) => {
       />
     </svg>
   ) : (
-    " "
+    <span> </span>
+  );
+};
+
+const ColorCircle = ({
+  rgbaColor,
+  hexColor,
+  isSubmitting,
+  showPickers,
+  onClick,
+  setColor,
+}: ColorCircleProps) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className="rounded-full w-10 h-10 items-center justify-center flex border-gray-900/[0.8] border-4 cursor-pointer"
+        style={{
+          backgroundColor: rgbaColor
+            ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a})`
+            : hexColor,
+        }}
+        onClick={onClick}
+      >
+        {showPickers ? (
+          <CheckIcon className="w-7 font-bold" />
+        ) : (
+          <LoadingSvg isSubmitting={isSubmitting} />
+        )}
+      </div>
+      <div
+        className={`absolute ${
+          showPickers ? "flex" : "hidden"
+        } z-10 -translate-x-40 translate-y-32 md:translate-x-12 md:translate-y-20`}
+      >
+        {rgbaColor ? (
+          <RgbaColorPicker color={rgbaColor} onChange={setColor} />
+        ) : (
+          <HexColorPicker color={hexColor} onChange={setColor} />
+        )}
+      </div>
+    </div>
   );
 };
 
@@ -57,11 +113,26 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
     font: false,
   });
 
-  type SubmitProps = {
-    primary?: boolean;
-    secondary?: boolean;
-    font?: boolean;
-  };
+  const pickerRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (
+        pickerRef &&
+        pickerRef.current &&
+        !pickerRef.current.contains(event.target)
+      ) {
+        setShowPickers({ primary: false, secondary: false, font: false });
+        setRgbaPrimaryColor(primaryColor);
+        setRgbaSecondaryColor(secondaryColor);
+        setHexFontColor(fontColor);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [pickerRef]);
 
   const updateColors = (value: SubmitProps) => {
     setIsSubmitting({ ...isSubmitting, ...value });
@@ -83,117 +154,62 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
   };
 
   return (
-    <div className="flex flex-row gap-1">
+    <div ref={pickerRef} className="flex flex-row gap-1">
       {/* PRIMARY COLOR */}
-      <div className="flex items-center">
-        <div
-          className="rounded-full w-10 h-10 items-center justify-center flex border-black/[0.2] border-4 cursor-pointer"
-          style={{
-            backgroundColor: `rgb(${rgbaPrimaryColor.r},${rgbaPrimaryColor.g},${rgbaPrimaryColor.b},${rgbaPrimaryColor.a})`,
-          }}
-          onClick={() => {
-            if (showPickers.primary) {
-              updateColors({ primary: true });
-            }
-            setShowPickers({
-              primary: !showPickers.primary,
-              secondary: false,
-              font: false,
-            });
-          }}
-        >
-          {showPickers.primary ? (
-            <CheckIcon className="w-7 font-bold" />
-          ) : (
-            loadingSvg(isSubmitting.primary)
-          )}
-        </div>
-        <div
-          className={`absolute ${
-            showPickers.primary ? "flex" : "hidden"
-          } z-10 translate-x-12 translate-y-20`}
-        >
-          <RgbaColorPicker
-            color={rgbaPrimaryColor}
-            onChange={setRgbaPrimaryColor}
-          />
-        </div>
-      </div>
+      <ColorCircle
+        rgbaColor={rgbaPrimaryColor}
+        showPickers={showPickers.primary}
+        isSubmitting={isSubmitting.primary}
+        onClick={() => {
+          if (showPickers.primary) {
+            updateColors({ primary: true });
+          }
+          setShowPickers({
+            primary: !showPickers.primary,
+            secondary: false,
+            font: false,
+          });
+        }}
+        setColor={setRgbaPrimaryColor}
+      />
+
       {/* SECONDARY COLOR */}
-      <div className="flex items-center">
-        <div
-          className="rounded-full w-10 h-10 items-center justify-center flex flex-col border-black/[0.2] border-4 cursor-pointer"
-          style={{
-            backgroundColor: `rgb(${rgbaSecondaryColor.r},${rgbaSecondaryColor.g},${rgbaSecondaryColor.b},${rgbaSecondaryColor.a})`,
-          }}
-          onClick={() => {
-            if (showPickers.secondary) {
-              updateColors({ secondary: true });
-            }
-            setShowPickers({
-              primary: false,
-              secondary: !showPickers.secondary,
-              font: false,
-            });
-          }}
-        >
-          {showPickers.secondary ? (
-            <CheckIcon className="w-7 font-bold" />
-          ) : (
-            loadingSvg(isSubmitting.secondary)
-          )}
-        </div>
-        <div
-          className={`absolute ${
-            showPickers.secondary ? "flex" : "hidden"
-          } z-10 translate-x-12 translate-y-20`}
-        >
-          <RgbaColorPicker
-            color={rgbaSecondaryColor}
-            onChange={setRgbaSecondaryColor}
-          />
-        </div>
-      </div>
+      <ColorCircle
+        rgbaColor={rgbaSecondaryColor}
+        showPickers={showPickers.secondary}
+        isSubmitting={isSubmitting.secondary}
+        onClick={() => {
+          if (showPickers.secondary) {
+            updateColors({ secondary: true });
+          }
+          setShowPickers({
+            primary: false,
+            secondary: !showPickers.secondary,
+            font: false,
+          });
+        }}
+        setColor={setRgbaSecondaryColor}
+      />
 
       {/* FONT COLOR */}
-      <div className="flex items-center">
-        <div
-          className="rounded-full w-10 h-10 items-center justify-center flex border-black/[0.2] border-4 cursor-pointer"
-          style={{
-            backgroundColor: hexFontColor,
-          }}
-          onClick={() => {
-            if (showPickers.font) {
-              updateColors({ font: true });
-            }
-            setShowPickers({
-              primary: false,
-              secondary: false,
-              font: !showPickers.font,
-            });
-          }}
-        >
-          {showPickers.font ? (
-            <CheckIcon
-              className="w-7 font-bold"
-              style={{
-                color: `rgb(${rgbaPrimaryColor.r},${rgbaPrimaryColor.g},${rgbaPrimaryColor.b},${rgbaPrimaryColor.a})`,
-              }}
-            />
-          ) : (
-            loadingSvg(isSubmitting.font)
-          )}
-        </div>
-        <div
-          className={`absolute ${
-            showPickers.font ? "flex" : "hidden"
-          } z-10 translate-x-12 translate-y-20`}
-        >
-          <HexColorPicker color={hexFontColor} onChange={setHexFontColor} />
-        </div>
-      </div>
+      <ColorCircle
+        hexColor={hexFontColor}
+        showPickers={showPickers.font}
+        isSubmitting={isSubmitting.font}
+        onClick={() => {
+          if (showPickers.font) {
+            updateColors({ font: true });
+          }
+          setShowPickers({
+            primary: false,
+            secondary: false,
+            font: !showPickers.font,
+          });
+        }}
+        setColor={setHexFontColor}
+      />
     </div>
   );
 };
 
-export default PageEditColors;
+export default React.memo(PageEditColors);

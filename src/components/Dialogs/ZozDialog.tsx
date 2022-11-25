@@ -1,4 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
+import React from "react";
 import { Fragment } from "react";
 
 type CustomDialogProps = {
@@ -8,12 +9,12 @@ type CustomDialogProps = {
   setIsOpen: (value: boolean) => void;
 };
 
-function CustomDialog({
+const ZozDialog = ({
   title,
   children,
   isOpen,
   setIsOpen,
-}: CustomDialogProps) {
+}: CustomDialogProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -60,6 +61,6 @@ function CustomDialog({
       </Dialog>
     </Transition>
   );
-}
+};
 
-export default CustomDialog;
+export default React.memo(ZozDialog);

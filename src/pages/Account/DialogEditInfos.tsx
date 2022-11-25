@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { LabelInput } from "../../components/Inputs";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import pageService from "../../services/page.service";
 import { IPage } from "../../types/IPage";
 import { useFormik } from "formik";
+import React from "react";
+import ZozInput from "../../components/Inputs";
+import ZozDialog from "../../components/Dialogs";
+import pageService from "../../services/page.service";
 import * as yup from "yup";
-import Dialog from "../../components/Dialogs/Dialog";
 
 type DialogEditInfosProps = {
   isOpen: boolean;
@@ -50,14 +51,14 @@ const DialogEditInfos = ({
   });
 
   return (
-    <Dialog
+    <ZozDialog
       title="Edit your personal infos"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
     >
       <form onSubmit={formik.handleSubmit}>
         <div className="mt-4">
-          <LabelInput
+          <ZozInput
             id="uname"
             name="uname"
             type="text"
@@ -75,7 +76,7 @@ const DialogEditInfos = ({
           />
         </div>
         <div className="mt-4">
-          <LabelInput
+          <ZozInput
             id="bio"
             name="bio"
             type="textarea"
@@ -104,8 +105,8 @@ const DialogEditInfos = ({
           Save
         </button>
       </form>
-    </Dialog>
+    </ZozDialog>
   );
 };
 
-export default DialogEditInfos;
+export default React.memo(DialogEditInfos);

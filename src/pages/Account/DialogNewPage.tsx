@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { LabelInput } from "../../components/Inputs";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import pageService from "../../services/page.service";
 import { IPage } from "../../types/IPage";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import Dialog from "../../components/Dialogs/Dialog";
+import ZozInput from "../../components/Inputs";
+import pageService from "../../services/page.service";
+import ZozDialog from "../../components/Dialogs";
 
 type DialogNewPageProps = {
   isOpen: boolean;
@@ -44,7 +44,7 @@ const DialogNewPage = ({
   const { errorToast, successToast } = useToasts();
 
   useEffect(() => {
-    if (isOpen === true) {
+    if (isOpen) {
       setPagename("");
       setIsSubmitting(false);
       setexamplePagename(
@@ -88,7 +88,7 @@ const DialogNewPage = ({
   };
 
   return (
-    <Dialog
+    <ZozDialog
       title={
         <React.Fragment>
           Please choose your Page name~
@@ -125,7 +125,7 @@ const DialogNewPage = ({
         </div>
 
         <div className="mt-4">
-          <LabelInput
+          <ZozInput
             id="pagename"
             name="pagename"
             type="text"
@@ -167,8 +167,8 @@ const DialogNewPage = ({
           Create page
         </button>
       </React.Fragment>
-    </Dialog>
+    </ZozDialog>
   );
 };
 
-export default DialogNewPage;
+export default React.memo(DialogNewPage);

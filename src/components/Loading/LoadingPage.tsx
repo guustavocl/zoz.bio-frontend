@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./LoadingPage.module.css";
 
-function LoadingPage() {
+const LoadingPage = () => {
   return (
     <React.Fragment>
       <div
@@ -24,6 +24,6 @@ function LoadingPage() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default LoadingPage;

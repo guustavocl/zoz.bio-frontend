@@ -1,14 +1,14 @@
 import React from "react";
-import { UserIcon } from "./UserIcon";
-import { SectionCard } from "./SectionCard";
+import PageIcon from "./PageIcon";
+import SectionCard from "./SectionCard";
 import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
 import { getBadge, getStatusIcon } from "./IconsList";
-import "./UserPage.css";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import { defaultPage, setCssVariables } from "./UserVariables";
-import { UserInfos } from "./UserInfos";
+import "./UserPage.css";
+import UserInfos from "./UserInfos";
 
 const mapLinks = (page: IPage) => {
   return page?.pageLinks
@@ -28,9 +28,9 @@ const mapLinks = (page: IPage) => {
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
-    <div className="flex flex-row gap-1 items-center justify-center mt-3">
+    <div className="flex flex-row flex-wrap gap-1 items-center justify-center mt-3">
       {pageSocialMedias.map((media, idx) => (
-        <UserIcon key={idx} media={media} />
+        <PageIcon key={idx} media={media} />
       ))}
     </div>
   );
@@ -54,12 +54,13 @@ const mapBadges = (pageBadges: string[]) => {
 };
 
 const getPageStatus = (status: IPageStatus) => {
-  return status && getStatusIcon(status.key) ? (
+  const statusIcon = getStatusIcon(status.key);
+  return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
       <img
         className="w-7"
-        src={getStatusIcon(status.key).icon}
-        alt={getStatusIcon(status.key).label}
+        src={statusIcon.icon}
+        alt={statusIcon.label}
         loading="lazy"
       />
     </div>
@@ -153,4 +154,4 @@ const UserPage = ({ page }: { page: IPage }) => {
   );
 };
 
-export default UserPage;
+export default React.memo(UserPage);

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import PageEdit from "./PageEdit";
 import { IPage } from "../../types/IPage";
 import { useAuth } from "../../context/AuthProvider/useAuth";
-import userService from "../../services/user.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import DialogNewPage from "./DialogNewPage";
-import { SectionCard } from "../UserPage/SectionCard";
-import { Tabs } from "../../components/Tabs";
+import Tabs from "../../components/Tabs";
 import { IUser } from "../../types/IUser";
-import AccountTabSettings from "./AccountTabSettings";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
+import PageEdit from "./PageEdit";
+import DialogNewPage from "./DialogNewPage";
+import SectionCard from "../UserPage/SectionCard";
+import AccountTabSettings from "./AccountTabSettings";
+import userService from "../../services/user.service";
 
 const accountSettings = (account: IUser) => {
   return (
@@ -39,7 +39,6 @@ const accountSubscription = (account: IUser) => {
 
 const Account = () => {
   const auth = useAuth();
-  console.log("rerender");
   const [page, setPage] = useState<IPage>();
   const [pages, setPages] = useState<IPage[]>();
   const [dialogNewPageOpen, setDialogNewPageOpen] = useState(false);

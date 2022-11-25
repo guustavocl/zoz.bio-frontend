@@ -1,14 +1,14 @@
 import { UserPlusIcon } from "@heroicons/react/20/solid";
-import ReCAPTCHA from "react-google-recaptcha";
-import registerImg from "../../assets/register.png";
-import { LabelInput } from "../../components/Inputs";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import userService from "../../services/user.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import registerImg from "../../assets/register.png";
+import ZozInput from "../../components/Inputs";
+import userService from "../../services/user.service";
+import * as yup from "yup";
 
-export default function Register() {
+const Register = () => {
   const { errorToast, successToast } = useToasts();
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ export default function Register() {
         <form className="mt-4 space-y-2" onSubmit={formik.handleSubmit}>
           <div className="-space-y-px rounded-md shadow-sm">
             <div className="py-1">
-              <LabelInput
+              <ZozInput
                 id="uname"
                 name="uname"
                 type="text"
@@ -90,7 +90,7 @@ export default function Register() {
               />
             </div>
             <div className="py-1">
-              <LabelInput
+              <ZozInput
                 id="email"
                 name="email"
                 type="email"
@@ -107,7 +107,7 @@ export default function Register() {
               />
             </div>
             <div className="py-1">
-              <LabelInput
+              <ZozInput
                 id="password"
                 name="password"
                 type="password"
@@ -125,7 +125,7 @@ export default function Register() {
               />
             </div>
             <div className="py-1">
-              <LabelInput
+              <ZozInput
                 id="cpassword"
                 name="cpassword"
                 type="password"
@@ -198,4 +198,6 @@ export default function Register() {
       </div>
     </div>
   );
-}
+};
+
+export default Register;

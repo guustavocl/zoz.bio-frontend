@@ -1,1 +1,1 @@
-export { default } from "./Reset.js";
+export { default } from "./Reset";

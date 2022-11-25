@@ -3,8 +3,9 @@ import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/zoz.png";
 import { IAuth } from "../../types/IAuth";
+import React from "react";
 
-export default function Header({ auth }: { auth?: IAuth }) {
+const Header = ({ auth }: { auth?: IAuth }) => {
   const isHomePage = window.location.pathname === "/";
 
   return (
@@ -27,14 +28,14 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <a
               onClick={auth.logout}
               rel="noopener noreferrer"
-              className="cursor-pointer whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
+              className=" cursor-pointer whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
             >
               Logout
             </a>
             <a
               href="/account"
               rel="noopener noreferrer"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
+              className=" ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12]"
             >
               Account
             </a>
@@ -44,14 +45,14 @@ export default function Header({ auth }: { auth?: IAuth }) {
             <a
               href="/login"
               rel="noopener noreferrer"
-              className="whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
+              className=" whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
             >
               Login
             </a>
             <a
               href="/register"
               rel="noopener noreferrer"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
+              className=" ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
             >
               Register
             </a>
@@ -83,7 +84,7 @@ export default function Header({ auth }: { auth?: IAuth }) {
                 <a
                   href="/"
                   rel="noopener noreferrer"
-                  className="ring-0 focus:ring-0"
+                  className=" ring-0 focus:ring-0"
                 >
                   <span className="sr-only">zoz.gg</span>
                   <img
@@ -151,4 +152,6 @@ export default function Header({ auth }: { auth?: IAuth }) {
       </div>
     </Popover>
   );
-}
+};
+
+export default React.memo(Header);

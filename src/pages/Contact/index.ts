@@ -1,1 +1,1 @@
-export { default } from "./Contact.js";
+export { default } from "./Contact";

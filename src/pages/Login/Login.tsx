@@ -1,15 +1,15 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
-import loginImg from "../../assets/login.png";
-import { LabelInput } from "../../components/Inputs";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { useEffect } from "react";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 import { ILogin } from "../../types/ILogin";
+import ZozInput from "../../components/Inputs";
+import loginImg from "../../assets/login.png";
+import * as yup from "yup";
 
-export default function Login() {
+const Login = () => {
   const { authenticate } = useAuth();
   const navigate = useNavigate();
   const { errorToast, successToast } = useToasts();
@@ -103,7 +103,7 @@ export default function Login() {
           <form className="mt-4 space-y-2" onSubmit={formik.handleSubmit}>
             <div className="-space-y-px rounded-md shadow-sm">
               <div className="py-1">
-                <LabelInput
+                <ZozInput
                   id="email"
                   name="email"
                   type="email"
@@ -114,7 +114,7 @@ export default function Login() {
                 />
               </div>
               <div className="py-1">
-                <LabelInput
+                <ZozInput
                   id="password"
                   name="password"
                   type="password"
@@ -175,4 +175,6 @@ export default function Login() {
       </div>
     </>
   );
-}
+};
+
+export default Login;

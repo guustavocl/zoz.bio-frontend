@@ -1,8 +1,8 @@
+import { useAuth } from "../context/AuthProvider/useAuth";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { useAuth } from "../context/AuthProvider/useAuth";
 
-export const PublicLayout = ({ children }: { children: JSX.Element }) => {
+const PublicLayout = ({ children }: { children: JSX.Element }) => {
   const auth = useAuth();
 
   return (
@@ -17,3 +17,5 @@ export const PublicLayout = ({ children }: { children: JSX.Element }) => {
     </>
   );
 };
+
+export default PublicLayout;

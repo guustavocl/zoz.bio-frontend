@@ -10,7 +10,7 @@ const navigation = [
   { name: "Company", href: "#" },
 ];
 
-export default function HomeSection() {
+const HomeSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -121,4 +121,6 @@ export default function HomeSection() {
       </main>
     </div>
   );
-}
+};
+
+export default HomeSection;

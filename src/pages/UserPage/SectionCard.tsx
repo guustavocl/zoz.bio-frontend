@@ -1,4 +1,4 @@
-import { RgbaColor } from "react-colorful";
+import React from "react";
 import { IPage } from "../../types/IPage";
 import { defaultPage } from "./UserVariables";
 
@@ -9,7 +9,7 @@ type SectionCardProps = {
   center?: boolean;
 };
 
-export const SectionCard = ({
+const SectionCard = ({
   children,
   page,
   className,
@@ -24,7 +24,7 @@ export const SectionCard = ({
       className={
         "relative flex flex-col " +
         "w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl " +
-        "px-2 mb-2 rounded-xl sm:px-3 shadow-black shadow-lg " +
+        "px-2 mb-2 rounded-xl sm:px-3 shadow-black shadow-sm " +
         `${center ? "justify-center" : "justify-start"} ` +
         `${cardBlur} ${cardHueRotate} ` +
         `${className}`
@@ -39,3 +39,5 @@ export const SectionCard = ({
     </div>
   );
 };
+
+export default React.memo(SectionCard);

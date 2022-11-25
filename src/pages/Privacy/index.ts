@@ -1,1 +1,1 @@
-export { default } from "./Privacy.js";
+export { default } from "./Privacy";

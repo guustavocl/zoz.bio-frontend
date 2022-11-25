@@ -1,1 +1,1 @@
-export { default } from "./Terms.js";
+export { default } from "./Terms";

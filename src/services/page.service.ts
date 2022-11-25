@@ -1,4 +1,5 @@
 import { RgbaColor } from "react-colorful";
+import { IPageSocialMedia } from "../types/IPage";
 import { IUser } from "../types/IUser";
 import { Api } from "./api";
 
@@ -41,6 +42,18 @@ class PageService {
       const request = await Api.post(`${this.endpoint}/save_info`, {
         uname,
         bio,
+        pagename,
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
+
+  saveSocialMedia = async (items: IPageSocialMedia[], pagename: string) => {
+    try {
+      const request = await Api.post(`${this.endpoint}/save_social_media`, {
+        items,
         pagename,
       });
       return request.data;

@@ -1,4 +1,4 @@
-export default function Component404() {
+const Zoz404 = () => {
   return (
     <section className="flex items-center h-full sm:p-16 text-gray-300">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
@@ -32,4 +32,6 @@ export default function Component404() {
       </div>
     </section>
   );
-}
+};
+
+export default Zoz404;

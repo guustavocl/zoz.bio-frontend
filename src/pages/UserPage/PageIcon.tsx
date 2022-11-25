@@ -1,3 +1,4 @@
+import React from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { getIcon } from "./IconsList";
 
@@ -6,18 +7,18 @@ type MediaProps = {
   key: string;
 };
 
-type UserIconProps = {
+type PageIconProps = {
   media: MediaProps;
 };
 
-export const UserIcon = ({ media }: UserIconProps) => {
+const PageIcon = ({ media }: PageIconProps) => {
   const social = getIcon(media.key);
   const { successToast } = useToasts();
   if (!social) return null;
   return (
     <div className="cursor-pointer group">
       <span
-        className="select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-sm px-3 py-1 -translate-x-6 -translate-y-8"
+        className="z-10 select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-sm px-3 py-1 -translate-x-6 -translate-y-8"
         style={{ backgroundColor: "#00000099" }}
       >
         {social.label}
@@ -42,7 +43,7 @@ export const UserIcon = ({ media }: UserIconProps) => {
           src={social.icon}
           alt={`${media.key} icon`}
           onClick={() => {
-            successToast(`Copyed: ${media.username}`);
+            successToast(`Copied: ${media.username}`);
             if (navigator.clipboard) {
               navigator.clipboard.writeText(media.username);
             }
@@ -53,3 +54,5 @@ export const UserIcon = ({ media }: UserIconProps) => {
     </div>
   );
 };
+
+export default React.memo(PageIcon);

@@ -6,7 +6,6 @@ import Account from "./pages/Account";
 const Home = React.lazy(() => import("./pages/Home"));
 const Login = React.lazy(() => import("./pages/Login"));
 const Register = React.lazy(() => import("./pages/Register"));
-
 const About = React.lazy(() => import("./pages/About"));
 const Terms = React.lazy(() => import("./pages/Terms"));
 const Privacy = React.lazy(() => import("./pages/Privacy"));
@@ -53,7 +52,7 @@ const publicRoutes = [
   },
 ];
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -82,6 +81,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

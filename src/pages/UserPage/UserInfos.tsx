@@ -7,7 +7,7 @@ type UserInfosProps = {
   page: IPage;
 };
 
-export const UserInfos = ({ page }: UserInfosProps) => {
+const UserInfos = ({ page }: UserInfosProps) => {
   const { successToast } = useToasts();
   return (
     <React.Fragment>
@@ -22,8 +22,8 @@ export const UserInfos = ({ page }: UserInfosProps) => {
           {page?.adornment ? (
             <img
               className="w-7"
-              src={getAdornmentIcon(page.adornment).icon}
-              alt={getAdornmentIcon(page.adornment).label}
+              src={getAdornmentIcon(page.adornment)?.icon}
+              alt={getAdornmentIcon(page.adornment)?.label}
               loading="lazy"
             />
           ) : null}
@@ -31,7 +31,7 @@ export const UserInfos = ({ page }: UserInfosProps) => {
         <span
           className="text-sm font-semibold cursor-pointer -mt-1 hsecondary tracking-wide"
           onClick={() => {
-            successToast(`Copyed`);
+            successToast(`Copied`);
             if (navigator.clipboard) {
               navigator.clipboard.writeText(
                 `https://zoz.gg/${page?.pagename || ""}`
@@ -53,3 +53,5 @@ export const UserInfos = ({ page }: UserInfosProps) => {
     </React.Fragment>
   );
 };
+
+export default React.memo(UserInfos);

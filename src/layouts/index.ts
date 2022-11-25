@@ -1,3 +1,4 @@
-export { PageLayout } from "./PageLayout";
-export { PublicLayout } from "./PublicLayout";
-export { ProtectedLayout } from "./ProtectedLayout";
+import PageLayout from "./PageLayout";
+import PublicLayout from "./PublicLayout";
+import ProtectedLayout from "./ProtectedLayout";
+export { PageLayout, PublicLayout, ProtectedLayout };

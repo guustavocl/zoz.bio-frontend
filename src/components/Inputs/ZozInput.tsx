@@ -1,4 +1,6 @@
-type LabelInputProps = {
+import React from "react";
+
+type ZozInputProps = {
   id: string;
   name: string;
   label: string;
@@ -17,7 +19,7 @@ type LabelInputProps = {
   onBlur?: (e: React.ChangeEvent<any>) => void;
 };
 
-export default function LabelInput({
+const ZozInput = ({
   id,
   name,
   label,
@@ -34,7 +36,7 @@ export default function LabelInput({
   iconAdornment,
   onChange,
   onBlur,
-}: LabelInputProps) {
+}: ZozInputProps) => {
   return (
     <div className="group relative">
       <label
@@ -117,4 +119,6 @@ export default function LabelInput({
       </div>
     </div>
   );
-}
+};
+
+export default React.memo(ZozInput);

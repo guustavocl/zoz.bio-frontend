@@ -11,8 +11,8 @@ export interface IPageStatus {
 }
 
 export interface IPageSocialMedia {
-  username: string;
   key: string;
+  username: string;
 }
 
 export interface IPage {

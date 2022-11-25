@@ -1,1 +1,1 @@
-export {default} from "./404";
+export { default } from "./Zoz404";

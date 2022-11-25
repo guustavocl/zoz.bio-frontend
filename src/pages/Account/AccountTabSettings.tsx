@@ -1,13 +1,13 @@
-import React from "react";
-import { LabelInput } from "../../components/Inputs";
 import { IUser } from "../../types/IUser";
+import React from "react";
+import ZozInput from "../../components/Inputs";
 
 const AccountTabSettings = ({ account }: { account?: IUser }) => {
   return (
     <React.Fragment>
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col gap-2 md:w-1/2">
-          <LabelInput
+          <ZozInput
             id="uname"
             name="uname"
             type="text"
@@ -24,7 +24,7 @@ const AccountTabSettings = ({ account }: { account?: IUser }) => {
             //     : undefined
             // }
           />
-          <LabelInput
+          <ZozInput
             id="email"
             name="email"
             type="email"
@@ -49,4 +49,4 @@ const AccountTabSettings = ({ account }: { account?: IUser }) => {
   );
 };
 
-export default AccountTabSettings;
+export default React.memo(AccountTabSettings);
