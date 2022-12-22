@@ -1,9 +1,5 @@
 import { RgbaColor } from "react-colorful";
-
-export interface IPageLinks {
-  _id: string;
-  url: string;
-}
+import { ILink } from "./ILink";
 
 export interface IPageStatus {
   key: string;
@@ -41,5 +37,5 @@ export interface IPage {
   cardHueRotate: string;
   badges: string[];
   socialMedias: IPageSocialMedia[];
-  pageLinks: IPageLinks[];
+  pageLinks: ILink[];
 }

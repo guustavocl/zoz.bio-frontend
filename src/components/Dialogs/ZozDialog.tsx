@@ -48,7 +48,7 @@ const ZozDialog = ({
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-primary md:bg-opacity-90 p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium text-center leading-6 text-gray-200"
+                  className="text-lg font-medium text-center leading-6 text-gray-200 select-none"
                 >
                   {title || ""}
                 </Dialog.Title>

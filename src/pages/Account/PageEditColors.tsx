@@ -1,19 +1,22 @@
 import { IPage } from "../../types/IPage";
 import { HexColorPicker, RgbaColor, RgbaColorPicker } from "react-colorful";
 import { useEffect, useRef, useState } from "react";
-import { defaultPage } from "../UserPage/UserVariables";
+import { defaultPage } from "../Page/PageVariables";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import pageService from "../../services/page.service";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import React from "react";
+import ZozTooltip from "../../components/Tooltip";
 
 type ColorCircleProps = {
+  originalColor: RgbaColor | string;
   rgbaColor?: RgbaColor;
   hexColor?: string;
   isSubmitting: boolean;
   showPickers: boolean;
+  tooltip: string;
   onClick: () => void;
   setColor: (value: any) => void;
+  setShowPickers: (value: any) => void;
 };
 
 type SubmitProps = {
@@ -41,20 +44,50 @@ const LoadingSvg = ({ isSubmitting = false }) => {
       />
     </svg>
   ) : (
-    <span> </span>
+    <span className="select-none"> </span>
   );
 };
 
 const ColorCircle = ({
+  originalColor,
   rgbaColor,
   hexColor,
   isSubmitting,
   showPickers,
+  tooltip,
   onClick,
   setColor,
+  setShowPickers,
 }: ColorCircleProps) => {
+  const pickerRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    let handleClickOutside: any;
+    if (showPickers) {
+      handleClickOutside = (event: any) => {
+        console.log("click outside");
+        if (
+          pickerRef &&
+          pickerRef.current &&
+          !pickerRef.current.contains(event.target)
+        ) {
+          setColor(originalColor);
+          setShowPickers({ primary: false, secondary: false, font: false });
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPickers]);
+
   return (
-    <div className="flex items-center">
+    <div ref={pickerRef} className="flex items-center relative group">
+      <ZozTooltip label={tooltip} className="-translate-y-10 -translate-x-8" />
+
       <div
         className="rounded-full w-10 h-10 items-center justify-center flex border-gray-900/[0.8] border-4 cursor-pointer"
         style={{
@@ -72,14 +105,27 @@ const ColorCircle = ({
       </div>
       <div
         className={`absolute ${
-          showPickers ? "flex" : "hidden"
-        } z-10 -translate-x-40 translate-y-32 md:translate-x-12 md:translate-y-20`}
+          showPickers ? "flex flex-col" : "hidden"
+        } z-10 -translate-x-40 translate-y-32 md:translate-x-12 md:translate-y-24`}
       >
         {rgbaColor ? (
           <RgbaColorPicker color={rgbaColor} onChange={setColor} />
         ) : (
           <HexColorPicker color={hexColor} onChange={setColor} />
         )}
+        <button
+          className="mt-2 py-1 flex w-full justify-center rounded-md border border-transparent text-violet-200 bg-violet-900 hover:bg-violet-800"
+          style={{
+            backgroundColor: rgbaColor
+              ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${
+                  rgbaColor.a > 0.5 ? rgbaColor.a : 0.5
+                })`
+              : hexColor,
+          }}
+          onClick={onClick}
+        >
+          Apply color
+        </button>
       </div>
     </div>
   );
@@ -96,7 +142,6 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;
-
   const [rgbaPrimaryColor, setRgbaPrimaryColor] = useState(primaryColor);
   const [rgbaSecondaryColor, setRgbaSecondaryColor] = useState(secondaryColor);
   const [hexFontColor, setHexFontColor] = useState(fontColor);
@@ -112,27 +157,6 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
     secondary: false,
     font: false,
   });
-
-  const pickerRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (
-        pickerRef &&
-        pickerRef.current &&
-        !pickerRef.current.contains(event.target)
-      ) {
-        setShowPickers({ primary: false, secondary: false, font: false });
-        setRgbaPrimaryColor(primaryColor);
-        setRgbaSecondaryColor(secondaryColor);
-        setHexFontColor(fontColor);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [pickerRef]);
 
   const updateColors = (value: SubmitProps) => {
     setIsSubmitting({ ...isSubmitting, ...value });
@@ -154,9 +178,15 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
   };
 
   return (
-    <div ref={pickerRef} className="flex flex-row gap-1">
+    <div className="select-none flex flex-row gap-1 relative">
+      <div className="absolute -translate-y-6 translate-x-2 flex overflow-visible whitespace-nowrap font-semibold text-gray-300 animate-pulse">
+        <span>Edit colors</span>
+        <span className="pl-1 pt-1 font-bold">⤵</span>
+      </div>
       {/* PRIMARY COLOR */}
       <ColorCircle
+        tooltip="Primary color"
+        originalColor={primaryColor}
         rgbaColor={rgbaPrimaryColor}
         showPickers={showPickers.primary}
         isSubmitting={isSubmitting.primary}
@@ -171,10 +201,13 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
           });
         }}
         setColor={setRgbaPrimaryColor}
+        setShowPickers={setShowPickers}
       />
 
       {/* SECONDARY COLOR */}
       <ColorCircle
+        tooltip="Secondary color"
+        originalColor={secondaryColor}
         rgbaColor={rgbaSecondaryColor}
         showPickers={showPickers.secondary}
         isSubmitting={isSubmitting.secondary}
@@ -189,10 +222,13 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
           });
         }}
         setColor={setRgbaSecondaryColor}
+        setShowPickers={setShowPickers}
       />
 
       {/* FONT COLOR */}
       <ColorCircle
+        tooltip="Font color"
+        originalColor={fontColor}
         hexColor={hexFontColor}
         showPickers={showPickers.font}
         isSubmitting={isSubmitting.font}
@@ -207,9 +243,10 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
           });
         }}
         setColor={setHexFontColor}
+        setShowPickers={setShowPickers}
       />
     </div>
   );
 };
 
-export default React.memo(PageEditColors);
+export default PageEditColors;

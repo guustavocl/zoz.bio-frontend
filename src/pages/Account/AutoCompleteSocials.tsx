@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { socialIconsList } from "../UserPage/IconsList";
+import { socialIconsList } from "../Page/IconsList";
 
 const socialMediaList = [...socialIconsList.keys()];
 

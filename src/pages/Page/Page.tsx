@@ -6,25 +6,10 @@ import { getBadge, getStatusIcon } from "./IconsList";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
-import { defaultPage, setCssVariables } from "./UserVariables";
-import "./UserPage.css";
-import UserInfos from "./UserInfos";
-
-const mapLinks = (page: IPage) => {
-  return page?.pageLinks
-    ? page.pageLinks.map((link, idx) => (
-        <SectionCard key={idx} page={page}>
-          <React.Fragment>
-            <div className="col-span-5 flex flex-col items-center leading-3 ml-4 p-1">
-              <h2 className="text-center text-2xl font-bold tracking-wide text-neutral-300 leading-5">
-                Link aqui
-              </h2>
-            </div>
-          </React.Fragment>
-        </SectionCard>
-      ))
-    : null;
-};
+import { defaultPage, setCssVariables } from "./PageVariables";
+import PageInfos from "./PageInfos";
+import "./Page.css";
+import PageLinks from "./PageLinks";
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
@@ -43,7 +28,7 @@ const mapBadges = (pageBadges: string[]) => {
         getBadge(badge) ? (
           <span
             key={idx}
-            className="ring-badges whitespace-nowrap text-xs font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-md"
+            className="ring-badges whitespace-nowrap text-xs font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-sm"
           >
             {getBadge(badge)?.label}
           </span>
@@ -91,7 +76,7 @@ const getAvatar = (pfpUrl: string | undefined) => {
 
 // TODO
 // blur effect on loading maybe? blur-sm
-const UserPage = ({ page }: { page: IPage }) => {
+const Page = ({ page }: { page: IPage }) => {
   const auth = useAuth();
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
@@ -135,23 +120,37 @@ const UserPage = ({ page }: { page: IPage }) => {
       ></div>
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
+        {/* Bottom home link */}
+        <div className="absolute bottom-1 flex flex-row w-full justify-center">
+          <a
+            className="text-2xl opacity-60 hover:opacity-90 font-sans flex flex-row items-center justify-center"
+            href="/"
+            rel="noopener noreferrer"
+            style={{
+              color: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
+              fontFamily: "Iceland",
+            }}
+          >
+            made with zoz.gg
+          </a>
+        </div>
         {/* Page Primary Card */}
         <SectionCard className="mt-28 select-none" page={page}>
           <React.Fragment>
             {getPageStatus(pageStatus)}
             {getAvatar(pfpUrl)}
             <div className="flex flex-col w-full">
-              <UserInfos page={page} />
+              <PageInfos page={page} />
               {mapBadges(pageBadges)}
               {mapSocials(pageSocialMedias)}
             </div>
           </React.Fragment>
         </SectionCard>
         {/* Page Other Cards */}
-        {mapLinks(page)}
+        <PageLinks page={page} />
       </div>
     </React.Fragment>
   );
 };
 
-export default React.memo(UserPage);
+export default React.memo(Page);

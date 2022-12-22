@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import ZozInput from "../../components/Inputs";
+import { ZozInput } from "../../components/Inputs";
 import userService from "../../services/user.service";
 import * as yup from "yup";
 
@@ -111,7 +111,7 @@ const Confirm = () => {
                   <button
                     type="submit"
                     disabled={formik.isSubmitting}
-                    className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 hover:font-semibold hover:text-violet-600 focus:outline-none focus:ring-0 focus:ring-violet-500 focus:ring-offset-0"
+                    className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 hover:font-semibold hover:text-violet-600 focus:outline-none "
                   >
                     <span className="absolute left-0 flex items-center pl-3">
                       <UserIcon

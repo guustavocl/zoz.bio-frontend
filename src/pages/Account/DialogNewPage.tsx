@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { IPage } from "../../types/IPage";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import ZozInput from "../../components/Inputs";
+import { ZozInput } from "../../components/Inputs";
 import pageService from "../../services/page.service";
 import ZozDialog from "../../components/Dialogs";
 
@@ -155,12 +155,11 @@ const DialogNewPage = ({
           onClick={createPage}
           className={
             "mt-4 group relative flex w-full justify-center rounded border border-transparent " +
-            "py-2 px-4 text-3x1 font-medium hover:font-semibold" +
-            "focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0 " +
+            "py-2 px-4 text-3x1 font-medium hover:font-semibold " +
             `${
               pagename.length < 5 || isSubmitting || !isPagenameAvailable
-                ? "bg-violet-800 text-gray-400"
-                : "bg-violet-700 hover:bg-violet-900 text-white"
+                ? "bg-violet-800 text-gray-400 "
+                : "bg-violet-700 hover:bg-violet-900 text-white "
             }`
           }
         >

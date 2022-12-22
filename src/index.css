@@ -8,8 +8,12 @@ html {
   overflow-y: auto;
 }
 
+button:focus,
+a:focus,
+button:focus-visible,
 a:focus-visible {
   outline: 0ch;
+  --tw-ring-offset-width: 0px !important;
 }
 
 ::-webkit-scrollbar {

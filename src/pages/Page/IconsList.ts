@@ -5,6 +5,10 @@ export type MediaIconProps = {
 };
 
 export const getIcon = (key: string) => {
+  return iconsList.get(key);
+};
+
+export const getSocialIcon = (key: string) => {
   return socialIconsList.get(key);
 };
 
@@ -19,6 +23,23 @@ export const getAdornmentIcon = (key: string) => {
 export const getBadge = (key: string) => {
   return badgeList.get(key);
 };
+
+export const iconsList = new Map<string, MediaIconProps>([
+  [
+    "folder",
+    {
+      icon: "./icons/links/folder.png",
+      label: "Discord",
+    },
+  ],
+  [
+    "link",
+    {
+      icon: "./icons/links/link.png",
+      label: "Discord",
+    },
+  ],
+]);
 
 export const socialIconsList = new Map<string, MediaIconProps>([
   [

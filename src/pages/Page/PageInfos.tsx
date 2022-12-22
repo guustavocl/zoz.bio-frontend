@@ -3,11 +3,11 @@ import { useToasts } from "../../context/ToastProvider/useToasts";
 import { IPage } from "../../types/IPage";
 import { getAdornmentIcon } from "./IconsList";
 
-type UserInfosProps = {
+type PageInfosProps = {
   page: IPage;
 };
 
-const UserInfos = ({ page }: UserInfosProps) => {
+const PageInfos = ({ page }: PageInfosProps) => {
   const { successToast } = useToasts();
   return (
     <React.Fragment>
@@ -54,4 +54,4 @@ const UserInfos = ({ page }: UserInfosProps) => {
   );
 };
 
-export default React.memo(UserInfos);
+export default React.memo(PageInfos);

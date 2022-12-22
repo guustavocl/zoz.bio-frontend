@@ -9,7 +9,7 @@ import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import PageEdit from "./PageEdit";
 import DialogNewPage from "./DialogNewPage";
-import SectionCard from "../UserPage/SectionCard";
+import SectionCard from "../Page/SectionCard";
 import AccountTabSettings from "./AccountTabSettings";
 import userService from "../../services/user.service";
 

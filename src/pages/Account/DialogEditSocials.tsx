@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { IPage, IPageSocialMedia } from "../../types/IPage";
 import { useFormik } from "formik";
-import { XMarkIcon } from "@heroicons/react/20/solid";
-import ZozInput from "../../components/Inputs";
+import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { ZozInput } from "../../components/Inputs";
 import ZozDialog from "../../components/Dialogs";
-import PageIcon from "../UserPage/PageIcon";
+import PageIcon from "../Page/PageIcon";
 import AutoCompleteSocials from "./AutoCompleteSocials";
 import pageService from "../../services/page.service";
 import * as yup from "yup";
-import { getIcon } from "../UserPage/IconsList";
+import { getSocialIcon } from "../Page/IconsList";
 
 type DialogEditSocialsProps = {
   isOpen: boolean;
@@ -21,8 +21,8 @@ type DialogEditSocialsProps = {
 
 const DialogEditSocials = ({
   isOpen,
-  setIsOpen,
   page,
+  setIsOpen,
   setPage,
 }: DialogEditSocialsProps) => {
   const { errorToast, successToast } = useToasts();
@@ -40,7 +40,7 @@ const DialogEditSocials = ({
       username: "",
     },
     validationSchema: yup.object({
-      username: yup.string().required("This is a required field"),
+      username: yup.string().required("Username is a required field"),
     }),
     onSubmit: (values) => {
       if (values.username && items && items.length < 30) {
@@ -61,7 +61,7 @@ const DialogEditSocials = ({
   });
 
   return (
-    <ZozDialog title="Edit your accounts" isOpen={isOpen} setIsOpen={setIsOpen}>
+    <ZozDialog title="Link your accounts" isOpen={isOpen} setIsOpen={setIsOpen}>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col items-center"
@@ -79,7 +79,7 @@ const DialogEditSocials = ({
                     <XMarkIcon
                       className="w-7 font-bold text-red-700 cursor-pointer hover:text-red-600"
                       onClick={() => {
-                        let newItems = items.filter((value, idx) => {
+                        let newItems = items.filter((value) => {
                           return !(
                             item.key === value.key &&
                             item.username === value.username
@@ -124,17 +124,19 @@ const DialogEditSocials = ({
         </div>
         {mediaSelected ? (
           <div className="w-full mt-4 text-gray-400 break-words">
-            {getIcon(mediaSelected)?.url?.("") ? (
+            {getSocialIcon(mediaSelected)?.url?.("") ? (
               <React.Fragment>
                 ↪ will open this url
                 <br />
                 <a
                   className="group hover:text-gray-200 flex flex-row"
-                  href={getIcon(mediaSelected)?.url?.(formik.values.username)}
+                  href={getSocialIcon(mediaSelected)?.url?.(
+                    formik.values.username
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {getIcon(mediaSelected)?.url?.("")}
+                  {getSocialIcon(mediaSelected)?.url?.("")}
                   <span className="group text-indigo-500 group-hover:text-indigo-400">
                     <span className="flex group-hover:hidden">
                       {formik.values.username || "😠 fill the required input"}
@@ -172,12 +174,12 @@ const DialogEditSocials = ({
         <button
           type="submit"
           className={
-            "mt-4 w-20 group relative flex justify-center rounded border border-transparent " +
-            "py-2 px-4 text-3x1 font-medium hover:font-semibold" +
-            "focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0 " +
+            "mt-4 w-18 group relative flex flex-row justify-center items-center rounded " +
+            "py-2 px-4 text-3x1 font-medium hover:font-semibold " +
             "bg-violet-700 hover:bg-violet-900 text-white "
           }
         >
+          <PlusIcon className="w-6" />
           Add
         </button>
 
@@ -185,8 +187,7 @@ const DialogEditSocials = ({
           type="button"
           className={
             "mt-20 group relative flex w-full justify-center rounded border border-transparent " +
-            "py-2 px-4 text-3x1 font-medium hover:font-semibold" +
-            "focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-0 " +
+            "py-2 px-4 text-3x1 font-medium hover:font-semibold " +
             "bg-violet-700 hover:bg-violet-900 text-white "
           }
           onClick={() => {

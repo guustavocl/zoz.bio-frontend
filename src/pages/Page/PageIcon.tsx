@@ -1,6 +1,7 @@
 import React from "react";
+import ZozTooltip from "../../components/Tooltip";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { getIcon } from "./IconsList";
+import { getSocialIcon } from "./IconsList";
 
 type MediaProps = {
   username: string;
@@ -12,17 +13,15 @@ type PageIconProps = {
 };
 
 const PageIcon = ({ media }: PageIconProps) => {
-  const social = getIcon(media.key);
+  const social = getSocialIcon(media.key);
   const { successToast } = useToasts();
   if (!social) return null;
   return (
     <div className="cursor-pointer group">
-      <span
-        className="z-10 select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-sm px-3 py-1 -translate-x-6 -translate-y-8"
-        style={{ backgroundColor: "#00000099" }}
-      >
-        {social.label}
-      </span>
+      <ZozTooltip
+        label={social.label}
+        className="-translate-x-6 -translate-y-8"
+      />
       {social.url ? (
         <a
           className="hover:animate-pulse"

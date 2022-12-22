@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
 import { ILogin } from "../../types/ILogin";
-import ZozInput from "../../components/Inputs";
+import { ZozInput } from "../../components/Inputs";
 import loginImg from "../../assets/login.png";
 import * as yup from "yup";
 
@@ -134,7 +134,7 @@ const Login = () => {
                   type="checkbox"
                   checked={formik.values.remember}
                   onChange={formik.handleChange}
-                  className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-offset-0 focus:ring-gray-600"
+                  className="h-4 w-4 rounded border-gray-300 text-gray-600 "
                 />
                 <label
                   htmlFor="remember-me"
@@ -159,7 +159,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-900 hover:font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-900 hover:font-semibold focus:outline-none"
               >
                 <span className="absolute left-0 flex items-center pl-3">
                   <LockClosedIcon

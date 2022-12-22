@@ -81,11 +81,7 @@ const Header = ({ auth }: { auth?: IAuth }) => {
           >
             <div className="rounded-lg shadow-lg ring-0 ring-black ring-opacity-5 px-4 py-1">
               <div className="flex items-center justify-between">
-                <a
-                  href="/"
-                  rel="noopener noreferrer"
-                  className=" ring-0 focus:ring-0"
-                >
+                <a href="/" rel="noopener noreferrer">
                   <span className="sr-only">zoz.gg</span>
                   <img
                     className="w-32 sm:h-16"

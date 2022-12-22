@@ -5,35 +5,23 @@ import {
   Cog6ToothIcon,
   PencilSquareIcon,
   ArrowUpTrayIcon,
+  PlusIcon,
 } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
-import { getBadge, getStatusIcon } from "../UserPage/IconsList";
-import { defaultPage, setCssVariables } from "../UserPage/UserVariables";
+import { getBadge, getStatusIcon } from "../Page/IconsList";
+import { defaultPage, setCssVariables } from "../Page/PageVariables";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import DialogEditInfos from "./DialogEditInfos";
-import SectionCard from "../UserPage/SectionCard";
-import PageIcon from "../UserPage/PageIcon";
-import UserInfos from "../UserPage/UserInfos";
+import SectionCard from "../Page/SectionCard";
+import PageIcon from "../Page/PageIcon";
+import PageInfos from "../Page/PageInfos";
 import pageService from "../../services/page.service";
 import PageEditColors from "./PageEditColors";
 import DialogEditSocials from "./DialogEditSocials";
-import "../UserPage/UserPage.css";
-
-const mapLinks = (page: IPage) => {
-  return page?.pageLinks
-    ? page.pageLinks.map((link, idx) => (
-        <SectionCard key={idx} page={page}>
-          <React.Fragment>
-            <div className="col-span-5 flex flex-col items-center leading-3 ml-4 p-1">
-              <h2 className="text-center text-2xl font-bold tracking-wide text-neutral-300 leading-5">
-                Link aqui
-              </h2>
-            </div>
-          </React.Fragment>
-        </SectionCard>
-      ))
-    : null;
-};
+import DialogEditBadges from "./DialogEditBadges";
+import DialogNewLink from "./DialogNewLink";
+import PageLinks from "../Page/PageLinks";
+import "../Page/Page.css";
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
@@ -52,7 +40,7 @@ const mapBadges = (pageBadges: string[]) => {
         getBadge(badge) ? (
           <span
             key={idx}
-            className="ring-badges whitespace-nowrap text-xs font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-md"
+            className="ring-badges whitespace-nowrap text-xs font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-sm"
           >
             {getBadge(badge)?.label}
           </span>
@@ -121,6 +109,26 @@ const getAvatar = (
   );
 };
 
+const IconOpenDialog = ({
+  setDialogOpen,
+  label,
+}: {
+  setDialogOpen: (value: boolean) => void;
+  label: string;
+}) => {
+  return (
+    <div
+      className="relative group hover:text-gray-900 cursor-pointer"
+      onClick={() => setDialogOpen(true)}
+    >
+      <span className="hidden md:block absolute translate-x-6 flex overflow-visible whitespace-nowrap font-semibold text-gray-300 animate-pulse group-hover:text-gray-900">
+        ← {label}
+      </span>
+      <PencilSquareIcon className="h-6 text-center" />
+    </div>
+  );
+};
+
 const PageEdit = ({
   page,
   setPage,
@@ -154,6 +162,8 @@ const PageEdit = ({
 
   const [dialogEditPage, setDialogEditPage] = useState(false);
   const [dialogEditSocial, setDialogEditSocial] = useState(false);
+  const [dialogEditBadges, setDialogEditBadges] = useState(false);
+  const [dialogNewLink, setDialogNewLink] = useState(false);
 
   const uploadAvatar = (file: File) => {
     pageService
@@ -211,7 +221,7 @@ const PageEdit = ({
             htmlFor="background-input"
             className={
               "group cursor-pointer flex flex-col justify-center items-center " +
-              "hover:bg-opacity-40 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
+              "hover:opacity-80 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
               `${cardBlur} ${cardHueRotate} `
             }
             style={{
@@ -245,29 +255,48 @@ const PageEdit = ({
             {getPageStatus(pageStatus)}
             {getAvatar(pfpUrl, uploadAvatar)}
             <div className="flex flex-col w-full">
-              <div className="flex flex-row w-full items-start">
-                <UserInfos page={page} />
-                <PencilSquareIcon
-                  className="w-6 hover:text-gray-900 cursor-pointer"
-                  onClick={() => setDialogEditPage(true)}
+              <div className="flex flex-row w-full items-start relative">
+                <PageInfos page={page} />
+                <IconOpenDialog
+                  label="Edit Infos"
+                  setDialogOpen={setDialogEditPage}
                 />
               </div>
               <div className="flex flex-row w-full items-center">
                 {mapBadges(pageBadges)}
-                <PencilSquareIcon className="w-6 hover:text-gray-900 cursor-pointer" />
+                <IconOpenDialog
+                  label="Edit Badges"
+                  setDialogOpen={setDialogEditBadges}
+                />
               </div>
-              <div className="flex flex-row w-full items-center">
+              <div className="flex flex-row w-full items-end">
                 {mapSocials(pageSocialMedias)}
-                <PencilSquareIcon
-                  className="w-6 hover:text-gray-900 cursor-pointer"
-                  onClick={() => setDialogEditSocial(true)}
+                <IconOpenDialog
+                  label="Edit Accounts"
+                  setDialogOpen={setDialogEditSocial}
                 />
               </div>
             </div>
           </React.Fragment>
         </SectionCard>
+
+        <button
+          className={
+            "group cursor-pointer flex flex-row justify-center items-center mb-2 page-font-color " +
+            "hover:opacity-80 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
+            `${cardBlur} ${cardHueRotate} `
+          }
+          style={{
+            backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
+          }}
+          onClick={() => setDialogNewLink(true)}
+        >
+          <PlusIcon className="w-7 mr-2" />
+          Add Link
+        </button>
+
         {/* Page Other Cards */}
-        {mapLinks(page)}
+        <PageLinks page={page} />
       </div>
 
       {/* Dialogs to edit page */}
@@ -277,10 +306,24 @@ const PageEdit = ({
         page={page}
         setPage={setPage}
       />
-      {/* Dialogs to social media */}
+      {/* Dialogs to edit badges */}
+      <DialogEditBadges
+        isOpen={dialogEditBadges}
+        setIsOpen={setDialogEditBadges}
+        page={page}
+        setPage={setPage}
+      />
+      {/* Dialogs to edit social media */}
       <DialogEditSocials
         isOpen={dialogEditSocial}
         setIsOpen={setDialogEditSocial}
+        page={page}
+        setPage={setPage}
+      />
+      {/* Dialogs to insert a new Link */}
+      <DialogNewLink
+        isOpen={dialogNewLink}
+        setIsOpen={setDialogNewLink}
         page={page}
         setPage={setPage}
       />

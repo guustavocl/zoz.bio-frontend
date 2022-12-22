@@ -41,7 +41,7 @@ const ZozInput = ({
     <div className="group relative">
       <label
         htmlFor={id}
-        className={`block text-sm font-medium ${
+        className={`block text-sm font-medium select-none ${
           errors
             ? "text-red-700 group-focus-within:text-red-700"
             : "text-gray-300 group-focus-within:text-violet-500"
@@ -52,7 +52,7 @@ const ZozInput = ({
       {size && (
         <label
           htmlFor={id}
-          className={`block text-sm font-medium ${
+          className={`block text-sm font-medium select-none ${
             errors
               ? "text-red-800 group-focus:text-red-800"
               : "text-gray-400 group-focus:text-violet-600"
@@ -75,7 +75,7 @@ const ZozInput = ({
               "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
               `${bgColor} border-gray-900 ` +
               "focus:border-violet-600 focus:ring-violet-500 " +
-              `${disabled ? "text-gray-600" : "text-gray-200"}`
+              `${disabled ? "text-gray-600 " : "text-gray-200 "}`
             }
             id={id}
             name={name}
@@ -98,7 +98,7 @@ const ZozInput = ({
               "w-full block rounded-md text-lg font-medium pl-2 pr-2 py-1 " +
               `${bgColor} border-gray-900 ` +
               "focus:border-violet-600 focus:ring-violet-500 " +
-              `${disabled ? "text-gray-600" : "text-gray-200"}`
+              `${disabled ? "text-gray-600 " : "text-gray-200 "}`
             }
             id={id}
             name={name}

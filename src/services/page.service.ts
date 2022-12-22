@@ -37,11 +37,29 @@ class PageService {
     }
   };
 
-  savePageInfos = async (uname: string, bio: string, pagename: string) => {
+  savePageInfos = async (
+    uname: string,
+    bio: string,
+    pagename: string,
+    newPagename: string
+  ) => {
     try {
       const request = await Api.post(`${this.endpoint}/save_info`, {
         uname,
         bio,
+        pagename,
+        newPagename,
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
+
+  saveBadges = async (badges: string[], pagename: string) => {
+    try {
+      const request = await Api.post(`${this.endpoint}/save_badges`, {
+        badges,
         pagename,
       });
       return request.data;

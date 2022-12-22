@@ -1,6 +1,6 @@
 import { IUser } from "../../types/IUser";
 import React from "react";
-import ZozInput from "../../components/Inputs";
+import { ZozInput } from "../../components/Inputs";
 
 const AccountTabSettings = ({ account }: { account?: IUser }) => {
   return (
