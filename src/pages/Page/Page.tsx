@@ -120,20 +120,6 @@ const Page = ({ page }: { page: IPage }) => {
       ></div>
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
-        {/* Bottom home link */}
-        <div className="absolute bottom-1 flex flex-row w-full justify-center">
-          <a
-            className="text-2xl opacity-60 hover:opacity-90 font-sans flex flex-row items-center justify-center"
-            href="/"
-            rel="noopener noreferrer"
-            style={{
-              color: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
-              fontFamily: "Iceland",
-            }}
-          >
-            made with zoz.gg
-          </a>
-        </div>
         {/* Page Primary Card */}
         <SectionCard className="mt-28 select-none" page={page}>
           <React.Fragment>
@@ -148,6 +134,20 @@ const Page = ({ page }: { page: IPage }) => {
         </SectionCard>
         {/* Page Other Cards */}
         <PageLinks page={page} />
+        {/* Bottom home link */}
+        <div className="bottom-1 flex flex-row w-full justify-center self-end content-end items-end mt-auto content">
+          <a
+            className="text-2xl opacity-60 hover:opacity-90 font-sans"
+            href="/"
+            rel="noopener noreferrer"
+            style={{
+              color: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
+              fontFamily: "Iceland",
+            }}
+          >
+            made with zoz.gg
+          </a>
+        </div>
       </div>
     </React.Fragment>
   );

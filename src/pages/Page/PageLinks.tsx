@@ -113,25 +113,30 @@ const PageLinks = ({ page }: PageLinksProps) => {
               className={
                 "relative flex flex-col " +
                 "w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl " +
-                "mb-2 rounded-xl shadow-black "
+                "rounded-xl shadow-black "
               }
             >
-              <iframe
-                style={{
-                  borderRadius: "16px",
-                  // height: 80,
-                  overflow: "hidden",
-                  backgroundColor: "#000",
-                }}
-                className="h-20 w-full rounded"
-                src="https://open.spotify.com/embed/track/1lM1ZHTvfKi5CMRjsZ4Sg9?utm_source=generator"
-                width="100%"
-                loading="lazy"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              ></iframe>
+              {link.embedded === "spotify" && link.url.includes("playlist") ? (
+                <iframe
+                  className="h-36 w-full rounded mb-2"
+                  src={link.url}
+                  width="100%"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+              ) : link.embedded === "spotify" ? (
+                <iframe
+                  className="h-20 w-full rounded mb-0.5"
+                  src={link.url}
+                  width="100%"
+                  height="auto"
+                  loading="lazy"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                ></iframe>
+              ) : null}
             </div>
-            {/* <div id="embed-iframe"></div> */}
           </React.Fragment>
         )
       )}
