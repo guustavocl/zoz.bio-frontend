@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage, IPageSocialMedia } from "../../types/IPage";
+import { IPage } from "../../types/IPage";
 import { useFormik } from "formik";
-import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ZozInput, ZozRadioGroup } from "../../components/Inputs";
+import { ILink } from "../../types/ILink";
 import ZozDialog from "../../components/Dialogs";
-import PageIcon from "../Page/PageIcon";
-import AutoCompleteSocials from "./AutoCompleteSocials";
 import linkService from "../../services/link.service";
 import * as yup from "yup";
-import { getIcon } from "../Page/IconsList";
-import { ILink } from "../../types/ILink";
+import AutoCompleteFolders from "./AutoCompleteFolders";
 
 type DialogNewLinkProps = {
   isOpen: boolean;
@@ -27,14 +23,6 @@ const DialogNewLink = ({
   setPage,
 }: DialogNewLinkProps) => {
   const { errorToast, successToast } = useToasts();
-  const [items, setItems] = useState<IPageSocialMedia[]>();
-  const [mediaSelected, setMediaSelected] = useState<string>("discord");
-
-  useEffect(() => {
-    if (isOpen && page && page.socialMedias) {
-      setItems(Object.assign([], page.socialMedias));
-    }
-  }, [isOpen]);
 
   const formik = useFormik({
     initialValues: {
@@ -43,18 +31,19 @@ const DialogNewLink = ({
       icon: "",
       embedded: "none",
       isFolder: false,
+      folderOwner: "",
     } as ILink,
     validationSchema: yup.object({
       label: yup.string().required("Label is a required field"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       linkService
         .createLink(values, page.pagename)
         .then((response) => {
           successToast(response.message);
           setPage(response.page);
           setIsOpen(false);
+          formik.resetForm();
         })
         .catch((error) => {
           errorToast(error.message);
@@ -93,6 +82,7 @@ const DialogNewLink = ({
               formik.setFieldValue("isFolder", value === "folder");
               formik.setFieldValue("embedded", "none");
               formik.setFieldValue("url", "");
+              formik.setFieldValue("folderOwner", "");
             }}
           />
         </div>
@@ -124,8 +114,18 @@ const DialogNewLink = ({
               },
             ]}
             onChange={(value: string) => {
-              console.log("radio change: ", value);
               formik.setFieldValue("embedded", value);
+            }}
+          />
+        </div>
+        <div className="w-full mt-4">
+          <AutoCompleteFolders
+            label="Inside Folder"
+            pagename={page.pagename}
+            selected={formik.values.folderOwner}
+            disabled={formik.values.isFolder}
+            setSelected={(value) => {
+              formik.setFieldValue("folderOwner", value);
             }}
           />
         </div>
@@ -159,11 +159,6 @@ const DialogNewLink = ({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             disabled={formik.values.isFolder}
-            // errors={
-            //   formik.touched.uname && formik.errors.uname
-            //     ? formik.errors.uname
-            //     : undefined
-            // }
           />
         </div>
 
@@ -175,7 +170,7 @@ const DialogNewLink = ({
             "bg-violet-700 hover:bg-violet-900 text-white "
           }
         >
-          Add Link
+          {formik.values.isFolder ? "Add Folder" : "Add Link"}
         </button>
       </form>
     </ZozDialog>

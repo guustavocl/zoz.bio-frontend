@@ -57,7 +57,7 @@ const Register = () => {
   });
 
   return (
-    <div className="flex min-h-full items-center justify-center py-1 px-4 sm:px-6 lg:px-8 pb-20">
+    <div className="flex min-h-full items-center justify-center py-1 px-4 sm:px-6 lg:px-8 pb-20 mt-4 md:mt-2">
       <div className="w-full max-w-md">
         <div>
           <img

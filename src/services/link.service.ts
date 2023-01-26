@@ -7,16 +7,16 @@ import { Api } from "./api";
 class LinkService {
   endpoint = "link";
 
-  // getPage = async (pagename: string) => {
-  //   try {
-  //     const request = await Api.get(`${this.endpoint}`, {
-  //       params: { pagename },
-  //     });
-  //     return request.data;
-  //   } catch (error: any) {
-  //     throw error && error.response ? error.response.data : error;
-  //   }
-  // };
+  getFolders = async (pagename: string) => {
+    try {
+      const request = await Api.get(`${this.endpoint}/folders`, {
+        params: { pagename },
+      });
+      return request.data;
+    } catch (error: any) {
+      throw error && error.response ? error.response.data : error;
+    }
+  };
 
   createLink = async (link: ILink, pagename: string) => {
     try {

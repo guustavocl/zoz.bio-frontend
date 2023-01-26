@@ -1,19 +1,13 @@
 import React from "react";
+import LazyLoadImage from "./LazyLoadImage";
 import styles from "./LoadingPage.module.css";
 
 const LoadingPage = () => {
   return (
     <React.Fragment>
-      <div
-        className="absolute w-full h-screen bg-gradient-to-br -z-50"
-        style={{
-          backgroundSize: "cover",
-          backgroundRepeat: "repeat",
-          backgroundPosition: "center",
-          backgroundImage: `url("./bg.png")`,
-          opacity: 0.2,
-        }}
-      ></div>
+      {/* Default background  */}
+      <LazyLoadImage />
+
       <div className={styles.wrapper}>
         <div className={styles.circle}></div>
         <div className={styles.circle}></div>

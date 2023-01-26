@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Zoz404 from "../components/404";
 import pageService from "../services/page.service";
-import LoadingPage from "../components/Loading";
+import { LoadingPage } from "../components/Loading";
 import Page from "../pages/Page";
 
 const PageLayout = () => {
@@ -14,7 +14,7 @@ const PageLayout = () => {
   if (pathname && pathname[1]) pagename = pathname[1];
 
   const queryPage = useQuery({
-    queryKey: ["page"],
+    queryKey: ["getPage"],
     queryFn: () => pageService.getPage(pagename),
   });
 

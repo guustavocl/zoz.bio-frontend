@@ -12,6 +12,7 @@ import DialogNewPage from "./DialogNewPage";
 import SectionCard from "../Page/SectionCard";
 import AccountTabSettings from "./AccountTabSettings";
 import userService from "../../services/user.service";
+import { LazyLoadImage } from "../../components/Loading";
 
 const accountSettings = (account: IUser) => {
   return (
@@ -106,17 +107,9 @@ const Account = () => {
               </button>
             </div>
           </div>
+          {/* Default background  */}
+          <LazyLoadImage />
 
-          <div
-            className="absolute w-full h-screen bg-gradient-to-br -z-50"
-            style={{
-              backgroundSize: "cover",
-              backgroundRepeat: "repeat",
-              backgroundPosition: "center",
-              backgroundImage: `url("./bg.png")`,
-              opacity: 0.5,
-            }}
-          ></div>
           <div className="select-none flex flex-col items-center max-w-2x1 px-0 mx-3 md:mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
             <div className="mt-8 mb-2 text-gray-400 font-semibold animate-pulse text-center">
               ↓ Create a new page or click on the page you want to edit ↓

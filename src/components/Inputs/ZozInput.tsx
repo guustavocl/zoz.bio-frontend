@@ -41,11 +41,13 @@ const ZozInput = ({
     <div className="group relative">
       <label
         htmlFor={id}
-        className={`block text-sm font-medium select-none ${
-          errors
-            ? "text-red-700 group-focus-within:text-red-700"
-            : "text-gray-300 group-focus-within:text-violet-500"
-        }`}
+        className={`block text-sm font-medium select-none 
+          ${disabled ? "text-gray-600 " : "text-gray-200 "}
+          ${
+            errors
+              ? "text-red-700 group-focus-within:text-red-700"
+              : "text-gray-300 group-focus-within:text-violet-500"
+          }`}
       >
         {errors ? errors : label}
       </label>

@@ -29,14 +29,21 @@ export const iconsList = new Map<string, MediaIconProps>([
     "folder",
     {
       icon: "./icons/links/folder.png",
-      label: "Discord",
+      label: "Folder",
     },
   ],
   [
     "link",
     {
       icon: "./icons/links/link.png",
-      label: "Discord",
+      label: "Link",
+    },
+  ],
+  [
+    "banned",
+    {
+      icon: "./icons/extra/banned.png",
+      label: "Banned",
     },
   ],
 ]);

@@ -99,7 +99,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
                   <h2 className="text-lg md:text-xl font-bold tracking-wide flex-1 flex-shrink-0 truncate md:overflow-visible whitespace-pre-wrap md:whitespace-nowrap">
                     {link.label}
                   </h2>
-                  <span className="hidden group-hover:block truncate">
+                  <span className="hidden md:group-hover:block truncate">
                     {link.url}
                   </span>
                   <ArrowUpRightIcon className="h-5 flex-shrink-0" />
@@ -119,7 +119,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
               {link.embedded === "spotify" && link.url.includes("playlist") ? (
                 <iframe
                   className="h-36 w-full rounded mb-2"
-                  src={link.url}
+                  src={`https://open.spotify.com/embed/playlist/${link.url}`}
                   width="100%"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -128,12 +128,54 @@ const PageLinks = ({ page }: PageLinksProps) => {
               ) : link.embedded === "spotify" ? (
                 <iframe
                   className="h-20 w-full rounded mb-0.5"
-                  src={link.url}
+                  src={`https://open.spotify.com/embed/track/${link.url}`}
                   width="100%"
                   height="auto"
                   loading="lazy"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                ></iframe>
+              ) : link.embedded === "soundcloud" &&
+                link.url.includes("/sets/") ? (
+                <iframe
+                  className="w-full rounded mb-1.5"
+                  width="100%"
+                  height="300"
+                  loading="lazy"
+                  frameBorder="0"
+                  src={`https://w.soundcloud.com/player/?url=https://soundcloud.com${link.url}`}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                ></iframe>
+              ) : link.embedded === "soundcloud" ? (
+                <iframe
+                  className="w-full rounded mb-1.5"
+                  width="100%"
+                  height="125"
+                  loading="lazy"
+                  frameBorder="0"
+                  src={`https://w.soundcloud.com/player/?url=https://soundcloud.com${link.url}`}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                ></iframe>
+              ) : link.embedded === "youtube" && link.url.length > 20 ? (
+                <iframe
+                  className="w-full rounded mb-1.5"
+                  width="100%"
+                  height="250"
+                  src={`https://www.youtube.com/embed/videoseries?controls=0&amp;list=${link.url}&autoplay=0&origin=https://zoz.gg&rel=0&fs=0`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
+              ) : link.embedded === "youtube" ? (
+                <iframe
+                  className="w-full rounded mb-1.5"
+                  width="100%"
+                  height="250"
+                  loading="lazy"
+                  frameBorder="0"
+                  src={`https://www.youtube.com/embed/${link.url}?autoplay=0&origin=https://zoz.gg&rel=0&fs=0`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 ></iframe>
               ) : null}
             </div>

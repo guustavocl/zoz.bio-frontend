@@ -3,13 +3,13 @@ import { useToasts } from "../../context/ToastProvider/useToasts";
 import { IPage, IPageSocialMedia } from "../../types/IPage";
 import { useFormik } from "formik";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { ZozInput } from "../../components/Inputs";
+import { ZozAutoComplete, ZozInput } from "../../components/Inputs";
+import { getSocialIcon } from "../Page/IconsList";
+import { socialIconsList } from "../Page/IconsList";
 import ZozDialog from "../../components/Dialogs";
 import PageIcon from "../Page/PageIcon";
-import AutoCompleteSocials from "./AutoCompleteSocials";
 import pageService from "../../services/page.service";
 import * as yup from "yup";
-import { getSocialIcon } from "../Page/IconsList";
 
 type DialogEditSocialsProps = {
   isOpen: boolean;
@@ -95,12 +95,13 @@ const DialogEditSocials = ({
         </div>
         {/* SOCIALS INPUTS */}
         <div className="w-full mt-4">
-          <AutoCompleteSocials
+          <ZozAutoComplete
             id="social"
             name="social"
             type="text"
             label="Account"
             selected={mediaSelected}
+            list={socialIconsList}
             setSelected={setMediaSelected}
           />
         </div>
@@ -191,7 +192,6 @@ const DialogEditSocials = ({
             "bg-violet-700 hover:bg-violet-900 text-white "
           }
           onClick={() => {
-            console.log("will send api");
             if (items)
               pageService
                 .saveSocialMedia(items, page.pagename)

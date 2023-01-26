@@ -22,6 +22,7 @@ import DialogEditBadges from "./DialogEditBadges";
 import DialogNewLink from "./DialogNewLink";
 import PageLinks from "../Page/PageLinks";
 import "../Page/Page.css";
+import { LazyLoadImage } from "../../components/Loading";
 
 const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
   return (
@@ -204,16 +205,11 @@ const PageEdit = ({
         </div>
       ) : null}
       {/* Page Background */}
-      <div
-        className="absolute w-full h-screen bg-gradient-to-br -z-50"
-        style={{
-          backgroundSize: backgroundSize,
-          backgroundRepeat: "repeat",
-          backgroundPosition: "center",
-          backgroundImage: `url(${backgroundUrl})`,
-          opacity: backGroundOpacity,
-        }}
-      ></div>
+      <LazyLoadImage
+        imageUrl={backgroundUrl}
+        backgroundSize={backgroundSize}
+        backGroundOpacity={backGroundOpacity}
+      />
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
         <div className="mt-24 mb-2 flex flex-row gap-2">
