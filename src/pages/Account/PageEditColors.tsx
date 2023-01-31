@@ -25,7 +25,7 @@ type SubmitProps = {
   font?: boolean;
 };
 
-const LoadingSvg = ({ isSubmitting = false }) => {
+const LoadingSvg = ({ isSubmitting = false }: { isSubmitting: boolean }) => {
   return isSubmitting ? (
     <svg
       aria-hidden="true"
@@ -66,11 +66,7 @@ const ColorCircle = ({
     if (showPickers) {
       handleClickOutside = (event: any) => {
         console.log("click outside");
-        if (
-          pickerRef &&
-          pickerRef.current &&
-          !pickerRef.current.contains(event.target)
-        ) {
+        if (pickerRef && pickerRef.current && !pickerRef.current.contains(event.target)) {
           setColor(originalColor);
           setShowPickers({ primary: false, secondary: false, font: false });
         }
@@ -91,17 +87,11 @@ const ColorCircle = ({
       <div
         className="rounded-full w-10 h-10 items-center justify-center flex border-gray-900/[0.8] border-4 cursor-pointer"
         style={{
-          backgroundColor: rgbaColor
-            ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a})`
-            : hexColor,
+          backgroundColor: rgbaColor ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a})` : hexColor,
         }}
         onClick={onClick}
       >
-        {showPickers ? (
-          <CheckIcon className="w-7 font-bold" />
-        ) : (
-          <LoadingSvg isSubmitting={isSubmitting} />
-        )}
+        {showPickers ? <CheckIcon className="w-7 font-bold" /> : <LoadingSvg isSubmitting={isSubmitting} />}
       </div>
       <div
         className={`absolute ${
@@ -117,9 +107,7 @@ const ColorCircle = ({
           className="mt-2 py-1 flex w-full justify-center rounded-md border border-transparent text-violet-200 bg-violet-900 hover:bg-violet-800"
           style={{
             backgroundColor: rgbaColor
-              ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${
-                  rgbaColor.a > 0.5 ? rgbaColor.a : 0.5
-                })`
+              ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a > 0.5 ? rgbaColor.a : 0.5})`
               : hexColor,
           }}
           onClick={onClick}
@@ -161,18 +149,13 @@ const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {
   const updateColors = (value: SubmitProps) => {
     setIsSubmitting({ ...isSubmitting, ...value });
     pageService
-      .updateColors(
-        rgbaPrimaryColor,
-        rgbaSecondaryColor,
-        hexFontColor,
-        page.pagename
-      )
-      .then((response) => {
+      .updateColors(rgbaPrimaryColor, rgbaSecondaryColor, hexFontColor, page.pagename)
+      .then(response => {
         successToast(response.message);
         setIsSubmitting({ primary: false, secondary: false, font: false });
         setPage(response.page);
       })
-      .catch((error) => {
+      .catch(error => {
         errorToast(error.message);
       });
   };

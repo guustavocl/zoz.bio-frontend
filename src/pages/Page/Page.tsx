@@ -43,12 +43,7 @@ const getPageStatus = (status: IPageStatus) => {
   const statusIcon = getStatusIcon(status.key);
   return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
-      <img
-        className="w-7"
-        src={statusIcon.icon}
-        alt={statusIcon.label}
-        loading="lazy"
-      />
+      <img className="w-7" src={statusIcon.icon} alt={statusIcon.label} loading="lazy" />
     </div>
   ) : null;
 };
@@ -86,13 +81,9 @@ const Page = ({ page }: { page: IPage }) => {
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backgroundSize = page?.backgroundSize || defaultPage.bgSize;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias =
-    page?.socialMedias?.length > 0
-      ? page.socialMedias
-      : defaultPage.pageSocialMedias;
+  const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
 
-  const pageBadges =
-    page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
+  const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
   setCssVariables(primaryColor, secondaryColor, fontColor);
 
@@ -109,11 +100,7 @@ const Page = ({ page }: { page: IPage }) => {
         </a>
       ) : null}
       {/* Page Background */}
-      <LazyLoadImage
-        imageUrl={backgroundUrl}
-        backgroundSize={backgroundSize}
-        backGroundOpacity={backGroundOpacity}
-      />
+      <LazyLoadImage imageUrl={backgroundUrl} backgroundSize={backgroundSize} backGroundOpacity={backGroundOpacity} />
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
         {/* Page Primary Card */}

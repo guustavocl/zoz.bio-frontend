@@ -21,10 +21,10 @@ const Confirm = () => {
     if (email && token) {
       userService
         .confirmEmail(email, token)
-        .then((response) => {
+        .then(response => {
           setIsConfirmed(response && response.confirmated);
         })
-        .catch((error) => {
+        .catch(error => {
           errorToast(error && error.message ? error.message : error);
         });
     }
@@ -36,20 +36,17 @@ const Confirm = () => {
       recaptcha: "",
     },
     validationSchema: yup.object({
-      email: yup
-        .string()
-        .required("Email is required")
-        .email("Must be a valid email"),
+      email: yup.string().required("Email is required").email("Must be a valid email"),
     }),
-    onSubmit: (values) => {
+    onSubmit: values => {
       userService
         .sendConfirmEmail(values.email)
-        .then((response) => {
+        .then(response => {
           formik.resetForm();
           successToast(response.message);
           navigate("/");
         })
-        .catch((error) => {
+        .catch(error => {
           errorToast(error.message);
           if (error.errors) formik.setErrors(error.errors);
         });
@@ -91,20 +88,13 @@ const Confirm = () => {
                       value={formik.values.email}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      errors={
-                        formik.touched.email && formik.errors.email
-                          ? formik.errors.email
-                          : undefined
-                      }
+                      errors={formik.touched.email && formik.errors.email ? formik.errors.email : undefined}
                     />
                   </div>
                 </div>
 
                 <div className="pb-2 flex items-center justify-center">
-                  <ReCAPTCHA
-                    sitekey="Your client site key"
-                    onChange={(value: string | null) => console.log(value)}
-                  />
+                  <ReCAPTCHA sitekey="Your client site key" onChange={(value: string | null) => console.log(value)} />
                 </div>
 
                 <div>
@@ -114,10 +104,7 @@ const Confirm = () => {
                     className="group relative flex w-full justify-center rounded border border-transparent bg-tertiary py-2 px-4 text-3x1 font-medium text-white hover:bg-gray-700 hover:font-semibold hover:text-violet-600 focus:outline-none "
                   >
                     <span className="absolute left-0 flex items-center pl-3">
-                      <UserIcon
-                        className="h-5 w-5 text-violet-700 group-hover:text-violet-500"
-                        aria-hidden="true"
-                      />
+                      <UserIcon className="h-5 w-5 text-violet-700 group-hover:text-violet-500" aria-hidden="true" />
                     </span>
                     Send confirmation link
                   </button>

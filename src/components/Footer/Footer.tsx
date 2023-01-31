@@ -11,49 +11,29 @@ const Footer = () => {
             <span className="px-2 hover:text-violet-600">ZOZ.GG</span>
             <span>
               Developed by
-              <a
-                href="gustavo"
-                rel="noopener noreferrer"
-                className="px-1 hover:underline hover:text-violet-600"
-              >
+              <a href="gustavo" rel="noopener noreferrer" className="px-1 hover:underline hover:text-violet-600">
                 @gustavo
               </a>
             </span>
           </span>
           <ul className="flex flex-wrap items-center justify-center mt-3 text-md text-gray-400 sm:mt-0">
             <li>
-              <a
-                href="/about"
-                rel="noopener noreferrer"
-                className="mr-4 hover:underline hover:text-violet-600"
-              >
+              <a href="/about" rel="noopener noreferrer" className="mr-4 hover:underline hover:text-violet-600">
                 About
               </a>
             </li>
             <li>
-              <a
-                href="/terms"
-                rel="noopener noreferrer"
-                className="mr-4 hover:underline hover:text-violet-600"
-              >
+              <a href="/terms" rel="noopener noreferrer" className="mr-4 hover:underline hover:text-violet-600">
                 Terms of service
               </a>
             </li>
             <li>
-              <a
-                href="/privacy"
-                rel="noopener noreferrer"
-                className="mr-4 hover:underline hover:text-violet-600"
-              >
+              <a href="/privacy" rel="noopener noreferrer" className="mr-4 hover:underline hover:text-violet-600">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a
-                href="/contact"
-                rel="noopener noreferrer"
-                className="mr-4 hover:underline hover:text-violet-600"
-              >
+              <a href="/contact" rel="noopener noreferrer" className="mr-4 hover:underline hover:text-violet-600">
                 Contact
               </a>
             </li>

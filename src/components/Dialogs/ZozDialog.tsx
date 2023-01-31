@@ -9,19 +9,10 @@ type CustomDialogProps = {
   setIsOpen: (value: boolean) => void;
 };
 
-const ZozDialog = ({
-  title,
-  children,
-  isOpen,
-  setIsOpen,
-}: CustomDialogProps) => {
+const ZozDialog = ({ title, children, isOpen, setIsOpen }: CustomDialogProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={() => setIsOpen(false)}
-      >
+      <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -46,10 +37,7 @@ const ZozDialog = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-primary md:bg-opacity-90 p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium text-center leading-6 text-gray-200 select-none"
-                >
+                <Dialog.Title as="h3" className="text-lg font-medium text-center leading-6 text-gray-200 select-none">
                   {title || ""}
                 </Dialog.Title>
 

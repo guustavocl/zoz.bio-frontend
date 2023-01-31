@@ -19,12 +19,7 @@ type DialogEditSocialsProps = {
   addNewPage?: (page: IPage) => void;
 };
 
-const DialogEditSocials = ({
-  isOpen,
-  page,
-  setIsOpen,
-  setPage,
-}: DialogEditSocialsProps) => {
+const DialogEditSocials = ({ isOpen, page, setIsOpen, setPage }: DialogEditSocialsProps) => {
   const { errorToast, successToast } = useToasts();
   const [items, setItems] = useState<IPageSocialMedia[]>();
   const [mediaSelected, setMediaSelected] = useState<string>("discord");
@@ -42,12 +37,12 @@ const DialogEditSocials = ({
     validationSchema: yup.object({
       username: yup.string().required("Username is a required field"),
     }),
-    onSubmit: (values) => {
+    onSubmit: values => {
       if (values.username && items && items.length < 30) {
-        if (items?.some((item) => item.key === mediaSelected)) {
+        if (items?.some(item => item.key === mediaSelected)) {
           errorToast("This account has already been added!");
         } else {
-          let newItems = Object.assign([], items);
+          const newItems = Object.assign([], items);
           newItems?.push({
             key: mediaSelected,
             username: values.username,
@@ -62,15 +57,10 @@ const DialogEditSocials = ({
 
   return (
     <ZozDialog title="Link your accounts" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form
-        onSubmit={formik.handleSubmit}
-        className="flex flex-col items-center"
-      >
+      <form onSubmit={formik.handleSubmit} className="flex flex-col items-center">
         {/* SOCIALS ADDED */}
         <div className="w-full relative mt-2 bg-secondary/[0.2] rounded-md flex flex-row flex-wrap gap-1 p-4">
-          <div className="absolute bottom-0 right-1 text-sm">
-            {items?.length || "0"}/30
-          </div>
+          <div className="absolute bottom-0 right-1 text-sm">{items?.length || "0"}/30</div>
           {items && items.length > 0
             ? items.map((item, idx) => (
                 <div key={idx} className="flex flex-col outline-0">
@@ -79,11 +69,8 @@ const DialogEditSocials = ({
                     <XMarkIcon
                       className="w-7 font-bold text-red-700 cursor-pointer hover:text-red-600"
                       onClick={() => {
-                        let newItems = items.filter((value) => {
-                          return !(
-                            item.key === value.key &&
-                            item.username === value.username
-                          );
+                        const newItems = items.filter(value => {
+                          return !(item.key === value.key && item.username === value.username);
                         });
                         setItems(newItems);
                       }}
@@ -116,11 +103,7 @@ const DialogEditSocials = ({
             value={formik.values.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            errors={
-              formik.touched.username && formik.errors.username
-                ? formik.errors.username
-                : undefined
-            }
+            errors={formik.touched.username && formik.errors.username ? formik.errors.username : undefined}
           />
         </div>
         {mediaSelected ? (
@@ -131,9 +114,7 @@ const DialogEditSocials = ({
                 <br />
                 <a
                   className="group hover:text-gray-200 flex flex-row"
-                  href={getSocialIcon(mediaSelected)?.url?.(
-                    formik.values.username
-                  )}
+                  href={getSocialIcon(mediaSelected)?.url?.(formik.values.username)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -195,12 +176,12 @@ const DialogEditSocials = ({
             if (items)
               pageService
                 .saveSocialMedia(items, page.pagename)
-                .then((response) => {
+                .then(response => {
                   successToast(response.message);
                   setPage(response.page);
                   setIsOpen(false);
                 })
-                .catch((error) => {
+                .catch(error => {
                   errorToast(error.message);
                 });
           }}

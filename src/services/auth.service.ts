@@ -5,12 +5,8 @@ class AuthService {
   endpoint = "auth";
 
   login = async (email: string, password: string) => {
-    try {
-      const request = await Api.post("/auth/login", { email, password });
-      return request.data;
-    } catch (error) {
-      throw error;
-    }
+    const request = await Api.post("/auth/login", { email, password });
+    return request.data;
   };
 
   setUserLocalStorage = (user: IUser | null) => {

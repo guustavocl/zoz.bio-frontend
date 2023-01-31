@@ -32,11 +32,7 @@ const pagenamesList = [
   "YE",
 ];
 
-const DialogNewPage = ({
-  isOpen,
-  setIsOpen,
-  addNewPage,
-}: DialogNewPageProps) => {
+const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) => {
   const [pagename, setPagename] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPagenameAvailable, setPagenameAvailable] = useState(true);
@@ -47,9 +43,7 @@ const DialogNewPage = ({
     if (isOpen) {
       setPagename("");
       setIsSubmitting(false);
-      setexamplePagename(
-        pagenamesList[~~(pagenamesList.length * Math.random())]
-      );
+      setexamplePagename(pagenamesList[~~(pagenamesList.length * Math.random())]);
     }
   }, [isOpen]);
 
@@ -58,10 +52,10 @@ const DialogNewPage = ({
       if (pagename && pagename.length > 0)
         pageService
           .checkPagename(pagename)
-          .then((response) => {
+          .then(response => {
             setPagenameAvailable(response.isAvailable);
           })
-          .catch((error) => {
+          .catch(error => {
             errorToast(error.message);
           });
     }, 300);
@@ -75,12 +69,12 @@ const DialogNewPage = ({
       setIsSubmitting(true);
       pageService
         .createPage(pagename)
-        .then((response) => {
+        .then(response => {
           addNewPage(response.page);
           successToast("Page successfully created.");
           setIsOpen(false);
         })
-        .catch((error) => {
+        .catch(error => {
           setIsSubmitting(false);
           errorToast(error.message);
         });
@@ -93,9 +87,7 @@ const DialogNewPage = ({
         <React.Fragment>
           Please choose your Page name~
           <br />↪ zoz.gg/
-          <span className="text-indigo-500">
-            {pagename ? pagename : examplePagename}
-          </span>
+          <span className="text-indigo-500">{pagename ? pagename : examplePagename}</span>
         </React.Fragment>
       }
       isOpen={isOpen}
@@ -104,23 +96,20 @@ const DialogNewPage = ({
       <React.Fragment>
         <div className="mt-2">
           <p className="text-sm text-gray-400">
-            To prevent a BOT rush for get all short size pagenames, you can only
-            create pages with at least 5 characters (will be reduced to 4 in a
-            few weaks). If you still wants a short pagename, there's some ways
-            to get one:
+            To prevent a BOT rush for get all short size pagenames, you can only create pages with at least 5 characters
+            (will be reduced to 4 in a few weaks). If you still wants a short pagename, there&apos;s some ways to get
+            one:
             <br />
             1. Subscriptions. (SOON)
             <br />
-            2. Prove that you owns that pagename in some other social medias
-            like Instagram, Twitter, TikTok, etc.
+            2. Prove that you owns that pagename in some other social medias like Instagram, Twitter, TikTok, etc.
             <br />
             3. Future events on discord. (SOON)
             <br />
             4. Be a nicely and lovely person on our discord server maybe?! 😳
             <br />
             <br />
-            You can also create up to 2 pages per account without any
-            subscription.
+            You can also create up to 2 pages per account without any subscription.
           </p>
         </div>
 
@@ -142,8 +131,8 @@ const DialogNewPage = ({
               )
             }
             errors={isPagenameAvailable ? undefined : "Paganame already taken"}
-            onChange={(e) => {
-              let pagename = e.target.value.replace(/[^a-z0-9_-]+|\s+/gim, "");
+            onChange={e => {
+              const pagename = e.target.value.replace(/[^a-z0-9_-]+|\s+/gim, "");
               setPagename(pagename);
             }}
           />

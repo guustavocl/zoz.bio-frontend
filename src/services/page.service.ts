@@ -1,6 +1,5 @@
 import { RgbaColor } from "react-colorful";
 import { IPageSocialMedia } from "../types/IPage";
-import { IUser } from "../types/IUser";
 import { Api } from "./api";
 
 class PageService {
@@ -37,12 +36,7 @@ class PageService {
     }
   };
 
-  savePageInfos = async (
-    uname: string,
-    bio: string,
-    pagename: string,
-    newPagename: string
-  ) => {
+  savePageInfos = async (uname: string, bio: string, pagename: string, newPagename: string) => {
     try {
       const request = await Api.post(`${this.endpoint}/save_info`, {
         uname,
@@ -110,12 +104,7 @@ class PageService {
     }
   };
 
-  updateColors = async (
-    primaryColor: RgbaColor,
-    secondaryColor: RgbaColor,
-    fontColor: string,
-    pagename: string
-  ) => {
+  updateColors = async (primaryColor: RgbaColor, secondaryColor: RgbaColor, fontColor: string, pagename: string) => {
     try {
       const request = await Api.post(`${this.endpoint}/update_colors`, {
         primaryColor,

@@ -46,9 +46,7 @@ export const ToastProvider = ({ children }: IToastProvider) => {
   }
 
   return (
-    <ToastContext.Provider
-      value={{ successToast, infoToast, errorToast, updateToast }}
-    >
+    <ToastContext.Provider value={{ successToast, infoToast, errorToast, updateToast }}>
       {children}
       <ToastContainer />
     </ToastContext.Provider>

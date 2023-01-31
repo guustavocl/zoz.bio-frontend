@@ -18,10 +18,7 @@ const PageIcon = ({ media }: PageIconProps) => {
   if (!social) return null;
   return (
     <div className="cursor-pointer group">
-      <ZozTooltip
-        label={social.label}
-        className="-translate-x-6 -translate-y-8"
-      />
+      <ZozTooltip label={social.label} className="-translate-x-6 -translate-y-8" />
       {social.url ? (
         <a
           className="hover:animate-pulse"
@@ -29,12 +26,7 @@ const PageIcon = ({ media }: PageIconProps) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            className="h-7 icon-shadow"
-            src={social.icon}
-            alt={`${media.key} icon`}
-            loading="lazy"
-          />
+          <img className="h-7 icon-shadow" src={social.icon} alt={`${media.key} icon`} loading="lazy" />
         </a>
       ) : (
         <img

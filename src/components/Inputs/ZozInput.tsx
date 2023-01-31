@@ -44,9 +44,7 @@ const ZozInput = ({
         className={`block text-sm font-medium select-none 
           ${disabled ? "text-gray-600 " : "text-gray-200 "}
           ${
-            errors
-              ? "text-red-700 group-focus-within:text-red-700"
-              : "text-gray-300 group-focus-within:text-violet-500"
+            errors ? "text-red-700 group-focus-within:text-red-700" : "text-gray-300 group-focus-within:text-violet-500"
           }`}
       >
         {errors ? errors : label}
@@ -55,21 +53,15 @@ const ZozInput = ({
         <label
           htmlFor={id}
           className={`block text-sm font-medium select-none ${
-            errors
-              ? "text-red-800 group-focus:text-red-800"
-              : "text-gray-400 group-focus:text-violet-600"
+            errors ? "text-red-800 group-focus:text-red-800" : "text-gray-400 group-focus:text-violet-600"
           } absolute right-2.5 top-0`}
         >
-          {`${
-            minSize && minSize > value.length ? minSize : value.length
-          }/${size}`}
+          {`${minSize && minSize > value.length ? minSize : value.length}/${size}`}
         </label>
       )}
       <div className="relative mt-1 rounded-md">
         {iconAdornment ? (
-          <div className="absolute right-2 flex flex-col items-center justify-center h-full">
-            {iconAdornment}
-          </div>
+          <div className="absolute right-2 flex flex-col items-center justify-center h-full">{iconAdornment}</div>
         ) : null}
         {type === "textarea" ? (
           <textarea
@@ -85,7 +77,7 @@ const ZozInput = ({
             autoComplete={autoComplete}
             value={value}
             maxLength={size ? size : undefined}
-            onChange={(e) => {
+            onChange={e => {
               if (onBlur) onBlur(e);
               onChange(e);
             }}
@@ -109,7 +101,7 @@ const ZozInput = ({
             autoComplete={autoComplete}
             value={value}
             maxLength={size ? size : undefined}
-            onChange={(e) => {
+            onChange={e => {
               if (onBlur) onBlur(e);
               onChange(e);
             }}

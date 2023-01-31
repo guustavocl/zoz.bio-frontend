@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getIcon, MediaIconProps } from "../Page/IconsList";
 import { useQuery } from "@tanstack/react-query";
 import { useToasts } from "../../context/ToastProvider/useToasts";
@@ -35,7 +35,7 @@ const AutoCompleteFolders = ({
     errorToast(error.message);
   }
 
-  let list = new Map<string, MediaIconProps>([]);
+  const list = new Map<string, MediaIconProps>([]);
   list.set("", {
     icon: getIcon("banned")?.icon || "",
     label: "None",

@@ -1,10 +1,6 @@
 import { RgbaColor } from "react-colorful";
 
-export const setCssVariables = (
-  primaryColor: RgbaColor,
-  secondaryColor: RgbaColor,
-  fontColor: string
-) => {
+export const setCssVariables = (primaryColor: RgbaColor, secondaryColor: RgbaColor, fontColor: string) => {
   document.body.style.setProperty(
     "--page-primary-color",
     `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`

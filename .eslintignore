@@ -1,0 +1,6 @@
+index.html
+postcss.config.cjs
+tailwind.config.cjs
+dist/*
+node_modules/*
+public/*

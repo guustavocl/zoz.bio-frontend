@@ -16,12 +16,7 @@ type DialogNewLinkProps = {
   addNewPage?: (page: IPage) => void;
 };
 
-const DialogNewLink = ({
-  isOpen,
-  page,
-  setIsOpen,
-  setPage,
-}: DialogNewLinkProps) => {
+const DialogNewLink = ({ isOpen, page, setIsOpen, setPage }: DialogNewLinkProps) => {
   const { errorToast, successToast } = useToasts();
 
   const formik = useFormik({
@@ -36,16 +31,16 @@ const DialogNewLink = ({
     validationSchema: yup.object({
       label: yup.string().required("Label is a required field"),
     }),
-    onSubmit: (values) => {
+    onSubmit: values => {
       linkService
         .createLink(values, page.pagename)
-        .then((response) => {
+        .then(response => {
           successToast(response.message);
           setPage(response.page);
           setIsOpen(false);
           formik.resetForm();
         })
-        .catch((error) => {
+        .catch(error => {
           errorToast(error.message);
           if (error.errors) formik.setErrors(error.errors);
         })
@@ -54,15 +49,8 @@ const DialogNewLink = ({
   });
 
   return (
-    <ZozDialog
-      title="Inform your Link infos"
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-    >
-      <form
-        onSubmit={formik.handleSubmit}
-        className="flex flex-col items-center w-full"
-      >
+    <ZozDialog title="Inform your Link infos" isOpen={isOpen} setIsOpen={setIsOpen}>
+      <form onSubmit={formik.handleSubmit} className="flex flex-col items-center w-full">
         <div className="w-full mt-4">
           <ZozRadioGroup
             id="folder"
@@ -124,7 +112,7 @@ const DialogNewLink = ({
             pagename={page.pagename}
             selected={formik.values.folderOwner}
             disabled={formik.values.isFolder}
-            setSelected={(value) => {
+            setSelected={value => {
               formik.setFieldValue("folderOwner", value);
             }}
           />
@@ -140,11 +128,7 @@ const DialogNewLink = ({
             value={formik.values.label}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            errors={
-              formik.touched.label && formik.errors.label
-                ? formik.errors.label
-                : undefined
-            }
+            errors={formik.touched.label && formik.errors.label ? formik.errors.label : undefined}
           />
         </div>
         <div className="w-full mt-4">

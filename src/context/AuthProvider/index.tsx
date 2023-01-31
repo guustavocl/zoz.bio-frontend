@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { setInterceptors } from "../../services/api";
 import authService from "../../services/auth.service";
 import { IAuth } from "../../types/IAuth";
@@ -15,16 +15,12 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>(userStorage);
 
   async function authenticate(email: string, password: string) {
-    try {
-      let response = await authService.login(email, password);
-      const payload = { email, token: response.token };
-      setUser(payload);
-      setInterceptors(payload);
-      authService.setUserLocalStorage(payload);
-      return response;
-    } catch (error) {
-      throw error;
-    }
+    const response = await authService.login(email, password);
+    const payload = { email, token: response.token };
+    setUser(payload);
+    setInterceptors(payload);
+    authService.setUserLocalStorage(payload);
+    return response;
   }
 
   function logout() {
@@ -32,9 +28,5 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     authService.setUserLocalStorage(null);
   }
 
-  return (
-    <AuthContext.Provider value={{ ...user, authenticate, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ ...user, authenticate, logout }}>{children}</AuthContext.Provider>;
 };

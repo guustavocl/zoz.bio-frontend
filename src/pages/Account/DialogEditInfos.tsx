@@ -17,12 +17,7 @@ type DialogEditInfosProps = {
   addNewPage?: (page: IPage) => void;
 };
 
-const DialogEditInfos = ({
-  isOpen,
-  setIsOpen,
-  page,
-  setPage,
-}: DialogEditInfosProps) => {
+const DialogEditInfos = ({ isOpen, setIsOpen, page, setPage }: DialogEditInfosProps) => {
   const { errorToast, successToast } = useToasts();
   const [newPagename, setNewPagename] = useState("");
   const [isPagenameAvailable, setPagenameAvailable] = useState(true);
@@ -40,10 +35,10 @@ const DialogEditInfos = ({
         if (newPagename && newPagename.length > 0)
           pageService
             .checkPagename(newPagename)
-            .then((response) => {
+            .then(response => {
               setPagenameAvailable(response.isAvailable);
             })
-            .catch((error) => {
+            .catch(error => {
               errorToast(error.message);
             });
       }, 300);
@@ -61,20 +56,15 @@ const DialogEditInfos = ({
     validationSchema: yup.object({
       uname: yup.string().required("Display Name is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: values => {
       pageService
-        .savePageInfos(
-          values.uname,
-          values.bio,
-          page.pagename,
-          newPagename?.length > 1 ? newPagename : page.pagename
-        )
-        .then((response) => {
+        .savePageInfos(values.uname, values.bio, page.pagename, newPagename?.length > 1 ? newPagename : page.pagename)
+        .then(response => {
           successToast(response.message);
           setPage(response.page);
           setIsOpen(false);
         })
-        .catch((error) => {
+        .catch(error => {
           errorToast(error.message);
           if (error.errors) formik.setErrors(error.errors);
         })
@@ -83,11 +73,7 @@ const DialogEditInfos = ({
   });
 
   return (
-    <ZozDialog
-      title="Edit your personal infos"
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-    >
+    <ZozDialog title="Edit your personal infos" isOpen={isOpen} setIsOpen={setIsOpen}>
       <form onSubmit={formik.handleSubmit}>
         <div className="mt-4">
           <ZozInput
@@ -100,11 +86,7 @@ const DialogEditInfos = ({
             value={formik.values.uname}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            errors={
-              formik.touched.uname && formik.errors.uname
-                ? formik.errors.uname
-                : undefined
-            }
+            errors={formik.touched.uname && formik.errors.uname ? formik.errors.uname : undefined}
           />
         </div>
         <div className="mt-4">
@@ -143,8 +125,8 @@ const DialogEditInfos = ({
                   : undefined
                 : "Paganame already taken"
             }
-            onChange={(e) => {
-              let pagename = e.target.value.replace(/[^a-z0-9_-]+|\s+/gim, "");
+            onChange={e => {
+              const pagename = e.target.value.replace(/[^a-z0-9_-]+|\s+/gim, "");
               setNewPagename(pagename);
             }}
           />
@@ -154,17 +136,13 @@ const DialogEditInfos = ({
           type="submit"
           disabled={
             !(page?.pagename && newPagename === page.pagename) &&
-            (newPagename.length < 5 ||
-              formik.isSubmitting ||
-              !isPagenameAvailable)
+            (newPagename.length < 5 || formik.isSubmitting || !isPagenameAvailable)
           }
           className={
             "mt-6 group relative flex w-full justify-center rounded border border-transparent " +
             "py-2 px-4 text-3x1 font-medium hover:font-semibold " +
             `${
-              formik.isSubmitting ||
-              newPagename.length < 5 ||
-              !isPagenameAvailable
+              formik.isSubmitting || newPagename.length < 5 || !isPagenameAvailable
                 ? "bg-violet-800 text-gray-400 "
                 : "bg-violet-700 hover:bg-violet-900 text-white "
             }`

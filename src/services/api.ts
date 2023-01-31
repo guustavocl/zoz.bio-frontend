@@ -22,9 +22,7 @@ const endpoints = [
 ];
 
 export const Api = axios.create({
-  baseURL:
-    endpoints.find((e) => window.location.href.includes(e.origin))?.endpoint ||
-    "https://api.zoz.gg",
+  baseURL: endpoints.find(e => window.location.href.includes(e.origin))?.endpoint || "https://api.zoz.gg",
   headers: {
     "Content-Type": "application/json",
   },
@@ -32,22 +30,22 @@ export const Api = axios.create({
 
 export function setInterceptors(user: IUser | null) {
   Api.interceptors.request.use(
-    async (config) => {
+    async config => {
       if (user && config && config.headers) {
         config.headers["Authorization"] = `Bearer ${user.token}`;
       }
       return config;
     },
-    (error) => {
+    error => {
       console.log(error);
     }
   );
 
   Api.interceptors.response.use(
-    (response) => {
+    response => {
       return response;
     },
-    async (error) => {
+    async error => {
       if (error.response && error.response.status === 403) {
         localStorage.removeItem("u");
         window.location.reload();

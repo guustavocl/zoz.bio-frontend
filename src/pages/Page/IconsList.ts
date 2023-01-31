@@ -60,7 +60,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "twitter",
     {
       icon: "./icons/social/twitter.png",
-      url: (username) => `https://twitter.com/${username}`,
+      url: username => `https://twitter.com/${username}`,
       label: "Twitter",
     },
   ],
@@ -68,7 +68,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "instagram",
     {
       icon: "./icons/social/instagram.png",
-      url: (username) => `https://instagram.com/${username}`,
+      url: username => `https://instagram.com/${username}`,
       label: "Instagram",
     },
   ],
@@ -76,7 +76,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "tiktok",
     {
       icon: "./icons/social/tiktok.png",
-      url: (username) => `https://tiktok.com/@${username}`,
+      url: username => `https://tiktok.com/@${username}`,
       label: "TikTok",
     },
   ],
@@ -84,7 +84,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "twitch",
     {
       icon: "./icons/social/twitch.png",
-      url: (username) => `https://twitch.tv/${username}`,
+      url: username => `https://twitch.tv/${username}`,
       label: "TwitchTV",
     },
   ],
@@ -92,7 +92,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "spotify",
     {
       icon: "./icons/social/spotify.png",
-      url: (username) => `https://open.spotify.com/user/${username}`,
+      url: username => `https://open.spotify.com/user/${username}`,
       label: "Spotify",
     },
   ],
@@ -100,7 +100,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "youtube",
     {
       icon: "./icons/social/youtube.png",
-      url: (username) => `https://youtube.com/channel/${username}`,
+      url: username => `https://youtube.com/channel/${username}`,
       label: "Youtube",
     },
   ],
@@ -108,7 +108,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "facebook",
     {
       icon: "./icons/social/facebook.png",
-      url: (username) => `https://facebook.com/${username}`,
+      url: username => `https://facebook.com/${username}`,
       label: "Facebook",
     },
   ],
@@ -116,7 +116,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "telegram",
     {
       icon: "./icons/social/telegram.png",
-      url: (username) => `https://t.me/${username}`,
+      url: username => `https://t.me/${username}`,
       label: "Telegram",
     },
   ],
@@ -124,7 +124,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "steam",
     {
       icon: "./icons/social/steam.png",
-      url: (username) => `https://steamcommunity.com/id/${username}`,
+      url: username => `https://steamcommunity.com/id/${username}`,
       label: "Steam",
     },
   ],
@@ -132,7 +132,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "amazon",
     {
       icon: "./icons/social/amazon.png",
-      url: (username) => `https://www.amazon.com.br/hz/wishlist/ls/${username}`,
+      url: username => `https://www.amazon.com.br/hz/wishlist/ls/${username}`,
       label: "Amazon Wishlist",
     },
   ],
@@ -140,7 +140,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "applemusic",
     {
       icon: "./icons/social/applemusic.png",
-      url: (username) => `https://music.apple.com/profile/${username}`,
+      url: username => `https://music.apple.com/profile/${username}`,
       label: "Apple music",
     },
   ],
@@ -148,7 +148,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "bandcamp",
     {
       icon: "./icons/social/bandcamp.png",
-      url: (username) => `https://${username}.bandcamp.com/`,
+      url: username => `https://${username}.bandcamp.com/`,
       label: "Bandcamp",
     },
   ],
@@ -163,7 +163,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "behance",
     {
       icon: "./icons/social/behance.png",
-      url: (username) => `https://behance.net/${username}`,
+      url: username => `https://behance.net/${username}`,
       label: "Behance",
     },
   ],
@@ -192,7 +192,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "chess",
     {
       icon: "./icons/social/chess.png",
-      url: (username) => `https://www.chess.com/member/${username}`,
+      url: username => `https://www.chess.com/member/${username}`,
       label: "Chess.com",
     },
   ],
@@ -200,7 +200,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "crunchyroll",
     {
       icon: "./icons/social/crunchyroll.png",
-      url: (username) => `https://www.crunchyroll.com/user/${username}`,
+      url: username => `https://www.crunchyroll.com/user/${username}`,
       label: "Crunchyroll",
     },
   ],
@@ -208,7 +208,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "curiouscat",
     {
       icon: "./icons/social/curiouscat.png",
-      url: (username) => `https://curiouscat.live/${username}`,
+      url: username => `https://curiouscat.live/${username}`,
       label: "Curious Cat",
     },
   ],
@@ -223,7 +223,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "deviantart",
     {
       icon: "./icons/social/deviantart.png",
-      url: (username) => `https://www.deviantart.com//${username}`,
+      url: username => `https://www.deviantart.com//${username}`,
       label: "DeviantArt",
     },
   ],
@@ -238,7 +238,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "ebay",
     {
       icon: "./icons/social/ebay.png",
-      url: (username) => `https://ebay.com/usr/${username}`,
+      url: username => `https://ebay.com/usr/${username}`,
       label: "Ebay",
     },
   ],
@@ -253,7 +253,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "enjoei",
     {
       icon: "./icons/social/enjoei.png",
-      url: (username) => `https://www.enjoei.com.br/@${username}`,
+      url: username => `https://www.enjoei.com.br/@${username}`,
       label: "Enjoei",
     },
   ],
@@ -296,7 +296,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "github",
     {
       icon: "./icons/social/github.png",
-      url: (username) => `https://github.com/${username}`,
+      url: username => `https://github.com/${username}`,
       label: "Github",
     },
   ],
@@ -311,7 +311,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "kickstarter",
     {
       icon: "./icons/social/kickstarter.png",
-      url: (username) => `https://www.kickstarter.com/${username}`,
+      url: username => `https://www.kickstarter.com/${username}`,
       label: "Kickstarter",
     },
   ],
@@ -319,7 +319,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "lastfm",
     {
       icon: "./icons/social/lastfm.png",
-      url: (username) => `https://last.fm/user/${username}`,
+      url: username => `https://last.fm/user/${username}`,
       label: "LastFM",
     },
   ],
@@ -327,7 +327,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "line",
     {
       icon: "./icons/social/line.png",
-      url: (username) => ` https://line.me/R/ti/p/${username}`,
+      url: username => ` https://line.me/R/ti/p/${username}`,
       label: "Line",
     },
   ],
@@ -335,7 +335,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "linkedin",
     {
       icon: "./icons/social/linkedin.png",
-      url: (username) => `https://linkedin.com/in/${username}`,
+      url: username => `https://linkedin.com/in/${username}`,
       label: "Linkedin",
     },
   ],
@@ -357,7 +357,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "myanimelist",
     {
       icon: "./icons/social/myanimelist.png",
-      url: (username) => `https://myanimelist.net/profile/${username}`,
+      url: username => `https://myanimelist.net/profile/${username}`,
       label: "My Anime List",
     },
   ],
@@ -379,7 +379,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "opensea",
     {
       icon: "./icons/social/opensea.png",
-      url: (username) => `https://opensea.io/${username}`,
+      url: username => `https://opensea.io/${username}`,
       label: "Open Sea",
     },
   ],
@@ -387,7 +387,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "opgg",
     {
       icon: "./icons/social/opgg.png",
-      url: (username) => `https://www.op.gg/summoners/${username}`,
+      url: username => `https://www.op.gg/summoners/${username}`,
       label: "OP.GG",
     },
   ],
@@ -395,7 +395,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "patreon",
     {
       icon: "./icons/social/patreon.png",
-      url: (username) => `https://patreon.com/${username}`,
+      url: username => `https://patreon.com/${username}`,
       label: "Patreon",
     },
   ],
@@ -424,7 +424,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "pinterest",
     {
       icon: "./icons/social/pinterest.png",
-      url: (username) => `https://pinterest.com/${username}`,
+      url: username => `https://pinterest.com/${username}`,
       label: "Pinterest",
     },
   ],
@@ -460,7 +460,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "reddit",
     {
       icon: "./icons/social/reddit.png",
-      url: (username) => `https://reddit.com/u/${username}`,
+      url: username => `https://reddit.com/u/${username}`,
       label: "Reddit",
     },
   ],
@@ -489,7 +489,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "snapchat",
     {
       icon: "./icons/social/snapchat.png",
-      url: (username) => `https://snapchat.com/add/${username}`,
+      url: username => `https://snapchat.com/add/${username}`,
       label: "Snapchat",
     },
   ],
@@ -497,7 +497,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "soundcloud",
     {
       icon: "./icons/social/soundcloud.png",
-      url: (username) => `https://soundcloud.com/${username}`,
+      url: username => `https://soundcloud.com/${username}`,
       label: "SoundCloud",
     },
   ],
@@ -505,7 +505,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "venmo",
     {
       icon: "./icons/social/venmo.png",
-      url: (username) => `https://venmo.com/u/${username}`,
+      url: username => `https://venmo.com/u/${username}`,
       label: "Venmo",
     },
   ],
@@ -513,7 +513,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "vimeo",
     {
       icon: "./icons/social/vimeo.png",
-      url: (username) => `https://vimeo.com/${username}`,
+      url: username => `https://vimeo.com/${username}`,
       label: "Vimeo",
     },
   ],
@@ -521,7 +521,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "vk",
     {
       icon: "./icons/social/vk.png",
-      url: (username) => `https://vk.com/${username}`,
+      url: username => `https://vk.com/${username}`,
       label: "VK",
     },
   ],
@@ -529,7 +529,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "website",
     {
       icon: "./icons/social/website.png",
-      url: (username) => `${username}`,
+      url: username => `${username}`,
       label: "My website",
     },
   ],
@@ -537,7 +537,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "weheartit",
     {
       icon: "./icons/social/weheartit.png",
-      url: (username) => `https://weheartit.com/${username}`,
+      url: username => `https://weheartit.com/${username}`,
       label: "We ♥ It",
     },
   ],
@@ -545,7 +545,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "whatsapp",
     {
       icon: "./icons/social/whatsapp.png",
-      url: (username) => `https://wa.me/${username}`,
+      url: username => `https://wa.me/${username}`,
       label: "Whatsapp",
     },
   ],
@@ -553,7 +553,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "whatsappb",
     {
       icon: "./icons/social/whatsappb.png",
-      url: (username) => `https://wa.me/${username}`,
+      url: username => `https://wa.me/${username}`,
       label: "Whatsapp Business",
     },
   ],

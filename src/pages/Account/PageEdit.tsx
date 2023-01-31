@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
 import { useAuth } from "../../context/AuthProvider/useAuth";
-import {
-  Cog6ToothIcon,
-  PencilSquareIcon,
-  ArrowUpTrayIcon,
-  PlusIcon,
-} from "@heroicons/react/20/solid";
+import { Cog6ToothIcon, PencilSquareIcon, ArrowUpTrayIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import { getBadge, getStatusIcon } from "../Page/IconsList";
 import { defaultPage, setCssVariables } from "../Page/PageVariables";
@@ -55,20 +50,12 @@ const getPageStatus = (status: IPageStatus) => {
   const statusIcon = getStatusIcon(status.key);
   return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
-      <img
-        className="w-7"
-        src={statusIcon.icon}
-        alt={statusIcon.label}
-        loading="lazy"
-      />
+      <img className="w-7" src={statusIcon.icon} alt={statusIcon.label} loading="lazy" />
     </div>
   ) : null;
 };
 
-const getAvatar = (
-  pfpUrl: string | undefined,
-  uploadAvatar: (value: File) => void
-) => {
+const getAvatar = (pfpUrl: string | undefined, uploadAvatar: (value: File) => void) => {
   return (
     <div className="flex flex-col justify-center items-center min-w-fit flex-shrink-0 p-2 select-none">
       <label
@@ -80,7 +67,7 @@ const getAvatar = (
           className="hidden"
           type="file"
           accept="image/*"
-          onChange={(e) => {
+          onChange={e => {
             if (e.target?.files) {
               uploadAvatar(e.target.files[0]);
               e.target.value = "";
@@ -110,18 +97,9 @@ const getAvatar = (
   );
 };
 
-const IconOpenDialog = ({
-  setDialogOpen,
-  label,
-}: {
-  setDialogOpen: (value: boolean) => void;
-  label: string;
-}) => {
+const IconOpenDialog = ({ setDialogOpen, label }: { setDialogOpen: (value: boolean) => void; label: string }) => {
   return (
-    <div
-      className="relative group hover:text-gray-900 cursor-pointer"
-      onClick={() => setDialogOpen(true)}
-    >
+    <div className="relative group hover:text-gray-900 cursor-pointer" onClick={() => setDialogOpen(true)}>
       <span className="hidden md:block absolute translate-x-6 flex overflow-visible whitespace-nowrap font-semibold text-gray-300 animate-pulse group-hover:text-gray-900">
         ← {label}
       </span>
@@ -130,13 +108,7 @@ const IconOpenDialog = ({
   );
 };
 
-const PageEdit = ({
-  page,
-  setPage,
-}: {
-  page: IPage;
-  setPage: (value: IPage | undefined) => void;
-}) => {
+const PageEdit = ({ page, setPage }: { page: IPage; setPage: (value: IPage | undefined) => void }) => {
   const auth = useAuth();
   const { errorToast, successToast } = useToasts();
 
@@ -147,13 +119,9 @@ const PageEdit = ({
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backgroundSize = page?.backgroundSize || defaultPage.bgSize;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias =
-    page?.socialMedias?.length > 0
-      ? page.socialMedias
-      : defaultPage.pageSocialMedias;
+  const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
 
-  const pageBadges =
-    page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
+  const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
 
   const cardBlur = page?.cardBlur || defaultPage.cardBlur;
@@ -169,11 +137,11 @@ const PageEdit = ({
   const uploadAvatar = (file: File) => {
     pageService
       .uploadAvatar(file, page.pagename)
-      .then((response) => {
+      .then(response => {
         successToast(response.message);
         setPage(response.page);
       })
-      .catch((error) => {
+      .catch(error => {
         errorToast(error.message);
       });
   };
@@ -181,11 +149,11 @@ const PageEdit = ({
   const uploadBackground = (file: File) => {
     pageService
       .uploadBackground(file, page.pagename)
-      .then((response) => {
+      .then(response => {
         successToast(response.message);
         setPage(response.page);
       })
-      .catch((error) => {
+      .catch(error => {
         errorToast(error.message);
       });
   };
@@ -205,11 +173,7 @@ const PageEdit = ({
         </div>
       ) : null}
       {/* Page Background */}
-      <LazyLoadImage
-        imageUrl={backgroundUrl}
-        backgroundSize={backgroundSize}
-        backGroundOpacity={backGroundOpacity}
-      />
+      <LazyLoadImage imageUrl={backgroundUrl} backgroundSize={backgroundSize} backGroundOpacity={backGroundOpacity} />
 
       <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
         <div className="mt-24 mb-2 flex flex-row gap-2">
@@ -229,7 +193,7 @@ const PageEdit = ({
               className="hidden"
               type="file"
               accept="image/*"
-              onChange={(e) => {
+              onChange={e => {
                 if (e.target?.files) {
                   uploadBackground(e.target.files[0]);
                   e.target.value = "";
@@ -253,24 +217,15 @@ const PageEdit = ({
             <div className="flex flex-col w-full">
               <div className="flex flex-row w-full items-start relative">
                 <PageInfos page={page} />
-                <IconOpenDialog
-                  label="Edit Infos"
-                  setDialogOpen={setDialogEditPage}
-                />
+                <IconOpenDialog label="Edit Infos" setDialogOpen={setDialogEditPage} />
               </div>
               <div className="flex flex-row w-full items-center">
                 {mapBadges(pageBadges)}
-                <IconOpenDialog
-                  label="Edit Badges"
-                  setDialogOpen={setDialogEditBadges}
-                />
+                <IconOpenDialog label="Edit Badges" setDialogOpen={setDialogEditBadges} />
               </div>
               <div className="flex flex-row w-full items-end">
                 {mapSocials(pageSocialMedias)}
-                <IconOpenDialog
-                  label="Edit Accounts"
-                  setDialogOpen={setDialogEditSocial}
-                />
+                <IconOpenDialog label="Edit Accounts" setDialogOpen={setDialogEditSocial} />
               </div>
             </div>
           </React.Fragment>
@@ -296,33 +251,13 @@ const PageEdit = ({
       </div>
 
       {/* Dialogs to edit page */}
-      <DialogEditInfos
-        isOpen={dialogEditPage}
-        setIsOpen={setDialogEditPage}
-        page={page}
-        setPage={setPage}
-      />
+      <DialogEditInfos isOpen={dialogEditPage} setIsOpen={setDialogEditPage} page={page} setPage={setPage} />
       {/* Dialogs to edit badges */}
-      <DialogEditBadges
-        isOpen={dialogEditBadges}
-        setIsOpen={setDialogEditBadges}
-        page={page}
-        setPage={setPage}
-      />
+      <DialogEditBadges isOpen={dialogEditBadges} setIsOpen={setDialogEditBadges} page={page} setPage={setPage} />
       {/* Dialogs to edit social media */}
-      <DialogEditSocials
-        isOpen={dialogEditSocial}
-        setIsOpen={setDialogEditSocial}
-        page={page}
-        setPage={setPage}
-      />
+      <DialogEditSocials isOpen={dialogEditSocial} setIsOpen={setDialogEditSocial} page={page} setPage={setPage} />
       {/* Dialogs to insert a new Link */}
-      <DialogNewLink
-        isOpen={dialogNewLink}
-        setIsOpen={setDialogNewLink}
-        page={page}
-        setPage={setPage}
-      />
+      <DialogNewLink isOpen={dialogNewLink} setIsOpen={setDialogNewLink} page={page} setPage={setPage} />
     </React.Fragment>
   );
 };

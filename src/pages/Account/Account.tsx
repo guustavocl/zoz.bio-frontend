@@ -16,10 +16,7 @@ import { LazyLoadImage } from "../../components/Loading";
 
 const accountSettings = (account: IUser) => {
   return (
-    <SectionCard
-      className="w-full select-none h-screen70 overflow-y-scroll "
-      center={false}
-    >
+    <SectionCard className="w-full select-none h-screen70 overflow-y-scroll " center={false}>
       <div className="w-full flex flex-col gap-2 overflow-hidden p-2">
         <AccountTabSettings account={account} />
       </div>
@@ -27,16 +24,13 @@ const accountSettings = (account: IUser) => {
   );
 };
 
-const accountSubscription = (account: IUser) => {
-  return (
-    <SectionCard
-      className="w-full select-none h-screen70 overflow-y-scroll "
-      center={false}
-    >
-      <div className="w-full flex flex-col gap-2 overflow-hidden p-2">SOON</div>
-    </SectionCard>
-  );
-};
+// const accountSubscription = (account: IUser) => {
+//   return (
+//     <SectionCard className="w-full select-none h-screen70 overflow-y-scroll " center={false}>
+//       <div className="w-full flex flex-col gap-2 overflow-hidden p-2">SOON</div>
+//     </SectionCard>
+//   );
+// };
 
 const Account = () => {
   const auth = useAuth();
@@ -62,7 +56,7 @@ const Account = () => {
   useEffect(() => {
     const scrollContainer = document.getElementById("pages");
     if (scrollContainer) {
-      scrollContainer.addEventListener("wheel", (evt) => {
+      scrollContainer.addEventListener("wheel", evt => {
         evt.preventDefault();
         scrollContainer.scrollLeft += evt.deltaY;
       });
@@ -81,7 +75,7 @@ const Account = () => {
           setPage={(page: IPage | undefined) => {
             setPage(page);
             setPages(
-              pages?.map((item) => {
+              pages?.map(item => {
                 return item.pagename === page?.pagename ? page : item;
               })
             );
@@ -122,20 +116,13 @@ const Account = () => {
                 onClick={() => setDialogNewPageOpen(true)}
                 className="flex-shrink-0 group w-24 h-24 rounded-full bg-violet-600 bg-opacity-30 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-50"
               >
-                <span className="group-hover:hidden opacity-50 font-semibold text-3xl ">
-                  +
-                </span>
-                <span className="hidden group-hover:flex  opacity-50 font-semibold text-md ">
-                  New Page
-                </span>
+                <span className="group-hover:hidden opacity-50 font-semibold text-3xl ">+</span>
+                <span className="hidden group-hover:flex  opacity-50 font-semibold text-md ">New Page</span>
               </div>
 
               {pages
                 ? pages.map((page: IPage, idx: number) => (
-                    <div
-                      key={idx}
-                      className="flex-shrink-0 group flex flex-col items-center justify-center"
-                    >
+                    <div key={idx} className="flex-shrink-0 group flex flex-col items-center justify-center">
                       <span
                         className="z-30 select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-lg px-3 py-1 -translate-y-10"
                         style={{ backgroundColor: "#000000" }}
@@ -180,11 +167,7 @@ const Account = () => {
             </div>
           </div>
 
-          <DialogNewPage
-            isOpen={dialogNewPageOpen}
-            addNewPage={addNewPage}
-            setIsOpen={setDialogNewPageOpen}
-          />
+          <DialogNewPage isOpen={dialogNewPageOpen} addNewPage={addNewPage} setIsOpen={setDialogNewPageOpen} />
         </React.Fragment>
       )}
     </div>

@@ -6,7 +6,7 @@ import { IAuth } from "../../types/IAuth";
 import React from "react";
 
 const Header = ({ auth }: { auth?: IAuth }) => {
-  const isHomePage = window.location.pathname === "/";
+  // const isHomePage = window.location.pathname === "/";
 
   return (
     <Popover className="relative w-full flex flex-row items-center justify-center z-20">
@@ -14,12 +14,7 @@ const Header = ({ auth }: { auth?: IAuth }) => {
         <div className="flex flex-row justify-between content-between">
           <a href="/">
             <span className="sr-only">zoz.gg</span>
-            <img
-              className="w-32 sm:h-16"
-              src={logo}
-              alt="zoz.gg logo"
-              loading="lazy"
-            />
+            <img className="w-32 sm:h-16" src={logo} alt="zoz.gg logo" loading="lazy" />
           </a>
         </div>
 
@@ -83,12 +78,7 @@ const Header = ({ auth }: { auth?: IAuth }) => {
               <div className="flex items-center justify-between">
                 <a href="/" rel="noopener noreferrer">
                   <span className="sr-only">zoz.gg</span>
-                  <img
-                    className="w-32 sm:h-16"
-                    src={logo}
-                    alt="ZOZ.gg logo"
-                    loading="lazy"
-                  />
+                  <img className="w-32 sm:h-16" src={logo} alt="ZOZ.gg logo" loading="lazy" />
                 </a>
 
                 <div className="md:hidden flex items-center">
@@ -131,11 +121,7 @@ const Header = ({ auth }: { auth?: IAuth }) => {
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-300">
                       Already have an account?{" "}
-                      <a
-                        href="/login"
-                        rel="noopener noreferrer"
-                        className="text-violet-600 hover:text-violet-700"
-                      >
+                      <a href="/login" rel="noopener noreferrer" className="text-violet-600 hover:text-violet-700">
                         Login
                       </a>
                     </p>

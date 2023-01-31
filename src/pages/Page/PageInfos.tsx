@@ -33,9 +33,7 @@ const PageInfos = ({ page }: PageInfosProps) => {
           onClick={() => {
             successToast(`Copied`);
             if (navigator.clipboard) {
-              navigator.clipboard.writeText(
-                `https://zoz.gg/${page?.pagename || ""}`
-              );
+              navigator.clipboard.writeText(`https://zoz.gg/${page?.pagename || ""}`);
             }
           }}
         >

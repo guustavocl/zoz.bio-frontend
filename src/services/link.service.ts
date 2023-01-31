@@ -1,7 +1,4 @@
-import { RgbaColor } from "react-colorful";
 import { ILink } from "../types/ILink";
-import { IPageSocialMedia } from "../types/IPage";
-import { IUser } from "../types/IUser";
 import { Api } from "./api";
 
 class LinkService {

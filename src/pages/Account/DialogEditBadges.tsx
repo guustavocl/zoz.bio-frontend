@@ -14,12 +14,7 @@ type DialogEditBadgesProps = {
   addNewPage?: (page: IPage) => void;
 };
 
-const DialogEditBadges = ({
-  isOpen,
-  page,
-  setIsOpen,
-  setPage,
-}: DialogEditBadgesProps) => {
+const DialogEditBadges = ({ isOpen, page, setIsOpen, setPage }: DialogEditBadgesProps) => {
   const { errorToast, successToast } = useToasts();
   const [badges, setbadges] = useState<string[]>([]);
 
@@ -33,16 +28,16 @@ const DialogEditBadges = ({
     initialValues: {
       badges: [],
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       if (values.badges.length < 10) {
         pageService
           .saveBadges(badges, page.pagename)
-          .then((response) => {
+          .then(response => {
             successToast(response.message);
             setPage(response.page);
             setIsOpen(false);
           })
-          .catch((error) => {
+          .catch(error => {
             errorToast(error.message);
           })
           .finally(() => {
@@ -55,26 +50,19 @@ const DialogEditBadges = ({
 
   return (
     <ZozDialog title="Select your badges" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form
-        onSubmit={formik.handleSubmit}
-        className="flex flex-col items-center"
-      >
+      <form onSubmit={formik.handleSubmit} className="flex flex-col items-center">
         <div className="flex flex-row flex-wrap gap-2 mt-8 justify-center">
           {Array.from(badgeList).map((badge, idx) => (
             <span
               key={idx}
               className={
                 "ring-badges whitespace-nowrap text-sm font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-md cursor-pointer " +
-                `${
-                  badges.indexOf(badge[0]) > -1
-                    ? "bg-violet-200 text-violet-800 "
-                    : "text-white"
-                }`
+                `${badges.indexOf(badge[0]) > -1 ? "bg-violet-200 text-violet-800 " : "text-white"}`
               }
               onClick={() => {
                 console.log(badges.indexOf(badge[0]));
                 if (badges.indexOf(badge[0]) > -1) {
-                  let newBadges = badges.filter((value) => {
+                  const newBadges = badges.filter(value => {
                     return !(badge[0] === value);
                   });
                   setbadges(newBadges);

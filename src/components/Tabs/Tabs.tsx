@@ -20,7 +20,7 @@ const Tabs = ({ id, list }: TabsProps) => {
   return (
     <Tab.Group>
       <Tab.List className="w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl flex flex-row gap-2">
-        {list.map((tab, idx) => (
+        {list.map(tab => (
           <Tab
             id={id}
             key={tab.label}

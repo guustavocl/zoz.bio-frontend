@@ -9,12 +9,7 @@ type SectionCardProps = {
   center?: boolean;
 };
 
-const SectionCard = ({
-  children,
-  page,
-  className,
-  center = true,
-}: SectionCardProps) => {
+const SectionCard = ({ children, page, className, center = true }: SectionCardProps) => {
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const cardBlur = page?.cardBlur || defaultPage.cardBlur;
   const cardHueRotate = page?.cardHueRotate || defaultPage.cardHueRotate;
@@ -33,9 +28,7 @@ const SectionCard = ({
         backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
       }}
     >
-      <div className="flex flex-col md:flex-row p-0 py-3 rounded-md">
-        {children}
-      </div>
+      <div className="flex flex-col md:flex-row p-0 py-3 rounded-md">{children}</div>
     </div>
   );
 };

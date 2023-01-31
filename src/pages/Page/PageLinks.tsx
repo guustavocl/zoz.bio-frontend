@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { IPage } from "../../types/IPage";
 import { getIcon } from "./IconsList";
-import {
-  ArrowUpRightIcon,
-  ArrowRightIcon,
-  ArrowLeftIcon,
-} from "@heroicons/react/20/solid";
+import { ArrowUpRightIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
 import SectionCard from "./SectionCard";
 import { ILink } from "../../types/ILink";
 
@@ -16,17 +12,17 @@ type PageLinksProps = {
 const PageLinks = ({ page }: PageLinksProps) => {
   const [folderOwner, setFolderOwner] = useState<ILink | null>();
 
-  let pageLinks = page?.pageLinks
+  const pageLinks = page?.pageLinks
     ? folderOwner
       ? page.pageLinks
-          .filter((link) => {
+          .filter(link => {
             return link.folderOwner === folderOwner._id;
           })
           .sort(function (a, b) {
             return a.position - b.position;
           })
       : page.pageLinks
-          .filter((link) => {
+          .filter(link => {
             return !link.folderOwner;
           })
           .sort(function (a, b) {
@@ -51,9 +47,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
             <h2 className="text-lg md:text-xl font-bold tracking-wide flex-1 flex-shrink-0 truncate md:overflow-visible whitespace-pre-wrap md:whitespace-nowrap">
               {folderOwner.label}
             </h2>
-            <span className="hidden group-hover:block truncate">
-              Click to go back
-            </span>
+            <span className="hidden group-hover:block truncate">Click to go back</span>
             <ArrowLeftIcon className="h-5 flex-shrink-0" />
           </div>
         </SectionCard>
@@ -76,9 +70,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
                   <h2 className="text-lg md:text-xl font-bold tracking-wide flex-1 flex-shrink-0 truncate md:overflow-visible whitespace-pre-wrap md:whitespace-nowrap">
                     {link.label}
                   </h2>
-                  <span className="hidden group-hover:block truncate">
-                    Click to open
-                  </span>
+                  <span className="hidden group-hover:block truncate">Click to open</span>
                   <ArrowRightIcon className="h-5 flex-shrink-0" />
                 </div>
               </SectionCard>
@@ -99,16 +91,14 @@ const PageLinks = ({ page }: PageLinksProps) => {
                   <h2 className="text-lg md:text-xl font-bold tracking-wide flex-1 flex-shrink-0 truncate md:overflow-visible whitespace-pre-wrap md:whitespace-nowrap">
                     {link.label}
                   </h2>
-                  <span className="hidden md:group-hover:block truncate">
-                    {link.url}
-                  </span>
+                  <span className="hidden md:group-hover:block truncate">{link.url}</span>
                   <ArrowUpRightIcon className="h-5 flex-shrink-0" />
                 </a>
               </SectionCard>
             )}
           </React.Fragment>
         ) : (
-          <React.Fragment>
+          <React.Fragment key={idx}>
             <div
               className={
                 "relative flex flex-col " +
@@ -135,8 +125,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 ></iframe>
-              ) : link.embedded === "soundcloud" &&
-                link.url.includes("/sets/") ? (
+              ) : link.embedded === "soundcloud" && link.url.includes("/sets/") ? (
                 <iframe
                   className="w-full rounded mb-1.5"
                   width="100%"
