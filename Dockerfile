@@ -21,7 +21,6 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 vite
-RUN chown -R vite:nodejs /app/build
 USER vite
 EXPOSE 3000
 
