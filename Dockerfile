@@ -18,11 +18,7 @@ WORKDIR /app
 ENV NODE_ENV production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 vite
-USER vite
-EXPOSE 3000
+EXPOSE 80
 
 # create image with this command: sudo docker build . -t zoz.gg-image
 # run container with this command: sudo docker run -d --name zoz.gg --network npm zoz.gg-image
