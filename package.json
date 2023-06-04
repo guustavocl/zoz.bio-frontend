@@ -1,0 +1,44 @@
+{
+  "name": "nextjs-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@hookform/resolvers": "^3.1.0",
+    "@tippyjs/react": "^4.2.6",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "clsx": "^1.2.1",
+    "cookies-next": "^2.1.1",
+    "next": "^13.4.4",
+    "next-auth": "^4.22.1",
+    "nextjs-toploader": "^1.4.2",
+    "react": "^18.2.0",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.3",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "color": "^4.2.3",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4",
+    "postcss": "8.4.24",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4"
+  }
+}
