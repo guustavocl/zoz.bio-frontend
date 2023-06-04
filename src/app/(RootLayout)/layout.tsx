@@ -5,23 +5,6 @@ import { cookies } from "next/headers";
 import { Metadata } from "next";
 import "./../globals.css";
 
-// export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-//   try {
-//     console.log("get server props");
-//     const result = await fetch(`https://pokeapi.co/api/v2/pokemon/ditto`);
-//     const data = await result.json();
-//     console.log(data);
-//     return {
-//       props: { data },
-//     };
-//   } catch {
-//     res.statusCode = 404;
-//     return {
-//       props: {},
-//     };
-//   }
-// };
-
 export const metadata: Metadata = {
   title: "zoz.bio - All links in one place",
   description:
@@ -69,6 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="twitter:image:src" content="https://zoz.bio/metabg.png?v=2" />
 
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <NextTopLoader color="#6d28d9" showSpinner={false} />
