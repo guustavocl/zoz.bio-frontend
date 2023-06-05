@@ -1,7 +1,7 @@
 import { Link } from "@/components/Buttons";
 import RegisterForm from "./RegisterForm";
 
-export default function Register() {
+export default function RegisterPage() {
   return (
     <main className="mx-8 flex w-full flex-col items-center justify-between pb-24 md:mx-14 lg:max-w-6xl">
       <div className="mt-6 pb-20 md:mt-12">

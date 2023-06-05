@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import { Link } from "@/components/Buttons";
 
 const FooterComponent = () => {
@@ -30,4 +30,4 @@ const FooterComponent = () => {
   );
 };
 
-export default React.memo(FooterComponent);
+export default memo(FooterComponent);

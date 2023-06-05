@@ -1,15 +1,29 @@
 "use client";
-import React from "react";
+import { memo } from "react";
 import { Fragment } from "react";
-import { AuthProps } from "@/types/AuthProps";
+import { UserProps } from "@/types/UserProps";
 import { Link, LinkButton } from "@/components/Buttons";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { logout } from "@/services/AuthService";
 
-const HeaderComponent = ({ auth }: { auth?: AuthProps }) => {
+const HeaderComponent = ({ user }: { user?: UserProps }) => {
   const router = useRouter();
+
+  const logoutRequest = () => {
+    logout(user?._id)
+      .then(() => {
+        deleteCookie("zoz_user");
+        router.refresh();
+        router.push("/");
+      })
+      .catch(err => {
+        //TODO TOASTER
+        console.log(err);
+      });
+  };
 
   return (
     <Popover className="z-20 flex w-full flex-row justify-center">
@@ -26,18 +40,10 @@ const HeaderComponent = ({ auth }: { auth?: AuthProps }) => {
           />
         </Link>
 
-        {auth?.token ? (
+        {user?.email ? (
           <div className="hidden items-center justify-end md:flex">
             <LinkButton href="account" label="Account" className="mr-8" />
-            <Link
-              href="/"
-              onClick={() => {
-                deleteCookie("auth");
-                router.refresh();
-                router.push("/");
-              }}
-              label="Logout"
-            />
+            <Link href="/" onClick={logoutRequest} label="Logout" />
           </div>
         ) : (
           <div className="hidden items-center justify-end md:flex">
@@ -88,16 +94,16 @@ const HeaderComponent = ({ auth }: { auth?: AuthProps }) => {
                 </div>
               </div>
               <div className="mt-10 p-6">
-                {auth?.logout ? (
+                {user?.email ? (
                   <div className="flex flex-col">
                     <LinkButton href="account" label="Account" />
-                    <Link href="/" onClick={auth.logout} label="Logout" className="m-4" />
+                    <Link href="/" onClick={logoutRequest} label="Logout" className="m-4" />
                   </div>
                 ) : (
                   <div className="flex flex-col">
                     <LinkButton href="register" label="Register" />
                     <p className="mt-6 text-center text-base font-medium text-gray-300">
-                      Already have an account?
+                      Already have an account?{" "}
                       <Link href="login" label="Sign in" className="font-medium text-secondary" />
                     </p>
                   </div>
@@ -111,4 +117,4 @@ const HeaderComponent = ({ auth }: { auth?: AuthProps }) => {
   );
 };
 
-export default React.memo(HeaderComponent);
+export default memo(HeaderComponent);

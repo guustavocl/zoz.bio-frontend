@@ -1,21 +1,20 @@
-import Head from "next/head";
-import { cookies } from "next/headers";
 import Redirect from "@/components/Redirect";
+import AccountComponent from "./Account";
+import { cookies } from "next/headers";
+import { QueryClientProviderComponent } from "@/providers/QueryClientProvider";
 
-export default function Account() {
+export default function AccountPage() {
   const cookieStore = cookies();
-  const authCookie = cookieStore.get("auth");
-  const auth = authCookie ? JSON.parse(authCookie?.value) : undefined;
+  const userCookie = cookieStore.get("zoz_user");
+  const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
 
-  if (auth)
+  if (user)
     return (
-      <>
-        <Head>
-          <title>Account</title>
-          <meta property="og:title" content="My Account" key="title" />
-        </Head>
-        <main className="flex flex-col items-center justify-between p-24">Account page!! {auth?.location}</main>
-      </>
+      <main className="mx-8 flex w-full flex-col items-center justify-between md:mx-14 lg:max-w-6xl">
+        <QueryClientProviderComponent>
+          <AccountComponent />
+        </QueryClientProviderComponent>
+      </main>
     );
   else return <Redirect />;
 }

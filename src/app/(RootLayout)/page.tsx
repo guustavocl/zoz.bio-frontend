@@ -6,7 +6,7 @@ import Users from "./home/Users";
 //   description: "Home page",
 // };
 
-export default function PageComponent() {
+export default function HomePage() {
   return (
     <>
       <main className="mx-8 flex w-full flex-col items-center justify-between py-24 md:mx-14 lg:max-w-6xl">

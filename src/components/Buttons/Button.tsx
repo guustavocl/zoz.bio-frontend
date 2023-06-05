@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import clsx from "clsx";
 
 type ButtonComponentProps = {
@@ -29,7 +29,7 @@ const ButtonComponent = ({
       disabled={disabled}
       onClick={onClick}
       className={clsx(
-        "text-3x1 group relative mt-4 flex w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
+        "text-3x1 group relative flex w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
         "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none",
         className
       )}
@@ -40,4 +40,4 @@ const ButtonComponent = ({
   );
 };
 
-export default React.memo(ButtonComponent);
+export default memo(ButtonComponent);

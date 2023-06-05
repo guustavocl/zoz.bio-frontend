@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import React from "react";
+import { memo } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type InputComponentProps = {
@@ -105,4 +105,4 @@ const InputComponent = ({
   );
 };
 
-export default React.memo(InputComponent);
+export default memo(InputComponent);

@@ -20,8 +20,7 @@ export default function RegisterForm() {
     formState: { errors },
   } = useForm<CreateUserFormData>({ resolver: zodResolver(createUserFormSchema) });
 
-  function createUser(data: any) {
-    console.log(data);
+  function createUser(data: CreateUserFormData) {
     setOutput(JSON.stringify(data, null, 2));
   }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -31,4 +31,4 @@ const LinkButtonComponent = ({
   );
 };
 
-export default React.memo(LinkButtonComponent);
+export default memo(LinkButtonComponent);

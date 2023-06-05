@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -30,4 +30,4 @@ const LinkComponent = ({
   );
 };
 
-export default React.memo(LinkComponent);
+export default memo(LinkComponent);

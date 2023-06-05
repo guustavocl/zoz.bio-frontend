@@ -3,39 +3,36 @@ import Footer from "@/components/Footer/Footer";
 import NextTopLoader from "nextjs-toploader";
 import { cookies } from "next/headers";
 import { Metadata } from "next";
-import "./../globals.css";
+import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "zoz.bio - All links in one place",
-  description:
-    "Create and share your own page, build a clean and organized profile bio to aggregate all your social medias and links in one place. Join ZOZ today, it's free.",
+  title: ZOZ_META_TITLE,
+  description: ZOZ_META_DESCRIPTION,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = cookies();
-  const authCookie = cookieStore.get("auth");
-  const auth = authCookie ? JSON.parse(authCookie?.value) : undefined;
+  const userCookie = cookieStore.get("zoz_user");
+  const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
 
   return (
     <html lang="en">
       <head>
-        <meta charSet="UTF-8" />
         {/* <title key="title">zoz.bio - All links in one place</title> */}
-        <meta name="title" content="zoz.bio - All links in one place" />
+        <meta name="title" content={ZOZ_META_TITLE} />
+        <meta name="theme-color" content="#000000" />
         {/* <meta
           name="description"
-          content="Create and share your own page, build a clean and organized profile bio to aggregate all your social medias and links in one place. Join ZOZ today, it's free."
+          content={ZOZ_META_DESCRIPTION}
         /> */}
         <meta name="google" content="notranslate" />
         {/* <!-- Open Graph / Facebook --> */}
         <meta name="og:site_name" content="zoz.bio" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://zoz.bio/" />
-        <meta property="og:title" content="zoz.bio - All links in one place" />
-        <meta
-          property="og:description"
-          content="Create and share your own page, build a clean and organized profile bio to aggregate all your social medias and links in one place. Join ZOZ today, it's free."
-        />
+        <meta property="og:title" content={ZOZ_META_TITLE} />
+        <meta property="og:description" content={ZOZ_META_DESCRIPTION} />
         <meta property="og:image" content="https://zoz.bio/metabg.png?v=2" />
         <meta property="og:image:alt" content="zoz.bio logo with a dark background" />
         {/* <!-- Twitter --> */}
@@ -43,15 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="twitter:site" content="@guustavocl" />
         <meta name="twitter:creator" content="@guustavocl" />
         <meta property="twitter:url" content="https://zoz.bio/" />
-        <meta property="twitter:title" content="zoz.bio - All links in one place" />
-        <meta
-          property="twitter:description"
-          content="Create and share your own page, build a clean and organized profile bio to aggregate all your social medias and links in one place. Join ZOZ today, it's free."
-        />
+        <meta property="twitter:title" content={ZOZ_META_TITLE} />
+        <meta property="twitter:description" content={ZOZ_META_DESCRIPTION} />
         <meta property="twitter:image" content="https://zoz.bio/metabg.png?v=2" />
         <meta property="twitter:image:src" content="https://zoz.bio/metabg.png?v=2" />
 
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap"
           rel="stylesheet"
@@ -59,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <NextTopLoader color="#6d28d9" showSpinner={false} />
-        <Header auth={auth} />
+        <Header user={user} />
         <div className="flex w-full flex-row justify-center">{children}</div>
         <Footer />
       </body>

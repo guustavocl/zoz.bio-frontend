@@ -9,6 +9,7 @@ import { Input } from "@/components/Inputs";
 import { z } from "zod";
 import { useEffect } from "react";
 import { LoginProps } from "@/types/LoginProps";
+import { login } from "@/services/AuthService";
 
 const loginFormSchema = z.object({
   email: z.string().nonempty("Email is required").email("Insert a valid email").toLowerCase(),
@@ -37,15 +38,19 @@ export default function LoginForm() {
   }, []);
 
   const createUser = (data: LoginFormData) => {
-    console.log(data);
-    if (data.remember) localStorage.setItem("rl", JSON.stringify({ email: data.email, remember: data.remember }));
-    if (data.email === "gustavo@gus.sh") {
-      //auth success
-      setCookie("auth", { email: data.email, token: "aaa" });
-
-      router.refresh();
-      router.push("/account");
-    }
+    login(data.email, data.password)
+      .then(res => {
+        if (res.user) {
+          if (data.remember) localStorage.setItem("rl", JSON.stringify({ email: data.email, remember: data.remember }));
+          setCookie("zoz_user", res.user);
+          router.refresh();
+          router.push("/account");
+        }
+      })
+      .catch(err => {
+        // TODO TOASTER
+        console.log(err);
+      });
   };
 
   return (
@@ -89,16 +94,14 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <div>
-        <Button
-          id="sign-in-btn"
-          type="submit"
-          label="Sign in"
-          iconAdornment={
-            <LockClosedIcon className="h-5 w-5 text-violet-300 group-hover:text-violet-400" aria-hidden="true" />
-          }
-        />
-      </div>
+      <Button
+        id="sign-in-btn"
+        type="submit"
+        label="Sign in"
+        iconAdornment={
+          <LockClosedIcon className="h-5 w-5 text-violet-300 group-hover:text-violet-400" aria-hidden="true" />
+        }
+      />
     </form>
   );
 }

@@ -1,0 +1,28 @@
+.icon-shadow {
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+}
+
+.page-font-color {
+  color: var(--page-font-color);
+}
+
+.hsecondary {
+  color: var(--page-font-color);
+  opacity: 0.5;
+}
+
+.hsecondary:hover {
+  color: var(--page-secondary-color);
+  opacity: 1;
+}
+
+.ring-avatar {
+  --tw-ring-color: var(--page-secondary-color);
+  border-color: var(--page-secondary-color);
+}
+
+.ring-badges {
+  color: var(--page-font-color);
+  --tw-ring-color: var(--page-secondary-color);
+}
