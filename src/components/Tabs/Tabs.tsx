@@ -1,6 +1,6 @@
 import { Tab } from "@headlessui/react";
-import clsx from "clsx";
 import { memo } from "react";
+import { twMerge } from "tailwind-merge";
 
 type TabListProps = {
   id?: string;
@@ -24,7 +24,7 @@ const Tabs = ({ id, list }: TabsProps) => {
             disabled={tab.disabled}
             key={tab.label}
             className={({ selected }) =>
-              clsx(
+              twMerge(
                 "w-full rounded-lg py-3 text-sm font-medium leading-5",
                 "font-semibold tracking-wide ring-opacity-60 ring-offset-2 focus:outline-none",
                 selected

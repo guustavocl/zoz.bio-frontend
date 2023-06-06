@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 import { Metadata } from "next";
 import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
 import "@/app/globals.css";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/perspective.css";
+import "tippy.js/themes/translucent.css";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,
@@ -53,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <NextTopLoader color="#6d28d9" showSpinner={false} />
         <Header user={user} />
-        <div className="flex w-full flex-row justify-center">{children}</div>
+        {children}
         <Footer />
       </body>
     </html>

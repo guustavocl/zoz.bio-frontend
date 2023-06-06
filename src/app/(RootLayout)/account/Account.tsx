@@ -13,11 +13,12 @@ import AccountTabSettings from "./AccountTabSettings";
 // import { LazyLoadImage } from "@/components/Loadings";
 import BioCard from "@/app/(BioLayout)/[username]/BioCard";
 import { getAccount } from "@/services/AccountService";
+import Tooltip from "@/components/Tooltip/Tooltip";
 
 const accountSettings = (account: UserProps) => {
   return (
-    <BioCard className="h-screen70 w-full select-none overflow-y-scroll" center={false} bioPage={false}>
-      <div className="flex w-full flex-col gap-2 overflow-hidden p-2">
+    <BioCard className="h-full min-h-max w-full flex-grow select-none overflow-y-scroll" center={false} bioPage={false}>
+      <div className="flex w-full flex-grow flex-col gap-2 overflow-hidden p-2">
         <AccountTabSettings account={account} />
       </div>
     </BioCard>
@@ -73,7 +74,7 @@ const AccountComponent = () => {
   };
 
   return (
-    <div className="flex h-full min-h-screen w-full flex-col items-center overflow-hidden">
+    <div className="flex h-full w-full flex-grow flex-col items-center overflow-hidden">
       {page ? (
         <div>pagedit</div>
       ) : (
@@ -89,8 +90,8 @@ const AccountComponent = () => {
         //   }}
         // />
         <>
-          <div className="flex h-screen w-full select-none flex-col overflow-y-auto">
-            <div className="relative mb-2 ml-10 mt-8 flex animate-pulse flex-row text-left font-semibold text-gray-400">
+          <div className="flex h-full w-full select-none flex-col overflow-y-auto">
+            <div className="relative mb-2 ml-11 mt-8 flex animate-pulse flex-row text-left font-semibold text-gray-400">
               <span className="self-center">↓</span>
               <span className="ml-2">Create a new page or click on the page you want to edit</span>
             </div>
@@ -110,29 +111,32 @@ const AccountComponent = () => {
               {pages
                 ? pages.map((page: PageProps, idx: number) => (
                     <div key={idx} className="group flex flex-shrink-0 flex-col items-center justify-center">
-                      <span
+                      {/* <span
                         className="absolute z-30 hidden -translate-y-10 select-none rounded-lg px-3 py-1 font-mono text-sm text-gray-100 backdrop-blur-3xl transition-opacity group-hover:flex"
                         style={{ backgroundColor: "#000000" }}
                       >
                         {page.pagename}
-                      </span>
-                      {page.pfpUrl ? (
-                        <img
-                          src={page.pfpUrl}
-                          className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
-                          onClick={() => setPage(page)}
-                          alt="pfp"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div
-                          className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
-                          style={{ backgroundColor: "#85c5e5" }}
-                          onClick={() => setPage(page)}
-                        >
-                          {/* <BigHead /> */}
-                        </div>
-                      )}
+                      </span> */}
+
+                      <Tooltip content={page.pagename}>
+                        {page.pfpUrl ? (
+                          <img
+                            src={page.pfpUrl}
+                            className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
+                            onClick={() => setPage(page)}
+                            alt="pfp"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div
+                            className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
+                            style={{ backgroundColor: "#85c5e5" }}
+                            onClick={() => setPage(page)}
+                          >
+                            {/* <BigHead /> */}
+                          </div>
+                        )}
+                      </Tooltip>
                     </div>
                   ))
                 : null}

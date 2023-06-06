@@ -1,5 +1,5 @@
 import { memo } from "react";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 type ButtonComponentProps = {
   id: string;
@@ -28,7 +28,7 @@ const ButtonComponent = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={clsx(
+      className={twMerge(
         "text-3x1 group relative flex w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
         "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none",
         className

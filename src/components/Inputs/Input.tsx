@@ -1,7 +1,7 @@
 "use client";
-import clsx from "clsx";
 import { memo } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
 type InputComponentProps = {
   id: string;
@@ -45,7 +45,7 @@ const InputComponent = ({
     <div className="group relative">
       <label
         htmlFor={id}
-        className={clsx(
+        className={twMerge(
           "block select-none text-sm font-medium",
           disabled ? "text-gray-600" : "text-gray-200",
           textClasses
@@ -56,7 +56,7 @@ const InputComponent = ({
       {size && minSize && (
         <label
           htmlFor={id}
-          className={clsx("absolute right-2.5 top-0 block select-none text-sm font-medium", textClasses)}
+          className={twMerge("absolute right-2.5 top-0 block select-none text-sm font-medium", textClasses)}
         >
           {`${minSize && minSize > watch.length ? minSize : watch.length}/${size}`}
         </label>
@@ -67,7 +67,7 @@ const InputComponent = ({
         )}
         {type === "textarea" ? (
           <textarea
-            className={clsx(
+            className={twMerge(
               "block w-full rounded-md py-1 pl-2 pr-2 text-lg font-medium",
               "border-2 border-primary focus:border-violet-600 focus:outline-none",
               disabled ? "text-gray-600" : "text-gray-200",
@@ -84,7 +84,7 @@ const InputComponent = ({
           />
         ) : (
           <input
-            className={clsx(
+            className={twMerge(
               "block w-full rounded-md px-2 py-1 text-lg font-medium",
               "border-2 border-primary focus:border-violet-600 focus:outline-none",
               disabled ? "text-gray-600" : "text-gray-200",

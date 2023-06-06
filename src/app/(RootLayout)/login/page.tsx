@@ -2,6 +2,7 @@ import LoginForm from "./LoginForm";
 import Redirect from "@/components/Redirect/Redirect";
 import { Link } from "@/components/Buttons";
 import { cookies } from "next/headers";
+import Main from "@/components/Main/Main";
 
 export default function LoginPage() {
   const cookieStore = cookies();
@@ -11,7 +12,7 @@ export default function LoginPage() {
   if (user) return <Redirect path="/account" />;
   else
     return (
-      <main className="mx-8 flex w-full flex-col items-center justify-between pb-24 md:mx-14 lg:max-w-6xl">
+      <Main className="pb-24">
         <div className="mt-6 pb-20 md:mt-12">
           <img className="mx-auto h-48 sm:h-64" src={"/login.png"} alt="login image" loading="lazy" />
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300">
@@ -22,6 +23,6 @@ export default function LoginPage() {
           </p>
           <LoginForm />
         </div>
-      </main>
+      </Main>
     );
 }

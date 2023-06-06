@@ -1,3 +1,4 @@
+import Main from "@/components/Main/Main";
 import Home from "./home/Home";
 import Users from "./home/Users";
 
@@ -9,10 +10,10 @@ import Users from "./home/Users";
 export default function HomePage() {
   return (
     <>
-      <main className="mx-8 flex w-full flex-col items-center justify-between py-24 md:mx-14 lg:max-w-6xl">
+      <Main className="py-24">
         <Home />
         <Users />
-      </main>
+      </Main>
     </>
   );
 }

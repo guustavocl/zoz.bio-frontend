@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 const LinkButtonComponent = ({
   href,
@@ -20,10 +20,10 @@ const LinkButtonComponent = ({
       href={href}
       onClick={onClick}
       rel="noopener noreferrer"
-      className={clsx(
-        className,
+      className={twMerge(
         "inline-flex cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-md border border-transparent",
-        "bg-secondary px-4 py-2 text-base font-medium shadow-sm hover:bg-secondary/80 hover:text-violet-300"
+        "bg-secondary px-4 py-2 text-base font-medium shadow-sm hover:bg-secondary/80 hover:text-violet-300",
+        className
       )}
     >
       {label ? label : children}

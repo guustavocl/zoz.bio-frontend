@@ -2,6 +2,7 @@ import Redirect from "@/components/Redirect";
 import AccountComponent from "./Account";
 import { cookies } from "next/headers";
 import { QueryClientProviderComponent } from "@/providers/QueryClientProvider";
+import Main from "@/components/Main/Main";
 
 export default function AccountPage() {
   const cookieStore = cookies();
@@ -10,11 +11,11 @@ export default function AccountPage() {
 
   if (user)
     return (
-      <main className="mx-8 flex w-full flex-col items-center justify-between md:mx-14 lg:max-w-6xl">
+      <Main>
         <QueryClientProviderComponent>
           <AccountComponent />
         </QueryClientProviderComponent>
-      </main>
+      </Main>
     );
   else return <Redirect />;
 }
