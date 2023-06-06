@@ -1,4 +1,4 @@
-import { IUser } from "../types/IUser";
+import { UserProps } from "../types/UserProps";
 import { Api } from "./api";
 
 class AuthService {
@@ -9,7 +9,7 @@ class AuthService {
     return request.data;
   };
 
-  setUserLocalStorage = (user: IUser | null) => {
+  setUserLocalStorage = (user: UserProps | null) => {
     localStorage.setItem("u", JSON.stringify(user));
   };
 

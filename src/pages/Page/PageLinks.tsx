@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { getIcon } from "./IconsList";
 import { ArrowUpRightIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
 import SectionCard from "./SectionCard";
-import { ILink } from "../../types/ILink";
+import { LinkProps } from "../../types/LinkProps";
 
 type PageLinksProps = {
-  page: IPage;
+  page: PageProps;
 };
 
 const PageLinks = ({ page }: PageLinksProps) => {
-  const [folderOwner, setFolderOwner] = useState<ILink | null>();
+  const [folderOwner, setFolderOwner] = useState<LinkProps | null>();
 
   const pageLinks = page?.pageLinks
     ? folderOwner

@@ -3,20 +3,20 @@ import { ToastContainer, toast, Id, ToastOptions, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles.css";
 
-export interface IToastProvider {
+export interface ToastProviderProps {
   children: JSX.Element;
 }
 
-export interface IToastContext {
+export interface ToastContextProps {
   successToast: (message: string, customConfig?: ToastOptions) => Id;
   infoToast: (message: string, customConfig?: ToastOptions) => Id;
   errorToast: (message: string, customConfig?: ToastOptions) => Id;
   updateToast: (toastId: Id, customConfig?: ToastOptions) => void;
 }
 
-export const ToastContext = createContext<IToastContext>({} as IToastContext);
+export const ToastContext = createContext<ToastContextProps>({} as ToastContextProps);
 
-export const ToastProvider = ({ children }: IToastProvider) => {
+export const ToastProvider = ({ children }: ToastProviderProps) => {
   const config: ToastOptions = {
     position: "bottom-center",
     autoClose: 4000,

@@ -1,20 +1,20 @@
 import { RgbaColor } from "react-colorful";
-import { ILink } from "./ILink";
+import { LinkProps } from "./LinkProps";
 
-export interface IPageStatus {
+export interface PagePropsStatus {
   key: string;
   message: string;
 }
 
-export interface IPageSocialMedia {
+export interface PagePropsSocialMedia {
   key: string;
   username: string;
 }
 
-export interface IPage {
+export interface PageProps {
   pagename: string;
   uname: string;
-  status: IPageStatus;
+  status: PagePropsStatus;
   bio: string;
   pfpUrl: string;
   bannerUrl: string;
@@ -36,6 +36,6 @@ export interface IPage {
   cardBlur: string;
   cardHueRotate: string;
   badges: string[];
-  socialMedias: IPageSocialMedia[];
-  pageLinks: ILink[];
+  socialMedias: PagePropsSocialMedia[];
+  pageLinks: LinkProps[];
 }

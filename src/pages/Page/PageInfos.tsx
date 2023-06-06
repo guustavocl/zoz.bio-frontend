@@ -1,10 +1,10 @@
 import React from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { getAdornmentIcon } from "./IconsList";
 
 type PageInfosProps = {
-  page: IPage;
+  page: PageProps;
 };
 
 const PageInfos = ({ page }: PageInfosProps) => {

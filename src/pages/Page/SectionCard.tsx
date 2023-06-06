@@ -1,10 +1,10 @@
 import React from "react";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { defaultPage } from "./PageVariables";
 
 type SectionCardProps = {
   children: JSX.Element;
-  page?: IPage;
+  page?: PageProps;
   className?: string;
   center?: boolean;
 };

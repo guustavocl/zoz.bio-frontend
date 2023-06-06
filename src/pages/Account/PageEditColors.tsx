@@ -1,4 +1,4 @@
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { HexColorPicker, RgbaColor, RgbaColorPicker } from "react-colorful";
 import { useEffect, useRef, useState } from "react";
 import { defaultPage } from "../Page/PageVariables";
@@ -120,8 +120,8 @@ const ColorCircle = ({
 };
 
 type PageEditColorsProps = {
-  page: IPage;
-  setPage: (page: IPage) => void;
+  page: PageProps;
+  setPage: (page: PageProps) => void;
 };
 
 const PageEditColors = ({ page, setPage }: PageEditColorsProps) => {

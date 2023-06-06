@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ZozInput } from "../../components/Inputs";
 import pageService from "../../services/page.service";
@@ -9,7 +9,7 @@ import ZozDialog from "../../components/Dialogs";
 type DialogNewPageProps = {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  addNewPage: (page: IPage) => void;
+  addNewPage: (page: PageProps) => void;
 };
 
 const pagenamesList = [

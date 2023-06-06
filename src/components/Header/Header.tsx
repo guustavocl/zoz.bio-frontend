@@ -2,10 +2,10 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/zoz.png";
-import { IAuth } from "../../types/IAuth";
+import { AuthProps } from "../../types/AuthProps";
 import React from "react";
 
-const Header = ({ auth }: { auth?: IAuth }) => {
+const Header = ({ auth }: { auth?: AuthProps }) => {
   // const isHomePage = window.location.pathname === "/";
 
   return (
@@ -40,14 +40,14 @@ const Header = ({ auth }: { auth?: IAuth }) => {
             <a
               href="/login"
               rel="noopener noreferrer"
-              className=" whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-600"
+              className=" whitespace-nowrap text-base font-medium text-gray-300 hover:text-violet-500"
             >
-              Login
+              Log in
             </a>
             <a
               href="/register"
               rel="noopener noreferrer"
-              className=" ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
+              className=" ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-violet-700 hover:text-violet-100"
             >
               Register
             </a>
@@ -115,14 +115,14 @@ const Header = ({ auth }: { auth?: IAuth }) => {
                     <a
                       href="/register"
                       rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-white/[0.12] hover:text-violet-600"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-tertiary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-violet-700 hover:text-violet-100"
                     >
                       Register
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-300">
                       Already have an account?{" "}
-                      <a href="/login" rel="noopener noreferrer" className="text-violet-600 hover:text-violet-700">
-                        Login
+                      <a href="/login" rel="noopener noreferrer" className="text-violet-600 hover:text-violet-500">
+                        Log in
                       </a>
                     </p>
                   </div>

@@ -1,8 +1,8 @@
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { useFormik } from "formik";
 import { ZozInput, ZozRadioGroup } from "../../components/Inputs";
-import { ILink } from "../../types/ILink";
+import { LinkProps } from "../../types/LinkProps";
 import ZozDialog from "../../components/Dialogs";
 import linkService from "../../services/link.service";
 import * as yup from "yup";
@@ -10,10 +10,10 @@ import AutoCompleteFolders from "./AutoCompleteFolders";
 
 type DialogNewLinkProps = {
   isOpen: boolean;
-  page: IPage;
+  page: PageProps;
   setIsOpen: (value: boolean) => void;
-  setPage: (value: IPage | undefined) => void;
-  addNewPage?: (page: IPage) => void;
+  setPage: (value: PageProps | undefined) => void;
+  addNewPage?: (page: PageProps) => void;
 };
 
 const DialogNewLink = ({ isOpen, page, setIsOpen, setPage }: DialogNewLinkProps) => {
@@ -27,7 +27,7 @@ const DialogNewLink = ({ isOpen, page, setIsOpen, setPage }: DialogNewLinkProps)
       embedded: "none",
       isFolder: false,
       folderOwner: "",
-    } as ILink,
+    } as LinkProps,
     validationSchema: yup.object({
       label: yup.string().required("Label is a required field"),
     }),

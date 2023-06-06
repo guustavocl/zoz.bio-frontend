@@ -1,7 +1,7 @@
 import React from "react";
 import PageIcon from "./PageIcon";
 import SectionCard from "./SectionCard";
-import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
+import { PageProps, PagePropsSocialMedia, PagePropsStatus } from "../../types/PageProps";
 import { getBadge, getStatusIcon } from "./IconsList";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
@@ -12,7 +12,7 @@ import "./Page.css";
 import PageLinks from "./PageLinks";
 import { LazyLoadImage } from "../../components/Loading";
 
-const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
+const mapSocials = (pageSocialMedias: PagePropsSocialMedia[]) => {
   return (
     <div className="flex flex-row flex-wrap gap-1 items-center justify-center mt-3">
       {pageSocialMedias.map((media, idx) => (
@@ -39,7 +39,7 @@ const mapBadges = (pageBadges: string[]) => {
   );
 };
 
-const getPageStatus = (status: IPageStatus) => {
+const getPageStatus = (status: PagePropsStatus) => {
   const statusIcon = getStatusIcon(status.key);
   return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
@@ -72,7 +72,7 @@ const getAvatar = (pfpUrl: string | undefined) => {
 
 // TODO
 // blur effect on loading maybe? blur-sm
-const Page = ({ page }: { page: IPage }) => {
+const Page = ({ page }: { page: PageProps }) => {
   const auth = useAuth();
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import Tabs from "../../components/Tabs";
-import { IUser } from "../../types/IUser";
+import { UserProps } from "../../types/UserProps";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
 import PageEdit from "./PageEdit";
@@ -14,7 +14,7 @@ import AccountTabSettings from "./AccountTabSettings";
 import userService from "../../services/user.service";
 import { LazyLoadImage } from "../../components/Loading";
 
-const accountSettings = (account: IUser) => {
+const accountSettings = (account: UserProps) => {
   return (
     <SectionCard className="w-full select-none h-screen70 overflow-y-scroll " center={false}>
       <div className="w-full flex flex-col gap-2 overflow-hidden p-2">
@@ -24,7 +24,7 @@ const accountSettings = (account: IUser) => {
   );
 };
 
-// const accountSubscription = (account: IUser) => {
+// const accountSubscription = (account: UserProps) => {
 //   return (
 //     <SectionCard className="w-full select-none h-screen70 overflow-y-scroll " center={false}>
 //       <div className="w-full flex flex-col gap-2 overflow-hidden p-2">SOON</div>
@@ -34,8 +34,8 @@ const accountSettings = (account: IUser) => {
 
 const Account = () => {
   const auth = useAuth();
-  const [page, setPage] = useState<IPage>();
-  const [pages, setPages] = useState<IPage[]>();
+  const [page, setPage] = useState<PageProps>();
+  const [pages, setPages] = useState<PageProps[]>();
   const [dialogNewPageOpen, setDialogNewPageOpen] = useState(false);
   const { errorToast } = useToasts();
 
@@ -63,7 +63,7 @@ const Account = () => {
     }
   }); //fix this use effect later add dependency
 
-  const addNewPage = (page: IPage) => {
+  const addNewPage = (page: PageProps) => {
     if (pages) setPages([...pages, page]);
   };
 
@@ -72,7 +72,7 @@ const Account = () => {
       {page ? (
         <PageEdit
           page={page}
-          setPage={(page: IPage | undefined) => {
+          setPage={(page: PageProps | undefined) => {
             setPage(page);
             setPages(
               pages?.map(item => {
@@ -121,7 +121,7 @@ const Account = () => {
               </div>
 
               {pages
-                ? pages.map((page: IPage, idx: number) => (
+                ? pages.map((page: PageProps, idx: number) => (
                     <div key={idx} className="flex-shrink-0 group flex flex-col items-center justify-center">
                       <span
                         className="z-30 select-none hidden absolute group-hover:flex transition-opacity text-sm font-mono text-gray-100 backdrop-blur-3xl rounded-lg px-3 py-1 -translate-y-10"

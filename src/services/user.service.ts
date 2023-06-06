@@ -1,4 +1,4 @@
-import { IUser } from "../types/IUser";
+import { UserProps } from "../types/UserProps";
 import { Api } from "./api";
 
 class AuthService {
@@ -15,7 +15,7 @@ class AuthService {
     }
   };
 
-  register = async (values: IUser) => {
+  register = async (values: UserProps) => {
     try {
       const request = await Api.post(`${this.endpoint}/create`, values);
       return request.data;

@@ -15,8 +15,8 @@ type ZozInputProps = {
   value: string;
   bgColor?: string;
   iconAdornment?: JSX.Element;
-  onChange: (e: React.ChangeEvent<any>) => void;
-  onBlur?: (e: React.ChangeEvent<any>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const ZozInput = ({

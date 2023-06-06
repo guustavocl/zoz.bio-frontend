@@ -1,4 +1,4 @@
-export interface ILink {
+export interface LinkProps {
   _id: string;
   url: string;
   label: string;

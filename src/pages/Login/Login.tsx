@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useFormik } from "formik";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import { useNavigate } from "react-router-dom";
-import { ILogin } from "../../types/ILogin";
+import { LoginProps } from "../../types/LoginProps";
 import { ZozInput } from "../../components/Inputs";
 import loginImg from "../../assets/login.png";
 import * as yup from "yup";
@@ -17,7 +17,7 @@ const Login = () => {
   useEffect(() => {
     const json = localStorage.getItem("rl");
     if (json) {
-      const rememberInfos: ILogin = JSON.parse(json);
+      const rememberInfos: LoginProps = JSON.parse(json);
       formik.setValues({
         email: rememberInfos?.email || "",
         password: rememberInfos?.password || "",
@@ -124,7 +124,7 @@ const Login = () => {
                   type="checkbox"
                   checked={formik.values.remember}
                   onChange={formik.handleChange}
-                  className="h-4 w-4 rounded border-gray-300 text-gray-600 "
+                  className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-0"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-2x1 text-gray-300">
                   Remember me

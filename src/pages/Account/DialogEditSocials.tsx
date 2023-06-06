@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage, IPageSocialMedia } from "../../types/IPage";
+import { PageProps, PagePropsSocialMedia } from "../../types/PageProps";
 import { useFormik } from "formik";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ZozAutoComplete, ZozInput } from "../../components/Inputs";
@@ -13,15 +13,15 @@ import * as yup from "yup";
 
 type DialogEditSocialsProps = {
   isOpen: boolean;
-  page: IPage;
+  page: PageProps;
   setIsOpen: (value: boolean) => void;
-  setPage: (value: IPage | undefined) => void;
-  addNewPage?: (page: IPage) => void;
+  setPage: (value: PageProps | undefined) => void;
+  addNewPage?: (page: PageProps) => void;
 };
 
 const DialogEditSocials = ({ isOpen, page, setIsOpen, setPage }: DialogEditSocialsProps) => {
   const { errorToast, successToast } = useToasts();
-  const [items, setItems] = useState<IPageSocialMedia[]>();
+  const [items, setItems] = useState<PagePropsSocialMedia[]>();
   const [mediaSelected, setMediaSelected] = useState<string>("discord");
 
   useEffect(() => {

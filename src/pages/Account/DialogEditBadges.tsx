@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { useFormik } from "formik";
 import ZozDialog from "../../components/Dialogs";
 import pageService from "../../services/page.service";
@@ -8,10 +8,10 @@ import { badgeList } from "../Page/IconsList";
 
 type DialogEditBadgesProps = {
   isOpen: boolean;
-  page: IPage;
+  page: PageProps;
   setIsOpen: (value: boolean) => void;
-  setPage: (value: IPage | undefined) => void;
-  addNewPage?: (page: IPage) => void;
+  setPage: (value: PageProps | undefined) => void;
+  addNewPage?: (page: PageProps) => void;
 };
 
 const DialogEditBadges = ({ isOpen, page, setIsOpen, setPage }: DialogEditBadgesProps) => {

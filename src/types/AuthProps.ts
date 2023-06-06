@@ -1,6 +1,6 @@
-import { IUser } from "./IUser";
+import { UserProps } from "./UserProps";
 
-export interface IAuth extends IUser {
+export interface AuthProps extends UserProps {
   authenticate: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }

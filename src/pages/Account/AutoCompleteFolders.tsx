@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useToasts } from "../../context/ToastProvider/useToasts";
 import linkService from "../../services/link.service";
 import { ZozAutoComplete } from "../../components/Inputs";
-import { ILink } from "../../types/ILink";
+import { LinkProps } from "../../types/LinkProps";
 
 type AutoCompleteFoldersProps = {
   label: string;
@@ -41,7 +41,7 @@ const AutoCompleteFolders = ({
     label: "None",
   });
   if (queryPage.data?.folders) {
-    queryPage.data.folders.map((folder: ILink) => {
+    queryPage.data.folders.map((folder: LinkProps) => {
       list.set(folder._id, {
         icon: getIcon(folder.icon)?.icon || "",
         label: folder.label,

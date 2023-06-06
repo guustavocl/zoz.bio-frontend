@@ -125,23 +125,23 @@ const Register = () => {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-900 hover:font-semiboldfocus:outline-none "
+              className="group relative flex w-full justify-center rounded border border-transparent bg-violet-700 py-2 px-4 text-3x1 font-medium text-white hover:bg-violet-600 hover:font-semiboldfocus:outline-none "
             >
               <span className="absolute left-0 flex items-center pl-3">
-                <UserPlusIcon className="h-5 w-5 text-gray-300 group-hover:text-violet-600" aria-hidden="true" />
+                <UserPlusIcon className="h-5 w-5 text-gray-300 group-hover:text-violet-800" aria-hidden="true" />
               </span>
               Create account
             </button>
             <p className="mt-1 text-center text-xs text-gray-300">
               {"By signing up, you agree to the "}
-              <a href="/terms" rel="noopener noreferrer" className="font-medium text-violet-600 hover:text-violet-700">
+              <a href="/terms" rel="noopener noreferrer" className="font-medium text-violet-500 hover:text-violet-600">
                 Terms of Service
               </a>
               {" and "}
               <a
                 href="/privacy"
                 rel="noopener noreferrer"
-                className="font-medium text-violet-600 hover:text-violet-700"
+                className="font-medium text-violet-500 hover:text-violet-600"
               >
                 Privacy Policy
               </a>
@@ -149,7 +149,7 @@ const Register = () => {
           </div>
           <p className="mt-2 text-center text-2x1 text-gray-300">
             {"Already have an account? "}
-            <a href="/login" rel="noopener noreferrer" className="font-medium text-violet-600 hover:text-violet-700">
+            <a href="/login" rel="noopener noreferrer" className="font-medium text-violet-500 hover:text-violet-600">
               Log in.
             </a>
           </p>

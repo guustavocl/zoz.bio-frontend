@@ -1,8 +1,8 @@
-import { IUser } from "../../types/IUser";
+import { UserProps } from "../../types/UserProps";
 import React from "react";
 import { ZozInput } from "../../components/Inputs";
 
-const AccountTabSettings = ({ account }: { account?: IUser }) => {
+const AccountTabSettings = ({ account }: { account?: UserProps }) => {
   return (
     <React.Fragment>
       <div className="flex flex-col md:flex-row">

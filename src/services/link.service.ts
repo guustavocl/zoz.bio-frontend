@@ -1,4 +1,4 @@
-import { ILink } from "../types/ILink";
+import { LinkProps } from "../types/LinkProps";
 import { Api } from "./api";
 
 class LinkService {
@@ -15,7 +15,7 @@ class LinkService {
     }
   };
 
-  createLink = async (link: ILink, pagename: string) => {
+  createLink = async (link: LinkProps, pagename: string) => {
     try {
       const request = await Api.post(`${this.endpoint}/create`, {
         link,

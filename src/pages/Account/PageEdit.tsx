@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IPage, IPageSocialMedia, IPageStatus } from "../../types/IPage";
+import { PageProps, PagePropsSocialMedia, PagePropsStatus } from "../../types/PageProps";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { Cog6ToothIcon, PencilSquareIcon, ArrowUpTrayIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { BigHead } from "@bigheads/core";
@@ -19,7 +19,7 @@ import PageLinks from "../Page/PageLinks";
 import "../Page/Page.css";
 import { LazyLoadImage } from "../../components/Loading";
 
-const mapSocials = (pageSocialMedias: IPageSocialMedia[]) => {
+const mapSocials = (pageSocialMedias: PagePropsSocialMedia[]) => {
   return (
     <div className="flex flex-row flex-wrap gap-1 items-center justify-center mt-3 w-full">
       {pageSocialMedias.map((media, idx) => (
@@ -46,7 +46,7 @@ const mapBadges = (pageBadges: string[]) => {
   );
 };
 
-const getPageStatus = (status: IPageStatus) => {
+const getPageStatus = (status: PagePropsStatus) => {
   const statusIcon = getStatusIcon(status.key);
   return statusIcon ? (
     <div className="absolute -ml-1 -mt-1 flex flex-row opacity-50 hover:opacity-100">
@@ -108,7 +108,7 @@ const IconOpenDialog = ({ setDialogOpen, label }: { setDialogOpen: (value: boole
   );
 };
 
-const PageEdit = ({ page, setPage }: { page: IPage; setPage: (value: IPage | undefined) => void }) => {
+const PageEdit = ({ page, setPage }: { page: PageProps; setPage: (value: PageProps | undefined) => void }) => {
   const auth = useAuth();
   const { errorToast, successToast } = useToasts();
 

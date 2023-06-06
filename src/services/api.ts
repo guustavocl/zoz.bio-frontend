@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IUser } from "../types/IUser";
+import { UserProps } from "../types/UserProps";
 import authService from "./auth.service";
 
 const endpoints = [
@@ -28,7 +28,7 @@ export const Api = axios.create({
   },
 });
 
-export function setInterceptors(user: IUser | null) {
+export function setInterceptors(user: UserProps | null) {
   Api.interceptors.request.use(
     async config => {
       if (user && config && config.headers) {

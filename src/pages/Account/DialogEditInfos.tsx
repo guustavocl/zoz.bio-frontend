@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToasts } from "../../context/ToastProvider/useToasts";
-import { IPage } from "../../types/IPage";
+import { PageProps } from "../../types/PageProps";
 import { useFormik } from "formik";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import React from "react";
@@ -11,10 +11,10 @@ import * as yup from "yup";
 
 type DialogEditInfosProps = {
   isOpen: boolean;
-  page: IPage;
+  page: PageProps;
   setIsOpen: (value: boolean) => void;
-  setPage: (value: IPage | undefined) => void;
-  addNewPage?: (page: IPage) => void;
+  setPage: (value: PageProps | undefined) => void;
+  addNewPage?: (page: PageProps) => void;
 };
 
 const DialogEditInfos = ({ isOpen, setIsOpen, page, setPage }: DialogEditInfosProps) => {
