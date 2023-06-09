@@ -3,6 +3,8 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPage } from "@/services/PageService";
 import BioMain from "./BioMain";
+import { ToastContainer } from "react-toastify";
+import { errorToast } from "@/utils/toaster";
 
 export const BioComponent = ({ username }: { username: string }) => {
   const queryPage = useQuery({
@@ -13,14 +15,12 @@ export const BioComponent = ({ username }: { username: string }) => {
   if (queryPage.isError) {
     const error = queryPage.error as Error;
     console.log(error);
-    //TODO TOAST
-    // errorToast(error.message);
+    errorToast(error.message);
   }
 
   if (queryPage.isLoading) {
     //TODO LOADING PAGE
     return <div>LOADING ....</div>;
-    // return <LoadingPage />;
   }
 
   return (
@@ -30,7 +30,7 @@ export const BioComponent = ({ username }: { username: string }) => {
           <BioMain page={queryPage.data.page} />
         </div>
       ) : (
-        // TODO 404 page
+        // TODO 404 page redirect to create a page?
         <>
           <div>404</div>
           {/* <Header />
@@ -38,6 +38,7 @@ export const BioComponent = ({ username }: { username: string }) => {
           <Footer /> */}
         </>
       )}
+      <ToastContainer />
     </>
   );
 };

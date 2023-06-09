@@ -1,25 +1,24 @@
 import { memo } from "react";
-// import ZozTooltip from "../../components/Tooltip";
-// import { useToasts } from "../../context/ToastProvider/useToasts";
 import { getSocialIcon } from "@/utils/IconsList";
+import { successToast } from "@/utils/toaster";
+import Tooltip from "@/components/Tooltip/Tooltip";
 
 type MediaProps = {
   username: string;
   key: string;
 };
 
-type PageIconProps = {
-  media: MediaProps;
-};
-
-const PageIcon = ({ media }: PageIconProps) => {
+const PageIcon = ({ media }: { media: MediaProps }) => {
   const social = getSocialIcon(media.key);
-  // const { successToast } = useToasts();
   if (!social) return null;
   return (
-    <div className="group cursor-pointer">
-      {/* TODO TIPSY */}
-      {/* <ZozTooltip label={social.label} className="-translate-x-6 -translate-y-8" /> */}
+    <Tooltip
+      content={social.label}
+      className="group"
+      backgroundColor="black"
+      bgVariable="--page-primary-color"
+      textVariable="--page-font-color"
+    >
       {social.url ? (
         <a
           className="hover:animate-pulse"
@@ -31,11 +30,11 @@ const PageIcon = ({ media }: PageIconProps) => {
         </a>
       ) : (
         <img
-          className="icon-shadow h-7 hover:animate-pulse"
+          className="icon-shadow h-7 cursor-pointer hover:animate-pulse"
           src={social.icon}
           alt={`${media.key} icon`}
           onClick={() => {
-            // successToast(`Copied: ${media.username}`);
+            successToast(`Copied: ${media.username}`);
             if (navigator.clipboard) {
               navigator.clipboard.writeText(media.username);
             }
@@ -43,7 +42,7 @@ const PageIcon = ({ media }: PageIconProps) => {
           loading="lazy"
         />
       )}
-    </div>
+    </Tooltip>
   );
 };
 

@@ -1,14 +1,13 @@
 import { memo } from "react";
-// import { useToasts } from "../../context/ToastProvider/useToasts";
 import { PageProps } from "@/types/PageProps";
 import { getAdornmentIcon } from "@/utils/IconsList";
+import { successToast } from "@/utils/toaster";
 
 type PageInfosProps = {
   page: PageProps;
 };
 
 const PageInfos = ({ page }: PageInfosProps) => {
-  // const { successToast } = useToasts();
   return (
     <>
       <div className="flex w-full flex-col items-center">
@@ -31,7 +30,7 @@ const PageInfos = ({ page }: PageInfosProps) => {
         <span
           className="hsecondary -mt-1 cursor-pointer text-sm font-semibold tracking-wide"
           onClick={() => {
-            // successToast(`Copied`);
+            successToast(`Copied`);
             if (navigator.clipboard) {
               navigator.clipboard.writeText(`https://zoz.bio/${page?.pagename || ""}`);
             }

@@ -1,14 +1,14 @@
-import { memo, useEffect, useState } from "react";
-// import { useToasts } from "../../context/ToastProvider/useToasts";
-import { PageProps } from "@/types/PageProps";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { Button } from "@/components/Buttons";
+import Dialog from "@/components/Dialogs";
 import { Input } from "@/components/Inputs";
 import { checkPagename, createPage } from "@/services/PageService";
-import { Button } from "@/components/Buttons";
+import { PageProps } from "@/types/PageProps";
+import { errorToast, successToast } from "@/utils/toaster";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Dialog from "@/components/Dialogs";
 
 type DialogNewPageProps = {
   isOpen: boolean;
@@ -41,7 +41,7 @@ const createPageFormSchema = z.object({
     .string()
     .nonempty("Page name is required")
     .min(4, "Page name must have at least 4 characters")
-    .refine(value => /^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/.test(value), "Name should contain only alphabets"),
+    .refine(value => /^[a-zA-Z0-9_.]+$/.test(value), "Page Name allows only alphabets, numbers, _ or ."),
 });
 
 type CreatePageFormData = z.infer<typeof createPageFormSchema>;
@@ -50,7 +50,6 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
   const [pagename, setPagename] = useState("");
   const [isPagenameAvailable, setPagenameAvailable] = useState(true);
   const [examplePagename, setExamplePagename] = useState("");
-  // const { errorToast, successToast } = useToasts();
 
   const {
     watch,
@@ -78,8 +77,7 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
             setPagenameAvailable(response.isAvailable);
           })
           .catch(error => {
-            console.log(error);
-            // errorToast(error.message);
+            errorToast(error);
           });
     }, 300);
     return () => {
@@ -87,16 +85,15 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
     };
   }, [pagename]);
 
-  const createNewPage = (data: CreatePageFormData) => {
+  const submitNewPage = (data: CreatePageFormData) => {
     createPage(data.pagename)
       .then(res => {
         addNewPage(res.page);
-        // successToast("Page successfully created.");
+        successToast("Page successfully created.");
         setIsOpen(false);
       })
       .catch(error => {
-        console.log(error);
-        // errorToast(error.message);
+        errorToast(error);
       });
   };
 
@@ -130,26 +127,25 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
         </p>
       </div>
 
-      <form className="mt-4 w-full space-y-2" onSubmit={handleSubmit(createNewPage)}>
-        <div className="py-1">
-          <Input
-            id="pagename"
-            type="text"
-            label="Page Name"
-            placeholder={examplePagename}
-            minSize={4}
-            size={30}
-            register={register("pagename")}
-            errorMessage={errors.pagename?.message}
-            iconAdornment={
-              isPagenameAvailable ? (
-                <CheckIcon className="w-6 text-green-600" />
-              ) : (
-                <XMarkIcon className="w-6 text-red-600" />
-              )
-            }
-          />
-        </div>
+      <form className="mt-4 w-full space-y-2" onSubmit={handleSubmit(submitNewPage)}>
+        <Input
+          id="pagename"
+          type="text"
+          label="Page Name"
+          placeholder={examplePagename}
+          minSize={4}
+          size={30}
+          watch={watch("pagename")}
+          register={register("pagename")}
+          errorMessage={isPagenameAvailable ? errors.pagename?.message : "Paganame already taken"}
+          iconAdornment={
+            isPagenameAvailable ? (
+              <CheckIcon className="w-6 text-green-600" />
+            ) : (
+              <XMarkIcon className="w-6 text-red-600" />
+            )
+          }
+        />
 
         <Button
           id="create-page-btn"

@@ -8,6 +8,7 @@ import "@/app/globals.css";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/perspective.css";
 import "tippy.js/themes/translucent.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,

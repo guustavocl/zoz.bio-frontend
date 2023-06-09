@@ -11,14 +11,14 @@ type TabListProps = {
 
 type TabsProps = {
   id?: string;
-  list: TabListProps[];
+  tabList: TabListProps[];
 };
 
-const Tabs = ({ id, list }: TabsProps) => {
+const Tabs = ({ id, tabList }: TabsProps) => {
   return (
     <Tab.Group>
       <Tab.List className="flex w-full flex-row gap-2">
-        {list.map(tab => (
+        {tabList.map(tab => (
           <Tab
             id={id}
             disabled={tab.disabled}
@@ -41,7 +41,7 @@ const Tabs = ({ id, list }: TabsProps) => {
       </Tab.List>
 
       <Tab.Panels className="mt-4 flex h-full w-full flex-col md:overflow-x-scroll md:overflow-y-scroll">
-        {list.map((tab, idx) => (
+        {tabList.map((tab, idx) => (
           <Tab.Panel key={idx} className="flex h-full w-full flex-col items-center">
             {tab.component}
           </Tab.Panel>

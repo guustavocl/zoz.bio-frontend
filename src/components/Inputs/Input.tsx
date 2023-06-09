@@ -42,7 +42,7 @@ const InputComponent = ({
     : "text-gray-300 group-focus-within:text-violet-500";
 
   return (
-    <div className="group relative">
+    <div className="group relative py-1">
       <label
         htmlFor={id}
         className={twMerge(

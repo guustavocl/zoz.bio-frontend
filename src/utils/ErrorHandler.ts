@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 
-export const handleAxiosError = async (err: AxiosError | unknown) => {
-  if (err instanceof AxiosError) throw err && err?.response?.data ? err.response.data : err;
+export const handleAxiosError = (err: AxiosError | unknown) => {
+  if (err instanceof AxiosError && err?.response?.data) throw err.response.data;
   else throw err;
 };

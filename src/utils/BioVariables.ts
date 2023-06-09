@@ -1,15 +1,17 @@
 import { RgbaColor } from "react-colorful";
 
 export const setCssVariables = (primaryColor: RgbaColor, secondaryColor: RgbaColor, fontColor: string) => {
-  document.body.style.setProperty(
-    "--page-primary-color",
-    `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`
-  );
-  document.body.style.setProperty(
-    "--page-secondary-color",
-    `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`
-  );
-  document.body.style.setProperty("--page-font-color", fontColor);
+  if (document) {
+    document.body.style.setProperty(
+      "--page-primary-color",
+      `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`
+    );
+    document.body.style.setProperty(
+      "--page-secondary-color",
+      `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`
+    );
+    document.body.style.setProperty("--page-font-color", fontColor);
+  }
 };
 
 export const defaultPage = {

@@ -8,6 +8,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/AuthService";
+import { errorToast } from "@/utils/toaster";
+import { ToastContainer } from "react-toastify";
 
 const HeaderComponent = ({ user }: { user?: UserProps }) => {
   const router = useRouter();
@@ -19,9 +21,8 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
         router.refresh();
         router.push("/");
       })
-      .catch(err => {
-        //TODO TOASTER
-        console.log(err);
+      .catch(() => {
+        errorToast("Something went wrong, try again~");
       });
   };
 
@@ -113,6 +114,7 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
           </Popover.Panel>
         </Transition>
       </div>
+      <ToastContainer />
     </Popover>
   );
 };

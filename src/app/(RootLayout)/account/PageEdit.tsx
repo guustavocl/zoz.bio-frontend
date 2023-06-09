@@ -1,29 +1,28 @@
+// import "../Page/Page.css";
+
+import BioCard from "@/app/(BioLayout)/[username]/BioCard";
+import BioIcon from "@/app/(BioLayout)/[username]/BioIcon";
+import BioInfos from "@/app/(BioLayout)/[username]/BioInfos";
+import BioLinks from "@/app/(BioLayout)/[username]/BioLinks";
+import { LazyLoadImage } from "@/components/Loadings";
+import { uploadAvatar, uploadBackground } from "@/services/PageService";
+import { PageProps, PagePropsSocialMedia, PagePropsStatus } from "@/types/PageProps";
+import { defaultPage, setCssVariables } from "@/utils/BioVariables";
+import { getBadge, getStatusIcon } from "@/utils/IconsList";
+import { errorToast, successToast } from "@/utils/toaster";
+import { ArrowUpTrayIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/20/solid";
 import React, { useState } from "react";
-import { PageProps, PagePropsSocialMedia, PagePropsStatus } from "../../types/PageProps";
-import { useAuth } from "../../context/AuthProvider/useAuth";
-import { Cog6ToothIcon, PencilSquareIcon, ArrowUpTrayIcon, PlusIcon } from "@heroicons/react/20/solid";
-import { BigHead } from "@bigheads/core";
-import { getBadge, getStatusIcon } from "../Page/IconsList";
-import { defaultPage, setCssVariables } from "../Page/PageVariables";
-import { useToasts } from "../../context/ToastProvider/useToasts";
-import DialogEditInfos from "./DialogEditInfos";
-import SectionCard from "../Page/SectionCard";
-import PageIcon from "../Page/PageIcon";
-import PageInfos from "../Page/PageInfos";
-import pageService from "../../services/page.service";
-import PageEditColors from "./PageEditColors";
-import DialogEditSocials from "./DialogEditSocials";
-import DialogEditBadges from "./DialogEditBadges";
-import DialogNewLink from "./DialogNewLink";
-import PageLinks from "../Page/PageLinks";
-import "../Page/Page.css";
-import { LazyLoadImage } from "../../components/Loading";
+import DialogEditBadges from "./Dialogs/DialogEditBadges";
+import DialogEditInfos from "./Dialogs/DialogEditInfos";
+// import DialogEditSocials from "./Dialogs/DialogEditSocials";
+// import DialogNewLink from "./Dialogs/DialogNewLink";
+// import PageEditColors from "./PageEditColors";
 
 const mapSocials = (pageSocialMedias: PagePropsSocialMedia[]) => {
   return (
-    <div className="flex flex-row flex-wrap gap-1 items-center justify-center mt-3 w-full">
+    <div className="mt-3 flex w-full flex-row flex-wrap items-center justify-center gap-1">
       {pageSocialMedias.map((media, idx) => (
-        <PageIcon key={idx} media={media} />
+        <BioIcon key={idx} media={media} />
       ))}
     </div>
   );
@@ -31,12 +30,12 @@ const mapSocials = (pageSocialMedias: PagePropsSocialMedia[]) => {
 
 const mapBadges = (pageBadges: string[]) => {
   return (
-    <div className="flex flex-row flex-wrap gap-2 mt-3 justify-center w-full">
+    <div className="mt-3 flex w-full flex-row flex-wrap justify-center gap-2">
       {pageBadges.map((badge, idx) =>
         getBadge(badge) ? (
           <span
             key={idx}
-            className="ring-badges whitespace-nowrap text-xs font-semibold px-1 py-0.5 rounded ring-1 shadow-black shadow-sm"
+            className="ring-badges whitespace-nowrap rounded px-1 py-0.5 text-xs font-semibold shadow-sm shadow-black ring-1"
           >
             {getBadge(badge)?.label}
           </span>
@@ -57,10 +56,10 @@ const getPageStatus = (status: PagePropsStatus) => {
 
 const getAvatar = (pfpUrl: string | undefined, uploadAvatar: (value: File) => void) => {
   return (
-    <div className="flex flex-col justify-center items-center min-w-fit flex-shrink-0 p-2 select-none">
+    <div className="flex min-w-fit flex-shrink-0 select-none flex-col items-center justify-center p-2">
       <label
         htmlFor="avatar-input"
-        className="group cursor-pointer rounded-full flex flex-col justify-center items-center"
+        className="group flex cursor-pointer flex-col items-center justify-center rounded-full"
       >
         <input
           id="avatar-input"
@@ -74,22 +73,22 @@ const getAvatar = (pfpUrl: string | undefined, uploadAvatar: (value: File) => vo
             }
           }}
         />
-        <div className="absolute flex md:hidden group-hover:flex opacity-70 z-10">
+        <div className="absolute z-10 flex opacity-70 group-hover:flex md:hidden">
           <ArrowUpTrayIcon className="w-20" />
         </div>
         {pfpUrl ? (
           <img
-            className="ring-avatar opacity-60 md:opacity-100 group-hover:opacity-30 h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
+            className="ring-avatar h-24 w-24 rounded-full border-2 object-cover opacity-60 ring-1 group-hover:opacity-30 md:h-28 md:w-28 md:opacity-100 lg:h-32 lg:w-32"
             src={pfpUrl}
             alt="pfp"
             loading="lazy"
           />
         ) : (
           <div
-            className="ring-avatar opacity-60 md:opacity-100 group-hover:opacity-30 h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full ring-1 border-2"
+            className="ring-avatar h-24 w-24 rounded-full border-2 object-cover opacity-60 ring-1 group-hover:opacity-30 md:h-28 md:w-28 md:opacity-100 lg:h-32 lg:w-32"
             style={{ backgroundColor: "#85c5e5" }}
           >
-            <BigHead />
+            {/* TODO - default avatar */}
           </div>
         )}
       </label>
@@ -99,8 +98,8 @@ const getAvatar = (pfpUrl: string | undefined, uploadAvatar: (value: File) => vo
 
 const IconOpenDialog = ({ setDialogOpen, label }: { setDialogOpen: (value: boolean) => void; label: string }) => {
   return (
-    <div className="relative group hover:text-gray-900 cursor-pointer" onClick={() => setDialogOpen(true)}>
-      <span className="hidden md:block absolute translate-x-6 flex overflow-visible whitespace-nowrap font-semibold text-gray-300 animate-pulse group-hover:text-gray-900">
+    <div className="group relative cursor-pointer hover:text-gray-900" onClick={() => setDialogOpen(true)}>
+      <span className="absolute flex translate-x-6 animate-pulse overflow-visible whitespace-nowrap font-semibold text-gray-300 group-hover:text-gray-900 md:block">
         ← {label}
       </span>
       <PencilSquareIcon className="h-6 text-center" />
@@ -108,9 +107,8 @@ const IconOpenDialog = ({ setDialogOpen, label }: { setDialogOpen: (value: boole
   );
 };
 
-const PageEdit = ({ page, setPage }: { page: PageProps; setPage: (value: PageProps | undefined) => void }) => {
-  const auth = useAuth();
-  const { errorToast, successToast } = useToasts();
+const PageEdit = ({ page, savePage }: { page: PageProps; savePage: (value: PageProps | undefined) => void }) => {
+  // const auth = null;
 
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
@@ -130,28 +128,26 @@ const PageEdit = ({ page, setPage }: { page: PageProps; setPage: (value: PagePro
   setCssVariables(primaryColor, secondaryColor, fontColor);
 
   const [dialogEditPage, setDialogEditPage] = useState(false);
-  const [dialogEditSocial, setDialogEditSocial] = useState(false);
+  // const [dialogEditSocial, setDialogEditSocial] = useState(false);
   const [dialogEditBadges, setDialogEditBadges] = useState(false);
-  const [dialogNewLink, setDialogNewLink] = useState(false);
+  // const [dialogNewLink, setDialogNewLink] = useState(false);
 
-  const uploadAvatar = (file: File) => {
-    pageService
-      .uploadAvatar(file, page.pagename)
+  const editAvatar = (file: File) => {
+    uploadAvatar(file, page.pagename)
       .then(response => {
         successToast(response.message);
-        setPage(response.page);
+        savePage(response.page);
       })
       .catch(error => {
         errorToast(error.message);
       });
   };
 
-  const uploadBackground = (file: File) => {
-    pageService
-      .uploadBackground(file, page.pagename)
+  const editBackground = (file: File) => {
+    uploadBackground(file, page.pagename)
       .then(response => {
         successToast(response.message);
-        setPage(response.page);
+        savePage(response.page);
       })
       .catch(error => {
         errorToast(error.message);
@@ -161,27 +157,27 @@ const PageEdit = ({ page, setPage }: { page: PageProps; setPage: (value: PagePro
   return (
     <React.Fragment>
       {/* Link to Account settings */}
-      {auth && auth.email ? (
-        <div className="select-none absolute left-0 p-1 px-2 m-2 ">
+      {/* {auth && auth.email ? (
+        <div className="absolute left-0 m-2 select-none p-1 px-2 ">
           <button
-            onClick={() => setPage(undefined)}
-            className="text-md bg-opacity-5 opacity-50 rounded-lg font-semibold hover:opacity-90 flex flex-row gap-2"
+            onClick={() => savePage(undefined)}
+            className="text-md flex flex-row gap-2 rounded-lg bg-opacity-5 font-semibold opacity-50 hover:opacity-90"
           >
-            <Cog6ToothIcon className="h-5 mt-0.5" aria-hidden="true" />
+            <Cog6ToothIcon className="mt-0.5 h-5" aria-hidden="true" />
             <span className="animate-pulse">← Click here to go back</span>
           </button>
         </div>
-      ) : null}
+      ) : null} */}
       {/* Page Background */}
       <LazyLoadImage imageUrl={backgroundUrl} backgroundSize={backgroundSize} backGroundOpacity={backGroundOpacity} />
 
-      <div className="flex flex-col items-center max-w-2x1 px-0 mx-2 sm:px-10 p-2 md:w-full h-screen overflow-y-auto">
-        <div className="mt-24 mb-2 flex flex-row gap-2">
+      <div className="max-w-2x1 mx-2 flex h-screen flex-col items-center overflow-y-auto p-2 px-0 sm:px-10 md:w-full">
+        <div className="mb-2 mt-24 flex flex-row gap-2">
           <label
             htmlFor="background-input"
             className={
-              "group cursor-pointer flex flex-col justify-center items-center " +
-              "hover:opacity-80 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
+              "group flex cursor-pointer flex-col items-center justify-center " +
+              "w-48 rounded-xl p-1 shadow-sm shadow-black hover:opacity-80 sm:px-3 " +
               `${cardBlur} ${cardHueRotate} `
             }
             style={{
@@ -195,69 +191,69 @@ const PageEdit = ({ page, setPage }: { page: PageProps; setPage: (value: PagePro
               accept="image/*"
               onChange={e => {
                 if (e.target?.files) {
-                  uploadBackground(e.target.files[0]);
+                  editBackground(e.target.files[0]);
                   e.target.value = "";
                 }
               }}
             />
-            <div className="flex group-hover:hidden opacity-70 z-10">
+            <div className="z-10 flex opacity-70 group-hover:hidden">
               <ArrowUpTrayIcon className="w-8" />
             </div>
-            <span className="flex hidden group-hover:flex opacity-70 z-10 h-8 justify-center items-center">
+            <span className="z-10 flex h-8 items-center justify-center opacity-70 group-hover:flex">
               Upload background
             </span>
           </label>
-          <PageEditColors page={page} setPage={setPage} />
+          {/* <PageEditColors page={page} savePage={savePage} /> */}
         </div>
         {/* Page Primary Card */}
-        <SectionCard className="select-none" page={page}>
+        <BioCard className="select-none" page={page}>
           <React.Fragment>
             {getPageStatus(pageStatus)}
-            {getAvatar(pfpUrl, uploadAvatar)}
-            <div className="flex flex-col w-full">
-              <div className="flex flex-row w-full items-start relative">
-                <PageInfos page={page} />
+            {getAvatar(pfpUrl, editAvatar)}
+            <div className="flex w-full flex-col">
+              <div className="relative flex w-full flex-row items-start">
+                <BioInfos page={page} />
                 <IconOpenDialog label="Edit Infos" setDialogOpen={setDialogEditPage} />
               </div>
-              <div className="flex flex-row w-full items-center">
+              <div className="flex w-full flex-row items-center">
                 {mapBadges(pageBadges)}
                 <IconOpenDialog label="Edit Badges" setDialogOpen={setDialogEditBadges} />
               </div>
-              <div className="flex flex-row w-full items-end">
+              <div className="flex w-full flex-row items-end">
                 {mapSocials(pageSocialMedias)}
-                <IconOpenDialog label="Edit Accounts" setDialogOpen={setDialogEditSocial} />
+                {/* <IconOpenDialog label="Edit Accounts" setDialogOpen={setDialogEditSocial} /> */}
               </div>
             </div>
           </React.Fragment>
-        </SectionCard>
+        </BioCard>
 
         <button
           className={
-            "group cursor-pointer flex flex-row justify-center items-center mb-2 page-font-color " +
-            "hover:opacity-80 p-1 w-48 rounded-xl sm:px-3 shadow-black shadow-sm " +
+            "page-font-color group mb-2 flex cursor-pointer flex-row items-center justify-center " +
+            "w-48 rounded-xl p-1 shadow-sm shadow-black hover:opacity-80 sm:px-3 " +
             `${cardBlur} ${cardHueRotate} `
           }
           style={{
             backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
           }}
-          onClick={() => setDialogNewLink(true)}
+          // onClick={() => setDialogNewLink(true)}
         >
-          <PlusIcon className="w-7 mr-2" />
+          <PlusIcon className="mr-2 w-7" />
           Add Link
         </button>
 
         {/* Page Other Cards */}
-        <PageLinks page={page} />
+        <BioLinks page={page} />
       </div>
 
       {/* Dialogs to edit page */}
-      <DialogEditInfos isOpen={dialogEditPage} setIsOpen={setDialogEditPage} page={page} setPage={setPage} />
+      <DialogEditInfos isOpen={dialogEditPage} setIsOpen={setDialogEditPage} page={page} savePage={savePage} />
       {/* Dialogs to edit badges */}
-      <DialogEditBadges isOpen={dialogEditBadges} setIsOpen={setDialogEditBadges} page={page} setPage={setPage} />
+      <DialogEditBadges isOpen={dialogEditBadges} setIsOpen={setDialogEditBadges} page={page} savePage={savePage} />
       {/* Dialogs to edit social media */}
-      <DialogEditSocials isOpen={dialogEditSocial} setIsOpen={setDialogEditSocial} page={page} setPage={setPage} />
+      {/* <DialogEditSocials isOpen={dialogEditSocial} setIsOpen={setDialogEditSocial} page={page} savePage={savePage} /> */}
       {/* Dialogs to insert a new Link */}
-      <DialogNewLink isOpen={dialogNewLink} setIsOpen={setDialogNewLink} page={page} setPage={setPage} />
+      {/* <DialogNewLink isOpen={dialogNewLink} setIsOpen={setDialogNewLink} page={page} savePage={savePage} /> */}
     </React.Fragment>
   );
 };

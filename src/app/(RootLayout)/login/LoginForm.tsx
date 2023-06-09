@@ -1,15 +1,17 @@
 "use client";
-import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { Button, Link } from "@/components/Buttons";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
-import { useForm } from "react-hook-form";
 import { Input } from "@/components/Inputs";
-import { z } from "zod";
-import { useEffect } from "react";
-import { LoginProps } from "@/types/LoginProps";
 import { login } from "@/services/AuthService";
+import { LoginProps } from "@/types/LoginProps";
+import { errorToast } from "@/utils/toaster";
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
+import { z } from "zod";
 
 const loginFormSchema = z.object({
   email: z.string().nonempty("Email is required").email("Insert a valid email").toLowerCase(),
@@ -37,7 +39,7 @@ export default function LoginForm() {
     }
   }, []);
 
-  const createUser = (data: LoginFormData) => {
+  const submitLogin = (data: LoginFormData) => {
     login(data.email, data.password)
       .then(res => {
         if (res.user) {
@@ -48,32 +50,21 @@ export default function LoginForm() {
         }
       })
       .catch(err => {
-        // TODO TOASTER
-        console.log(err);
+        errorToast(err);
       });
   };
 
   return (
-    <form className="mt-4 w-full space-y-2" onSubmit={handleSubmit(createUser)}>
+    <form className="mt-4 w-full space-y-2" onSubmit={handleSubmit(submitLogin)}>
       <div className="-space-y-px rounded-md shadow-sm">
-        <div className="py-1">
-          <Input
-            id="email"
-            type="text"
-            label="Email"
-            register={register("email")}
-            errorMessage={errors.email?.message}
-          />
-        </div>
-        <div className="py-1">
-          <Input
-            id="password"
-            type="password"
-            label="Password"
-            register={register("password")}
-            errorMessage={errors.password?.message}
-          />
-        </div>
+        <Input id="email" type="text" label="Email" register={register("email")} errorMessage={errors.email?.message} />
+        <Input
+          id="password"
+          type="password"
+          label="Password"
+          register={register("password")}
+          errorMessage={errors.password?.message}
+        />
       </div>
 
       <div className="flex items-center justify-between">
@@ -102,6 +93,7 @@ export default function LoginForm() {
           <LockClosedIcon className="h-5 w-5 text-violet-300 group-hover:text-violet-400" aria-hidden="true" />
         }
       />
+      <ToastContainer />
     </form>
   );
 }

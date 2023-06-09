@@ -1,15 +1,13 @@
-// import Script from "next/script";
 import "@/app/globals.css";
 import { getPage } from "@/services/PageService";
-import { PageProps } from "@/types/PageProps";
 import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
 
-export async function generateMetadata({ params }: { params: { username: string; page: PageProps } }) {
+export async function generateMetadata() {
   try {
-    const res = await getPage(params.username);
+    const res = await getPage("gustavo");
     if (res?.page) {
       return {
-        title: `Username: ${params.username}`,
+        title: `Username: gustavo`,
         description: res.page.bio || ZOZ_META_DESCRIPTION,
         // openGraph: {
         //   images: ['/some-specific-page-image.jpg', ...previousImages],

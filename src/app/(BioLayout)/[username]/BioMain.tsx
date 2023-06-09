@@ -1,9 +1,9 @@
-import { memo } from "react";
+"use client";
+import { memo, useEffect } from "react";
 import PageIcon from "./BioIcon";
 import SectionCard from "./BioCard";
 import { PageProps, PagePropsSocialMedia, PagePropsStatus } from "@/types/PageProps";
 import { getBadge, getStatusIcon } from "@/utils/IconsList";
-// import { useAuth } from "../../context/AuthProvider/useAuth";
 // import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 // import { BigHead } from "@bigheads/core";
 import { defaultPage, setCssVariables } from "@/utils/BioVariables";
@@ -73,7 +73,6 @@ const getAvatar = (pfpUrl: string | undefined) => {
 // TODO
 // blur effect on loading maybe? blur-sm
 const BioMain = ({ page }: { page: PageProps }) => {
-  // const auth = useAuth();
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;
@@ -85,7 +84,10 @@ const BioMain = ({ page }: { page: PageProps }) => {
 
   const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
-  setCssVariables(primaryColor, secondaryColor, fontColor);
+
+  useEffect(() => {
+    setCssVariables(primaryColor, secondaryColor, fontColor);
+  }, []);
 
   return (
     <>
