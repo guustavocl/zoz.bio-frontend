@@ -8,7 +8,7 @@ import { getBadge, getStatusIcon } from "@/utils/IconsList";
 // import { BigHead } from "@bigheads/core";
 import { defaultPage, setCssVariables } from "@/utils/BioVariables";
 import PageInfos from "./BioInfos";
-import "./Page.css";
+import "./page.css";
 import PageLinks from "./BioLinks";
 import { LazyLoadImage } from "@/components/Loadings";
 
