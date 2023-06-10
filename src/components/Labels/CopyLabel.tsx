@@ -1,15 +1,16 @@
+"use client";
 import { successToast } from "@/utils/toaster";
 import { memo } from "react";
 import { twMerge } from "tailwind-merge";
 
-const CopyLabel = ({ label, className }: { label: string; className: string }) => {
+const CopyLabel = ({ label, textToCopy, className }: { label: string; textToCopy: string; className?: string }) => {
   return (
     <span
       className={twMerge("cursor-pointer text-sm font-semibold tracking-wide", className)}
       onClick={() => {
         successToast(`Copied`);
         if (navigator.clipboard) {
-          navigator.clipboard.writeText(`https://zoz.bio/${page?.pagename || ""}`);
+          navigator.clipboard.writeText(textToCopy);
         }
       }}
     >

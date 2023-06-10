@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { PageProps } from "@/types/PageProps";
 import { getAdornmentIcon } from "@/utils/IconsList";
-// import { successToast } from "@/utils/toaster";
+import CopyLabel from "@/components/Labels/CopyLabel";
 
 const BioInfos = ({ page }: { page: PageProps }) => {
   return (
@@ -23,17 +23,11 @@ const BioInfos = ({ page }: { page: PageProps }) => {
             />
           ) : null}
         </h2>
-        <span
-          className="hsecondary cursor-pointer text-sm font-semibold tracking-wide"
-          // onClick={() => {
-          //   successToast(`Copied`);
-          //   if (navigator.clipboard) {
-          //     navigator.clipboard.writeText(`https://zoz.bio/${page?.pagename || ""}`);
-          //   }
-          // }}
-        >
-          {`zoz.bio/${page?.pagename || ""}`}
-        </span>
+        <CopyLabel
+          label={`zoz.bio/${page?.pagename}`}
+          textToCopy={`https://zoz.bio/${page?.pagename}`}
+          className="hsecondary"
+        />
         <div
           className="page-font-color mt-3 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
           style={{
