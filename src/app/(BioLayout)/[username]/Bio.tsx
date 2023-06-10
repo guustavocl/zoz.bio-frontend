@@ -24,9 +24,9 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
   const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
   const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
-  const primaryColor = page?.primaryColor || defaultPage.primaryColor;
+  // const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
-  const fontColor = page?.fontColor || defaultPage.fontColor;
+  // const fontColor = page?.fontColor || defaultPage.fontColor;
 
   return (
     <>
