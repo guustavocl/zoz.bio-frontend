@@ -22,6 +22,7 @@ export const fetchBioPage = async (pagename: string) => {
     console.log("gonna fetch");
     const request = await serverSideGet(API_ENDPOINT, { pagename }, 60);
     console.log("request");
+    console.log(request);
     if (request) return await request.json();
   } catch (err: Error | unknown) {
     console.log(err);
