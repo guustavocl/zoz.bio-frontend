@@ -1,5 +1,5 @@
 import { QueryClientProviderComponent } from "@/providers/QueryClientProvider";
-import { fetchBioPage } from "@/services/PageService";
+import { fetchBioPage, getPage } from "@/services/PageService";
 import { PageProps } from "@/types/PageProps";
 import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
 import { BioComponent } from "./Bio";
@@ -31,7 +31,8 @@ export async function generateMetadata({ params }: { params: { username: string 
 }
 
 export default async function BioPage({ params }: { params: { username: string } }) {
-  const res = await fetchBioPage(params.username);
+  // const res = await fetchBioPage(params.username);
+  const res = await getPage(params.username);
   pageData = res?.page;
 
   return (
