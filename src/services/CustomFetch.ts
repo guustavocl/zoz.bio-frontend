@@ -10,6 +10,7 @@ const appendParams = (params: Record<string, string | number | boolean>) => {
 };
 
 export const serverSideGet = (endpoint: string, params = {}, revalidate = 10) => {
+  console.log(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`);
   return fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`, {
     next: {
       revalidate: revalidate,
