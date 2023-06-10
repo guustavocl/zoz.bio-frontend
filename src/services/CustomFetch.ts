@@ -12,11 +12,15 @@ const appendParams = (params: Record<string, string | number | boolean>) => {
 export const serverSideGet = async (endpoint: string, params = {}, revalidate = 10) => {
   console.log(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`);
 
-  const request = await fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`, {
-    next: {
-      revalidate: revalidate,
-    },
-  });
-
-  return request;
+  try {
+    const request = await fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`, {
+      next: {
+        revalidate: revalidate,
+      },
+    });
+    return request;
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
 };
