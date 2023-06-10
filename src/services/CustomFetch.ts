@@ -11,13 +11,9 @@ const appendParams = (params: Record<string, string | number | boolean>) => {
 
 export const serverSideGet = async (endpoint: string, params = {}, revalidate = 10) => {
   console.log(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`);
-
+  console.log(revalidate);
   try {
-    const request = await fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`, {
-      next: {
-        revalidate: revalidate,
-      },
-    });
+    const request = await fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`);
     return request;
   } catch (error) {
     console.log(error);
