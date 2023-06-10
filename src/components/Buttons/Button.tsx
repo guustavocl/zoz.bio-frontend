@@ -3,12 +3,12 @@ import { twMerge } from "tailwind-merge";
 
 type ButtonComponentProps = {
   id: string;
-  type: "button" | "submit" | "reset";
-  label: string;
+  type?: "button" | "submit" | "reset";
+  label?: string;
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
-  children?: JSX.Element[];
+  children?: React.ReactNode;
   iconAdornment?: JSX.Element;
 };
 

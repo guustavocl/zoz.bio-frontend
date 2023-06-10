@@ -32,9 +32,9 @@ const AutoCompleteFolders = ({
   });
 
   if (queryPage.isError) {
-    const error = queryPage.error as Error;
+    const err = queryPage.error as Error;
     // errorToast(error.message);
-    console.log(error);
+    console.log(err);
   }
 
   const list = new Map<string, MediaIconProps>([]);

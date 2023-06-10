@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type LazyLoadImageProps = {
   imageUrl?: string;
@@ -20,21 +20,19 @@ const LazyLoadImage = ({
       setImage(`url("${imageUrl}")`);
     };
   }, [imageUrl]);
-
+  // TODO - maybe refactor this
   return (
-    <React.Fragment>
-      <div
-        className="fixed -z-50 h-screen w-full bg-gradient-to-br"
-        style={{
-          opacity: backGroundOpacity,
-          backgroundSize: backgroundSize,
-          backgroundImage: image,
-          backgroundColor: "#080808",
-          backgroundRepeat: "repeat",
-          backgroundPosition: "center",
-        }}
-      ></div>
-    </React.Fragment>
+    <div
+      className="fixed -z-50 h-screen w-full bg-gradient-to-br"
+      style={{
+        opacity: backGroundOpacity,
+        backgroundSize: backgroundSize,
+        backgroundImage: image,
+        backgroundColor: "#080808",
+        backgroundRepeat: "repeat",
+        backgroundPosition: "center",
+      }}
+    ></div>
   );
 };
 

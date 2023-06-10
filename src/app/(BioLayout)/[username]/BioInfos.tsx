@@ -1,13 +1,9 @@
 import { memo } from "react";
 import { PageProps } from "@/types/PageProps";
 import { getAdornmentIcon } from "@/utils/IconsList";
-import { successToast } from "@/utils/toaster";
+// import { successToast } from "@/utils/toaster";
 
-type PageInfosProps = {
-  page: PageProps;
-};
-
-const PageInfos = ({ page }: PageInfosProps) => {
+const BioInfos = ({ page }: { page: PageProps }) => {
   return (
     <>
       <div className="flex w-full flex-col items-center">
@@ -28,13 +24,13 @@ const PageInfos = ({ page }: PageInfosProps) => {
           ) : null}
         </h2>
         <span
-          className="hsecondary -mt-1 cursor-pointer text-sm font-semibold tracking-wide"
-          onClick={() => {
-            successToast(`Copied`);
-            if (navigator.clipboard) {
-              navigator.clipboard.writeText(`https://zoz.bio/${page?.pagename || ""}`);
-            }
-          }}
+          className="hsecondary cursor-pointer text-sm font-semibold tracking-wide"
+          // onClick={() => {
+          //   successToast(`Copied`);
+          //   if (navigator.clipboard) {
+          //     navigator.clipboard.writeText(`https://zoz.bio/${page?.pagename || ""}`);
+          //   }
+          // }}
         >
           {`zoz.bio/${page?.pagename || ""}`}
         </span>
@@ -51,4 +47,4 @@ const PageInfos = ({ page }: PageInfosProps) => {
   );
 };
 
-export default memo(PageInfos);
+export default memo(BioInfos);

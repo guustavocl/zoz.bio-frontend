@@ -4,14 +4,13 @@ import { twMerge } from "tailwind-merge";
 import { memo } from "react";
 
 type SectionCardProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
   page?: PageProps;
   className?: string;
   center?: boolean;
-  bioPage?: boolean;
 };
 
-const BioCard = ({ children, page, className, center = true, bioPage = true }: SectionCardProps) => {
+const BioCard = ({ children, page, className, center = true }: SectionCardProps) => {
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const cardBlur = page?.cardBlur || defaultPage.cardBlur;
   const cardHueRotate = page?.cardHueRotate || defaultPage.cardHueRotate;
@@ -20,10 +19,9 @@ const BioCard = ({ children, page, className, center = true, bioPage = true }: S
       className={twMerge(
         cardBlur,
         cardHueRotate,
-        "relative flex flex-col",
+        "relative flex flex-col w-full",
         "mb-2 rounded-xl px-2 shadow-sm shadow-black sm:px-3",
         center ? "justify-center" : "justify-start",
-        bioPage ? "w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl" : "",
         className
       )}
       style={{

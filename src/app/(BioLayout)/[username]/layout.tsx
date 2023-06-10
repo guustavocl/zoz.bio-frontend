@@ -1,34 +1,10 @@
 // import Script from "next/script";
 import "@/app/globals.css";
-import { getPage } from "@/services/PageService";
-import { PageProps } from "@/types/PageProps";
-import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
-
-export async function generateMetadata({ params }: { params: { username: string; page: PageProps } }) {
-  try {
-    const res = await getPage(params.username);
-    if (res?.page) {
-      return {
-        title: `Username: ${params.username}`,
-        description: res.page.bio || ZOZ_META_DESCRIPTION,
-        // openGraph: {
-        //   images: ['/some-specific-page-image.jpg', ...previousImages],
-        // },
-      };
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
-  return {
-    title: ZOZ_META_TITLE,
-    description: ZOZ_META_DESCRIPTION,
-  };
-}
+// METADATA EXAMPLE - https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 
 export default function BioLayout({ children }: { children: React.ReactNode }) {
-  //TODO OG GRAPH IMAGE TWITTER E FB
-  //TODO GOOGLE ANALYTICS
+  //TODO - OG GRAPH IMAGE TWITTER E FB
+  //TODO - GOOGLE ANALYTICS
   return (
     <html lang="en">
       <head>

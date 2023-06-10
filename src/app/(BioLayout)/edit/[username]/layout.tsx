@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: { params: { username: string;
         // },
       };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 
   return {

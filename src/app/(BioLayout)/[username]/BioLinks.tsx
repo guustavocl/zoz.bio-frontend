@@ -1,3 +1,4 @@
+"use client";
 import BioCard from "./BioCard";
 import { memo, useState } from "react";
 import { getIcon } from "@/utils/IconsList";
@@ -5,11 +6,11 @@ import { PageProps } from "@/types/PageProps";
 import { LinkProps } from "@/types/LinkProps";
 import { ArrowUpRightIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
 
-type PageLinksProps = {
+type BioLinksProps = {
   page: PageProps;
 };
 
-const PageLinks = ({ page }: PageLinksProps) => {
+const BioLinks = ({ page }: BioLinksProps) => {
   const [folderOwner, setFolderOwner] = useState<LinkProps | null>();
 
   const pageLinks = page?.pageLinks
@@ -94,12 +95,7 @@ const PageLinks = ({ page }: PageLinksProps) => {
             )}
           </BioCard>
         ) : (
-          <div
-            key={idx}
-            className={
-              "relative flex flex-col " + "w-full sm:w-5/6 md:w-3/4 lg:w-3/5 lg:max-w-2xl " + "rounded-xl shadow-black "
-            }
-          >
+          <div key={idx} className="relative flex flex-col w-full rounded-xl shadow-black">
             {link.embedded === "spotify" && link.url.includes("playlist") ? (
               <iframe
                 className="mb-2 h-36 w-full rounded"
@@ -168,4 +164,4 @@ const PageLinks = ({ page }: PageLinksProps) => {
   );
 };
 
-export default memo(PageLinks);
+export default memo(BioLinks);

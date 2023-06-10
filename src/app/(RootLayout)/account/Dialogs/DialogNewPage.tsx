@@ -76,8 +76,8 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
           .then(response => {
             setPagenameAvailable(response.isAvailable);
           })
-          .catch(error => {
-            errorToast(error);
+          .catch(err => {
+            errorToast(err);
           });
     }, 300);
     return () => {
@@ -92,8 +92,8 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
         successToast("Page successfully created.");
         setIsOpen(false);
       })
-      .catch(error => {
-        errorToast(error);
+      .catch(err => {
+        errorToast(err);
       });
   };
 

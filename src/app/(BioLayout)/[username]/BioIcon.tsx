@@ -1,3 +1,4 @@
+"use client";
 import { memo } from "react";
 import { getSocialIcon } from "@/utils/IconsList";
 import { successToast } from "@/utils/toaster";
@@ -8,7 +9,8 @@ type MediaProps = {
   key: string;
 };
 
-const PageIcon = ({ media }: { media: MediaProps }) => {
+// TODO - next/image and try to ssr this
+const BioIcon = ({ media }: { media: MediaProps }) => {
   const social = getSocialIcon(media.key);
   if (!social) return null;
   return (
@@ -46,4 +48,4 @@ const PageIcon = ({ media }: { media: MediaProps }) => {
   );
 };
 
-export default memo(PageIcon);
+export default memo(BioIcon);

@@ -13,7 +13,7 @@ const LinkComponent = ({
   label?: string;
   onClick?: () => void;
   className?: string;
-  children?: JSX.Element[];
+  children?: React.ReactNode;
 }) => {
   return (
     <Link

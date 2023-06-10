@@ -60,8 +60,8 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page, savePage }: DialogEditInfosP
         savePage(response.page);
         setIsOpen(false);
       })
-      .catch(error => {
-        errorToast(error);
+      .catch(err => {
+        errorToast(err);
       });
   };
 
