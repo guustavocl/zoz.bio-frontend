@@ -1,11 +1,4 @@
-import getConfig from "next/config";
-
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
-
-const API_URL =
-  process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
-    ? serverRuntimeConfig.prodUrl || publicRuntimeConfig.prodUrl
-    : serverRuntimeConfig.devUrl || publicRuntimeConfig.devUrl;
+const API_URL = process.env.SERVER_SIDE_EXPRESS_API_URL || process.env.NEXT_PUBLIC_EXPRESS_API_URL;
 
 const appendParams = (params: Record<string, string | number | boolean>) => {
   return (
