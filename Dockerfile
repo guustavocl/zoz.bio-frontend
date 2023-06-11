@@ -1,4 +1,4 @@
-FROM node:16-alpine AS alpine
+FROM node:18-alpine AS alpine
 
 FROM alpine AS deps
 RUN apk add --no-cache libc6-compat
