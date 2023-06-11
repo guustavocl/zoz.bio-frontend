@@ -1,4 +1,4 @@
-const API_URL = process.env.SERVER_SIDE_EXPRESS_API_URL || process.env.NEXT_PUBLIC_EXPRESS_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_EXPRESS_API_URL;
 
 const appendParams = (params: Record<string, string | number | boolean>) => {
   return (
