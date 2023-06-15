@@ -1,23 +1,40 @@
-"use client";
-import axios from "axios";
+import { QueryClientProviderComponent } from "@/providers/QueryClientProvider";
+import { fetchEditPage } from "@/services/PageService";
+import { PageProps } from "@/types/PageProps";
+import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
+// import "./page.css";
+import { EditComponent } from "./Edit";
+import { NotFound } from "../../[username]/NotFound";
 
-async function getData(pagename: string) {
-  const res = await axios.get("http://127.0.0.1:3100/page", {
-    params: { pagename: pagename },
-  });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+let pageData: PageProps | undefined = undefined;
 
-  // Recommendation: handle errors
-  if (!res) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+export async function generateMetadata({ params }: { params: { username: string } }) {
+  if (pageData) {
+    return {
+      // TODO - generate profile img, change title
+      title: `zoz.bio - ${params.username}`,
+      description: pageData.bio || ZOZ_META_DESCRIPTION,
+      // openGraph: {
+      //   images: ['/some-specific-page-image.jpg', ...previousImages],
+      // },
+    };
   }
-  console.log(res);
-  return res.data;
+
+  return {
+    title: ZOZ_META_TITLE,
+    description: ZOZ_META_DESCRIPTION,
+  };
 }
 
 export default async function BioPage({ params }: { params: { username: string } }) {
-  const data = await getData(params?.username);
-  return <main className="flex flex-col items-center justify-between">{data?.page?.bio}</main>;
+  const res = await fetchEditPage(params.username);
+  pageData = res?.page;
+
+  return (
+    <main className="flex flex-col items-center justify-between">
+      <QueryClientProviderComponent>
+        {pageData ? <EditComponent page={pageData} /> : <NotFound username={params.username} />}
+      </QueryClientProviderComponent>
+    </main>
+  );
 }

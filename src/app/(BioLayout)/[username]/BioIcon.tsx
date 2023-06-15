@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { getSocialIcon } from "@/utils/IconsList";
 import { successToast } from "@/utils/toaster";
-import Tooltip from "@/components/Tooltip/Tooltip";
+import { Tooltip } from "@/components/Tooltip";
 
 type MediaProps = {
   username: string;

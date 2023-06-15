@@ -9,6 +9,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/perspective.css";
 import "tippy.js/themes/translucent.css";
 import "react-toastify/dist/ReactToastify.css";
+import ToastProvider from "@/providers/ToastProvider";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NextTopLoader color="#6d28d9" showSpinner={false} />
         <Header user={user} />
         {children}
+        <ToastProvider />
         <Footer />
       </body>
     </html>

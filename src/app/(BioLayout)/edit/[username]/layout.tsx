@@ -1,34 +1,15 @@
 // import Script from "next/script";
+import ToastProvider from "@/providers/ToastProvider";
 import "@/app/globals.css";
-import { getPage } from "@/services/PageService";
-import { PageProps } from "@/types/PageProps";
-import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
-
-export async function generateMetadata({ params }: { params: { username: string; page: PageProps } }) {
-  try {
-    const res = await getPage(params.username);
-    if (res?.page) {
-      return {
-        title: `Username: ${params.username}`,
-        description: res.page.bio || ZOZ_META_DESCRIPTION,
-        // openGraph: {
-        //   images: ['/some-specific-page-image.jpg', ...previousImages],
-        // },
-      };
-    }
-  } catch (err) {
-    console.log(err);
-  }
-
-  return {
-    title: ZOZ_META_TITLE,
-    description: ZOZ_META_DESCRIPTION,
-  };
-}
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/perspective.css";
+import "tippy.js/themes/translucent.css";
+import "react-toastify/dist/ReactToastify.css";
+// METADATA EXAMPLE - https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 
 export default function BioLayout({ children }: { children: React.ReactNode }) {
-  //TODO OG GRAPH IMAGE TWITTER E FB
-  //TODO GOOGLE ANALYTICS
+  //TODO - OG GRAPH IMAGE TWITTER E FB
+  //TODO - GOOGLE ANALYTICS
   return (
     <html lang="en">
       <head>
@@ -39,7 +20,10 @@ export default function BioLayout({ children }: { children: React.ReactNode }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastProvider />
+      </body>
     </html>
   );
 }

@@ -2,7 +2,6 @@ import { Link } from "@/components/Buttons";
 import Main from "@/components/Main/Main";
 import Redirect from "@/components/Redirect/Redirect";
 import { cookies } from "next/headers";
-import { ToastContainer } from "react-toastify";
 import LoginForm from "./LoginForm";
 
 export default function LoginPage() {
@@ -24,7 +23,6 @@ export default function LoginPage() {
           </p>
           <LoginForm />
         </div>
-        <ToastContainer />
       </Main>
     );
 }

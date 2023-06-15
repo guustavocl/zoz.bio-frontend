@@ -3,16 +3,16 @@ import { defaultPage } from "@/utils/BioVariables";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import React from "react";
-import BioAvatar from "./BioAvatar";
-import BioBadges from "./BioBadges";
-import BioCard from "./BioCard";
-import BioInfos from "./BioInfos";
-import BioLinks from "./BioLinks";
-import BioNavigation from "./BioNavigation";
-import BioSocials from "./BioSocials";
-import BioStatusIcon from "./BioStatusIcon";
+import BioNavigation from "@/app/(BioLayout)/[username]/BioNavigation";
+import BioCard from "@/app/(BioLayout)/[username]/BioCard";
+import BioStatusIcon from "@/app/(BioLayout)/[username]/BioStatusIcon";
+import BioBadges from "@/app/(BioLayout)/[username]/BioBadges";
+import BioSocials from "@/app/(BioLayout)/[username]/BioSocials";
+import BioLinks from "@/app/(BioLayout)/[username]/BioLinks";
+import EditAvatar from "./EditAvatar";
+import EditInfos from "./EditInfos";
 
-export const BioComponent = ({ page }: { page: PageProps }) => {
+export const EditComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
@@ -49,9 +49,9 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
           <BioNavigation page={page} user={user} />
           <BioCard className="mt-28 select-none" page={page}>
             <BioStatusIcon status={pageStatus} />
-            <BioAvatar pfpUrl={pfpUrl} color={secondaryColor} />
+            <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} color={secondaryColor} />
             <div className="flex w-full flex-col">
-              <BioInfos page={page} />
+              <EditInfos page={page} />
               <BioBadges badges={pageBadges} color={secondaryColor} />
               <BioSocials socialMedias={pageSocialMedias} />
             </div>

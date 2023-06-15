@@ -3,7 +3,7 @@ import Dialog from "@/components/Dialogs";
 import { Input } from "@/components/Inputs";
 import { checkPagename, savePageInfos } from "@/services/PageService";
 import { PageProps } from "@/types/PageProps";
-import { errorToast, successToast } from "@/utils/toaster";
+import { errorToast } from "@/utils/toaster";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
@@ -27,11 +27,9 @@ type DialogEditInfosProps = {
   isOpen: boolean;
   page: PageProps;
   setIsOpen: (value: boolean) => void;
-  savePage: (value: PageProps | undefined) => void;
-  addNewPage?: (page: PageProps) => void;
 };
 
-const DialogEditInfos = ({ isOpen, setIsOpen, page, savePage }: DialogEditInfosProps) => {
+const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
   const [newPagename, setNewPagename] = useState("");
   const [isPagenameAvailable, setPagenameAvailable] = useState(true);
 
@@ -55,10 +53,9 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page, savePage }: DialogEditInfosP
 
   const submitPageInfos = (data: CreateInfosFormData) => {
     savePageInfos(data.uname, data.bio, page.pagename, newPagename?.length > 1 ? newPagename : page.pagename)
-      .then(response => {
-        successToast(response.message);
-        savePage(response.page);
+      .then(() => {
         setIsOpen(false);
+        window.location.reload();
       })
       .catch(err => {
         errorToast(err);

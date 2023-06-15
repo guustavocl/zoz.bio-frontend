@@ -10,7 +10,6 @@ import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
 import { z } from "zod";
 
 const loginFormSchema = z.object({
@@ -93,7 +92,6 @@ export default function LoginForm() {
           <LockClosedIcon className="h-5 w-5 text-violet-300 group-hover:text-violet-400" aria-hidden="true" />
         }
       />
-      <ToastContainer />
     </form>
   );
 }

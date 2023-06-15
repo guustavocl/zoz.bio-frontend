@@ -6,6 +6,5 @@ export const handleAxiosError = (err: AxiosError | unknown) => {
 };
 
 export const handleFetchError = (err: unknown | unknown) => {
-  // if (err instanceof AxiosError && err?.response?.data) throw err.response.data;
   throw err;
 };

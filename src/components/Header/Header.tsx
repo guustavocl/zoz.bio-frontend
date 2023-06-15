@@ -9,7 +9,6 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/AuthService";
 import { errorToast } from "@/utils/toaster";
-import { ToastContainer } from "react-toastify";
 
 const HeaderComponent = ({ user }: { user?: UserProps }) => {
   const router = useRouter();
@@ -114,7 +113,6 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
           </Popover.Panel>
         </Transition>
       </div>
-      <ToastContainer />
     </Popover>
   );
 };

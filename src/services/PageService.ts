@@ -1,6 +1,6 @@
 import { PagePropsSocialMedia } from "@/types/PageProps";
 import { CustomAxios } from "./CustomAxios";
-import { handleAxiosError, handleFetchError } from "@/utils/ErrorHandler";
+import { handleAxiosError } from "@/utils/ErrorHandler";
 import { RgbaColor } from "react-colorful";
 import { serverSideGet } from "./CustomFetch";
 
@@ -19,10 +19,19 @@ export const getPage = async (pagename: string) => {
 
 export const fetchBioPage = async (pagename: string) => {
   try {
-    const request = await serverSideGet(API_ENDPOINT, { pagename }, 60);
+    const request = await serverSideGet(API_ENDPOINT, { pagename }, 10);
     return await request?.json();
   } catch (err: Error | unknown) {
-    handleFetchError(err);
+    return null;
+  }
+};
+
+export const fetchEditPage = async (pagename: string) => {
+  try {
+    const request = await serverSideGet(API_ENDPOINT, { pagename }, 0);
+    return await request?.json();
+  } catch (err: Error | unknown) {
+    return null;
   }
 };
 

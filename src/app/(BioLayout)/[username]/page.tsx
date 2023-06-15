@@ -9,19 +9,15 @@ import "./page.css";
 let pageData: PageProps | undefined = undefined;
 
 export async function generateMetadata({ params }: { params: { username: string } }) {
-  try {
-    if (pageData) {
-      return {
-        // TODO - generate profile img, change title
-        title: `Username: ${params.username}`,
-        description: pageData.bio || ZOZ_META_DESCRIPTION,
-        // openGraph: {
-        //   images: ['/some-specific-page-image.jpg', ...previousImages],
-        // },
-      };
-    }
-  } catch (err) {
-    console.log(err);
+  if (pageData) {
+    return {
+      // TODO - generate profile img, change title
+      title: `zoz.bio - ${params.username}`,
+      description: pageData.bio || ZOZ_META_DESCRIPTION,
+      // openGraph: {
+      //   images: ['/some-specific-page-image.jpg', ...previousImages],
+      // },
+    };
   }
 
   return {

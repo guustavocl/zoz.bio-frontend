@@ -1,11 +1,11 @@
 import Tabs from "@/components/Tabs";
-import Tooltip from "@/components/Tooltip";
+import { Tooltip } from "@/components/Tooltip";
 import { PageProps } from "@/types/PageProps";
 import { UserProps } from "@/types/UserProps";
 import { useState } from "react";
 import AccountTabSettings from "./AccountTabSettings";
 import AccountTabSubscriptions from "./AccountTabSubscriptions";
-import DialogNewPage from "./Dialogs/DialogNewPage";
+import DialogNewPage from "../../(BioLayout)/edit/[username]/Dialogs/DialogNewPage";
 
 type AcountTabsProps = {
   account: UserProps | undefined;

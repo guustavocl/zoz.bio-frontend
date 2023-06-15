@@ -26,10 +26,10 @@ const BioInfos = ({ page }: { page: PageProps }) => {
         <CopyLabel
           label={`zoz.bio/${page?.pagename}`}
           textToCopy={`https://zoz.bio/${page?.pagename}`}
-          className="hsecondary"
+          className="hsecondary -mt-1"
         />
         <div
-          className="page-font-color mt-3 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
+          className="page-font-color mt-2 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
           style={{
             lineHeight: "0.9rem",
           }}

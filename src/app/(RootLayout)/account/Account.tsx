@@ -4,15 +4,17 @@ import { PageProps } from "@/types/PageProps";
 import { UserProps } from "@/types/UserProps";
 import { errorToast } from "@/utils/toaster";
 import { useQuery } from "@tanstack/react-query";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AccountTabs } from "./AccountTabs";
 import PageEdit from "./PageEdit";
-import { ToastContainer } from "react-toastify";
 
 const AccountComponent = () => {
   const [page, setPage] = useState<PageProps>();
   const [pages, setPages] = useState<PageProps[]>();
   const [account, setAccount] = useState<UserProps>();
+  const router = useRouter();
 
   useEffect(() => {
     const scrollContainer = document.getElementById("pages");
@@ -43,7 +45,14 @@ const AccountComponent = () => {
   });
 
   if (queryAccount.isError) {
-    errorToast(queryAccount.error as Error);
+    if (queryAccount.error === "Unauthorized") {
+      errorToast("Session expired, please sign in again");
+      deleteCookie("zoz_user");
+      router.refresh();
+      router.push("/login");
+    } else {
+      errorToast(queryAccount.error as Error);
+    }
   }
 
   if (queryAccount.data?.pages && !pages) {
@@ -61,7 +70,6 @@ const AccountComponent = () => {
       ) : (
         <AccountTabs account={account} pages={pages} addNewPage={addNewPage} setPage={setPage} />
       )}
-      <ToastContainer />
     </div>
   );
 };
