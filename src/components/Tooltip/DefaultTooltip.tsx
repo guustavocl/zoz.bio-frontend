@@ -1,11 +1,11 @@
-import { memo } from "react";
+import { ReactNode, memo } from "react";
 import Tippy from "@tippyjs/react";
 
 const TooltipComponent = ({
   children,
   content = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   content?: string;
   className?: string;
   backgroundColor?: string;

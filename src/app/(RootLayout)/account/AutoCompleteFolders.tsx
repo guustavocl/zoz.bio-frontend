@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
-// import { useToasts } from "../../context/ToastProvider/useToasts";
 import { AutoComplete } from "@/components/Inputs";
 import { LinkProps } from "@/types/LinkProps";
 import { MediaIconProps } from "@/types/MediaIconProps";
 import { getIcon } from "@/utils/IconsList";
 import { getFolders } from "@/services/LinkService";
+import { errorToast } from "@/utils/toaster";
 
 type AutoCompleteFoldersProps = {
   label: string;
@@ -14,7 +14,6 @@ type AutoCompleteFoldersProps = {
   iconAdornment?: JSX.Element;
   selected?: string;
   setSelected: (value: string) => void;
-  onBlur?: (e: React.ChangeEvent<any>) => void;
 };
 
 const AutoCompleteFolders = ({
@@ -24,17 +23,14 @@ const AutoCompleteFolders = ({
   selected = "",
   setSelected,
 }: AutoCompleteFoldersProps) => {
-  // const { errorToast } = useToasts();
-
   const queryPage = useQuery({
     queryKey: ["getFolders"],
     queryFn: () => getFolders(pagename),
   });
 
   if (queryPage.isError) {
-    const err = queryPage.error as Error;
-    // errorToast(error.message);
-    console.log(err);
+    const error = queryPage.error as Error;
+    errorToast(error);
   }
 
   const list = new Map<string, MediaIconProps>([]);
@@ -65,4 +61,4 @@ const AutoCompleteFolders = ({
   );
 };
 
-export default React.memo(AutoCompleteFolders);
+export default memo(AutoCompleteFolders);

@@ -26,8 +26,8 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
   };
 
   return (
-    <Popover className="z-20 flex w-full flex-row justify-center">
-      <div className="mx-8 my-4 flex w-full justify-between md:mx-14 lg:max-w-6xl">
+    <Popover className="z-20 container flex w-full flex-row">
+      <div className="my-4 flex w-full justify-between">
         <Link href="/" className="w-32 sm:h-16">
           <span className="sr-only">zoz.bio</span>
           <img
@@ -70,9 +70,9 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
         >
           <Popover.Panel
             focus
-            className="absolute inset-x-0 top-0 z-50 origin-top-right transform bg-primary p-0 transition md:hidden"
+            className="absolute container inset-x-0 top-0 z-50 origin-top-right transform bg-primary transition md:hidden"
           >
-            <div className="mx-8 my-4 rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
+            <div className="my-4 rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
               <div className="flex items-center justify-between">
                 <Link href="/" className="w-32 sm:h-16">
                   <span className="sr-only">zoz.bio</span>

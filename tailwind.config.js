@@ -14,6 +14,10 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      padding: '1rem',
+      center: true
+    },
     extend: {
       colors: {
         primary: {

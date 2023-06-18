@@ -4,7 +4,7 @@ import { RgbaColor } from "react-colorful";
 
 const BioBadges = ({ badges, color }: { badges?: string[]; color: RgbaColor }) => {
   return (
-    <div className="mt-3 flex flex-row flex-wrap justify-center gap-2">
+    <div className="py-2 flex flex-row flex-wrap justify-center gap-2">
       {badges &&
         badges.map((badge, idx) =>
           getBadge(badge) ? (

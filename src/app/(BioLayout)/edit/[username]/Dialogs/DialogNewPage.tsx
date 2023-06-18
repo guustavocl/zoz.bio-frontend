@@ -148,7 +148,7 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
         />
 
         <Button
-          id="create-page-btn"
+          id="submit-new-page"
           type="submit"
           label="Create page"
           disabled={isSubmitting || !isPagenameAvailable}

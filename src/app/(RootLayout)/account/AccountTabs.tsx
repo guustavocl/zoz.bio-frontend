@@ -2,20 +2,23 @@ import Tabs from "@/components/Tabs";
 import { Tooltip } from "@/components/Tooltip";
 import { PageProps } from "@/types/PageProps";
 import { UserProps } from "@/types/UserProps";
+import Image from "next/image";
 import { useState } from "react";
+import DialogNewPage from "../../(BioLayout)/edit/[username]/Dialogs/DialogNewPage";
 import AccountTabSettings from "./AccountTabSettings";
 import AccountTabSubscriptions from "./AccountTabSubscriptions";
-import DialogNewPage from "../../(BioLayout)/edit/[username]/Dialogs/DialogNewPage";
+import { defaultPage } from "@/utils/BioVariables";
+import { useRouter } from "next/navigation";
 
 type AcountTabsProps = {
   account: UserProps | undefined;
   pages: PageProps[] | undefined;
   addNewPage: (page: PageProps) => void;
-  setPage: (page: PageProps) => void;
 };
 
-export const AccountTabs = ({ account, pages, addNewPage, setPage }: AcountTabsProps) => {
+export const AccountTabs = ({ account, pages, addNewPage }: AcountTabsProps) => {
   const [dialogNewPageOpen, setDialogNewPageOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -28,7 +31,7 @@ export const AccountTabs = ({ account, pages, addNewPage, setPage }: AcountTabsP
         <div id="pages" className="mb-4 flex w-full flex-shrink-0 flex-row gap-2 overflow-y-hidden overflow-x-scroll">
           <div
             onClick={() => setDialogNewPageOpen(true)}
-            className="group mx-1 my-2 flex h-24 w-24 flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-full bg-secondary/30 ring-4 ring-violet-200/80 hover:bg-secondary/50 hover:ring-white"
+            className="group mx-1 my-2 flex h-20 w-20 md:h-24 md:w-24 flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-full bg-secondary/30 ring-4 ring-violet-200/80 hover:bg-secondary/50 hover:ring-white"
           >
             <span className="text-3xl font-semibold opacity-50 group-hover:hidden ">+</span>
             <span className="text-md hidden  font-semibold opacity-50 group-hover:flex ">New Page</span>
@@ -38,23 +41,17 @@ export const AccountTabs = ({ account, pages, addNewPage, setPage }: AcountTabsP
             ? pages.map((page: PageProps, idx: number) => (
                 <div key={idx} className="group flex flex-shrink-0 flex-col items-center justify-center">
                   <Tooltip content={page.pagename}>
-                    {page.pfpUrl ? (
-                      <img
-                        src={page.pfpUrl}
-                        className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
-                        onClick={() => setPage(page)}
-                        alt="pfp"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div
-                        className="mx-1 my-2 h-24 w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
-                        style={{ backgroundColor: "#85c5e5" }}
-                        onClick={() => setPage(page)}
-                      >
-                        {/* TODO - no avatar */}
-                      </div>
-                    )}
+                    <Image
+                      width={400}
+                      height={400}
+                      src={page.pfpUrl || defaultPage.pfpUrl}
+                      className="mx-1 my-2 h-20 w-20 md:h-24 md:w-24 cursor-pointer rounded-full object-cover opacity-60 ring-4 ring-secondary hover:opacity-90 hover:ring-secondary-lighter"
+                      onClick={() => {
+                        router.push(`/edit/${page.pagename}`);
+                      }}
+                      alt="pfp"
+                      loading="lazy"
+                    />
                   </Tooltip>
                 </div>
               ))
@@ -71,6 +68,7 @@ export const AccountTabs = ({ account, pages, addNewPage, setPage }: AcountTabsP
               },
               {
                 label: "⚠️ Subscriptions",
+                disabled: true,
                 component: <AccountTabSubscriptions account={account} />,
               },
               {

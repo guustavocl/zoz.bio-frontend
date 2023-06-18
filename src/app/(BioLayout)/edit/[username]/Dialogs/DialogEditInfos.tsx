@@ -43,7 +43,7 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
             setPagenameAvailable(response.isAvailable);
           })
           .catch(error => {
-            errorToast(error.message);
+            errorToast(error);
           });
     }, 300);
     return () => {
@@ -115,7 +115,7 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
           }
         />
         <Button
-          id="create-page-btn"
+          id="submit-page-infos"
           type="submit"
           className="mt-4"
           label="Save"

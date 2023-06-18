@@ -8,10 +8,9 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AccountTabs } from "./AccountTabs";
-import PageEdit from "./PageEdit";
+import { Link } from "@/components/Buttons";
 
 const AccountComponent = () => {
-  const [page, setPage] = useState<PageProps>();
   const [pages, setPages] = useState<PageProps[]>();
   const [account, setAccount] = useState<UserProps>();
   const router = useRouter();
@@ -24,21 +23,13 @@ const AccountComponent = () => {
         scrollContainer.scrollLeft += evt.deltaY;
       });
     }
-  }); //TODO fix this use effect later add dependency
+  }); //TODO - fix this use effect later add dependency
 
   const addNewPage = (page: PageProps) => {
     if (pages) setPages([...pages, page]);
   };
 
-  const savePage = (page: PageProps | undefined) => {
-    setPage(page);
-    setPages(
-      pages?.map(item => {
-        return item.pagename === page?.pagename ? page : item;
-      })
-    );
-  };
-
+  // TODO - query cache
   const queryAccount = useQuery({
     queryKey: ["getAccount"],
     queryFn: () => getAccount(),
@@ -65,11 +56,21 @@ const AccountComponent = () => {
 
   return (
     <div className="flex h-full w-full flex-grow flex-col items-center overflow-hidden">
-      {page ? (
-        <PageEdit page={page} savePage={savePage} />
-      ) : (
-        <AccountTabs account={account} pages={pages} addNewPage={addNewPage} setPage={setPage} />
+      {!account?.isEmailConfirmed && (
+        <div className="w-full bg-yellow-500 p-3 rounded text-black/80">
+          {/* TODO - send confirmation email and validade time to be 1min cooldown */}
+          <span>
+            We noticed that your email has not been confirmed yet. So your account is limited, and can be suspended
+            without further notice. Check your spam folder if you can&apos;t find it, or{" "}
+            <Link
+              href="/"
+              className="text-violet-900 font-semibold"
+              label="click here to resend the confirmation email!"
+            />
+          </span>
+        </div>
       )}
+      <AccountTabs account={account} pages={pages} addNewPage={addNewPage} />
     </div>
   );
 };

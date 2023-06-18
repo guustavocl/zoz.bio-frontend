@@ -1,23 +1,24 @@
+import BioCard from "@/app/(BioLayout)/[username]/BioCard";
+import BioLinks from "@/app/(BioLayout)/[username]/BioLinks";
+import BioNavigation from "@/app/(BioLayout)/[username]/BioNavigation";
+import BioStatusIcon from "@/app/(BioLayout)/[username]/BioStatusIcon";
 import { PageProps } from "@/types/PageProps";
 import { defaultPage } from "@/utils/BioVariables";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import React from "react";
-import BioNavigation from "@/app/(BioLayout)/[username]/BioNavigation";
-import BioCard from "@/app/(BioLayout)/[username]/BioCard";
-import BioStatusIcon from "@/app/(BioLayout)/[username]/BioStatusIcon";
-import BioBadges from "@/app/(BioLayout)/[username]/BioBadges";
-import BioSocials from "@/app/(BioLayout)/[username]/BioSocials";
-import BioLinks from "@/app/(BioLayout)/[username]/BioLinks";
 import EditAvatar from "./EditAvatar";
+import EditBadges from "./EditBadges";
 import EditInfos from "./EditInfos";
+import EditSocials from "./EditSocials";
+import EditBackground from "./EditBackground";
 
 export const EditComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
 
-  const pfpUrl = page?.pfpUrl || undefined;
+  const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
   const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
@@ -41,19 +42,20 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
             backgroundRepeat: "repeat",
             backgroundPosition: "center",
           }}
-          quality={100}
+          quality={90}
           alt={`${page.pagename} bio page background`}
         />
-        <div className="w-[90%] sm:w-[75%] md:w-full sm:max-w-3xl md:max-w-xl lg:max-w-2xl lg:w-[40rem] flex h-screen flex-col items-center overflow-y-auto">
+        <div className="container lg:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           {/* Page Primary Card */}
           <BioNavigation page={page} user={user} />
-          <BioCard className="mt-28 select-none" page={page}>
+          <EditBackground page={page} />
+          <BioCard className="select-none" page={page}>
             <BioStatusIcon status={pageStatus} />
             <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} color={secondaryColor} />
             <div className="flex w-full flex-col">
               <EditInfos page={page} />
-              <BioBadges badges={pageBadges} color={secondaryColor} />
-              <BioSocials socialMedias={pageSocialMedias} />
+              <EditBadges page={page} badges={pageBadges} color={secondaryColor} />
+              <EditSocials page={page} socialMedias={pageSocialMedias} />
             </div>
           </BioCard>
           <BioLinks page={page} />

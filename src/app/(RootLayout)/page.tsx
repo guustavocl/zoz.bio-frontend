@@ -10,7 +10,7 @@ import Users from "./home/Users";
 export default function HomePage() {
   return (
     <>
-      <Main className="py-24">
+      <Main className="my-24">
         <Home />
         <Users />
       </Main>

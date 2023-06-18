@@ -4,4 +4,6 @@ export interface UserProps {
   uname?: string;
   password?: string;
   token?: string;
+  isEmailConfirmed: boolean;
+  subscription: string;
 }

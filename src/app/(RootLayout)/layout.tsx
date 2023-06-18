@@ -1,22 +1,23 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer/Footer";
-import NextTopLoader from "nextjs-toploader";
-import { cookies } from "next/headers";
-import { Metadata } from "next";
-import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
 import "@/app/globals.css";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/perspective.css";
-import "tippy.js/themes/translucent.css";
 import "react-toastify/dist/ReactToastify.css";
+import "tippy.js/animations/perspective.css";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/translucent.css";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header";
 import ToastProvider from "@/providers/ToastProvider";
+import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
+import { Metadata } from "next";
+import { cookies } from "next/headers";
+import NextTopLoader from "nextjs-toploader";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,
   description: ZOZ_META_DESCRIPTION,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;

@@ -3,7 +3,7 @@ import Dialog from "@/components/Dialogs";
 import { saveBadges } from "@/services/PageService";
 import { PageProps } from "@/types/PageProps";
 import { badgeList } from "@/utils/IconsList";
-import { errorToast, successToast } from "@/utils/toaster";
+import { errorToast } from "@/utils/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
@@ -19,32 +19,19 @@ type DialogEditBadgesProps = {
   isOpen: boolean;
   page: PageProps;
   setIsOpen: (value: boolean) => void;
-  savePage: (value: PageProps | undefined) => void;
-  addNewPage?: (page: PageProps) => void;
 };
 
-const DialogEditBadges = ({ isOpen, page, setIsOpen, savePage }: DialogEditBadgesProps) => {
-  // useEffect(() => {
-  //   if (isOpen && page && page.badges) {
-  //     setbadges(Object.assign([], page.badges));
-  //   }
-  // }, [isOpen]);
-
+const DialogEditBadges = ({ isOpen, page, setIsOpen }: DialogEditBadgesProps) => {
   const submitPageBadges = (data: CreateBadgesFormData) => {
     if (data.badges.length <= 10) {
       saveBadges(data.badges, page.pagename)
-        .then(response => {
-          successToast(response.message);
-          savePage(response.page);
+        .then(() => {
           setIsOpen(false);
+          window.location.reload();
         })
         .catch(error => {
-          errorToast(error.message);
+          errorToast(error);
         });
-      // .finally(() => {
-      //   formik.resetForm();
-      //   formik.setSubmitting(false);
-      // });
     } else {
       errorToast("You can only show a maximum of 10 badges");
     }
@@ -87,7 +74,7 @@ const DialogEditBadges = ({ isOpen, page, setIsOpen, savePage }: DialogEditBadge
             </span>
           ))}
         </div>
-        <Button id="create-page-btn" type="submit" className="mt-4" label="Save" disabled={isSubmitting} />
+        <Button id="submit-page-badges" type="submit" className="mt-4" label="Save" disabled={isSubmitting} />
       </form>
     </Dialog>
   );

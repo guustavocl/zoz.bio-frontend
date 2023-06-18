@@ -49,6 +49,7 @@ export const socialIconsList = new Map<string, MediaIconProps>([
     "discord",
     {
       icon: "/icons/social/discord.png",
+      url: username => `https://discord.com/users/${username}`,
       label: "Discord",
     },
   ],

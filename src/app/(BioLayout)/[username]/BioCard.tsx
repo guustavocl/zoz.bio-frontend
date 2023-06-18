@@ -1,10 +1,10 @@
 import { PageProps } from "@/types/PageProps";
 import { defaultPage } from "@/utils/BioVariables";
 import { twMerge } from "tailwind-merge";
-import { memo } from "react";
+import { ReactNode, memo } from "react";
 
 type SectionCardProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   page?: PageProps;
   className?: string;
   center?: boolean;

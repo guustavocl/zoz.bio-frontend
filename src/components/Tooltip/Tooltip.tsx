@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { ReactNode, memo } from "react";
 import { twMerge } from "tailwind-merge";
 import Tippy from "@tippyjs/react/headless";
 
@@ -10,7 +10,7 @@ const TooltipComponent = ({
   textVariable,
   bgVariable,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   content?: string;
   className?: string;
   backgroundColor?: string;

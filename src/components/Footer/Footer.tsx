@@ -3,8 +3,8 @@ import { Link } from "@/components/Buttons";
 
 const FooterComponent = () => {
   return (
-    <footer className="relative bottom-0 flex w-full flex-row content-center items-center justify-center bg-primary-lighter p-2 text-gray-400 md:fixed md:whitespace-nowrap">
-      <div className="mx-8 my-2 flex w-full flex-col justify-between md:mx-14 md:flex-row lg:max-w-6xl">
+    <footer className="relative bottom-0 w-full bg-primary-lighter text-gray-400 md:fixed md:whitespace-nowrap">
+      <div className="container py-4 flex flex-col md:flex-row w-full justify-between">
         <span className="text-md select-none text-center">
           © 2023{" - "}
           <span>

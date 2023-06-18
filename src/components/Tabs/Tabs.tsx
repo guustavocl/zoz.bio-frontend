@@ -1,12 +1,12 @@
 import { Tab } from "@headlessui/react";
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type TabListProps = {
   id?: string;
   label: string;
   disabled?: boolean;
-  component: JSX.Element;
+  component: ReactNode;
 };
 
 type TabsProps = {
@@ -17,7 +17,7 @@ type TabsProps = {
 const Tabs = ({ id, tabList }: TabsProps) => {
   return (
     <Tab.Group>
-      <Tab.List className="flex w-full flex-row gap-2">
+      <Tab.List className="flex w-full flex-col sm:flex-row gap-2">
         {tabList.map(tab => (
           <Tab
             id={id}

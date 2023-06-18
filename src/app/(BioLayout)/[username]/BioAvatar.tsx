@@ -9,9 +9,9 @@ const BioAvatar = ({ pfpUrl = "", color }: { pfpUrl?: string; color: RgbaColor }
       <Image
         className="h-24 w-24 rounded-full border-[3px] object-cover hover:animate-pulse md:h-28 md:w-28 lg:h-32 lg:w-32"
         src={pfpUrl}
-        width={100}
-        height={100}
-        quality={100}
+        width={500}
+        height={500}
+        quality={90}
         alt="bio page avatar"
         style={{
           borderColor: `rgb(${color.r},${color.g},${color.b},${color.a})`,

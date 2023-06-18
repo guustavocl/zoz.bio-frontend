@@ -12,7 +12,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
   return (
     <DefaultTooltip content="Click to edit your infos">
       <div
-        className="flex flex-row cursor-pointer hover:ring-2 rounded-md hover:backdrop-contrast-150 hover:ring-white"
+        className="group flex flex-row cursor-pointer hover:ring-2 rounded-md hover:backdrop-contrast-150 hover:ring-white/80"
         onClick={() => {
           setDialogEditInfos(true);
         }}
@@ -46,7 +46,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             {page?.bio}
           </div>
         </div>
-        <PencilSquareIcon className="h-6 text-center" />
+        <PencilSquareIcon className="absolute right-3 h-6 text-center group-hover:right-1" />
       </div>
       <DialogEditInfos isOpen={dialogEditInfos} setIsOpen={setDialogEditInfos} page={page} />
     </DefaultTooltip>

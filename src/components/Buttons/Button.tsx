@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { ReactNode, memo } from "react";
 import { twMerge } from "tailwind-merge";
 
 type ButtonComponentProps = {
@@ -8,7 +8,7 @@ type ButtonComponentProps = {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   iconAdornment?: JSX.Element;
 };
 
@@ -30,7 +30,7 @@ const ButtonComponent = ({
       onClick={onClick}
       className={twMerge(
         "text-3x1 group relative flex w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
-        "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none",
+        "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none active:bg-secondary-darker/80 transition-colors duration-200",
         className
       )}
     >

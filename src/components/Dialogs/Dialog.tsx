@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import { Fragment } from "react";
 
 type DialogComponentProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   title?: string | JSX.Element;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;

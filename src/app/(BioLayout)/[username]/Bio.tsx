@@ -17,7 +17,7 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
 
-  const pfpUrl = page?.pfpUrl || undefined;
+  const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
   const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
@@ -41,10 +41,11 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
             backgroundRepeat: "repeat",
             backgroundPosition: "center",
           }}
-          quality={100}
+          quality={90}
           alt={`${page.pagename} bio page background`}
         />
-        <div className="w-[90%] sm:w-[75%] md:w-full sm:max-w-3xl md:max-w-xl lg:max-w-2xl lg:w-[40rem] flex h-screen flex-col items-center overflow-y-auto">
+        {/* <div className="w-[90%] sm:w-[75%] md:w-full sm:max-w-3xl md:max-w-xl lg:max-w-2xl lg:w-[40rem] flex h-screen flex-col items-center overflow-y-auto"> */}
+        <div className="container lg:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           {/* Page Primary Card */}
           <BioNavigation page={page} user={user} />
           <BioCard className="mt-28 select-none" page={page}>

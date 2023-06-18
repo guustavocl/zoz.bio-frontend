@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <section className="flex w-full flex-col md:flex-row">
+    <section className="flex w-full flex-col md:flex-row justify-center">
       <div className="text-center lg:text-left">
         <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
           Payments tool for software companies

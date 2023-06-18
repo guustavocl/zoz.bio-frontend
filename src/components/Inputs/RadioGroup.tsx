@@ -11,7 +11,7 @@ type RadioGroupComponentProps = {
   options: { value: string; component: JSX.Element; color?: string }[];
   iconAdornment?: JSX.Element;
   onChange: (value: string) => void;
-  onBlur?: (e: React.ChangeEvent<any>) => void;
+  onBlur?: (e: ChangeEvent<any>) => void;
 };
 //TODO melhorar isso
 const RadioGroupComponent = ({

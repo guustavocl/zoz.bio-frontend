@@ -1,5 +1,5 @@
-import { memo } from "react";
 import Link from "next/link";
+import { memo, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 const LinkComponent = ({
@@ -13,7 +13,7 @@ const LinkComponent = ({
   label?: string;
   onClick?: () => void;
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }) => {
   return (
     <Link
