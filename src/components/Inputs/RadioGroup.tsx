@@ -11,18 +11,9 @@ type RadioGroupComponentProps = {
   options: { value: string; component: JSX.Element; color?: string }[];
   iconAdornment?: JSX.Element;
   onChange: (value: string) => void;
-  onBlur?: (e: ChangeEvent<any>) => void;
 };
 //TODO melhorar isso
-const RadioGroupComponent = ({
-  id,
-  label,
-  disabled = false,
-  errors,
-  value,
-  options,
-  onChange,
-}: RadioGroupComponentProps) => {
+const RadioGroupComponent = ({ id, label, disabled, errors, value, options, onChange }: RadioGroupComponentProps) => {
   return (
     <div className="w-full max-w-md select-none">
       <label
