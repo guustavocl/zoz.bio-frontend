@@ -39,11 +39,9 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
           quality={90}
           alt={`${page.pagename} bio page background`}
         />
-        {/* <div className="w-[90%] sm:w-[75%] md:w-full sm:max-w-3xl md:max-w-xl lg:max-w-2xl lg:w-[40rem] flex h-screen flex-col items-center overflow-y-auto"> */}
         <div className="container lg:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
-          {/* Page Primary Card */}
           <BioNavigation page={page} user={user} />
-          <BioCard className="mt-28 select-none" page={page}>
+          <BioCard className="mt-28 select-none flex flex-col md:flex-row" page={page}>
             <BioStatusIcon status={pageStatus} />
             <BioAvatar pfpUrl={pfpUrl} page={page} />
             <div className="flex w-full flex-col">

@@ -19,7 +19,7 @@ const BioCard = ({ children, page, className, center = true }: SectionCardProps)
       className={twMerge(
         cardBlur,
         cardHueRotate,
-        "relative flex flex-col w-full",
+        "relative flex flex-col w-full p-0 py-3",
         "mb-2 rounded-xl px-2 shadow-sm shadow-black sm:px-3",
         center ? "justify-center" : "justify-start",
         className
@@ -28,7 +28,7 @@ const BioCard = ({ children, page, className, center = true }: SectionCardProps)
         backgroundColor: `rgb(${primaryColor.r},${primaryColor.g},${primaryColor.b},${primaryColor.a})`,
       }}
     >
-      <div className="flex flex-col rounded-md p-0 py-3 md:flex-row">{children}</div>
+      {children}
     </div>
   );
 };
