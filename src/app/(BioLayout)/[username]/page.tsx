@@ -4,7 +4,6 @@ import { PageProps } from "@/types/PageProps";
 import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
 import { BioComponent } from "./Bio";
 import { NotFound } from "./NotFound";
-import "./page.css";
 
 let pageData: PageProps | undefined = undefined;
 

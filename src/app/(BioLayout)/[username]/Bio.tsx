@@ -20,12 +20,7 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
   const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
-  const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
-  // const primaryColor = page?.primaryColor || defaultPage.primaryColor;
-  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
-  // const fontColor = page?.fontColor || defaultPage.fontColor;
 
   return (
     <>
@@ -50,11 +45,11 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
           <BioNavigation page={page} user={user} />
           <BioCard className="mt-28 select-none" page={page}>
             <BioStatusIcon status={pageStatus} />
-            <BioAvatar pfpUrl={pfpUrl} color={secondaryColor} />
+            <BioAvatar pfpUrl={pfpUrl} page={page} />
             <div className="flex w-full flex-col">
               <BioInfos page={page} />
-              <BioBadges badges={pageBadges} color={secondaryColor} />
-              <BioSocials socialMedias={pageSocialMedias} />
+              <BioBadges page={page} />
+              <BioSocials page={page} />
             </div>
           </BioCard>
           <BioLinks page={page} />

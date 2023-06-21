@@ -1,12 +1,14 @@
 "use client";
 import BioIcon from "@/app/(BioLayout)/[username]/BioIcon";
 import { DefaultTooltip } from "@/components/Tooltip";
-import { PageProps, PagePropsSocialMedia } from "@/types/PageProps";
+import { PageProps } from "@/types/PageProps";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { memo, useState } from "react";
 import DialogEditSocials from "./Dialogs/DialogEditSocials";
+import { defaultPage } from "@/utils/BioVariables";
 
-const EditSocials = ({ page, socialMedias }: { page: PageProps; socialMedias?: PagePropsSocialMedia[] }) => {
+const EditSocials = ({ page }: { page: PageProps }) => {
+  const socialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
   const [dialogEditSocials, setDialogEditSocials] = useState(false);
 
   return (

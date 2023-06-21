@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_EXPRESS_API_URL;
+/* Using fetch cause Next.js 13 server side cache options don't work with axios yet */
+export const API_URL = process.env.NEXT_PUBLIC_EXPRESS_API_URL;
 
 const appendParams = (params: Record<string, string | number | boolean>) => {
   return (
@@ -9,10 +10,11 @@ const appendParams = (params: Record<string, string | number | boolean>) => {
   );
 };
 
-export const serverSideGet = (endpoint: string, params = {}, revalidate = 10) => {
+export const serverSideGet = (endpoint: string, params = {}, options = {}, cookies = "") => {
   return fetch(`${API_URL}/${endpoint}${params ? appendParams(params) : ""}`, {
-    next: {
-      revalidate: revalidate,
+    next: options,
+    headers: {
+      Cookie: cookies,
     },
   });
 };

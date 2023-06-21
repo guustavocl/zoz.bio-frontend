@@ -1,9 +1,12 @@
-import { memo } from "react";
-import { RgbaColor } from "react-colorful";
+import { PageProps } from "@/types/PageProps";
+import { defaultPage } from "@/utils/BioVariables";
 import Image from "next/image";
+import { memo } from "react";
 
 //TODO - verify avatar ring, default avatar
-const BioAvatar = ({ pfpUrl = "", color }: { pfpUrl?: string; color: RgbaColor }) => {
+const BioAvatar = ({ pfpUrl = "", page }: { pfpUrl?: string; page: PageProps }) => {
+  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
+
   return (
     <div className="flex min-w-fit flex-shrink-0 flex-col items-center justify-center p-2">
       <Image
@@ -14,7 +17,7 @@ const BioAvatar = ({ pfpUrl = "", color }: { pfpUrl?: string; color: RgbaColor }
         quality={90}
         alt="bio page avatar"
         style={{
-          borderColor: `rgb(${color.r},${color.g},${color.b},${color.a})`,
+          borderColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
         }}
       />
     </div>

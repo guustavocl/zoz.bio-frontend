@@ -1,155 +1,148 @@
-// import { PageProps } from "@/types/PageProps";
+import { Button } from "@/components/Buttons";
+import Dialog from "@/components/Dialogs/Dialog";
+import { Input, RadioGroup } from "@/components/Inputs";
+import { createLink } from "@/services/LinkService";
+import { LinkProps } from "@/types/LinkProps";
+import { PageProps } from "@/types/PageProps";
+import { errorToast } from "@/utils/toaster";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { memo } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-// type DialogNewLinkProps = {
-//   isOpen: boolean;
-//   page: PageProps;
-//   setIsOpen: (value: boolean) => void;
-//   savePage: (value: PageProps | undefined) => void;
-//   addNewPage?: (page: PageProps) => void;
-// };
+type DialogNewLinkProps = {
+  isOpen: boolean;
+  page: PageProps;
+  setIsOpen: (value: boolean) => void;
+};
 
-// const DialogNewLink = ({ isOpen, page, setIsOpen, savePage }: DialogNewLinkProps) => {
-//   // const formik = useFormik({
-//   //   initialValues: {
-//   //     url: "",
-//   //     label: "",
-//   //     icon: "",
-//   //     embedded: "none",
-//   //     isFolder: false,
-//   //     folderOwner: "",
-//   //   } as LinkProps,
-//   //   validationSchema: yup.object({
-//   //     label: yup.string().required("Label is a required field"),
-//   //   }),
-//   //   onSubmit: values => {
-//   //     linkService
-//   //       .createLink(values, page.pagename)
-//   //       .then(response => {
-//   //         successToast(response.message);
-//   //         savePage(response.page);
-//   //         setIsOpen(false);
-//   //         formik.resetForm();
-//   //       })
-//   //       .catch(error => {
-//   //         errorToast(error.message);
-//   //         if (error.errors) formik.setErrors(error.errors);
-//   //       })
-//   //       .finally(() => formik.setSubmitting(false));
-//   //   },
-//   // });
+const createLinkFormSchema = z.object({
+  url: z.string().nonempty("Url is required"),
+  label: z.string().nonempty("Link label is required"),
+  icon: z.string().nonempty(),
+  embedded: z.string().nonempty(),
+  isFolder: z.boolean(),
+  folderOwner: z.string(),
+});
 
-//   return (
-//     <div>test</div>
-//     // <ZozDialog title="Inform your Link infos" isOpen={isOpen} setIsOpen={setIsOpen}>
-//     //   <form onSubmit={formik.handleSubmit} className="flex w-full flex-col items-center">
-//     //     <div className="mt-4 w-full">
-//     //       <ZozRadioGroup
-//     //         id="folder"
-//     //         label="Type"
-//     //         value={formik.values.isFolder ? "folder" : "link"}
-//     //         options={[
-//     //           {
-//     //             value: "link",
-//     //             component: <span>Link</span>,
-//     //           },
-//     //           {
-//     //             value: "folder",
-//     //             component: <span>Folder</span>,
-//     //           },
-//     //         ]}
-//     //         onChange={(value: string) => {
-//     //           formik.setFieldValue("isFolder", value === "folder");
-//     //           formik.setFieldValue("embedded", "none");
-//     //           formik.setFieldValue("url", "");
-//     //           formik.setFieldValue("folderOwner", "");
-//     //         }}
-//     //       />
-//     //     </div>
-//     //     <div className="mt-4 w-full">
-//     //       <ZozRadioGroup
-//     //         id="embedded"
-//     //         label="Embedded"
-//     //         value={formik.values.embedded}
-//     //         disabled={formik.values.isFolder}
-//     //         options={[
-//     //           {
-//     //             value: "none",
-//     //             component: <span>None</span>,
-//     //           },
-//     //           {
-//     //             value: "spotify",
-//     //             component: <span>Spotify</span>,
-//     //             color: "#1ed760",
-//     //           },
-//     //           {
-//     //             value: "youtube",
-//     //             component: <span>Youtube</span>,
-//     //             color: "#fe0000",
-//     //           },
-//     //           {
-//     //             value: "soundcloud",
-//     //             component: <span>Soundcloud</span>,
-//     //             color: "#ff5500",
-//     //           },
-//     //         ]}
-//     //         onChange={(value: string) => {
-//     //           formik.setFieldValue("embedded", value);
-//     //         }}
-//     //       />
-//     //     </div>
-//     //     <div className="mt-4 w-full">
-//     //       <AutoCompleteFolders
-//     //         label="Inside Folder"
-//     //         pagename={page.pagename}
-//     //         selected={formik.values.folderOwner}
-//     //         disabled={formik.values.isFolder}
-//     //         setSelected={value => {
-//     //           formik.setFieldValue("folderOwner", value);
-//     //         }}
-//     //       />
-//     //     </div>
-//     //     <div className="mt-4 w-full">
-//     //       <ZozInput
-//     //         id="label"
-//     //         name="label"
-//     //         type="text"
-//     //         label="Label"
-//     //         minSize={1}
-//     //         size={30}
-//     //         value={formik.values.label}
-//     //         onChange={formik.handleChange}
-//     //         onBlur={formik.handleBlur}
-//     //         errors={formik.touched.label && formik.errors.label ? formik.errors.label : undefined}
-//     //       />
-//     //     </div>
-//     //     <div className="mt-4 w-full">
-//     //       <ZozInput
-//     //         id="url"
-//     //         name="url"
-//     //         type="text"
-//     //         label="Url"
-//     //         minSize={1}
-//     //         size={150}
-//     //         value={formik.values.url}
-//     //         onChange={formik.handleChange}
-//     //         onBlur={formik.handleBlur}
-//     //         disabled={formik.values.isFolder}
-//     //       />
-//     //     </div>
+const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
+  const {
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LinkProps>({
+    resolver: zodResolver(createLinkFormSchema),
+    defaultValues: { url: "", label: "", icon: "", embedded: "none", isFolder: false, folderOwner: "" },
+  });
 
-//     //     <button
-//     //       type="submit"
-//     //       className={
-//     //         "group relative mt-20 flex w-full justify-center rounded border border-transparent " +
-//     //         "text-3x1 px-4 py-2 font-medium hover:font-semibold " +
-//     //         "bg-violet-700 text-white hover:bg-violet-900 "
-//     //       }
-//     //     >
-//     //       {formik.values.isFolder ? "Add Folder" : "Add Link"}
-//     //     </button>
-//     //   </form>
-//     // </ZozDialog>
-//   );
-// };
+  const submitLinkInfos = (data: LinkProps) => {
+    createLink(data, page.pagename)
+      .then(() => {
+        setIsOpen(false);
+        window.location.reload();
+      })
+      .catch(error => {
+        errorToast(error);
+      });
+  };
 
-// export default DialogNewLink;
+  const isFolder = watch("isFolder");
+  return (
+    <Dialog title="Inform your Link infos" isOpen={isOpen} setIsOpen={setIsOpen}>
+      <form onSubmit={handleSubmit(submitLinkInfos)} className="flex flex-col gap-1">
+        <RadioGroup
+          id="folder"
+          label="Type"
+          value={isFolder ? "folder" : "link"}
+          options={[
+            {
+              value: "link",
+              component: <span>Link</span>,
+            },
+            {
+              value: "folder",
+              component: <span>Folder</span>,
+            },
+          ]}
+          onChange={(value: string) => {
+            setValue("isFolder", value === "folder");
+            setValue("embedded", "none");
+            setValue("url", "");
+            setValue("folderOwner", "");
+          }}
+        />
+        <RadioGroup
+          id="embedded"
+          label="Embedded"
+          value={watch("embedded")}
+          disabled={isFolder}
+          options={[
+            {
+              value: "none",
+              component: <span>None</span>,
+            },
+            {
+              value: "spotify",
+              component: <span>Spotify</span>,
+              color: "#1ed760",
+            },
+            {
+              value: "youtube",
+              component: <span>Youtube</span>,
+              color: "#fe0000",
+            },
+            {
+              value: "soundcloud",
+              component: <span>Soundcloud</span>,
+              color: "#ff5500",
+            },
+          ]}
+          onChange={(value: string) => {
+            setValue("embedded", value);
+          }}
+        />
+        {/* <AutoCompleteFolders
+            label="Inside Folder"
+            pagename={page.pagename}
+            selected={formik.values.folderOwner}
+            disabled={formik.values.isFolder}
+            setSelected={value => {
+              formik.setFieldValue("folderOwner", value);
+            }}
+          /> */}
+        <Input
+          id="label"
+          type="text"
+          label="Tittle"
+          minSize={1}
+          size={30}
+          watch={watch("label")}
+          register={register("label")}
+          errorMessage={errors.label?.message}
+        />
+        <Input
+          id="url"
+          type="text"
+          label="Url"
+          minSize={1}
+          size={150}
+          disabled={isFolder}
+          watch={watch("url")}
+          register={register("url")}
+          errorMessage={errors.url?.message}
+        />
+        <Button
+          id="submit-page-infos"
+          type="submit"
+          className="mt-4"
+          label={watch("isFolder") ? "Add Folder" : "Add Link"}
+          disabled={isSubmitting}
+        />
+      </form>
+    </Dialog>
+  );
+};
+
+export default memo(DialogNewLink);

@@ -19,16 +19,16 @@ export const getPage = async (pagename: string) => {
 
 export const fetchBioPage = async (pagename: string) => {
   try {
-    const request = await serverSideGet(API_ENDPOINT, { pagename }, 10);
+    const request = await serverSideGet(API_ENDPOINT, { pagename }, { revalidate: 10 });
     return await request?.json();
   } catch (err: Error | unknown) {
     return null;
   }
 };
 
-export const fetchEditPage = async (pagename: string) => {
+export const fetchEditPage = async (pagename: string, cookies: string) => {
   try {
-    const request = await serverSideGet(API_ENDPOINT, { pagename }, 0);
+    const request = await serverSideGet(`${API_ENDPOINT}/edit`, { pagename }, { revalidate: 0 }, cookies);
     return await request?.json();
   } catch (err: Error | unknown) {
     return null;

@@ -1,5 +1,4 @@
 import BioCard from "@/app/(BioLayout)/[username]/BioCard";
-import BioLinks from "@/app/(BioLayout)/[username]/BioLinks";
 import BioNavigation from "@/app/(BioLayout)/[username]/BioNavigation";
 import BioStatusIcon from "@/app/(BioLayout)/[username]/BioStatusIcon";
 import { PageProps } from "@/types/PageProps";
@@ -12,6 +11,7 @@ import EditBadges from "./EditBadges";
 import EditInfos from "./EditInfos";
 import EditSocials from "./EditSocials";
 import EditBackground from "./EditBackground";
+import EditLinks from "./EditLinks";
 
 export const EditComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
@@ -21,11 +21,9 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
   const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageSocialMedias = page?.socialMedias?.length > 0 ? page.socialMedias : defaultPage.pageSocialMedias;
-  const pageBadges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
   const pageStatus = page?.status || defaultPage.pageStatus;
   // const primaryColor = page?.primaryColor || defaultPage.primaryColor;
-  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
+  // const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   // const fontColor = page?.fontColor || defaultPage.fontColor;
 
   return (
@@ -51,14 +49,14 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
           <EditBackground page={page} />
           <BioCard className="select-none" page={page}>
             <BioStatusIcon status={pageStatus} />
-            <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} color={secondaryColor} />
+            <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} page={page} />
             <div className="flex w-full flex-col">
               <EditInfos page={page} />
-              <EditBadges page={page} badges={pageBadges} color={secondaryColor} />
-              <EditSocials page={page} socialMedias={pageSocialMedias} />
+              <EditBadges page={page} />
+              <EditSocials page={page} />
             </div>
           </BioCard>
-          <BioLinks page={page} />
+          <EditLinks page={page} />
         </div>
       </div>
     </>

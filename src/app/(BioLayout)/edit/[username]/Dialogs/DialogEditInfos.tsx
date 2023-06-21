@@ -88,15 +88,6 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
           errorMessage={errors.uname?.message}
         />
         <Input
-          id="bio"
-          type="textarea"
-          label="Bio"
-          size={200}
-          watch={watch("bio")}
-          register={register("bio")}
-          errorMessage={errors.bio?.message}
-        />
-        <Input
           id="pagename"
           type="text"
           label="Page Name"
@@ -113,6 +104,15 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
               <XMarkIcon className="w-6 text-red-600" />
             )
           }
+        />
+        <Input
+          id="bio"
+          type="textarea"
+          label="Bio"
+          size={200}
+          watch={watch("bio")}
+          register={register("bio")}
+          errorMessage={errors.bio?.message}
         />
         <Button
           id="submit-page-infos"

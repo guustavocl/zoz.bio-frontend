@@ -1,22 +1,13 @@
 "use client";
 import { PageProps } from "@/types/PageProps";
-import { defaultPage, setCssVariables } from "@/utils/BioVariables";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { HomeIcon, Cog6ToothIcon, ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { Link } from "@/components/Buttons";
 import { UserProps } from "@/types/UserProps";
 
 const BioNavigation = ({ page, user }: { page: PageProps; user: UserProps }) => {
-  const primaryColor = page?.primaryColor || defaultPage.primaryColor;
-  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
-  const fontColor = page?.fontColor || defaultPage.fontColor;
-
-  useEffect(() => {
-    setCssVariables(primaryColor, secondaryColor, fontColor);
-  }, []);
-
   //TODO - make a better visual here, make report dialog
-  if (user)
+  if (page && user)
     return (
       <div className="absolute right-0 m-2 gap-1 flex flex-col">
         <Link href="/account" className="group rounded-xl text-violet-200 bg-primary/70 px-2">

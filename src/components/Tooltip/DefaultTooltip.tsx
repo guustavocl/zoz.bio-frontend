@@ -4,16 +4,14 @@ import Tippy from "@tippyjs/react";
 const TooltipComponent = ({
   children,
   content = "",
+  className = "",
 }: {
   children: ReactNode;
   content?: string;
   className?: string;
-  backgroundColor?: string;
-  textVariable?: string;
-  bgVariable?: string;
 }) => {
   return (
-    <Tippy content={content}>
+    <Tippy content={content} className={className}>
       <span>{children}</span>
     </Tippy>
   );

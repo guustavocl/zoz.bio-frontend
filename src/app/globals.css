@@ -43,3 +43,8 @@ a:focus-visible {
   outline: 0ch;
   --tw-ring-offset-width: 0px !important;
 }
+
+.icon-shadow {
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+}

@@ -1,19 +1,22 @@
 "use client";
-import BioCard from "./BioCard";
 import { memo, useState } from "react";
 import { getIcon } from "@/utils/IconsList";
 import { PageProps } from "@/types/PageProps";
 import { LinkProps } from "@/types/LinkProps";
-import { ArrowUpRightIcon, ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
+import { ArrowUpRightIcon, ArrowRightIcon, ArrowLeftIcon, PlusIcon, Cog6ToothIcon } from "@heroicons/react/20/solid";
+import BioCard from "@/app/(BioLayout)//[username]/BioCard";
+import ButtonCard from "./ButtonCard";
 import { defaultPage } from "@/utils/BioVariables";
+import DialogNewLink from "./Dialogs/DialogNewLink";
 
-type BioLinksProps = {
+type EditLinksProps = {
   page: PageProps;
 };
 
-const BioLinks = ({ page }: BioLinksProps) => {
+const EditLinks = ({ page }: EditLinksProps) => {
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const [folderOwner, setFolderOwner] = useState<LinkProps | null>();
+  const [dialogNewLink, setDialogNewLink] = useState(false);
 
   const pageLinks = page?.pageLinks
     ? folderOwner
@@ -35,6 +38,22 @@ const BioLinks = ({ page }: BioLinksProps) => {
 
   return (
     <>
+      <div className="flex flex-row gap-2">
+        <ButtonCard
+          label="New Link"
+          page={page}
+          onClick={() => setDialogNewLink(true)}
+          iconAdornment={<PlusIcon className="w-7 mr-2" />}
+        />
+        {page.subscription !== "none" && (
+          <ButtonCard
+            label="Config"
+            page={page}
+            onClick={() => console.log("click")}
+            iconAdornment={<Cog6ToothIcon className="w-7 mr-2" />}
+          />
+        )}
+      </div>
       {folderOwner ? (
         <BioCard page={page}>
           <div
@@ -171,8 +190,9 @@ const BioLinks = ({ page }: BioLinksProps) => {
           </div>
         )
       )}
+      <DialogNewLink isOpen={dialogNewLink} setIsOpen={setDialogNewLink} page={page} />
     </>
   );
 };
 
-export default memo(BioLinks);
+export default memo(EditLinks);

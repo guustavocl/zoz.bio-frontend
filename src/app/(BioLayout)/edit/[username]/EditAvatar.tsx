@@ -1,13 +1,16 @@
 "use client";
 import { memo } from "react";
-import { RgbaColor } from "react-colorful";
 import Image from "next/image";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import { uploadAvatar } from "@/services/PageService";
 import { errorToast } from "@/utils/toaster";
+import { PageProps } from "@/types/PageProps";
+import { defaultPage } from "@/utils/BioVariables";
 
 //TODO - verify avatar ring, default avatar
-const EditAvatar = ({ pageName, pfpUrl = "", color }: { pageName: string; pfpUrl?: string; color: RgbaColor }) => {
+const EditAvatar = ({ pageName, pfpUrl = "", page }: { pageName: string; pfpUrl?: string; page: PageProps }) => {
+  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
+
   const changeAvatar = (file: File) => {
     uploadAvatar(file, pageName)
       .then(() => {
@@ -47,7 +50,7 @@ const EditAvatar = ({ pageName, pfpUrl = "", color }: { pageName: string; pfpUrl
           quality={90}
           alt="bio page avatar"
           style={{
-            borderColor: `rgb(${color.r},${color.g},${color.b},${color.a})`,
+            borderColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
           }}
         />
       </label>

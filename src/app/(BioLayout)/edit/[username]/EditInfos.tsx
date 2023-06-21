@@ -5,8 +5,10 @@ import { getAdornmentIcon } from "@/utils/IconsList";
 import DialogEditInfos from "./Dialogs/DialogEditInfos";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { DefaultTooltip } from "@/components/Tooltip";
+import { defaultPage } from "@/utils/BioVariables";
 
 const EditInfos = ({ page }: { page: PageProps }) => {
+  const fontColor = page?.fontColor || defaultPage.fontColor;
   const [dialogEditInfos, setDialogEditInfos] = useState(false);
 
   return (
@@ -19,9 +21,10 @@ const EditInfos = ({ page }: { page: PageProps }) => {
       >
         <div className="flex w-full flex-col items-center">
           <h2
-            className="page-font-color flex flex-row items-center text-center text-2xl font-bold leading-6 tracking-wide"
+            className="flex flex-row items-center text-center text-2xl font-bold leading-6 tracking-wide"
             style={{
               textShadow: "2px 2px #00000090",
+              color: fontColor,
             }}
           >
             {page?.uname || "No name~"}
@@ -34,13 +37,20 @@ const EditInfos = ({ page }: { page: PageProps }) => {
               />
             ) : null}
           </h2>
-          <span className={"hsecondary cursor-pointer text-sm -mt-1 font-semibold tracking-wide"}>
+          <span
+            className={"cursor-pointer text-sm -mt-1 font-semibold tracking-wide"}
+            style={{
+              color: fontColor,
+              opacity: 0.5,
+            }}
+          >
             zoz.bio/{page?.pagename}
           </span>
           <div
-            className="page-font-color mt-2 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
+            className="mt-2 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
             style={{
               lineHeight: "0.9rem",
+              color: fontColor,
             }}
           >
             {page?.bio}

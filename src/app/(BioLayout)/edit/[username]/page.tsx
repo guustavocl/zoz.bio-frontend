@@ -2,10 +2,11 @@ import { QueryClientProviderComponent } from "@/providers/QueryClientProvider";
 import { fetchEditPage } from "@/services/PageService";
 import { PageProps } from "@/types/PageProps";
 import { ZOZ_META_DESCRIPTION, ZOZ_META_TITLE } from "@/utils/Constants";
-// import "./page.css";
-import { EditComponent } from "./Edit";
+import { cookies } from "next/headers";
 import { NotFound } from "../../[username]/NotFound";
+import { EditComponent } from "./Edit";
 
+// import "./page.css";
 let pageData: PageProps | undefined = undefined;
 
 export async function generateMetadata({ params }: { params: { username: string } }) {
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: { username: string 
 }
 
 export default async function BioPage({ params }: { params: { username: string } }) {
-  const res = await fetchEditPage(params.username);
+  const res = await fetchEditPage(params.username, cookies().toString());
   pageData = res?.page;
 
   return (
