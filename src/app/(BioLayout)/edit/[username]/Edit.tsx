@@ -43,11 +43,11 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
           quality={90}
           alt={`${page.pagename} bio page background`}
         />
-        <div className="container lg:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
+        <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           {/* Page Primary Card */}
           <BioNavigation page={page} user={user} />
           <EditBackground page={page} />
-          <BioCard className="select-none" page={page}>
+          <BioCard className="select-none flex flex-row" page={page}>
             <BioStatusIcon status={pageStatus} />
             <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} page={page} />
             <div className="flex w-full flex-col">

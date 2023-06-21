@@ -48,3 +48,12 @@ a:focus-visible {
   -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
 }
+
+.arrow-card-start {
+  -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+}
+.arrow-card-end {
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);
+  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 8% 50%, 0% 0%);
+}

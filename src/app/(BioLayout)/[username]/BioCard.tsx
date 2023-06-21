@@ -20,7 +20,7 @@ const BioCard = ({ children, page, className, center = true }: SectionCardProps)
         cardBlur,
         cardHueRotate,
         "relative flex flex-col w-full p-0 py-3",
-        "mb-2 rounded-xl px-2 shadow-sm shadow-black sm:px-3",
+        "mb-2 px-2 rounded-xl shadow-sm shadow-black sm:px-3",
         center ? "justify-center" : "justify-start",
         className
       )}
