@@ -29,7 +29,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 RUN chown -R nextjs:nodejs /app/.next
 USER nextjs
-EXPOSE 3000
+EXPOSE 3001
 CMD ["yarn", "start"]
 
 # create image with this command: sudo docker build . -t zoz.bio-image
