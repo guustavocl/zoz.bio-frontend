@@ -4,7 +4,6 @@ import { getBadge } from "@/utils/IconsList";
 import { memo } from "react";
 
 const BioBadges = ({ page }: { page: PageProps }) => {
-  console.log(page?.badges);
   const badges = page.badges || defaultPage.pageBadges;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;

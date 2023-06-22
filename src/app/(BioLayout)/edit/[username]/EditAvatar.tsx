@@ -28,13 +28,13 @@ const EditAvatar = ({ pageName, page }: { pageName: string; page: PageProps }) =
       className={twMerge(
         cardBlur,
         cardHueRotate,
-        "absolute z-20 top-0 w-2/6 flex flex-col h-full",
-        "arrow-card-avatar rounded-l-xl backdrop-saturate-150"
+        "sm:absolute z-20 -mb-3 sm:mb-0 sm:top-0 sm:w-2/6 sm:flex flex-col h-40 sm:h-full",
+        "arrow-card-avatar rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl backdrop-saturate-150"
       )}
     >
       <label
         htmlFor="avatar-input"
-        className="group flex cursor-pointer flex-col items-center justify-center rounded-full"
+        className="group flex cursor-pointer flex-col items-center justify-center rounded-full h-full"
       >
         <input
           id="avatar-input"
@@ -48,10 +48,16 @@ const EditAvatar = ({ pageName, page }: { pageName: string; page: PageProps }) =
             }
           }}
         />
-        <div className="absolute top-[25%] z-10 flex opacity-70 group-hover:flex md:hidden">
-          <ArrowUpTrayIcon className="w-16 md:w-20" />
+        <div className="absolute top-[25%] z-30 flex opacity-70 group-hover:flex md:hidden">
+          <ArrowUpTrayIcon className="w-20" />
         </div>
-        <Image className="object-cover rounded-l-xl opacity-80" src={pfpUrl} fill quality={90} alt="bio page avatar" />
+        <Image
+          className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-50 sm:opacity-80"
+          src={pfpUrl}
+          fill
+          quality={90}
+          alt="bio page avatar"
+        />
       </label>
     </div>
   );

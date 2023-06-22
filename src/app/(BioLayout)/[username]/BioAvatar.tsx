@@ -19,11 +19,17 @@ const BioAvatar = ({ page }: SectionCardProps) => {
       className={twMerge(
         cardBlur,
         cardHueRotate,
-        "absolute z-20 top-0 w-2/6 flex flex-col h-full",
-        "arrow-card-avatar rounded-l-xl backdrop-saturate-150"
+        "sm:absolute z-20 -mb-3 sm:mb-0 sm:top-0 w-full sm:w-2/6 sm:flex flex-col h-40 sm:h-full",
+        "arrow-card-avatar rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl backdrop-saturate-150"
       )}
     >
-      <Image className="object-cover rounded-l-xl opacity-80" src={pfpUrl} fill quality={90} alt="bio page avatar" />
+      <Image
+        className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-80"
+        src={pfpUrl}
+        fill
+        quality={90}
+        alt="bio page avatar"
+      />
     </div>
   );
 };

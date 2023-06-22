@@ -39,10 +39,10 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
         <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <BioNavigation page={page} user={user} editPage />
           <EditBackground page={page} />
-          <div className="relative select-none w-full flex flex-row gap-2 mb-2 min-h-[200px]">
+          <div className="relative select-none w-full flex flex-col sm:flex-row sm:gap-2 mb-2 sm:min-h-[200px]">
             <EditAvatar pageName={page.pagename} page={page} />
             <BioCard page={page} className="w-full z-10 mb-0">
-              <div className="flex w-full flex-col pl-[31%] md:pl-[30%]">
+              <div className="flex w-full flex-col pt-3 sm:pt-0 sm:pl-[30%]">
                 <EditInfos page={page} />
                 <EditBadges page={page} />
                 <EditSocials page={page} />

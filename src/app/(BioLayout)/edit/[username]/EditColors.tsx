@@ -67,7 +67,6 @@ const ColorCircle = ({
     let handleClickOutside: any;
     if (showPickers) {
       handleClickOutside = (event: any) => {
-        console.log("click outside");
         if (pickerRef && pickerRef.current && !pickerRef.current.contains(event.target)) {
           setColor(originalColor);
           setShowPickers({ primary: false, secondary: false, font: false });
@@ -145,7 +144,7 @@ const EditColors = ({ page }: { page: PageProps }) => {
   };
 
   return (
-    <div className="relative flex select-none flex-row gap-1">
+    <div className="relative flex select-none flex-row gap-1 w-full justify-center">
       <div className="absolute flex -translate-y-6 translate-x-2 animate-pulse overflow-visible whitespace-nowrap font-semibold text-gray-300">
         <span>Edit colors</span>
         <span className="pl-1 pt-1 font-bold">⤵</span>

@@ -28,11 +28,11 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
         />
       )}
       <div
-        className="z-10 flex flex-row items-center gap-2 ml-[15%] text-xl font-bold leading-6 tracking-wide icon-shadow"
+        className="z-10 flex flex-row sm:items-center gap-2 sm:ml-[10%] md:ml-[15%] text-sm sm:text-xl font-bold leading-6 tracking-wide icon-shadow"
         style={{ color: fontColor }}
       >
         <img
-          className="icon-shadow h-7 flex-shrink-0"
+          className="icon-shadow h-5 sm:h-7 flex-shrink-0"
           src={getIcon(link.isFolder ? "folder" : "link")?.icon}
           alt={`folder icon`}
           loading="lazy"
@@ -46,7 +46,7 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
 const LinkComponent = ({ page, link, setFolderOwner }: BioLinkProps) => {
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const h2ClassName =
-    "ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center text-lg font-bold tracking-wide md:overflow-visible md:whitespace-nowrap md:text-xl";
+    "sm:ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center font-bold tracking-wide overflow-visible whitespace-nowrap sm:text-xl";
 
   if (link.isFolder)
     return (
@@ -57,7 +57,7 @@ const LinkComponent = ({ page, link, setFolderOwner }: BioLinkProps) => {
       </div>
     );
   return (
-    <Link href={link.url} rel="noopener noreferrer md:flex-nowrap">
+    <Link href={link.url} rel="noopener noreferrer" target="_blank">
       <h2 className={h2ClassName} style={{ color: fontColor }}>
         {link.label}
       </h2>
@@ -92,13 +92,15 @@ const BioLink = ({ page, link, setFolderOwner }: BioLinkProps) => {
       </div>
 
       <div
-        className={"w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[1.35rem] md:-ml-[1.6rem]"}
+        className={
+          "w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[1rem] sm:-ml-[1.35rem] md:-ml-[1.6rem]"
+        }
       >
         <div
           className={clsx(
             cardBlur,
             cardHueRotate,
-            "flex flex-col w-full h-full p-0 py-[0.6rem] justify-center",
+            "flex flex-col w-full h-full p-0 py-[0.6rem] justify-center break-all",
             "px-2 shadow-black sm:px-3 arrow-card-end rounded-r-xl"
           )}
           style={cardStyle}

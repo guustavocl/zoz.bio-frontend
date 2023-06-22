@@ -41,7 +41,7 @@ const EditLinks = ({ page }: EditLinksProps) => {
 
   return (
     <>
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-2 w-full justify-center">
         <ButtonCard
           label="New Link"
           page={page}
