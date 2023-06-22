@@ -6,7 +6,6 @@ import { cookies } from "next/headers";
 import { NotFound } from "../../[username]/NotFound";
 import { EditComponent } from "./Edit";
 
-// import "./page.css";
 let pageData: PageProps | undefined = undefined;
 
 export async function generateMetadata({ params }: { params: { username: string } }) {
