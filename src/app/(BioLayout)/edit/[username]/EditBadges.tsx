@@ -8,7 +8,7 @@ import { memo, useState } from "react";
 import DialogEditBadges from "./Dialogs/DialogEditBadges";
 
 const EditBadges = ({ page }: { page: PageProps }) => {
-  const badges = page?.badges?.length > 0 ? page.badges : defaultPage.pageBadges;
+  const badges = page?.badges != null ? page.badges : defaultPage.pageBadges;
   const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const [dialogEditBadges, setDialogEditBadges] = useState(false);
@@ -16,7 +16,7 @@ const EditBadges = ({ page }: { page: PageProps }) => {
   return (
     <DefaultTooltip content="Click to edit your badges">
       <div
-        className="group flex flex-row cursor-pointer hover:ring-2 rounded-md hover:backdrop-contrast-150 hover:ring-white/80"
+        className="group flex flex-row cursor-pointer hover:ring-2 rounded-md hover:backdrop-contrast-150 hover:ring-white/80 min-h-[2.5rem]"
         onClick={() => {
           setDialogEditBadges(true);
         }}
@@ -27,9 +27,9 @@ const EditBadges = ({ page }: { page: PageProps }) => {
               getBadge(badge) ? (
                 <span
                   key={idx}
-                  className="whitespace-nowrap rounded px-1 py-0.5 text-xs font-semibold shadow-sm shadow-black/50 border-[1.5px]"
+                  className="whitespace-nowrap rounded px-1 py-0.5 text-xs font-semibold shadow-sm shadow-black/50"
                   style={{
-                    borderColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
+                    backgroundColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
                     color: fontColor,
                   }}
                 >

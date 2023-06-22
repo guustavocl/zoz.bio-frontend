@@ -7,10 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
 
-type BioLinkProps = {
+type EditLinkProps = {
   page: PageProps;
   link: LinkProps;
   setFolderOwner: (link: LinkProps) => void;
+  editLink?: (link: LinkProps) => void;
 };
 
 const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: string }) => {
@@ -37,13 +38,13 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
           alt={`folder icon`}
           loading="lazy"
         />
-        {link.isFolder ? "Folder" : "Link"}
+        Edit
       </div>
     </>
   );
 };
 
-const LinkComponent = ({ page, link, setFolderOwner }: BioLinkProps) => {
+const LinkComponent = ({ page, link, setFolderOwner }: EditLinkProps) => {
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const h2ClassName =
     "ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center text-lg font-bold tracking-wide md:overflow-visible md:whitespace-nowrap md:text-xl";
@@ -65,7 +66,7 @@ const LinkComponent = ({ page, link, setFolderOwner }: BioLinkProps) => {
   );
 };
 
-const BioLink = ({ page, link, setFolderOwner }: BioLinkProps) => {
+const EditLink = ({ page, link, setFolderOwner, editLink }: EditLinkProps) => {
   const primaryColor = page?.primaryColor || defaultPage.primaryColor;
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const cardBlur = page?.cardBlur || defaultPage.cardBlur;
@@ -82,10 +83,11 @@ const BioLink = ({ page, link, setFolderOwner }: BioLinkProps) => {
           className={clsx(
             cardBlur,
             cardHueRotate,
-            "flex flex-col w-full h-full p-0 py-[0.6rem] justify-center",
-            "px-2 shadow-black sm:px-3 arrow-card-start rounded-l-xl"
+            "group flex flex-col w-full h-full p-0 py-[0.6rem] justify-center",
+            "px-2 shadow-black sm:px-3 arrow-card-start rounded-l-xl cursor-pointer hover:opacity-70"
           )}
           style={cardStyle}
+          onClick={() => editLink && editLink(link)}
         >
           <BannerComponent link={link} fontColor={fontColor} />
         </div>
@@ -110,4 +112,4 @@ const BioLink = ({ page, link, setFolderOwner }: BioLinkProps) => {
   );
 };
 
-export default memo(BioLink);
+export default memo(EditLink);

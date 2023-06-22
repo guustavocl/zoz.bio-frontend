@@ -50,10 +50,16 @@ a:focus-visible {
 }
 
 .arrow-card-start {
-  -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
 }
+
 .arrow-card-end {
-  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);
-  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 8% 50%, 0% 0%);
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 6% 50%, 0% 0%);
+  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 6% 50%, 0% 0%);
+}
+
+.arrow-card-avatar {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
 }

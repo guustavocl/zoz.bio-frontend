@@ -8,7 +8,6 @@ import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { defaultPage } from "@/utils/BioVariables";
 import BioIFrames from "./BioIFrames";
 import BioLink from "./BioLink";
-import BioArrowCard from "./BioArrowCard";
 
 type BioLinksProps = {
   page: PageProps;
@@ -63,13 +62,8 @@ const BioLinks = ({ page }: BioLinksProps) => {
       ) : null}
       {pageLinks.map((link, idx) =>
         link.embedded === "none" ? (
-          <div key={idx} className="w-full flex flex-row gap-2">
-            <BioArrowCard page={page} className="w-2/4" arrowStart>
-              <BioLink page={page} link={link} setFolderOwner={setFolderOwner} />
-            </BioArrowCard>
-            <BioArrowCard page={page} className="w-full -ml-6 md:-ml-8" arrowEnd>
-              <BioLink page={page} link={link} setFolderOwner={setFolderOwner} />
-            </BioArrowCard>
+          <div key={idx} className="w-full flex flex-row gap-2 mb-2 select-none">
+            <BioLink page={page} link={link} setFolderOwner={setFolderOwner} />
           </div>
         ) : (
           <BioIFrames key={idx} link={link} />

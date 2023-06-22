@@ -1,6 +1,5 @@
 import BioCard from "@/app/(BioLayout)/[username]/BioCard";
 import BioNavigation from "@/app/(BioLayout)/[username]/BioNavigation";
-import BioStatusIcon from "@/app/(BioLayout)/[username]/BioStatusIcon";
 import { PageProps } from "@/types/PageProps";
 import { defaultPage } from "@/utils/BioVariables";
 import { cookies } from "next/headers";
@@ -17,14 +16,8 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
-
-  const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
   const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
-  const pageStatus = page?.status || defaultPage.pageStatus;
-  // const primaryColor = page?.primaryColor || defaultPage.primaryColor;
-  // const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
-  // const fontColor = page?.fontColor || defaultPage.fontColor;
 
   return (
     <>
@@ -44,18 +37,18 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
           alt={`${page.pagename} bio page background`}
         />
         <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
-          {/* Page Primary Card */}
-          <BioNavigation page={page} user={user} />
+          <BioNavigation page={page} user={user} editPage />
           <EditBackground page={page} />
-          <BioCard className="select-none flex flex-row" page={page}>
-            <BioStatusIcon status={pageStatus} />
-            <EditAvatar pageName={page.pagename} pfpUrl={pfpUrl} page={page} />
-            <div className="flex w-full flex-col">
-              <EditInfos page={page} />
-              <EditBadges page={page} />
-              <EditSocials page={page} />
-            </div>
-          </BioCard>
+          <div className="relative select-none w-full flex flex-row gap-2 mb-2 min-h-[200px]">
+            <EditAvatar pageName={page.pagename} page={page} />
+            <BioCard page={page} className="w-full z-10 mb-0">
+              <div className="flex w-full flex-col pl-[31%] md:pl-[30%]">
+                <EditInfos page={page} />
+                <EditBadges page={page} />
+                <EditSocials page={page} />
+              </div>
+            </BioCard>
+          </div>
           <EditLinks page={page} />
         </div>
       </div>

@@ -580,6 +580,7 @@ export const statusIconsList = new Map<string, MediaIconProps>([
   ],
 ]);
 
+// TODO - add more adornments and how to set them
 export const adornmentIconsList = new Map<string, MediaIconProps>([
   [
     "startag",

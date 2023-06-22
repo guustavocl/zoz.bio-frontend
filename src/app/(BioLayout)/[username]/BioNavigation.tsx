@@ -5,7 +5,7 @@ import { HomeIcon, Cog6ToothIcon, ExclamationTriangleIcon } from "@heroicons/rea
 import { Link } from "@/components/Buttons";
 import { UserProps } from "@/types/UserProps";
 
-const BioNavigation = ({ page, user }: { page: PageProps; user: UserProps }) => {
+const BioNavigation = ({ page, user, editPage }: { page: PageProps; user: UserProps; editPage?: boolean }) => {
   //TODO - make a better visual here, make report dialog
   if (page && user)
     return (
@@ -16,17 +16,19 @@ const BioNavigation = ({ page, user }: { page: PageProps; user: UserProps }) => 
             <span>Account</span>
           </div>
         </Link>
-        <button
-          id="report-btn"
-          type="button"
-          onClick={() => console.log("click")}
-          className="group rounded-xl text-red-500 bg-primary/70 px-2 hover:text-red"
-        >
-          <div className="flex opacity-60 flex-row w-full text-[18px] items-center group-hover:opacity-90">
-            <ExclamationTriangleIcon className="h-4 mr-1" aria-hidden="true" />
-            <span>Report</span>
-          </div>
-        </button>
+        {!editPage && (
+          <button
+            id="report-btn"
+            type="button"
+            onClick={() => console.log("click")}
+            className="group rounded-xl text-red-500 bg-primary/70 px-2 hover:text-red"
+          >
+            <div className="flex opacity-60 flex-row w-full text-[18px] items-center group-hover:opacity-90">
+              <ExclamationTriangleIcon className="h-4 mr-1" aria-hidden="true" />
+              <span>Report</span>
+            </div>
+          </button>
+        )}
       </div>
     );
 

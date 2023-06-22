@@ -109,6 +109,7 @@ const DialogEditInfos = ({ isOpen, setIsOpen, page }: DialogEditInfosProps) => {
           id="bio"
           type="textarea"
           label="Bio"
+          minSize={0}
           size={200}
           watch={watch("bio")}
           register={register("bio")}

@@ -3,10 +3,11 @@ import { uploadBackground } from "@/services/PageService";
 import { PageProps } from "@/types/PageProps";
 import { defaultPage } from "@/utils/BioVariables";
 import { errorToast } from "@/utils/toaster";
-import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
+import { ArrowUpTrayIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { memo } from "react";
 import EditColors from "./EditColors";
 import clsx from "clsx";
+import ButtonCard from "./ButtonCard";
 
 const EditBackground = ({ page }: { page: PageProps }) => {
   const cardBlur = page?.cardBlur || defaultPage.cardBlur;
@@ -57,6 +58,13 @@ const EditBackground = ({ page }: { page: PageProps }) => {
           Upload background
         </span>
       </label>
+      <ButtonCard
+        label=""
+        className="h-full w-16"
+        page={page}
+        onClick={() => console.log("click")}
+        iconAdornment={<Cog6ToothIcon className="w-7" />}
+      />
     </div>
   );
 };

@@ -16,18 +16,22 @@ const BioInfos = ({ page }: { page: PageProps }) => {
           color: fontColor,
         }}
       >
-        {page?.uname || "No name~"}
-        {page?.adornment ? (
-          <img
-            className="w-7"
-            src={getAdornmentIcon(page.adornment)?.icon}
-            alt={getAdornmentIcon(page.adornment)?.label}
-            loading="lazy"
-          />
-        ) : null}
+        <span className="relative">
+          {page?.uname || "No name~"}
+          <span className="absolute -right-7">
+            {page?.adornment ? (
+              <img
+                className="w-6"
+                src={getAdornmentIcon(page.adornment)?.icon}
+                alt={getAdornmentIcon(page.adornment)?.label}
+                loading="lazy"
+              />
+            ) : null}
+          </span>
+        </span>
       </h2>
       <div
-        className="-mt-1"
+        className="-mt-[0.4rem]"
         style={{
           color: fontColor,
           opacity: 0.5,
@@ -35,15 +39,17 @@ const BioInfos = ({ page }: { page: PageProps }) => {
       >
         <CopyLabel label={`zoz.bio/${page?.pagename}`} textToCopy={`https://zoz.bio/${page?.pagename}`} />
       </div>
-      <div
-        className="mt-2 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
-        style={{
-          lineHeight: "0.9rem",
-          color: fontColor,
-        }}
-      >
-        {page?.bio}
-      </div>
+      {page?.bio && (
+        <div
+          className="mt-0.5 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
+          style={{
+            lineHeight: "0.9rem",
+            color: fontColor,
+          }}
+        >
+          {page?.bio}
+        </div>
+      )}
     </div>
   );
 };

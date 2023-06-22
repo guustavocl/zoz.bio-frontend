@@ -5,7 +5,7 @@ export const defaultPage = {
   pfpUrl: "/defaultpfp.jpg",
   bgUrl: "/bg.svg",
   bgSize: "cover",
-  bgOpacity: 0.5,
+  bgOpacity: 0.3,
   cardBlur: "backdrop-blur",
   cardHueRotate: "",
   cardSepia: "",

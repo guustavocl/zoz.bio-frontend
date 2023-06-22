@@ -9,6 +9,7 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/AuthService";
 import { errorToast } from "@/utils/toaster";
+import { DISCORD_INVITE } from "@/utils/Constants";
 
 const HeaderComponent = ({ user }: { user?: UserProps }) => {
   const router = useRouter();
@@ -72,44 +73,57 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
             focus
             className="absolute container inset-x-0 top-0 z-50 origin-top-right transform bg-primary transition md:hidden"
           >
-            <div className="my-4 rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
-              <div className="flex items-center justify-between">
-                <Link href="/" className="w-32 sm:h-16">
-                  <span className="sr-only">zoz.bio</span>
-                  <img
-                    className="w-32 py-2 sm:h-14"
-                    src={"/zoz.png"}
-                    alt="zoz.bio logo"
-                    width="auto"
-                    height="auto"
-                    loading="lazy"
-                  />
-                </Link>
+            {({ close }) => (
+              <div className="my-4 rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
+                <div className="flex items-center justify-between">
+                  <Link href="/" className="w-32 sm:h-16">
+                    <span className="sr-only">zoz.bio</span>
+                    <img
+                      className="w-32 py-2 sm:h-14"
+                      src={"/zoz.png"}
+                      alt="zoz.bio logo"
+                      width="auto"
+                      height="auto"
+                      loading="lazy"
+                    />
+                  </Link>
 
-                <div className="flex items-center md:hidden">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 ">
-                    <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
-                  </Popover.Button>
+                  <div className="flex items-center md:hidden">
+                    <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 ">
+                      <span className="sr-only">Close menu</span>
+                      <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                    </Popover.Button>
+                  </div>
+                </div>
+                <div className="mt-10 p-6">
+                  <div className="flex flex-col">
+                    {user?.email ? (
+                      <>
+                        <Link href="/" onClick={logoutRequest} label="Logout" className="m-4" />
+                        <LinkButton href="account" label="Account" />
+                      </>
+                    ) : (
+                      <>
+                        <p className="mb-6 text-center text-lg font-medium text-gray-300">
+                          Already have an account?{" "}
+                          <Link
+                            href="login"
+                            label="Sign in"
+                            className="font-semibold text-secondary/80"
+                            onClick={close}
+                          />
+                        </p>
+                        <LinkButton href="register" label="Register" onClick={close} />
+                      </>
+                    )}
+                    <Link href="/about" label="About" className="m-4" onClick={close} />
+                    <Link href="/pricing" label="Pricing" className="m-4" onClick={close} />
+                    <Link href="/contact" label="Contact" className="m-4" onClick={close} />
+                    <Link href={DISCORD_INVITE} label="Discord" className="m-4" onClick={close} />
+                  </div>
                 </div>
               </div>
-              <div className="mt-10 p-6">
-                {user?.email ? (
-                  <div className="flex flex-col">
-                    <LinkButton href="account" label="Account" />
-                    <Link href="/" onClick={logoutRequest} label="Logout" className="m-4" />
-                  </div>
-                ) : (
-                  <div className="flex flex-col">
-                    <LinkButton href="register" label="Register" />
-                    <p className="mt-6 text-center text-base font-medium text-gray-300">
-                      Already have an account?{" "}
-                      <Link href="login" label="Sign in" className="font-medium text-secondary" />
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
           </Popover.Panel>
         </Transition>
       </div>

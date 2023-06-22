@@ -94,7 +94,7 @@ const ColorCircle = ({
         >
           {showPickers ? <CheckIcon className="w-7 font-bold" /> : <LoadingSvg isSubmitting={isSubmitting} />}
         </div>
-        <div className={`absolute ${showPickers ? "flex flex-col" : "hidden"} z-10`}>
+        <div className={`absolute ${showPickers ? "flex flex-col" : "hidden"} z-50`}>
           {rgbaColor ? (
             <RgbaColorPicker color={rgbaColor} onChange={setColor} />
           ) : (
@@ -102,12 +102,7 @@ const ColorCircle = ({
           )}
           {/* TODO - refactor this button */}
           <button
-            className="mt-2 flex w-full justify-center rounded-md border border-transparent bg-violet-900 py-1 text-violet-200 hover:bg-violet-800"
-            style={{
-              backgroundColor: rgbaColor
-                ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a > 0.5 ? rgbaColor.a : 0.5})`
-                : hexColor,
-            }}
+            className="mt-2 flex w-full justify-center rounded-md border border-transparent bg-gray-900 hover:bg-gray-800 py-1 text-violet-200"
             onClick={onClick}
           >
             Apply color

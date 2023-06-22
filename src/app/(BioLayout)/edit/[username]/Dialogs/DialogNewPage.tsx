@@ -111,19 +111,19 @@ const DialogNewPage = ({ isOpen, setIsOpen, addNewPage }: DialogNewPageProps) =>
     >
       <div className="mt-2">
         <p className="text-sm text-gray-400">
-          To prevent a BOT rush to get all short size page names, you can only create pages with at least 4 characters.
-          If you still wants a short page name, there&apos;s some ways to get one:
+          To prevent a rush of BOTs trying to claim all short-sized page names, you can only create pages with at least
+          4 characters. However, if you still want a short page name, there are a few ways to obtain one:
           <br />
-          1. Subscriptions. (SOON)
+          1. Subscriptions. (COMING SOON)
           <br />
-          2. Prove that you owns that pagename in some other social medias like Instagram, Twitter, TikTok, etc.
+          2. Prove that you own that page name on other social media platforms such as Instagram, Twitter, TikTok, etc.
           <br />
-          3. Future events on discord. (SOON)
+          3. Future events on Discord. (COMING SOON)
           <br />
-          4. Be a nicely and lovely person on our discord server maybe?! 😳
+          4. Maybe be a nice and lovely person on our Discord server?! 😳
           <br />
           <br />
-          You can also create up to 2 pages per account without any subscription.
+          Additionally, you can create up to 2 pages per account without any subscription.
         </p>
       </div>
 

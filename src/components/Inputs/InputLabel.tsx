@@ -29,7 +29,7 @@ const InputLabel = ({ label, htmlFor, errorMessage, disabled, size, minSize, wat
       >
         {labelText}
       </label>
-      {size && minSize && (
+      {size && minSize != null && (
         <label
           htmlFor={htmlFor}
           className={clsx("absolute right-2.5 top-0 block select-none text-sm font-medium", textClasses)}

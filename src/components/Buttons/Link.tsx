@@ -2,22 +2,20 @@ import Link from "next/link";
 import { memo, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-const LinkComponent = ({
-  href,
-  label,
-  onClick,
-  className,
-  children,
-}: {
+type LinkComponentProps = {
   href: string;
   label?: string;
+  target?: string;
   onClick?: () => void;
   className?: string;
   children?: ReactNode;
-}) => {
+};
+
+const LinkComponent = ({ href, label, target, onClick, className, children }: LinkComponentProps) => {
   return (
     <Link
       href={href}
+      target={target}
       onClick={onClick}
       rel="noopener noreferrer"
       className={twMerge(

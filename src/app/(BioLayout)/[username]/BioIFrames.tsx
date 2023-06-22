@@ -7,7 +7,7 @@ const BioIFrames = ({ link }: { link: LinkProps }) => {
       {link.embedded === "spotify" && link.url.includes("playlist") ? (
         <iframe
           className="mb-2 h-36 w-full rounded"
-          src={`https://open.spotify.com/embed/playlist/${link.url}`}
+          src={`https://open.spotify.com/embed/${link.url}`}
           width="100%"
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"

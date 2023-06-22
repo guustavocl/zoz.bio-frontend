@@ -6,10 +6,12 @@ import { uploadAvatar } from "@/services/PageService";
 import { errorToast } from "@/utils/toaster";
 import { PageProps } from "@/types/PageProps";
 import { defaultPage } from "@/utils/BioVariables";
+import { twMerge } from "tailwind-merge";
 
-//TODO - verify avatar ring, default avatar
-const EditAvatar = ({ pageName, pfpUrl = "", page }: { pageName: string; pfpUrl?: string; page: PageProps }) => {
-  const secondaryColor = page?.secondaryColor || defaultPage.secondaryColor;
+const EditAvatar = ({ pageName, page }: { pageName: string; page: PageProps }) => {
+  const cardBlur = page?.cardBlur || defaultPage.cardBlur;
+  const cardHueRotate = page?.cardHueRotate || defaultPage.cardHueRotate;
+  const pfpUrl = page?.pfpUrl || defaultPage.pfpUrl;
 
   const changeAvatar = (file: File) => {
     uploadAvatar(file, pageName)
@@ -22,7 +24,14 @@ const EditAvatar = ({ pageName, pfpUrl = "", page }: { pageName: string; pfpUrl?
   };
 
   return (
-    <div className="flex min-w-fit flex-shrink-0 flex-col items-center justify-center p-2">
+    <div
+      className={twMerge(
+        cardBlur,
+        cardHueRotate,
+        "absolute z-20 top-0 w-2/6 flex flex-col h-full",
+        "arrow-card-avatar rounded-l-xl backdrop-saturate-150"
+      )}
+    >
       <label
         htmlFor="avatar-input"
         className="group flex cursor-pointer flex-col items-center justify-center rounded-full"
@@ -39,20 +48,10 @@ const EditAvatar = ({ pageName, pfpUrl = "", page }: { pageName: string; pfpUrl?
             }
           }}
         />
-        <div className="absolute z-10 flex opacity-70 group-hover:flex md:hidden">
+        <div className="absolute top-[25%] z-10 flex opacity-70 group-hover:flex md:hidden">
           <ArrowUpTrayIcon className="w-16 md:w-20" />
         </div>
-        <Image
-          className="h-24 w-24 opacity-30 md:opacity-100 rounded-full border-[3px] object-cover hover:animate-pulse md:h-28 md:w-28 lg:h-32 lg:w-32 group-hover:opacity-30"
-          src={pfpUrl}
-          width={500}
-          height={500}
-          quality={90}
-          alt="bio page avatar"
-          style={{
-            borderColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
-          }}
-        />
+        <Image className="object-cover rounded-l-xl opacity-80" src={pfpUrl} fill quality={90} alt="bio page avatar" />
       </label>
     </div>
   );
