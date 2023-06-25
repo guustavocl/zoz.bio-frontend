@@ -34,7 +34,7 @@ const EditAvatar = ({ pageName, page }: { pageName: string; page: PageProps }) =
     >
       <label
         htmlFor="avatar-input"
-        className="group flex cursor-pointer flex-col items-center justify-center rounded-full h-full"
+        className="relative group flex cursor-pointer flex-col items-center justify-center rounded-full h-full"
       >
         <input
           id="avatar-input"

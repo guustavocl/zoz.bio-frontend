@@ -6,6 +6,7 @@ export interface LinkProps {
   embedded: string;
   isHidden: boolean;
   isFolder: boolean;
+  isSelected: boolean;
   position: number;
   timesClicked: number;
   createdAt: Date;

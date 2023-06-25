@@ -50,9 +50,16 @@ const LinkComponent = ({ page, link, setFolderOwner }: EditLinkProps) => {
     "sm:ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center font-bold tracking-wide overflow-visible whitespace-nowrap sm:text-xl";
   if (link.isFolder)
     return (
-      <div className="cursor-pointer md:flex-nowrap" onClick={() => setFolderOwner(link)}>
+      <div
+        className="cursor-pointer md:flex-nowrap"
+        onClick={() => {
+          link.isSelected = true;
+          setFolderOwner(link);
+        }}
+      >
         <h2 className={h2ClassName} style={{ color: fontColor }}>
-          {link.label}
+          {/* TODO - UX upgrade */}
+          {link.isSelected ? "Click to go back" : link.label}
         </h2>
       </div>
     );
@@ -82,7 +89,7 @@ const EditLink = ({ page, link, setFolderOwner, editLink }: EditLinkProps) => {
           className={clsx(
             cardBlur,
             cardHueRotate,
-            "group flex flex-col w-full h-full p-0 py-[0.6rem] justify-center",
+            "relative group flex flex-col w-full h-full p-0 py-[0.6rem] justify-center",
             "px-2 shadow-black sm:px-3 arrow-card-start rounded-l-xl cursor-pointer hover:opacity-70"
           )}
           style={cardStyle}
@@ -102,7 +109,7 @@ const EditLink = ({ page, link, setFolderOwner, editLink }: EditLinkProps) => {
             cardBlur,
             cardHueRotate,
             "flex flex-col w-full h-full p-0 py-[0.6rem] justify-center break-all",
-            "px-2 shadow-black sm:px-3 arrow-card-end rounded-r-xl"
+            "px-2 shadow-black sm:px-3 arrow-card-end rounded-r-xl hover:backdrop-saturate-200"
           )}
           style={cardStyle}
         >

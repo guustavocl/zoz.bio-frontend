@@ -19,7 +19,7 @@ type DialogNewLinkProps = {
 const createLinkFormSchema = z.object({
   url: z.string().nonempty("Url is required"),
   label: z.string().nonempty("Link label is required"),
-  icon: z.string().nonempty(),
+  icon: z.string(),
   embedded: z.string().nonempty(),
   isFolder: z.boolean(),
   folderOwner: z.string(),
@@ -69,7 +69,7 @@ const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
           onChange={(value: string) => {
             setValue("isFolder", value === "folder");
             setValue("embedded", "none");
-            setValue("url", "");
+            setValue("url", value === "folder" ? "/" : "");
             setValue("folderOwner", "");
           }}
         />

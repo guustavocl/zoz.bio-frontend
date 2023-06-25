@@ -1,11 +1,7 @@
 "use client";
-import BioCard from "./BioCard";
-import { memo, useState } from "react";
-import { getIcon } from "@/utils/IconsList";
-import { PageProps } from "@/types/PageProps";
 import { LinkProps } from "@/types/LinkProps";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import { defaultPage } from "@/utils/BioVariables";
+import { PageProps } from "@/types/PageProps";
+import { memo, useState } from "react";
 import BioIFrames from "./BioIFrames";
 import BioLink from "./BioLink";
 
@@ -14,7 +10,6 @@ type BioLinksProps = {
 };
 
 const BioLinks = ({ page }: BioLinksProps) => {
-  const fontColor = page?.fontColor || defaultPage.fontColor;
   const [folderOwner, setFolderOwner] = useState<LinkProps | null>();
 
   const pageLinks = page?.pageLinks
@@ -34,31 +29,19 @@ const BioLinks = ({ page }: BioLinksProps) => {
             return a.position - b.position;
           })
     : [];
-
   return (
     <>
       {folderOwner ? (
-        <BioCard page={page}>
-          <div
-            className="group flex h-full w-full cursor-pointer select-none flex-row flex-wrap items-center gap-4 pl-2 md:flex-nowrap"
-            onClick={() => setFolderOwner(null)}
-            style={{
-              color: fontColor,
+        <div className="w-full flex flex-row gap-2 mb-2 select-none">
+          <BioLink
+            page={page}
+            link={folderOwner}
+            setFolderOwner={link => {
+              link.isSelected = false;
+              setFolderOwner(null);
             }}
-          >
-            <img
-              className="icon-shadow h-7 flex-shrink-0 opacity-60"
-              src={getIcon(folderOwner.icon)?.icon}
-              alt={`${folderOwner.icon} icon`}
-              loading="lazy"
-            />
-            <h2 className="flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-lg font-bold tracking-wide md:overflow-visible md:whitespace-nowrap md:text-xl">
-              {folderOwner.label}
-            </h2>
-            <span className="hidden truncate group-hover:block">Click to go back</span>
-            <ArrowLeftIcon className="h-5 flex-shrink-0" />
-          </div>
-        </BioCard>
+          />
+        </div>
       ) : null}
       {pageLinks.map((link, idx) =>
         link.embedded === "none" ? (
