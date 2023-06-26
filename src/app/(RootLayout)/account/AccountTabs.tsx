@@ -50,6 +50,8 @@ export const AccountTabs = ({ account, pages, addNewPage }: AcountTabsProps) => 
                         router.push(`/edit/${page.pagename}`);
                       }}
                       alt="pfp"
+                      quality={50}
+                      placeholder="empty"
                       loading="lazy"
                     />
                   </Tooltip>

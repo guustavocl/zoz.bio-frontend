@@ -24,11 +24,14 @@ const BioAvatar = ({ page }: SectionCardProps) => {
       )}
     >
       <Image
-        className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-80"
-        src={pfpUrl}
         fill
         quality={90}
+        priority={true}
+        src={pfpUrl}
+        className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-80"
         alt="bio page avatar"
+        placeholder="empty"
+        sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"
       />
     </div>
   );

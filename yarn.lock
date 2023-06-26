@@ -760,6 +760,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+css-doodle@^0.34.9:
+  version "0.34.9"
+  resolved "https://registry.yarnpkg.com/css-doodle/-/css-doodle-0.34.9.tgz#335b715d6684c0b79ed70c969d351692ef922ec8"
+  integrity sha512-vUtt0WrxLtLMgWW/l62dC0nuabKYWpWAG2biRXfQBXvDyRuARx1X9VobAOSA2f0mKjNpg0rOgtk+69Db6mLR7A==
+
 cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"

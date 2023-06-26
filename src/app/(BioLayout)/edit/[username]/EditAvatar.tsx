@@ -52,11 +52,14 @@ const EditAvatar = ({ pageName, page }: { pageName: string; page: PageProps }) =
           <ArrowUpTrayIcon className="w-20" />
         </div>
         <Image
-          className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-50 sm:opacity-80"
-          src={pfpUrl}
           fill
           quality={90}
+          priority={true}
+          className="z-20 object-cover rounded-t-xl sm:rounded-tr-none sm:rounded-l-xl opacity-50 sm:opacity-80"
+          src={pfpUrl}
           alt="bio page avatar"
+          placeholder="empty"
+          sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"
         />
       </label>
     </div>

@@ -23,9 +23,12 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
     <>
       <div className="flex min-h-screen w-full flex-col items-center overflow-hidden">
         <Image
-          className="-z-50"
-          src={backgroundUrl}
           fill
+          quality={90}
+          priority={true}
+          placeholder="empty"
+          src={backgroundUrl}
+          className="-z-50"
           style={{
             objectFit: "cover",
             opacity: backGroundOpacity,
@@ -33,8 +36,8 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
             backgroundRepeat: "repeat",
             backgroundPosition: "center",
           }}
-          quality={90}
           alt={`${page.pagename} bio page background`}
+          sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
         />
         <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <BioNavigation page={page} user={user} editPage />

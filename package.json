@@ -22,6 +22,7 @@
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
     "cookies-next": "^2.1.1",
+    "css-doodle": "^0.34.9",
     "next": "^13.4.4",
     "next-auth": "^4.22.1",
     "nextjs-toploader": "^1.4.2",

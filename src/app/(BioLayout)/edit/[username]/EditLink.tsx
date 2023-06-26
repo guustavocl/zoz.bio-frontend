@@ -21,11 +21,14 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
     <>
       {typeCover && (
         <Image
-          src={typeCover}
           fill
-          className="object-cover hover:animate-pulse rounded-l-xl opacity-60"
           quality={30}
+          priority={false}
+          placeholder="empty"
+          src={typeCover}
+          className="object-cover hover:animate-pulse rounded-l-xl opacity-60"
           alt="link banner"
+          sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
         />
       )}
       <div

@@ -10,31 +10,39 @@ import BioLinks from "./BioLinks";
 import BioNavigation from "./BioNavigation";
 import BioSocials from "./BioSocials";
 import BioCard from "./BioCard";
+import CssDoodle from "@/components/CssDoodle/CssDoodle";
 
 export const BioComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
-  const backgroundUrl = page?.backgroundUrl || defaultPage.bgUrl;
+  const backgroundUrl = page?.backgroundUrl || null;
   const backGroundOpacity = page?.backGroundOpacity || defaultPage.bgOpacity;
 
   return (
     <>
       <div className="flex min-h-screen w-full flex-col items-center overflow-hidden">
-        <Image
-          className="-z-50"
-          src={backgroundUrl}
-          fill
-          style={{
-            objectFit: "cover",
-            opacity: backGroundOpacity,
-            backgroundColor: "#080808",
-            backgroundRepeat: "repeat",
-            backgroundPosition: "center",
-          }}
-          quality={90}
-          alt={`${page.pagename} bio page background`}
-        />
+        {backgroundUrl ? (
+          <Image
+            fill
+            quality={90}
+            priority={true}
+            placeholder="empty"
+            src={backgroundUrl}
+            className="-z-50"
+            style={{
+              objectFit: "cover",
+              opacity: backGroundOpacity,
+              backgroundColor: "#080808",
+              backgroundRepeat: "repeat",
+              backgroundPosition: "center",
+            }}
+            alt={`${page.pagename} bio page background`}
+            sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
+          />
+        ) : (
+          <CssDoodle />
+        )}
         <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <BioNavigation page={page} user={user} />
           <div className="mt-28 relative select-none w-full flex flex-col sm:flex-row sm:gap-2 mb-2 sm:min-h-[200px]">
