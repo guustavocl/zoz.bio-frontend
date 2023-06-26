@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { getSocialIcon } from "@/utils/IconsList";
 import { successToast } from "@/utils/toaster";
-import { DefaultTooltip } from "@/components/Tooltip";
+import { Tooltip } from "@/components/Tooltip";
 
 type MediaProps = {
   username: string;
@@ -14,7 +14,7 @@ const BioIcon = ({ media }: { media: MediaProps }) => {
   const social = getSocialIcon(media.key);
   if (!social) return null;
   return (
-    <DefaultTooltip content={social.label} className="bg-primary/80 opacity-80">
+    <Tooltip content={social.label} className="bg-primary/90" backgroundColor="primary">
       {social.url ? (
         <a
           className="hover:animate-pulse"
@@ -38,7 +38,7 @@ const BioIcon = ({ media }: { media: MediaProps }) => {
           loading="lazy"
         />
       )}
-    </DefaultTooltip>
+    </Tooltip>
   );
 };
 

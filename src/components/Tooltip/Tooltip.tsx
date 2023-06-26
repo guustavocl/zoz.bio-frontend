@@ -7,8 +7,6 @@ const TooltipComponent = ({
   content = "",
   className = "",
   backgroundColor = "secondary",
-  textVariable,
-  bgVariable,
 }: {
   children: ReactNode;
   content?: string;
@@ -22,24 +20,20 @@ const TooltipComponent = ({
       render={attrs => (
         <div
           className={twMerge(
-            "box z-10 h-full rounded p-1",
+            "box z-10 h-full rounded p-1 px-2 font-medium tracking-wide",
             `bg-${backgroundColor} opacity-90 saturate-200 backdrop-blur`,
             className
           )}
           tabIndex={-1}
-          style={
-            bgVariable && textVariable ? { backgroundColor: `var(${bgVariable})`, color: `var(${textVariable})` } : {}
-          }
           {...attrs}
         >
           {content}
           <span
             data-popper-arrow=""
             className={twMerge(
-              `bottom-1.5 h-0 w-3 translate-y-5 rotate-45 text-sm text-secondary`,
-              bgVariable ? "opacity-70 saturate-200 backdrop-blur" : "opacity-90"
+              `bottom-1.5 h-0 w-3 translate-y-5 rotate-45 text-sm text-primary opacity-90`,
+              backgroundColor ? `text-${backgroundColor}` : ""
             )}
-            style={bgVariable ? { color: `var(${bgVariable})` } : {}}
           >
             ▼
           </span>
