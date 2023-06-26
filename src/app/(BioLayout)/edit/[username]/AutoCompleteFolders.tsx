@@ -1,11 +1,11 @@
-import React, { memo } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { AutoComplete } from "@/components/Inputs";
-import { LinkProps } from "@/types/LinkProps";
-import { MediaIconProps } from "@/types/MediaIconProps";
-import { getIcon } from "@/utils/IconsList";
 import { getFolders } from "@/services/LinkService";
 import { errorToast } from "@/utils/toaster";
+import { MediaIconProps } from "@/types/MediaIconProps";
+import { AutoComplete } from "@/components/Inputs";
+import { LinkProps } from "@/types/LinkProps";
+import { getIcon } from "@/utils/IconsList";
 
 type AutoCompleteFoldersProps = {
   label: string;
@@ -37,6 +37,7 @@ const AutoCompleteFolders = ({
     icon: getIcon("banned")?.icon || "",
     label: "None",
   });
+
   if (queryPage.data?.folders) {
     queryPage.data.folders.map((folder: LinkProps) => {
       list.set(folder._id, {
@@ -60,4 +61,4 @@ const AutoCompleteFolders = ({
   );
 };
 
-export default memo(AutoCompleteFolders);
+export default React.memo(AutoCompleteFolders);

@@ -31,3 +31,19 @@ export const createLink = async (link: LinkProps, pagename: string) => {
     handleAxiosError(err);
   }
 };
+
+export const updateLink = async (link: LinkProps, pagename: string) => {
+  try {
+    const request = await CustomAxios.put(
+      `${API_ENDPOINT}/update`,
+      {
+        link,
+        pagename,
+      },
+      { withCredentials: true }
+    );
+    return request.data;
+  } catch (err: Error | unknown) {
+    handleAxiosError(err);
+  }
+};

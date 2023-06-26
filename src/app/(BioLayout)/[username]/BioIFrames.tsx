@@ -1,10 +1,12 @@
 import { LinkProps } from "@/types/LinkProps";
 import { memo } from "react";
 
+// TODO - its kinda of laggy when switch folders if you hjave an iframe
+// seems like the iframe is reloading everytime, find a way to save the iframe, cache, etc
 const BioIFrames = ({ link }: { link: LinkProps }) => {
   return (
     <div className="relative flex flex-col w-full rounded-xl shadow-black">
-      {link.embedded === "spotify" && link.url.includes("playlist") ? (
+      {link.embedded === "spotify" && link.isPlaylist ? (
         <iframe
           className="mb-2 h-36 w-full rounded"
           src={`https://open.spotify.com/embed/${link.url}`}
@@ -16,7 +18,7 @@ const BioIFrames = ({ link }: { link: LinkProps }) => {
       ) : link.embedded === "spotify" ? (
         <iframe
           className="mb-0.5 h-20 w-full rounded"
-          src={`https://open.spotify.com/embed/track/${link.url}`}
+          src={`https://open.spotify.com/embed/${link.url}`}
           width="100%"
           height="auto"
           loading="lazy"

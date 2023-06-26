@@ -1,7 +1,7 @@
 import { Button } from "@/components/Buttons";
 import Dialog from "@/components/Dialogs/Dialog";
 import { Input, RadioGroup } from "@/components/Inputs";
-import { createLink } from "@/services/LinkService";
+import { updateLink } from "@/services/LinkService";
 import { LinkProps } from "@/types/LinkProps";
 import { PageProps } from "@/types/PageProps";
 import { errorToast } from "@/utils/toaster";
@@ -11,22 +11,23 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import AutoCompleteFolders from "../AutoCompleteFolders";
 
-type DialogNewLinkProps = {
-  isOpen: boolean;
+type DialogEditLinkProps = {
   page: PageProps;
-  setIsOpen: (value: boolean) => void;
+  link: LinkProps;
+  setSelectedLink: (value: LinkProps | null) => void;
 };
 
 const createLinkFormSchema = z.object({
+  _id: z.string(),
   url: z.string().nonempty("Url is required"),
   label: z.string().nonempty("Link label is required"),
   embedded: z.string().nonempty(),
   isFolder: z.boolean(),
-  folderOwner: z.string(),
+  folderOwner: z.string().nullish(),
 });
 
 // TODO - add banner to form
-const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
+const DialogEditLink = ({ page, link, setSelectedLink }: DialogEditLinkProps) => {
   const {
     watch,
     register,
@@ -35,13 +36,21 @@ const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
     formState: { errors, isSubmitting },
   } = useForm<LinkProps>({
     resolver: zodResolver(createLinkFormSchema),
-    defaultValues: { url: "", label: "", embedded: "none", isFolder: false, folderOwner: "" },
+    defaultValues: {
+      _id: link._id,
+      url: link.url,
+      label: link.label,
+      embedded: link.embedded,
+      isFolder: link.isFolder,
+      folderOwner: link.folderOwner,
+    },
   });
 
   const submitLinkInfos = (data: LinkProps) => {
-    createLink(data, page.pagename)
+    console.log("asubnm");
+    updateLink(data, page.pagename)
       .then(() => {
-        setIsOpen(false);
+        setSelectedLink(null);
         window.location.reload();
       })
       .catch(error => {
@@ -51,11 +60,28 @@ const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
 
   const isFolder = watch("isFolder");
   return (
-    <Dialog title="Inform your Link infos" isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Dialog
+      title="Edit your Link infos"
+      isOpen={link != null}
+      setIsOpen={() => {
+        setSelectedLink(null);
+      }}
+    >
       <form onSubmit={handleSubmit(submitLinkInfos)} className="flex flex-col gap-1">
+        <Button
+          id="delete-page-link"
+          type="button"
+          className="mt-4 bg-red-700 hover:bg-red-800 w-auto self-center"
+          label={watch("isFolder") ? "Delete Folder" : "Delete Link"}
+          disabled={isSubmitting}
+          onClick={() => {
+            console.log("will remove link");
+          }}
+        />
         <RadioGroup
           id="folder"
           label="Type"
+          disabled
           value={isFolder ? "folder" : "link"}
           options={[
             {
@@ -136,10 +162,10 @@ const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
           errorMessage={errors.url?.message}
         />
         <Button
-          id="submit-page-link"
+          id="edit-page-link"
           type="submit"
           className="mt-4"
-          label={watch("isFolder") ? "Add Folder" : "Add Link"}
+          label={watch("isFolder") ? "Save Folder" : "Save Link"}
           disabled={isSubmitting}
         />
       </form>
@@ -147,4 +173,4 @@ const DialogNewLink = ({ isOpen, page, setIsOpen }: DialogNewLinkProps) => {
   );
 };
 
-export default memo(DialogNewLink);
+export default memo(DialogEditLink);

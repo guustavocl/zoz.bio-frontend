@@ -4,6 +4,7 @@ export interface LinkProps {
   label: string;
   icon: string;
   embedded: string;
+  isPlaylist: boolean;
   isHidden: boolean;
   isFolder: boolean;
   isSelected: boolean;
