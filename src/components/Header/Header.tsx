@@ -48,8 +48,8 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
           </div>
         ) : (
           <div className="hidden items-center justify-end md:flex">
-            <Link href="login" label="Sign in" className="mr-8 font-medium text-gray-300" />
-            <LinkButton href="register" label="Register" />
+            <Link href="login" label="Sign In" className="mr-8 font-medium text-gray-300" />
+            <LinkButton href="register" label="Sign Up" />
           </div>
         )}
 
@@ -108,12 +108,12 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
                           Already have an account?{" "}
                           <Link
                             href="login"
-                            label="Sign in"
+                            label="Sign In"
                             className="font-semibold text-secondary/80"
                             onClick={close}
                           />
                         </p>
-                        <LinkButton href="register" label="Register" onClick={close} />
+                        <LinkButton href="register" label="Sign up" onClick={close} />
                       </>
                     )}
                     <Link href="/about" label="About" className="m-4" onClick={close} />

@@ -3,6 +3,7 @@ export interface UserProps {
   email?: string;
   uname?: string;
   password?: string;
+  cpassword?: string;
   token?: string;
   isEmailConfirmed: boolean;
   subscription: string;

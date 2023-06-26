@@ -54,7 +54,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="mt-4 w-full space-y-2" onSubmit={handleSubmit(submitLogin)}>
+    <form className="mt-4 w-full space-y-2 px-4" onSubmit={handleSubmit(submitLogin)}>
       <div className="-space-y-px rounded-md shadow-sm">
         <Input id="email" type="text" label="Email" register={register("email")} errorMessage={errors.email?.message} />
         <Input
@@ -87,7 +87,7 @@ export default function LoginForm() {
       <Button
         id="sign-in-btn"
         type="submit"
-        label="Sign in"
+        label="Sign In"
         iconAdornment={
           <LockClosedIcon className="h-5 w-5 text-violet-300 group-hover:text-violet-400" aria-hidden="true" />
         }
