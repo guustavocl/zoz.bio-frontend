@@ -1,15 +1,16 @@
 import { Button } from "@/components/Buttons";
 import Dialog from "@/components/Dialogs/Dialog";
 import { Input, RadioGroup } from "@/components/Inputs";
-import { updateLink } from "@/services/LinkService";
+import { deleteLink, updateLink } from "@/services/LinkService";
 import { LinkProps } from "@/types/LinkProps";
 import { PageProps } from "@/types/PageProps";
 import { errorToast } from "@/utils/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import AutoCompleteFolders from "../AutoCompleteFolders";
+import ConfirmationDialog from "@/components/Dialogs/ConfirmationDialog";
 
 type DialogEditLinkProps = {
   page: PageProps;
@@ -45,9 +46,9 @@ const DialogEditLink = ({ page, link, setSelectedLink }: DialogEditLinkProps) =>
       folderOwner: link.folderOwner,
     },
   });
+  const [confirmationDialog, setConfirmationDialog] = useState(false);
 
   const submitLinkInfos = (data: LinkProps) => {
-    console.log("asubnm");
     updateLink(data, page.pagename)
       .then(() => {
         setSelectedLink(null);
@@ -75,7 +76,7 @@ const DialogEditLink = ({ page, link, setSelectedLink }: DialogEditLinkProps) =>
           label={watch("isFolder") ? "Delete Folder" : "Delete Link"}
           disabled={isSubmitting}
           onClick={() => {
-            console.log("will remove link");
+            setConfirmationDialog(true);
           }}
         />
         <RadioGroup
@@ -165,10 +166,30 @@ const DialogEditLink = ({ page, link, setSelectedLink }: DialogEditLinkProps) =>
           id="edit-page-link"
           type="submit"
           className="mt-4"
-          label={watch("isFolder") ? "Save Folder" : "Save Link"}
+          label={isFolder ? "Save Folder" : "Save Link"}
           disabled={isSubmitting}
         />
       </form>
+      <ConfirmationDialog
+        message={
+          isFolder
+            ? "Are your sure you want to delete this folder? This will also delete all links inside it"
+            : "Are you sure you want to delete this link?"
+        }
+        confirmText="Yes"
+        isOpen={confirmationDialog}
+        setIsOpen={setConfirmationDialog}
+        doAfterConfirm={() => {
+          deleteLink(watch("_id"), page.pagename)
+            .then(() => {
+              setSelectedLink(null);
+              window.location.reload();
+            })
+            .catch(error => {
+              errorToast(error);
+            });
+        }}
+      />
     </Dialog>
   );
 };

@@ -6,7 +6,7 @@ const API_ENDPOINT = "link";
 
 export const getFolders = async (pagename: string) => {
   try {
-    const request = await CustomAxios.get(`${API_ENDPOINT}/folders`, {
+    const request = await CustomAxios.get(`${API_ENDPOINT}`, {
       params: { pagename },
       withCredentials: true,
     });
@@ -19,7 +19,7 @@ export const getFolders = async (pagename: string) => {
 export const createLink = async (link: LinkProps, pagename: string) => {
   try {
     const request = await CustomAxios.post(
-      `${API_ENDPOINT}/create`,
+      `${API_ENDPOINT}`,
       {
         link,
         pagename,
@@ -35,9 +35,25 @@ export const createLink = async (link: LinkProps, pagename: string) => {
 export const updateLink = async (link: LinkProps, pagename: string) => {
   try {
     const request = await CustomAxios.put(
-      `${API_ENDPOINT}/update`,
+      `${API_ENDPOINT}`,
       {
         link,
+        pagename,
+      },
+      { withCredentials: true }
+    );
+    return request.data;
+  } catch (err: Error | unknown) {
+    handleAxiosError(err);
+  }
+};
+
+export const deleteLink = async (linkId: string, pagename: string) => {
+  try {
+    const request = await CustomAxios.put(
+      `${API_ENDPOINT}/delete`,
+      {
+        linkId,
         pagename,
       },
       { withCredentials: true }

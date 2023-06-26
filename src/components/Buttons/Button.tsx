@@ -29,7 +29,7 @@ const ButtonComponent = ({
       disabled={disabled}
       onClick={onClick}
       className={twMerge(
-        "text-3x1 group w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
+        "text-3x1 relative group w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
         "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none active:bg-secondary-darker/80 transition-colors duration-200",
         className
       )}

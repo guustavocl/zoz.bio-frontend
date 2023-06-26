@@ -61,7 +61,7 @@ const EditBackground = ({ page }: { page: PageProps }) => {
         </label>
         <ButtonCard
           label=""
-          className="h-full w-16 sm:w-16"
+          className="h-full w-16 sm:w-16 opacity-10 hover:opacity-10 cursor-not-allowed"
           page={page}
           onClick={() => console.log("click")}
           iconAdornment={<Cog6ToothIcon className="w-7" />}
