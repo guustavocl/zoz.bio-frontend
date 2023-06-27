@@ -32,7 +32,7 @@ const InputLabel = ({ label, htmlFor, errorMessage, disabled, size, minSize, wat
       {size && minSize != null && (
         <label
           htmlFor={htmlFor}
-          className={clsx("absolute right-2.5 top-0 block select-none text-sm font-medium", textClasses)}
+          className={clsx("absolute right-2.5 top-1 block select-none text-sm font-medium", textClasses)}
         >
           {`${minSize && minSize > watch.length ? minSize : watch.length}/${size}`}
         </label>

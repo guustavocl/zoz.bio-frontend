@@ -56,7 +56,7 @@ export default function RegisterForm() {
   if (!recaptchaKey) return null;
 
   return (
-    <form className="w-full space-y-2 px-4 md:px-8 2xl:px-4" onSubmit={handleSubmit(submitRegister)}>
+    <form className="w-full space-y-2 px-4" onSubmit={handleSubmit(submitRegister)}>
       <div className="-space-y-px rounded-md shadow-sm mb-2">
         <Input
           id="uname"

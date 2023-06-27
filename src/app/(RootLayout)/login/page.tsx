@@ -13,14 +13,14 @@ export default function LoginPage() {
   if (user) return <Redirect path="/account" />;
   else
     return (
-      <Main className="mb-24 mt-12 md:mb-16 md:mt-6 sm:w-[30rem]">
+      <Main className="mb-36 mt-32 md:mb-16 md:mt-6 sm:w-[30rem]">
         <Image
           src={"/login.png"}
           width={200}
           height={200}
           quality={50}
           priority={true}
-          className="mx-auto h-48 md:h-36 2xl:h-64 w-auto"
+          className="mx-auto h-48 sm:h-64 w-auto"
           alt="login image"
           placeholder="empty"
           sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"

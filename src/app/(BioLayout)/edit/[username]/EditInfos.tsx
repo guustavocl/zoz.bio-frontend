@@ -38,7 +38,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             ) : null}
           </h2>
           <span
-            className={"cursor-pointer text-lg md:text-sm -mt-[0.2rem] font-semibold tracking-wide"}
+            className={"-mt-[0.2rem] md:-mt-[0.6rem] cursor-pointer text-lg md:text-sm font-semibold tracking-wide"}
             style={{
               color: fontColor,
               opacity: 0.5,
@@ -47,7 +47,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             zoz.bio/{page?.pagename}
           </span>
           <div
-            className="mt-2 flex flex-col items-center break-words text-center text-base md:text-sm font-semibold tracking-tight opacity-70"
+            className="mt-0.5 flex flex-col items-center break-words text-center text-base md:text-sm font-semibold tracking-tight opacity-70"
             style={{
               lineHeight: "0.9rem",
               color: fontColor,

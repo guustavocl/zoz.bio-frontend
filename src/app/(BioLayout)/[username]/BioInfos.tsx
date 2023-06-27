@@ -31,7 +31,7 @@ const BioInfos = ({ page }: { page: PageProps }) => {
         </span>
       </h2>
       <div
-        className="-mt-[0.2rem]"
+        className="-mt-[0.2rem] md:-mt-[0.6rem] cursor-pointer text-lg md:text-sm font-semibold tracking-wide"
         style={{
           color: fontColor,
           opacity: 0.5,

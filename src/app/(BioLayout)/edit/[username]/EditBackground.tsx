@@ -25,7 +25,7 @@ const EditBackground = ({ page }: { page: PageProps }) => {
   };
 
   return (
-    <div className="mt-16 mb-2 flex flex-col sm:flex-row gap-2">
+    <div className="mt-[3.75rem] mb-2 flex flex-col sm:flex-row gap-2">
       <EditColors page={page} />
       <div className="flex flex-row gap-2">
         <label

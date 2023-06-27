@@ -55,7 +55,7 @@ const AccountComponent = () => {
   }
 
   return (
-    <div className="flex h-full w-full flex-grow flex-col items-center overflow-hidden">
+    <div className="flex h-full w-full flex-grow flex-col items-center overflow-hidden mb-12">
       {account && !account.isEmailConfirmed && (
         <div className="w-full bg-yellow-500 p-3 rounded text-black/80">
           {/* TODO - send confirmation email and validade time to be 1min cooldown */}

@@ -43,8 +43,8 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
         ) : (
           <CssDoodle />
         )}
-        <BioNavigation page={page} user={user} />
         <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
+          <BioNavigation page={page} user={user} />
           <div className="mt-28 relative select-none w-full flex flex-col sm:flex-row sm:gap-2 mb-2 sm:min-h-[200px]">
             <BioAvatar page={page} />
             <BioCard page={page} className="w-full z-10 mb-0">

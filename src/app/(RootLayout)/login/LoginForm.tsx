@@ -54,7 +54,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="mt-4 w-full space-y-2 px-4 md:px-12 2xl:px-4" onSubmit={handleSubmit(submitLogin)}>
+    <form className="mt-4 w-full space-y-2 px-4" onSubmit={handleSubmit(submitLogin)}>
       <div className="-space-y-px rounded-md shadow-sm">
         <Input id="email" type="text" label="Email" register={register("email")} errorMessage={errors.email?.message} />
         <Input
