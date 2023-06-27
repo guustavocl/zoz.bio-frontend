@@ -14,7 +14,7 @@ type BioLinkProps = {
 };
 
 const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: string }) => {
-  const typeCover = link.isFolder ? "" : "/banners/link-zelda.jpg";
+  const typeCover = link.bannerUrl || "";
 
   return (
     <>
@@ -31,7 +31,7 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
         />
       )}
       <div
-        className="z-10 flex flex-row items-center gap-2 sm:ml-[10%] md:ml-[15%] text-xl font-bold leading-6 tracking-wide icon-shadow"
+        className="z-10 flex flex-row items-center gap-2 ml-[10%] md:ml-[18%] text-xl font-bold leading-6 tracking-wide icon-shadow"
         style={{ color: fontColor }}
       >
         <img
@@ -100,11 +100,7 @@ const BioLink = ({ page, link, setFolderOwner }: BioLinkProps) => {
         </div>
       </div>
 
-      <div
-        className={
-          "w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[1rem] sm:-ml-[1.35rem] md:-ml-[1.6rem]"
-        }
-      >
+      <div className={"w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[1rem] sm:-ml-[1rem]"}>
         <div
           className={clsx(
             cardBlur,

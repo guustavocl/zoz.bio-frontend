@@ -56,7 +56,7 @@ const EditLinks = ({ page }: EditLinksProps) => {
         )}
       </div>
       {folderOwner ? (
-        <div className="w-full flex flex-row gap-2 mb-2 select-none">
+        <div className="w-full flex flex-row select-none h-[3.5rem] md:h-auto">
           <EditLink
             page={page}
             link={folderOwner}
@@ -72,7 +72,7 @@ const EditLinks = ({ page }: EditLinksProps) => {
       ) : null}
       {pageLinks.map((link, idx) =>
         link.embedded === "none" ? (
-          <div key={idx} className="w-full flex flex-row gap-2 mb-2 select-none">
+          <div key={idx} className="w-full flex flex-row select-none h-[3.5rem] md:h-auto">
             <EditLink
               page={page}
               link={link}

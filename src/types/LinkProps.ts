@@ -3,6 +3,7 @@ export interface LinkProps {
   url: string;
   label: string;
   icon: string;
+  bannerUrl: string;
   embedded: string;
   isPlaylist: boolean;
   isHidden: boolean;

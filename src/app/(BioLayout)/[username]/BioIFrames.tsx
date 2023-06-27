@@ -3,24 +3,25 @@ import { memo } from "react";
 
 // TODO - its kinda of laggy when switch folders if you hjave an iframe
 // seems like the iframe is reloading everytime, find a way to save the iframe, cache, etc
+// TODO - encapsulate this better
 const BioIFrames = ({ link }: { link: LinkProps }) => {
   return (
-    <div className="relative flex flex-col w-full rounded-xl shadow-black">
+    <>
       {link.embedded === "spotify" && link.isPlaylist ? (
         <iframe
-          className="mb-2 h-36 w-full rounded"
-          src={`https://open.spotify.com/embed/${link.url}`}
+          className="w-full rounded h-[154px]"
           width="100%"
+          height="154"
+          src={`https://open.spotify.com/embed/${link.url}`}
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
         ></iframe>
       ) : link.embedded === "spotify" ? (
         <iframe
-          className="mb-0.5 h-20 w-full rounded"
-          src={`https://open.spotify.com/embed/${link.url}`}
+          className="w-full rounded h-[80px]"
           width="100%"
-          height="auto"
+          src={`https://open.spotify.com/embed/${link.url}`}
           loading="lazy"
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -67,7 +68,7 @@ const BioIFrames = ({ link }: { link: LinkProps }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       ) : null}
-    </div>
+    </>
   );
 };
 export default memo(BioIFrames);

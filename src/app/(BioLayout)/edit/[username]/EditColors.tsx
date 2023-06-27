@@ -87,7 +87,7 @@ const ColorCircle = ({
         <div
           className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-4 border-gray-900/[0.8]"
           style={{
-            backgroundColor: rgbaColor ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a})` : hexColor,
+            backgroundColor: rgbaColor ? `rgb(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b}, 0.8)` : hexColor,
           }}
           onClick={onClick}
         >

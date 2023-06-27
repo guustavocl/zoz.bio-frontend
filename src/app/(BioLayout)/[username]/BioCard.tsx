@@ -19,8 +19,7 @@ const BioCard = ({ children, page, className, center = true }: SectionCardProps)
       className={twMerge(
         cardBlur,
         cardHueRotate,
-        "relative flex flex-col w-full p-0 py-[0.6rem]",
-        "mb-2 px-2 rounded-xl shadow-sm shadow-black sm:px-3",
+        "relative flex flex-row w-full rounded-xl shadow-sm shadow-black",
         center ? "justify-center" : "justify-start",
         className
       )}

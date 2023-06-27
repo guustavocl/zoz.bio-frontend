@@ -20,7 +20,7 @@ const ButtonCard = ({ label, className, page, onClick, iconAdornment }: ButtonCa
   return (
     <button
       className={twMerge(
-        "group cursor-pointer flex flex-row justify-center items-center mb-2",
+        "group cursor-pointer flex flex-row justify-center items-center mb-2 h-full",
         "hover:opacity-80 p-1 w-full sm:w-48 rounded-xl sm:px-3 shadow-black shadow-sm",
         cardBlur,
         cardHueRotate,

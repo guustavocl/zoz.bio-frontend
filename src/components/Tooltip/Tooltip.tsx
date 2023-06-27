@@ -31,7 +31,7 @@ const TooltipComponent = ({
           <span
             data-popper-arrow=""
             className={twMerge(
-              `bottom-1.5 h-0 w-3 translate-y-5 text-sm text-primary opacity-90`,
+              `bottom-1.5 h-0 w-3 translate-y-5 text-sm text-secondary opacity-90`,
               backgroundColor ? `text-${backgroundColor}` : ""
             )}
           >

@@ -3,7 +3,7 @@ export const defaultPage = {
   secondaryColor: { r: 151, g: 71, b: 255, a: 0.3 },
   fontColor: "#f1f1f1",
   pfpUrl: "/defaultpfp.jpg",
-  bgUrl: "/bg.svg",
+  bgUrl: null,
   bgSize: "cover",
   bgOpacity: 0.3,
   cardBlur: "backdrop-blur",

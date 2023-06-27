@@ -27,18 +27,22 @@ const EditInfos = ({ page }: { page: PageProps }) => {
               color: fontColor,
             }}
           >
-            {page?.uname || "No name~"}
-            {page?.adornment ? (
-              <img
-                className="w-7"
-                src={getAdornmentIcon(page.adornment)?.icon}
-                alt={getAdornmentIcon(page.adornment)?.label}
-                loading="lazy"
-              />
-            ) : null}
+            <span className="relative">
+              {page?.uname || "No name~"}
+              <span className="absolute -right-7 items-center h-full justify-center self-center flex flex-col top-0">
+                {page?.adornment ? (
+                  <img
+                    className="w-6"
+                    src={getAdornmentIcon(page.adornment)?.icon}
+                    alt={getAdornmentIcon(page.adornment)?.label}
+                    loading="lazy"
+                  />
+                ) : null}
+              </span>
+            </span>
           </h2>
           <span
-            className={"-mt-[0.2rem] md:-mt-[0.6rem] cursor-pointer text-lg md:text-sm font-semibold tracking-wide"}
+            className={"-mt-[0.2rem] md:-mt-[0.4rem] cursor-pointer text-lg md:text-sm font-semibold tracking-wide"}
             style={{
               color: fontColor,
               opacity: 0.5,
@@ -47,7 +51,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             zoz.bio/{page?.pagename}
           </span>
           <div
-            className="mt-0.5 flex flex-col items-center break-words text-center text-base md:text-sm font-semibold tracking-tight opacity-70"
+            className="mt-0.5 w-full text-center text-ellipsis break-words text-base md:text-sm font-semibold tracking-tight opacity-80"
             style={{
               lineHeight: "0.9rem",
               color: fontColor,

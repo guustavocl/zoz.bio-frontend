@@ -4,6 +4,7 @@ import { PageProps } from "@/types/PageProps";
 import { memo, useState } from "react";
 import BioIFrames from "./BioIFrames";
 import BioLink from "./BioLink";
+import BioCard from "./BioCard";
 
 type BioLinksProps = {
   page: PageProps;
@@ -32,7 +33,7 @@ const BioLinks = ({ page }: BioLinksProps) => {
   return (
     <>
       {folderOwner ? (
-        <div className="w-full flex flex-row gap-2 mb-2 select-none">
+        <div className="w-full flex flex-row select-none h-[3.5rem] md:h-auto">
           <BioLink
             page={page}
             link={folderOwner}
@@ -45,11 +46,13 @@ const BioLinks = ({ page }: BioLinksProps) => {
       ) : null}
       {pageLinks.map((link, idx) =>
         link.embedded === "none" ? (
-          <div key={idx} className="w-full flex flex-row gap-2 mb-2 select-none">
+          <div key={idx} className="w-full flex flex-row select-none h-[3.5rem] md:h-auto">
             <BioLink page={page} link={link} setFolderOwner={setFolderOwner} />
           </div>
         ) : (
-          <BioIFrames key={idx} link={link} />
+          <BioCard key={idx} page={page} className="w-full">
+            <BioIFrames link={link} />
+          </BioCard>
         )
       )}
     </>

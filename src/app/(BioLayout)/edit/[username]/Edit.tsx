@@ -11,6 +11,7 @@ import EditInfos from "./EditInfos";
 import EditSocials from "./EditSocials";
 import EditBackground from "./EditBackground";
 import EditLinks from "./EditLinks";
+import CssDoodle from "@/components/CssDoodle/CssDoodle";
 
 export const EditComponent = ({ page }: { page: PageProps }) => {
   const cookieStore = cookies();
@@ -22,37 +23,44 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
   return (
     <>
       <div className="flex min-h-screen w-full flex-col items-center overflow-hidden">
-        <Image
-          fill
-          quality={90}
-          priority={true}
-          placeholder="empty"
-          src={backgroundUrl}
-          className="-z-50"
-          style={{
-            objectFit: "cover",
-            opacity: backGroundOpacity,
-            backgroundColor: "#080808",
-            backgroundRepeat: "repeat",
-            backgroundPosition: "center",
-          }}
-          alt={`${page.pagename} bio page background`}
-          sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
-        />
-        <BioNavigation page={page} user={user} editPage />
-        <div className="container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
+        {backgroundUrl ? (
+          <Image
+            fill
+            quality={90}
+            priority={true}
+            placeholder="empty"
+            src={backgroundUrl}
+            className="-z-50"
+            style={{
+              objectFit: "cover",
+              opacity: backGroundOpacity,
+              backgroundColor: "#080808",
+              backgroundRepeat: "repeat",
+              backgroundPosition: "center",
+            }}
+            alt={`${page.pagename} bio page background`}
+            sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
+          />
+        ) : (
+          <CssDoodle />
+        )}
+        <BioNavigation page={page} user={user} />
+        <div className="relative container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <EditBackground page={page} />
-          <div className="relative select-none w-full flex flex-col sm:flex-row sm:gap-2 mb-2 sm:min-h-[200px] ">
+          <div className="relative select-none w-full flex flex-col sm:flex-row gap-3 sm:gap-2 sm:min-h-[12rem] flex-shrink-0">
             <EditAvatar pageName={page.pagename} page={page} />
-            <BioCard page={page} className="w-full z-10 mb-0">
-              <div className="flex w-full flex-col pt-3 sm:pt-0 sm:pl-[30%]">
+            <BioCard page={page} className="w-full z-10 py-[0.6rem] px-3">
+              <div className="flex w-full flex-col pt-3 sm:pt-0 sm:pl-[30%] gap-2 md:gap-1">
                 <EditInfos page={page} />
                 <EditBadges page={page} />
                 <EditSocials page={page} />
               </div>
             </BioCard>
           </div>
-          <EditLinks page={page} />
+
+          <div className="flex flex-col w-full gap-3 md:gap-2 my-2 mb-28">
+            <EditLinks page={page} />
+          </div>
         </div>
       </div>
     </>
