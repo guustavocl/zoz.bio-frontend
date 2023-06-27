@@ -8,7 +8,7 @@
   --background-end-rgb: 0, 0, 0;
 
   font-family: Inter, Avenir, Helvetica, sans-serif;
-  font-size: 17px;
+  font-size: clamp(0.8rem, 1vw, 1rem); 
   font-weight: 500;
 
   font-synthesis: none;

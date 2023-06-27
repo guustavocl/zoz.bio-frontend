@@ -27,7 +27,7 @@ const EditBadges = ({ page }: { page: PageProps }) => {
               getBadge(badge) ? (
                 <span
                   key={idx}
-                  className="whitespace-nowrap rounded px-1 py-0.5 text-xs font-semibold shadow-sm shadow-black/50"
+                  className="whitespace-nowrap rounded px-1 py-0.5 text-base md:text-xs font-semibold shadow-sm shadow-black/50"
                   style={{
                     backgroundColor: `rgb(${secondaryColor.r},${secondaryColor.g},${secondaryColor.b},${secondaryColor.a})`,
                     color: fontColor,

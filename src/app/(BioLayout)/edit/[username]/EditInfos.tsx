@@ -21,7 +21,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
       >
         <div className="flex w-full flex-col items-center">
           <h2
-            className="flex flex-row items-center text-center text-2xl font-bold leading-6 tracking-wide"
+            className="flex flex-row items-center text-center text-3xl md:text-2xl font-bold leading-6 tracking-wide"
             style={{
               textShadow: "2px 2px #00000090",
               color: fontColor,
@@ -38,7 +38,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             ) : null}
           </h2>
           <span
-            className={"cursor-pointer text-sm -mt-1 font-semibold tracking-wide"}
+            className={"cursor-pointer text-lg md:text-sm -mt-[0.2rem] font-semibold tracking-wide"}
             style={{
               color: fontColor,
               opacity: 0.5,
@@ -47,7 +47,7 @@ const EditInfos = ({ page }: { page: PageProps }) => {
             zoz.bio/{page?.pagename}
           </span>
           <div
-            className="mt-2 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
+            className="mt-2 flex flex-col items-center break-words text-center text-base md:text-sm font-semibold tracking-tight opacity-70"
             style={{
               lineHeight: "0.9rem",
               color: fontColor,

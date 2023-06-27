@@ -20,7 +20,7 @@ export default function LoginPage() {
           height={200}
           quality={50}
           priority={true}
-          className="mx-auto h-48 sm:h-64 w-auto"
+          className="mx-auto h-48 md:h-36 2xl:h-64 w-auto"
           alt="login image"
           placeholder="empty"
           sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"

@@ -36,7 +36,7 @@ const DialogEditSocials = ({ isOpen, page, setIsOpen }: DialogEditSocialsProps) 
   }, [isOpen]);
 
   const submitNewSocial = (data: CreateSocialsFormData) => {
-    if (data.account && items && items.length < 30) {
+    if (data.account && items && items.length < 25) {
       if (items?.some(item => item.key === mediaSelected)) {
         errorToast("This account has already been added!");
       } else {
@@ -67,7 +67,7 @@ const DialogEditSocials = ({ isOpen, page, setIsOpen }: DialogEditSocialsProps) 
       <form onSubmit={handleSubmit(submitNewSocial)} className="flex flex-col items-center">
         {/* SOCIALS ADDED */}
         <div className="relative mt-2 flex w-full flex-row flex-wrap gap-1 rounded-md bg-secondary/[0.2] p-4">
-          <div className="absolute bottom-0 right-1 text-sm">{items?.length || "0"}/30</div>
+          <div className="absolute bottom-0 right-1 text-sm">{items?.length || "0"}/25</div>
           {items?.map((item, idx) => (
             <div key={idx} className="flex flex-col outline-0">
               <BioIcon key={idx} media={item} />

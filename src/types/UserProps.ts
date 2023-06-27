@@ -7,4 +7,5 @@ export interface UserProps {
   token?: string;
   isEmailConfirmed: boolean;
   subscription: string;
+  recaptcha?: string;
 }

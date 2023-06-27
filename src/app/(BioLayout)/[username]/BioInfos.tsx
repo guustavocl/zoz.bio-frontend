@@ -10,7 +10,7 @@ const BioInfos = ({ page }: { page: PageProps }) => {
   return (
     <div className="flex w-full flex-col items-center">
       <h2
-        className="flex flex-row items-center text-center text-2xl font-bold leading-6 tracking-wide"
+        className="flex flex-row items-center text-center text-3xl md:text-2xl font-bold leading-6 tracking-wide"
         style={{
           textShadow: "2px 2px #00000090",
           color: fontColor,
@@ -31,7 +31,7 @@ const BioInfos = ({ page }: { page: PageProps }) => {
         </span>
       </h2>
       <div
-        className="-mt-[0.4rem]"
+        className="-mt-[0.2rem]"
         style={{
           color: fontColor,
           opacity: 0.5,
@@ -41,7 +41,7 @@ const BioInfos = ({ page }: { page: PageProps }) => {
       </div>
       {page?.bio && (
         <div
-          className="mt-0.5 flex flex-col items-center break-words text-center text-sm font-semibold tracking-tight opacity-70"
+          className="mt-0.5 flex flex-col items-center break-words text-center text-base md:text-sm font-semibold tracking-tight opacity-70"
           style={{
             lineHeight: "0.9rem",
             color: fontColor,

@@ -15,7 +15,7 @@ export const getAccount = async () => {
   }
 };
 
-export const register = async (values: UserProps) => {
+export const createAccount = async (values: UserProps) => {
   try {
     const request = await CustomAxios.post(`${API_ENDPOINT}/create`, values);
     return request.data;

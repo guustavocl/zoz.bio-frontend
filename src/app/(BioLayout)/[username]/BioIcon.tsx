@@ -22,11 +22,11 @@ const BioIcon = ({ media }: { media: MediaProps }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img className="icon-shadow h-7" src={social.icon} alt={`${media.key} icon`} loading="lazy" />
+          <img className="icon-shadow h-9 md:h-7" src={social.icon} alt={`${media.key} icon`} loading="lazy" />
         </a>
       ) : (
         <img
-          className="icon-shadow h-7 cursor-pointer hover:animate-pulse"
+          className="icon-shadow h-9 md:h-7 cursor-pointer hover:animate-pulse"
           src={social.icon}
           alt={`${media.key} icon`}
           onClick={() => {

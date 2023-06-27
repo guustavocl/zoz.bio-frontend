@@ -31,11 +31,11 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
         />
       )}
       <div
-        className="z-10 flex flex-row sm:items-center gap-2 sm:ml-[10%] md:ml-[15%] text-sm sm:text-xl font-bold leading-6 tracking-wide icon-shadow"
+        className="z-10 flex flex-row items-center gap-2 sm:ml-[10%] md:ml-[15%] text-xl font-bold leading-6 tracking-wide icon-shadow"
         style={{ color: fontColor }}
       >
         <img
-          className="icon-shadow h-5 sm:h-7 flex-shrink-0"
+          className="icon-shadow h-7 flex-shrink-0"
           src={getIcon(link.isFolder ? "folder" : "link")?.icon}
           alt={`folder icon`}
           loading="lazy"

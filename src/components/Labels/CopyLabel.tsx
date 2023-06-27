@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 const CopyLabel = ({ label, textToCopy, className }: { label: string; textToCopy: string; className?: string }) => {
   return (
     <span
-      className={twMerge("cursor-pointer text-sm font-semibold tracking-wide", className)}
+      className={twMerge("cursor-pointer text-lg md:text-sm font-semibold tracking-wide", className)}
       onClick={() => {
         successToast(`Copied`);
         if (navigator.clipboard) {
