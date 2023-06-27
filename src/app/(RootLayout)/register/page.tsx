@@ -14,7 +14,7 @@ export default function LoginPage() {
   else
     return (
       <Main className="mb-24 mt-12 md:mb-10 2xl:mb-16 md:mt-2 2xl:mt-6 sm:w-[30rem]">
-        {/* TODO - find a better register image */}
+        {/* TODO - find a better register image, bigger size on 2xl: */}
         <Image
           src={"/login.png"}
           width={200}

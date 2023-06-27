@@ -48,6 +48,7 @@ export default function RegisterForm() {
         errorToast(err);
       })
       .finally(() => {
+        // TODO - this inst working, fix it
         recaptchaRef.current?.reset();
       });
   };

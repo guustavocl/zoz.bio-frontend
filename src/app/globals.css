@@ -59,11 +59,6 @@ a:focus-visible {
   clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 6% 50%, 0% 0%);
 }
 
-/* .arrow-card-avatar {
-  -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
-  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
-} */
-
 @screen sm {
   .arrow-card-avatar {
     -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
