@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta property="og:url" content="https://zoz.bio/" />
         <meta property="og:title" content={ZOZ_META_TITLE} />
         <meta property="og:description" content={ZOZ_META_DESCRIPTION} />
-        <meta property="og:image" content="https://zoz.bio/metabg.png?v=2" />
+        <meta property="og:image" content="https://zoz.bio/metabg.png?v=3" />
         <meta property="og:image:alt" content="zoz.bio logo with a dark background" />
         {/* <!-- Twitter --> */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -48,8 +48,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta property="twitter:url" content="https://zoz.bio/" />
         <meta property="twitter:title" content={ZOZ_META_TITLE} />
         <meta property="twitter:description" content={ZOZ_META_DESCRIPTION} />
-        <meta property="twitter:image" content="https://zoz.bio/metabg.png?v=2" />
-        <meta property="twitter:image:src" content="https://zoz.bio/metabg.png?v=2" />
+        <meta property="twitter:image" content="https://zoz.bio/metabg.png?v=3" />
+        <meta property="twitter:image:src" content="https://zoz.bio/metabg.png?v=3" />
 
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap"

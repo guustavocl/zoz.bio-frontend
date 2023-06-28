@@ -33,7 +33,7 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
           <span className="sr-only">zoz.bio</span>
           <img
             className="w-auto py-2 sm:h-14"
-            src={"/zoz.png"}
+            src={"/zoz.png?v=2"}
             alt="zoz.bio logo"
             width="auto"
             height="auto"
@@ -80,7 +80,7 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
                     <span className="sr-only">zoz.bio</span>
                     <img
                       className="w-auto py-2 sm:h-14"
-                      src={"/zoz.png"}
+                      src={"/zoz.png?v=2"}
                       alt="zoz.bio logo"
                       width="auto"
                       height="auto"
