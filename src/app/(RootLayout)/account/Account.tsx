@@ -1,14 +1,14 @@
 "use client";
-import { getAccount } from "@/services/AccountService";
+import { getAccount, sendConfirmEmail } from "@/services/AccountService";
 import { PageProps } from "@/types/PageProps";
 import { UserProps } from "@/types/UserProps";
-import { errorToast } from "@/utils/toaster";
+import { errorToast, successToast } from "@/utils/toaster";
 import { useQuery } from "@tanstack/react-query";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AccountTabs } from "./AccountTabs";
-import { Link } from "@/components/Buttons";
+import { LabelButton } from "@/components/Buttons";
 
 const AccountComponent = () => {
   const [pages, setPages] = useState<PageProps[]>();
@@ -62,10 +62,19 @@ const AccountComponent = () => {
           <span>
             We noticed that your email has not been confirmed yet. So your account is limited, and can be suspended
             without further notice. Check your spam folder if you can&apos;t find it, or{" "}
-            <Link
-              href="/"
-              className="text-violet-900 font-semibold"
+            <LabelButton
+              id="resend-confirmation-btn"
+              className="text-violet-800 font-semibold"
               label="click here to resend the confirmation email!"
+              onClick={() => {
+                sendConfirmEmail(account.email || "", "aa")
+                  .then(() => {
+                    successToast("Confirmation email successfully sended, check your inbox or spam directory");
+                  })
+                  .catch(err => {
+                    errorToast(err);
+                  });
+              }}
             />
           </span>
         </div>

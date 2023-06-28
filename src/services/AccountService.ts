@@ -36,10 +36,9 @@ export const sendConfirmEmail = async (email: string, recapthca?: string) => {
   }
 };
 
-export const confirmEmail = async (email: string, token: string) => {
+export const confirmEmail = async (token: string) => {
   try {
     const request = await CustomAxios.post(`${API_ENDPOINT}/confirm_email`, {
-      email,
       token,
     });
     return request.data;

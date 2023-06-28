@@ -74,14 +74,12 @@ export default function LoginForm() {
             className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-0"
             {...register("remember")}
           />
-          <label htmlFor="remember-me" className="text-2x1 ml-2 block text-gray-300">
+          <label htmlFor="remember-me" className="ml-2 block text-gray-300">
             Remember me
           </label>
         </div>
 
-        <div className="text-2x1">
-          <Link href="#" label="Forgot your password?" className="font-medium text-gray-300" />
-        </div>
+        <Link href="#" label="Forgot your password?" className="font-medium text-gray-300" />
       </div>
 
       <Button

@@ -41,7 +41,7 @@ export default function RegisterForm() {
     createAccount(data)
       .then(() => {
         reset();
-        successToast("Account sucessfully created, please check you email to confirm your account");
+        successToast("Account successfully created, please check you email to confirm your account");
         router.push("/login");
       })
       .catch(err => {
@@ -115,7 +115,7 @@ export default function RegisterForm() {
       <Link
         href="/login"
         label="Sign In if you already have an account"
-        className="text-2x1 font-medium text-violet-600 text-center w-full"
+        className="font-medium text-violet-600 text-center w-full"
       />
     </form>
   );
