@@ -23,7 +23,6 @@ export default async function ConfirmPage({ params }: { params: { token: string 
 
   return (
     <Main className="mb-36 mt-32 md:mb-16 md:mt-6 sm:w-[30rem]">
-      {params.token}
       <Image
         src={"/login.png"}
         width={200}
