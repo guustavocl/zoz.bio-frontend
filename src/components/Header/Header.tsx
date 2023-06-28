@@ -29,10 +29,10 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
   return (
     <Popover className="z-20 container flex w-full flex-row">
       <div className="my-4 flex w-full justify-between">
-        <Link href="/" className="w-auto sm:h-16">
+        <Link href="/" className="w-auto h-16">
           <span className="sr-only">zoz.bio</span>
           <img
-            className="w-auto py-2 sm:h-14"
+            className="w-auto py-2 h-16 sm:h-14"
             src={"/zoz.png?v=2"}
             alt="zoz.bio logo"
             width="auto"
@@ -76,10 +76,10 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
             {({ close }) => (
               <div className="my-4 rounded-lg shadow-lg ring-0 ring-black ring-opacity-5">
                 <div className="flex items-center justify-between">
-                  <Link href="/" className="w-auto sm:h-16">
+                  <Link href="/" className="w-auto h-16">
                     <span className="sr-only">zoz.bio</span>
                     <img
-                      className="w-auto py-2 sm:h-14"
+                      className="w-auto py-2 h-16 sm:h-14"
                       src={"/zoz.png?v=2"}
                       alt="zoz.bio logo"
                       width="auto"

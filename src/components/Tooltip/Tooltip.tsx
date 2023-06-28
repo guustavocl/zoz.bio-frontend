@@ -6,14 +6,12 @@ const TooltipComponent = ({
   children,
   content = "",
   className = "",
-  backgroundColor = "secondary",
+  primaryColor = true,
 }: {
   children: ReactNode;
   content?: string;
   className?: string;
-  backgroundColor?: string;
-  textVariable?: string;
-  bgVariable?: string;
+  primaryColor?: boolean;
 }) => {
   return (
     <Tippy
@@ -21,7 +19,7 @@ const TooltipComponent = ({
         <div
           className={twMerge(
             "box z-10 h-full rounded p-1 px-2 font-medium tracking-wide",
-            `bg-${backgroundColor} opacity-90 saturate-200 backdrop-blur`,
+            "opacity-90 saturate-200 backdrop-blur",
             className
           )}
           tabIndex={-1}
@@ -31,8 +29,8 @@ const TooltipComponent = ({
           <span
             data-popper-arrow=""
             className={twMerge(
-              `bottom-1.5 h-0 w-3 translate-y-5 text-sm text-secondary opacity-90`,
-              backgroundColor ? `text-${backgroundColor}` : ""
+              `bottom-1.5 h-0 w-3 translate-y-5 text-sm opacity-90`,
+              primaryColor ? "text-primary" : "text-secondary"
             )}
           >
             ▼

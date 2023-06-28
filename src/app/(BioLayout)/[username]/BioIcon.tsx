@@ -14,7 +14,7 @@ const BioIcon = ({ media }: { media: MediaProps }) => {
   const social = getSocialIcon(media.key);
   if (!social) return null;
   return (
-    <Tooltip content={social.label} className="bg-primary/90" backgroundColor="primary">
+    <Tooltip content={social.label} className="bg-primary/90">
       {social.url ? (
         <a
           className="hover:animate-pulse"

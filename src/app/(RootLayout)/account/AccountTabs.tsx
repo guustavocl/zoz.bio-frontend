@@ -40,7 +40,7 @@ export const AccountTabs = ({ account, pages, addNewPage }: AcountTabsProps) => 
           {pages
             ? pages.map((page: PageProps, idx: number) => (
                 <div key={idx} className="group flex flex-shrink-0 flex-col items-center justify-center">
-                  <Tooltip content={page.pagename}>
+                  <Tooltip content={page.pagename} primaryColor={false}>
                     <Image
                       width={400}
                       height={400}
