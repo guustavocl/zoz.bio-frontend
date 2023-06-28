@@ -2,7 +2,7 @@ export const defaultPage = {
   primaryColor: { r: 65, g: 5, b: 160, a: 0.3 },
   secondaryColor: { r: 151, g: 71, b: 255, a: 0.3 },
   fontColor: "#f1f1f1",
-  pfpUrl: "/defaultpfp.jpg",
+  pfpUrl: "/pfp.jpg",
   bgUrl: null,
   bgSize: "cover",
   bgOpacity: 0.3,
