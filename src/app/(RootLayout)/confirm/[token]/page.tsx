@@ -1,7 +1,7 @@
 import { Link } from "@/components/Buttons";
 import Main from "@/components/Main/Main";
 import Redirect from "@/components/Redirect";
-import { confirmEmail } from "@/services/AccountService";
+import { confirmEmail } from "@/services/TokenService";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import ConfirmationButton from "./ConfirmationButton";
