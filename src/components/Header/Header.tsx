@@ -53,7 +53,7 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
           </div>
         )}
 
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center md:hidden relative">
           <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 focus:outline-none">
             <span className="sr-only">Open menu</span>
             <Bars3Icon className="h-8 w-8" aria-hidden="true" />
