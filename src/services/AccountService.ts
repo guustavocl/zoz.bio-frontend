@@ -35,14 +35,3 @@ export const sendConfirmEmail = async (email: string, recapthca?: string) => {
     handleAxiosError(err);
   }
 };
-
-export const confirmEmail = async (token: string) => {
-  try {
-    const request = await CustomAxios.post(`${API_ENDPOINT}/confirm_email`, {
-      token,
-    });
-    return request.data;
-  } catch (err: Error | unknown) {
-    handleAxiosError(err);
-  }
-};
