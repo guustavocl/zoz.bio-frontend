@@ -3,7 +3,6 @@ import Main from "@/components/Main/Main";
 import Redirect from "@/components/Redirect/Redirect";
 import { cookies } from "next/headers";
 import RegisterForm from "./RegisterForm";
-import Image from "next/image";
 import { Card } from "@/components/Cards";
 import CssDoodle from "@/components/CssDoodle/CssDoodle";
 
