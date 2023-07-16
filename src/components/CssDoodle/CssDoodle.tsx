@@ -2,8 +2,9 @@
 "use client";
 import Doodle from "@/utils/doodle";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-const CssDoodle = () => {
+const CssDoodle = ({ className }: { className?: string }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -12,11 +13,11 @@ const CssDoodle = () => {
 
   return (
     <div
-      className="default-bg absolute h-screen w-screen select-none"
+      className={twMerge("select-none absolute top-0", className)}
       style={{
         objectFit: "cover",
-        opacity: 0.4,
-        backgroundColor: "#080808",
+        opacity: 0.1,
+        backgroundColor: "#000",
         backgroundRepeat: "repeat",
         backgroundPosition: "center",
       }}

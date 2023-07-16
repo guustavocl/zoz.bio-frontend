@@ -6,7 +6,7 @@ const API_ENDPOINT = "user";
 
 export const getAccount = async () => {
   try {
-    const request = await CustomAxios.get(API_ENDPOINT, {
+    const request = await CustomAxios.get(`${API_ENDPOINT}/logged`, {
       withCredentials: true,
     });
     return request.data;
@@ -17,7 +17,7 @@ export const getAccount = async () => {
 
 export const createAccount = async (values: UserProps) => {
   try {
-    const request = await CustomAxios.post(`${API_ENDPOINT}/create`, values);
+    const request = await CustomAxios.post(`${API_ENDPOINT}`, values);
     return request.data;
   } catch (err: Error | unknown) {
     handleAxiosError(err);

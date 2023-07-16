@@ -33,4 +33,4 @@ EXPOSE 3000
 CMD ["yarn", "start"]
 
 # create image with this command: sudo docker build . -t zoz.bio-image
-# run container with this command: sudo docker run -d --name zoz.bio --network npm zoz.bio-image
+# run container with this command: sudo docker run -d --name zoz.bio --restart=unless-stopped --network npm zoz.bio-image

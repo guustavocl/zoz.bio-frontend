@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { AccountTabs } from "./AccountTabs";
 import { LabelButton } from "@/components/Buttons";
 
+// TODO - maybe change this to server component
 const AccountComponent = () => {
   const [pages, setPages] = useState<PageProps[]>();
   const [account, setAccount] = useState<UserProps>();

@@ -7,6 +7,7 @@ import Main from "@/components/Main/Main";
 export default function AccountPage() {
   const cookieStore = cookies();
   const userCookie = cookieStore.get("zoz_user");
+  // TODO - userCookie is enought to validate this I think, just test and remove const user
   const user = userCookie ? JSON.parse(userCookie?.value) : undefined;
 
   if (user)

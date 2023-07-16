@@ -1,12 +1,12 @@
 import { RgbaColor } from "react-colorful";
 import { LinkProps } from "./LinkProps";
 
-export interface PagePropsStatus {
+export interface PageStatusProps {
   key: string;
   message: string;
 }
 
-export interface PagePropsSocialMedia {
+export interface PageSocialMediaProps {
   key: string;
   username: string;
 }
@@ -14,7 +14,7 @@ export interface PagePropsSocialMedia {
 export interface PageProps {
   pagename: string;
   uname: string;
-  status: PagePropsStatus;
+  status: PageStatusProps;
   bio: string;
   pfpUrl: string;
   bannerUrl: string;
@@ -36,6 +36,6 @@ export interface PageProps {
   cardBlur: string;
   cardHueRotate: string;
   badges: string[];
-  socialMedias: PagePropsSocialMedia[];
+  socialMedias: PageSocialMediaProps[];
   pageLinks: LinkProps[];
 }

@@ -1,4 +1,4 @@
-import { PagePropsSocialMedia } from "@/types/PageProps";
+import { PageSocialMediaProps } from "@/types/PageProps";
 import { CustomAxios } from "./CustomAxios";
 import { handleAxiosError } from "@/utils/ErrorHandler";
 import { RgbaColor } from "react-colorful";
@@ -49,7 +49,7 @@ export const checkPagename = async (pagename: string) => {
 
 export const createPage = async (pagename: string) => {
   try {
-    const request = await CustomAxios.post(`${API_ENDPOINT}/create`, { pagename }, { withCredentials: true });
+    const request = await CustomAxios.post(`${API_ENDPOINT}`, { pagename }, { withCredentials: true });
     return request.data;
   } catch (err: Error | unknown) {
     handleAxiosError(err);
@@ -90,12 +90,12 @@ export const saveBadges = async (badges: string[], pagename: string) => {
   }
 };
 
-export const saveSocialMedia = async (items: PagePropsSocialMedia[], pagename: string) => {
+export const saveSocialMedia = async (socialMedias: PageSocialMediaProps[], pagename: string) => {
   try {
     const request = await CustomAxios.post(
       `${API_ENDPOINT}/save_social_media`,
       {
-        items,
+        socialMedias,
         pagename,
       },
       { withCredentials: true }

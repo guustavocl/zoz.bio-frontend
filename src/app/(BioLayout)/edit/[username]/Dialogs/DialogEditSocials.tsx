@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { PageProps, PagePropsSocialMedia } from "@/types/PageProps";
+import { PageProps, PageSocialMediaProps } from "@/types/PageProps";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import Dialog from "@/components/Dialogs";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +26,7 @@ type DialogEditSocialsProps = {
 
 // TODO - refactor
 const DialogEditSocials = ({ isOpen, page, setIsOpen }: DialogEditSocialsProps) => {
-  const [items, setItems] = useState<PagePropsSocialMedia[]>();
+  const [items, setItems] = useState<PageSocialMediaProps[]>();
   const [mediaSelected, setMediaSelected] = useState("discord");
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const DialogEditSocials = ({ isOpen, page, setIsOpen }: DialogEditSocialsProps) 
                 <XMarkIcon
                   className="w-7 cursor-pointer font-bold text-red-700 hover:text-red-600"
                   onClick={() => {
-                    const newItems = items.filter((value: PagePropsSocialMedia) => {
+                    const newItems = items.filter((value: PageSocialMediaProps) => {
                       return !(item.key === value.key && item.username === value.username);
                     });
                     setItems(newItems);
@@ -161,7 +161,7 @@ const DialogEditSocials = ({ isOpen, page, setIsOpen }: DialogEditSocialsProps) 
           type="button"
           className={
             "group relative mt-20 flex w-full justify-center rounded border border-transparent " +
-            "text-3x1 px-4 py-2 font-medium hover:font-semibold " +
+            "px-4 py-2 font-medium hover:font-semibold " +
             "bg-violet-700 text-white hover:bg-violet-900 "
           }
           onClick={() => {

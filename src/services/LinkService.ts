@@ -6,7 +6,7 @@ const API_ENDPOINT = "link";
 
 export const getFolders = async (pagename: string) => {
   try {
-    const request = await CustomAxios.get(`${API_ENDPOINT}`, {
+    const request = await CustomAxios.get(`${API_ENDPOINT}/folders`, {
       params: { pagename },
       withCredentials: true,
     });
@@ -18,6 +18,7 @@ export const getFolders = async (pagename: string) => {
 
 export const createLink = async (link: LinkProps, pagename: string) => {
   try {
+    console.log(link);
     const request = await CustomAxios.post(
       `${API_ENDPOINT}`,
       {

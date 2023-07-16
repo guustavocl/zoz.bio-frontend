@@ -4,6 +4,8 @@ import Redirect from "@/components/Redirect/Redirect";
 import { cookies } from "next/headers";
 import RegisterForm from "./RegisterForm";
 import Image from "next/image";
+import { Card } from "@/components/Cards";
+import CssDoodle from "@/components/CssDoodle/CssDoodle";
 
 export default function LoginPage() {
   const cookieStore = cookies();
@@ -13,24 +15,19 @@ export default function LoginPage() {
   if (user) return <Redirect path="/account" />;
   else
     return (
-      <Main className="mb-24 mt-12 md:mb-10 2xl:mb-16 md:mt-2 2xl:mt-6 sm:w-[30rem]">
-        {/* TODO - find a better register image, bigger size on 2xl: */}
-        <Image
-          src={"/login.png"}
-          width={200}
-          height={200}
-          quality={50}
-          priority={true}
-          className="mx-auto h-48 sm:h-32 w-auto"
-          alt="login image"
-          placeholder="empty"
-          sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"
-        />
-        <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-gray-300">
-          Sign Up to link all your socials <br />
-          in one place! :)
-        </h2>
-        <RegisterForm />
-      </Main>
+      <>
+        <CssDoodle className="w-full" />
+        <Main className="sm:w-[33rem]">
+          {/* TODO - find a better register image, bigger size on 2xl: */}
+
+          <Card className=" relative px-4 py-10 my-[5rem]">
+            <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-gray-300">
+              Sign Up to link all your socials <br />
+              in one place! :)
+            </h2>
+            <RegisterForm />
+          </Card>
+        </Main>
+      </>
     );
 }

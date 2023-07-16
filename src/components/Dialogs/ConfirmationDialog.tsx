@@ -52,7 +52,7 @@ const ConfirmationDialog = ({
                 <div className="flex flex-row gap-2 w-full mt-4">
                   <button
                     className={clsx(
-                      "text-3x1 relative group w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
+                      "relative group w-full justify-center rounded bg-secondary px-4 py-2 font-medium text-white",
                       "border border-transparent hover:bg-secondary-darker hover:text-violet-300 focus:outline-none active:bg-secondary-darker/80 transition-colors duration-200"
                     )}
                     type="button"
@@ -65,7 +65,7 @@ const ConfirmationDialog = ({
                   </button>
                   <button
                     className={clsx(
-                      "text-3x1 relative group w-full justify-center rounded bg-red-600/50 px-4 py-2 font-medium text-white",
+                      "relative group w-full justify-center rounded bg-red-600/50 px-4 py-2 font-medium text-white",
                       "border border-transparent hover:bg-red-700/50 focus:outline-none active:bg-red-900/50 transition-colors duration-200"
                     )}
                     type="button"
