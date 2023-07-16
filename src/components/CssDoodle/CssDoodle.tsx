@@ -16,7 +16,7 @@ const CssDoodle = ({ className }: { className?: string }) => {
       className={twMerge("select-none absolute top-0", className)}
       style={{
         objectFit: "cover",
-        opacity: 0.1,
+        opacity: 0.05,
         backgroundColor: "#000",
         backgroundRepeat: "repeat",
         backgroundPosition: "center",

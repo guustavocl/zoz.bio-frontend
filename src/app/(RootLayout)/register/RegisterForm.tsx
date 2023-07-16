@@ -17,12 +17,12 @@ const registerFormSchema = z
     uname: z.string().nonempty("Name is required"),
     email: z.string().nonempty("Email is required").email("Insert a valid email").toLowerCase(),
     password: z.string().nonempty("Password is required").min(6, "Must be at least 6 characters length"),
-    cpassword: z.string().nonempty("Confirm Password is required").min(6, "Must be at least 6 characters length"),
+    confirmPassword: z.string().nonempty("Confirm Password is required").min(6, "Must be at least 6 characters length"),
     recaptcha: z.string().nonempty(),
   })
-  .refine(data => data.password === data.cpassword, {
+  .refine(data => data.password === data.confirmPassword, {
     message: "Passwords must match!",
-    path: ["cpassword"],
+    path: ["confirmPassword"],
   });
 
 export default function RegisterForm() {
@@ -57,7 +57,7 @@ export default function RegisterForm() {
   if (!recaptchaKey) return null;
 
   return (
-    <form className="w-full space-y-2 px-4" onSubmit={handleSubmit(submitRegister)}>
+    <form className="w-full space-y-2 px-4 relative" onSubmit={handleSubmit(submitRegister)}>
       <div className="-space-y-px rounded-md shadow-sm mb-2">
         <Input
           id="uname"
@@ -87,11 +87,11 @@ export default function RegisterForm() {
           size={40}
         />
         <Input
-          id="cpassword"
+          id="confirmPassword"
           type="password"
           label="Confirm Password"
-          register={register("cpassword")}
-          errorMessage={errors.cpassword?.message}
+          register={register("confirmPassword")}
+          errorMessage={errors.confirmPassword?.message}
           minSize={6}
           size={40}
         />

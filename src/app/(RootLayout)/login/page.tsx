@@ -13,7 +13,7 @@ export default function LoginPage() {
   if (user) return <Redirect path="/account" />;
   else
     return (
-      <Main className="mb-36 mt-32 md:mb-16 md:mt-6 sm:w-[30rem]">
+      <Main className="mb-36 mt-32 md:mb-16 md:mt-6 sm:w-[30rem] z-50">
         <Image
           src={"/login.png"}
           width={200}
@@ -26,7 +26,7 @@ export default function LoginPage() {
           sizes="(max-width: 768px) 250px, (max-width: 1200px) 350px, 400px"
         />
         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300">Sign In to edit your pages</h2>
-        <p className="mt-2 text-center text-gray-300">
+        <p className="mt-2 text-center text-gray-300 relative">
           or <Link href="register" label="click here to create your account" className="text-violet-500" />
         </p>
         <LoginForm />

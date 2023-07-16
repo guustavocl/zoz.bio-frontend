@@ -11,6 +11,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
+import CssDoodle from "@/components/CssDoodle/CssDoodle";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <NextTopLoader color="#6d28d9" showSpinner={false} />
+        <CssDoodle className="w-full z-0" />
         <Header user={user} />
         {children}
         <ToastProvider />

@@ -27,9 +27,9 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
   };
 
   return (
-    <Popover className="z-20 container flex w-full flex-row">
+    <Popover className="container flex w-full flex-row">
       <div className="my-4 flex w-full justify-between">
-        <Link href="/" className="w-auto h-16">
+        <Link href="/" className="w-auto h-16 relative">
           <span className="sr-only">zoz.bio</span>
           <img
             className="w-auto py-2 h-16 sm:h-14"
@@ -42,12 +42,12 @@ const HeaderComponent = ({ user }: { user?: UserProps }) => {
         </Link>
 
         {user?.email ? (
-          <div className="hidden items-center justify-end md:flex">
+          <div className="hidden items-center justify-end md:flex relative">
             <LinkButton href="account" label="Account" className="mr-8" />
             <Link href="/" onClick={logoutRequest} label="Logout" />
           </div>
         ) : (
-          <div className="hidden items-center justify-end md:flex">
+          <div className="hidden items-center justify-end md:flex relative">
             <Link href="login" label="Sign In" className="mr-8 font-medium text-gray-300" />
             <LinkButton href="register" label="Sign Up" />
           </div>
