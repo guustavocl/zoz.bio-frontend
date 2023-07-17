@@ -1,8 +1,3 @@
-"use client";
-
-import Dock from "@/components/MyDock/Dock";
-import { DockCard } from "@/components/MyDock/DockCard";
-
 const Socials = () => {
   const ICONS = [
     "/icons/social/discord.png",
@@ -17,14 +12,12 @@ const Socials = () => {
   ];
 
   return (
-    <div className="w-full col-span-12 p-2 rounded-lg flex flex-col items-center">
-      <Dock>
-        {ICONS.map((src, idx) => (
-          <DockCard key={idx}>
-            <img className="icon-shadow h-8" src={src} alt={`icon`} loading="lazy" />
-          </DockCard>
-        ))}
-      </Dock>
+    <div className="w-full col-span-12 p-2 rounded-lg flex flex-row items-center justify-center gap-4">
+      {ICONS.map((src, idx) => (
+        <div key={idx}>
+          <img className="icon-shadow h-8" src={src} alt={`icon`} loading="lazy" />
+        </div>
+      ))}
     </div>
   );
 };
