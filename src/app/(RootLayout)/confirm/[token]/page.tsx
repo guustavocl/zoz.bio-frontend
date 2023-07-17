@@ -38,7 +38,7 @@ export default async function ConfirmPage({ params }: { params: { token: string 
       </Link>
       <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300">Account confirmation</h2>
       {confirmated ? (
-        <h3 className="text-xl mt-2 text-center text-gray-300">
+        <h3 className="text-xl mt-2 text-center text-gray-300 relative">
           Account has been successfully confirmed{" "}
           {user ? (
             <Link href="/account" label="Click here to go to your account panel" className="text-xl text-violet-500" />
