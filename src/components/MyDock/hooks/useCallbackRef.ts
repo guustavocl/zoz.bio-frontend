@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-
 function useCallbackRef<T extends (...args: any[]) => any>(callback: T | undefined): T {
   const callbackRef = React.useRef(callback);
 

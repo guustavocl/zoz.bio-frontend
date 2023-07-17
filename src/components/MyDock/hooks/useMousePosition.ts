@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSpring, UseSpringProps } from "@react-spring/web";
 import { useEffect, useMemo } from "react";
 
