@@ -26,10 +26,16 @@ export const createAccount = async (values: UserProps) => {
 
 export const sendConfirmEmail = async (email: string, recapthca?: string) => {
   try {
-    const request = await CustomAxios.post(`${API_ENDPOINT}/send_confirm_email`, {
-      email,
-      recapthca,
-    });
+    const request = await CustomAxios.post(
+      `${API_ENDPOINT}/send_confirm_email`,
+      {
+        email,
+        recapthca,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     return request.data;
   } catch (err: Error | unknown) {
     handleAxiosError(err);
