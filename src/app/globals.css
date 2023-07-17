@@ -47,6 +47,12 @@
   border: 3px solid var(--scroll-bar-bg-color);
 }
 
+.hide-scrolls::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
 /* End Scrollbar */
 
 html {

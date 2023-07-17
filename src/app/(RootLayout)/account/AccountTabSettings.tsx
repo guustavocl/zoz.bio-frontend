@@ -5,7 +5,10 @@ import { memo } from "react";
 
 const AccountTabSettings = ({ account }: { account?: UserProps }) => {
   return (
-    <BioCard className="h-full min-h-max w-full flex-grow select-none overflow-y-scroll p-3" center={false}>
+    <BioCard
+      className="h-full min-h-max w-full flex-grow select-none overflow-y-scroll p-3 hide-scrolls"
+      center={false}
+    >
       <div className="flex w-full flex-grow flex-col gap-2 overflow-hidden p-2">
         <div className="flex flex-col w-[20rem]">
           <Input id="acc-name" label="Account name" className="bg-black/20" placeholder={account?.uname} disabled />

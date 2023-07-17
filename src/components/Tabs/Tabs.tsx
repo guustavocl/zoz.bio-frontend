@@ -40,7 +40,7 @@ const Tabs = ({ id, tabList }: TabsProps) => {
         ))}
       </Tab.List>
 
-      <Tab.Panels className="mt-4 flex h-full w-full flex-col md:overflow-x-scroll md:overflow-y-scroll">
+      <Tab.Panels className="mt-4 flex h-full w-full flex-col md:overflow-x-scroll md:overflow-y-scroll hide-scrolls">
         {tabList.map((tab, idx) => (
           <Tab.Panel key={idx} className="flex h-full w-full flex-col items-center">
             {tab.component}

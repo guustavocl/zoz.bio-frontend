@@ -28,7 +28,10 @@ export const AccountTabs = ({ account, pages, addNewPage }: AcountTabsProps) => 
           <span className="ml-2">Create a new page or click on the page you want to edit</span>
         </div>
 
-        <div id="pages" className="mb-4 flex w-full flex-shrink-0 flex-row gap-2 overflow-y-hidden overflow-x-scroll">
+        <div
+          id="pages"
+          className="mb-4 flex w-full flex-shrink-0 flex-row gap-2 overflow-y-hidden overflow-x-scroll hide-scrolls"
+        >
           <div
             onClick={() => setDialogNewPageOpen(true)}
             className="group mx-1 my-2 flex h-20 w-20 2xl:h-24 2xl:w-24 flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-full bg-secondary/30 ring-4 ring-violet-200/80 hover:bg-secondary/50 hover:ring-white"

@@ -20,6 +20,7 @@ const TooltipComponent = ({
           className={twMerge(
             "box z-10 h-full rounded p-1 px-2 font-medium tracking-wide",
             "opacity-90 saturate-200 backdrop-blur",
+            primaryColor ? "bg-primary" : "bg-secondary",
             className
           )}
           tabIndex={-1}
