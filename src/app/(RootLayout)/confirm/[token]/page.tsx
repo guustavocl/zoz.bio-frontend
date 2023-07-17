@@ -47,7 +47,7 @@ export default async function ConfirmPage({ params }: { params: { token: string 
           )}
         </h3>
       ) : (
-        <h3 className="text-xl mt-2 text-center text-gray-300">
+        <h3 className="text-xl mt-2 text-center text-gray-300 relative">
           Token invalid or expired{" "}
           {user ? (
             <ConfirmationButton email={user.email} />
