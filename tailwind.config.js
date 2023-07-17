@@ -5,7 +5,7 @@ const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
 const primary = "#0f0f0f";
-const secondary = "#6d28d9";
+const secondary = "#5e1ec4";
 
 module.exports = {
   content: [

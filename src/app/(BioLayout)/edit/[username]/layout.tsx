@@ -1,5 +1,5 @@
 // import Script from "next/script";
-import "@/app/globals.css";
+import "@/app/(BioLayout)/biolayout.css";
 import "react-toastify/dist/ReactToastify.css";
 import "tippy.js/animations/perspective.css";
 import "tippy.js/dist/tippy.css";

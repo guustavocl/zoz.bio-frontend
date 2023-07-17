@@ -1,6 +1,5 @@
 import Main from "@/components/Main/Main";
 import Home from "./home/Home";
-import Users from "./home/Users";
 
 // export const metadata: Metadata = {
 //   title: "Home",
@@ -9,11 +8,8 @@ import Users from "./home/Users";
 
 export default function HomePage() {
   return (
-    <>
-      <Main className="my-24">
-        <Home />
-        <Users />
-      </Main>
-    </>
+    <Main className="my-10">
+      <Home />
+    </Main>
   );
 }

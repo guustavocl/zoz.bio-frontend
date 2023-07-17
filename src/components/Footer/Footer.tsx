@@ -9,12 +9,12 @@ const FooterComponent = () => {
         <span className="text-md select-none text-center">
           © 2023{" - "}
           <span>
-            Developed by <Link href="gustavo" label="@gustavo" />
+            Created by <Link href="gustavo" label="@gustavo" />
           </span>
         </span>
         <ul className="text-md mx-2 mt-3 flex flex-col items-center sm:flex-row justify-center gap-2 sm:mt-0 lg:gap-4">
           <li>
-            <Link href={DISCORD_INVITE} label="Discord" />
+            <Link href={DISCORD_INVITE} label="Discord" target="_blank" />
           </li>
           <li>
             <Link href="about" label="About" />

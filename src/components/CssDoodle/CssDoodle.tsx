@@ -13,7 +13,7 @@ const CssDoodle = ({ className }: { className?: string }) => {
 
   return (
     <div
-      className={twMerge("select-none absolute top-0", className)}
+      className={twMerge("select-none fixed top-0", className)}
       style={{
         objectFit: "cover",
         opacity: 0.05,
@@ -26,6 +26,8 @@ const CssDoodle = ({ className }: { className?: string }) => {
         <Doodle
           rule={`
             @grid: 1 / 100vw 100vh / #0a0c27;
+            background-repeat: repeat;
+            background-size: cover;
             background-size: 200px 200px;
             background-image: @doodle(
               @grid: 6 / 100%;

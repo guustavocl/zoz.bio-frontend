@@ -7,9 +7,6 @@
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
 
-  --scroll-bar-color: #5e1ec4;
-  --scroll-bar-bg-color: #121212;
-
   font-family: Inter, Avenir, Helvetica, sans-serif;
   font-size: clamp(0.8rem, 1vw, 1rem); 
   font-weight: 500;
@@ -21,33 +18,15 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* Start Scrollbar */
+/* Scrollbar */
 
-::-webkit-scrollbar-corner {
-  background: rgba(0, 0, 0, 0.1);
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
-}
-
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--scroll-bar-bg-color);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-bar-color);
-  border: 3px solid var(--scroll-bar-bg-color);
-}
-
-/* End Scrollbar */
+/*  */
 
 html {
   overflow: scroll;
@@ -69,16 +48,29 @@ a:focus-visible {
   --tw-ring-offset-width: 0px !important;
 }
 
+.icon-shadow {
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+}
+
+.arrow-card-start {
+  -webkit-clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+}
+
+.arrow-card-end {
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 6% 50%, 0% 0%);
+  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 6% 50%, 0% 0%);
+}
+
 .home-image-fade {
   -webkit-mask-image:-webkit-gradient(linear, left top, right bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,1)));
   mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-.dock {
-  position: relative;
-  transform: translateX(-50%);
-  align-items: flex-end;
-  height: 72px;
-  display: flex;
-  gap: 0.5rem;
+@screen sm {
+  .arrow-card-avatar {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  }
 }

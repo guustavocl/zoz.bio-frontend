@@ -22,7 +22,7 @@ const LinkButtonComponent = ({
       rel="noopener noreferrer"
       className={twMerge(
         "inline-flex cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-md border border-transparent",
-        "bg-secondary px-4 py-2 text-base font-medium shadow-sm hover:bg-secondary/80 hover:text-violet-300",
+        "bg-secondary px-4 py-2 text-base font-medium shadow-sm hover:bg-secondary/90 hover:text-violet-300",
         className
       )}
     >

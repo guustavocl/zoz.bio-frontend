@@ -4,6 +4,7 @@ import { memo } from "react";
 // TODO - its kinda of laggy when switch folders if you hjave an iframe
 // seems like the iframe is reloading everytime, find a way to save the iframe, cache, etc
 // TODO - encapsulate this better
+// TODO - spotify albums
 const BioIFrames = ({ link }: { link: LinkProps }) => {
   return (
     <>
