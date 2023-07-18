@@ -23,23 +23,24 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
     <>
       <div className="flex min-h-screen w-full flex-col items-center overflow-hidden">
         {backgroundUrl ? (
-          <Image
-            fill
-            quality={90}
-            priority={true}
-            placeholder="empty"
-            src={backgroundUrl}
-            className="-z-50"
-            style={{
-              objectFit: "cover",
-              opacity: backGroundOpacity,
-              backgroundColor: "#080808",
-              backgroundRepeat: "repeat",
-              backgroundPosition: "center",
-            }}
-            alt={`${page.pagename} bio page background`}
-            sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
-          />
+          <div className="fixed w-[100vh] h-[100vh] sm:w-screen sm:h-screen">
+            <Image
+              fill
+              quality={90}
+              priority={true}
+              placeholder="empty"
+              src={backgroundUrl}
+              className="-z-50 -rotate-90 sm:rotate-0 object-contain scale-105 sm:scale-100 sm:object-cover"
+              style={{
+                opacity: backGroundOpacity,
+                backgroundColor: "#080808",
+                backgroundRepeat: "repeat",
+                backgroundPosition: "center",
+              }}
+              alt={`${page.pagename} bio page background`}
+              sizes="(max-width: 768px) 768px, (max-width: 1200px) 1200px, 1980px"
+            />
+          </div>
         ) : (
           <CssDoodle />
         )}
