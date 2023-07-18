@@ -47,9 +47,9 @@ export const BioComponent = ({ page }: { page: PageProps }) => {
         <BioNavigation page={page} user={user} />
         <div className="relative container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <div className="mt-28 relative select-none w-full flex flex-col sm:flex-row gap-3 sm:gap-2 sm:min-h-[12rem] flex-shrink-0">
-            <BioAvatar page={page} />
-            <BioCard page={page} className="w-full z-10 py-[0.6rem] px-3">
-              <div className="flex w-full flex-col justify-center pt-3 sm:pt-0 sm:pl-[30%] gap-2 md:gap-1">
+            <BioCard page={page} className="w-full z-10 py-[0.6rem] px-3 flex flex-col sm:flex-row">
+              <BioAvatar page={page} />
+              <div className="flex w-full flex-col justify-center my-3 sm:pl-[30%] gap-2 md:gap-1">
                 <BioInfos page={page} />
                 <BioBadges page={page} />
                 <BioSocials page={page} />

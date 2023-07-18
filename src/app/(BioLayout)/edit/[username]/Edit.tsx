@@ -24,16 +24,15 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
     <>
       <div className="flex min-h-screen w-full flex-col items-center overflow-hidden">
         {backgroundUrl ? (
-          <div className="fixed w-screen h-screen">
+          <div className="fixed w-[100vh] h-[100vh] sm:w-screen sm:h-screen">
             <Image
               fill
               quality={90}
               priority={true}
               placeholder="empty"
               src={backgroundUrl}
-              className="-z-50 fixed"
+              className="-z-50 -rotate-90 sm:rotate-0 object-contain scale-105 sm:scale-100 sm:object-cover"
               style={{
-                objectFit: "cover",
                 opacity: backGroundOpacity,
                 backgroundColor: "#080808",
                 backgroundRepeat: "repeat",
@@ -50,9 +49,9 @@ export const EditComponent = ({ page }: { page: PageProps }) => {
         <div className="relative container md:w-[42rem] flex w-full h-screen flex-col items-center overflow-y-auto">
           <EditBackground page={page} />
           <div className="relative select-none w-full flex flex-col sm:flex-row gap-3 sm:gap-2 sm:min-h-[12rem] flex-shrink-0">
-            <EditAvatar pageName={page.pagename} page={page} />
-            <BioCard page={page} className="w-full z-10 py-[0.6rem] px-3">
-              <div className="flex w-full flex-col pt-3 sm:pt-0 sm:pl-[30%] gap-2 md:gap-1">
+            <BioCard page={page} className="w-full z-10 py-[0.6rem] px-3 flex flex-col sm:flex-row">
+              <EditAvatar pageName={page.pagename} page={page} />
+              <div className="flex w-full flex-col my-3 sm:pl-[30%] gap-2 md:gap-1">
                 <EditInfos page={page} />
                 <EditBadges page={page} />
                 <EditSocials page={page} />
