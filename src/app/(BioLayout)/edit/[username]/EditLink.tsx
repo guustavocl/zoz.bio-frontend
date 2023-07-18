@@ -32,7 +32,7 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
         />
       )}
       <div
-        className="z-10 flex flex-row items-center gap-2 sm:ml-[10%] md:ml-[18%] text-xl font-bold leading-6 tracking-wide icon-shadow"
+        className="z-10 flex flex-row items-center gap-2 ml-[10%] md:ml-[18%] text-xl font-bold leading-6 tracking-wide icon-shadow"
         style={{ color: fontColor }}
       >
         <img
@@ -41,7 +41,7 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
           alt={`folder icon`}
           loading="lazy"
         />
-        Edit
+        <span className="hidden sm:flex">Edit</span>
       </div>
     </>
   );
@@ -50,7 +50,7 @@ const BannerComponent = ({ link, fontColor }: { link: LinkProps; fontColor: stri
 const LinkComponent = ({ page, link, setFolderOwner }: EditLinkProps) => {
   const fontColor = page?.fontColor || defaultPage.fontColor;
   const h2ClassName =
-    "sm:ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center font-bold tracking-wide overflow-visible whitespace-nowrap sm:text-xl";
+    "sm:ml-7 flex-1 flex-shrink-0 truncate whitespace-pre-wrap text-center font-bold tracking-wide overflow-visible whitespace-nowrap text-lg sm:text-xl";
   if (link.isFolder)
     return (
       <div
@@ -87,7 +87,9 @@ const EditLink = ({ page, link, setFolderOwner, editLink }: EditLinkProps) => {
 
   return (
     <>
-      <div className={"w-full border-black/50 border-b-[1.5px] arrow-card-start rounded-l-xl max-w-[28%]"}>
+      <div
+        className={"w-full border-black/50 border-b-[1.5px] arrow-card-start rounded-l-xl max-w-[19%] sm:max-w-[28%]"}
+      >
         <div
           className={clsx(
             cardBlur,
@@ -102,7 +104,7 @@ const EditLink = ({ page, link, setFolderOwner, editLink }: EditLinkProps) => {
         </div>
       </div>
 
-      <div className={"w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[1rem] sm:-ml-[1rem]"}>
+      <div className={"w-full border-black/50 border-b-[1.5px] arrow-card-end rounded-r-xl -ml-[0.4rem] sm:-ml-[1rem]"}>
         <div
           className={clsx(
             cardBlur,
