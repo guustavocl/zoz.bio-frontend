@@ -14,15 +14,15 @@ const EditSocials = ({ page }: { page: PageProps }) => {
   return (
     <DefaultTooltip content="Click to edit your accounts">
       <div
-        className="group flex flex-row cursor-pointer hover:ring-2 rounded-md hover:backdrop-contrast-150 hover:ring-white/80"
+        className="group flex cursor-pointer flex-row rounded-md hover:ring-2 hover:ring-white/80 hover:backdrop-contrast-150"
         onClick={() => {
           setDialogEditSocials(true);
         }}
       >
-        <div className="mt-1 flex flex-row flex-wrap w-full items-center justify-center gap-1">
+        <div className="mt-1 flex w-full flex-row flex-wrap items-center justify-center gap-1">
           {socialMedias && socialMedias.map((media, idx) => <BioIcon key={idx} media={media} />)}
         </div>
-        <PencilSquareIcon className="absolute right-3 h-6 text-center group-hover:right-1 self-center" />
+        <PencilSquareIcon className="absolute right-3 h-6 self-center text-center group-hover:right-1" />
       </div>
       <DialogEditSocials isOpen={dialogEditSocials} setIsOpen={setDialogEditSocials} page={page} />
     </DefaultTooltip>

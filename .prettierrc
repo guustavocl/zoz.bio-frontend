@@ -7,5 +7,6 @@
   "useTabs": false,
   "arrowParens": "avoid",
   "tabWidth": 2,
-  "pluginSearchDirs": false
+  "pluginSearchDirs": false,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

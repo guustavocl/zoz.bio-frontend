@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const Color = require('color');
+import Color from 'color';
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
