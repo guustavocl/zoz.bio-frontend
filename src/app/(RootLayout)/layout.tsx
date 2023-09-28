@@ -12,7 +12,7 @@ import { cookies } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
 import CssDoodle from "@/components/CssDoodle/CssDoodle";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   title: ZOZ_META_TITLE,
@@ -59,8 +59,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME && (
-          <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME} />
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME && process.env.NEXT_PUBLIC_MICROSOFT_CLARITY && (
+          <Analytics
+            GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME}
+            MC_TRACKING_ID={process.env.NEXT_PUBLIC_MICROSOFT_CLARITY}
+          />
         )}
         <NextTopLoader color="#6d28d9" showSpinner={false} />
         <CssDoodle className="z-0 w-full" />

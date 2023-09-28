@@ -6,7 +6,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/translucent.css";
 import ToastProvider from "@/providers/ToastProvider";
 import { ReactNode } from "react";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Analytics from "@/components/Analytics";
 
 // METADATA EXAMPLE - https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 
@@ -23,8 +23,11 @@ export default function BioLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME && (
-          <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME} />
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME && process.env.NEXT_PUBLIC_MICROSOFT_CLARITY && (
+          <Analytics
+            GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOME}
+            MC_TRACKING_ID={process.env.NEXT_PUBLIC_MICROSOFT_CLARITY}
+          />
         )}
         {children}
         <ToastProvider />
